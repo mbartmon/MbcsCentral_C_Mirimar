@@ -1,0 +1,29 @@
+﻿<Window x:Class="frmEmailAssign"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Assign Emails" Height="446" Width="818" Background="{StaticResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="{StaticResource {x:Static SystemColors.ControlTextBrushKey}}" BorderThickness="2" Name="Border1" CornerRadius="30"  Padding="7" Background="{StaticResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" HorizontalAlignment="Center" VerticalAlignment="Top" Height="41" Grid.Column="0" Width="Auto">
+            <TextBlock Text="Assign Uncategorized E-mails to Issues" FontSize="14" FontWeight="Bold" Width="Auto"/>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Emails" VerticalAlignment="Bottom" Width="50" HorizontalAlignment="Left" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" />
+            <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" Name="grdEmails" />
+            <Label Grid.Column="1" Grid.Row="0" Content="Issues" VerticalAlignment="Bottom" Width="50" HorizontalAlignment="Left" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" />
+            <DataGrid Grid.Column="1" Grid.Row="1" AutoGenerateColumns="False"  Name="grdIssues" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,166 @@
+﻿<Window x:Class="MbcsCentral.frmOwner"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        Name="formOwner"
+        Title="Owner Record"
+        Width="382"
+        Height="363"
+        Background="#FF00C0C0"
+        FontWeight="Bold"
+        TextBlock.FontSize="14"
+        TextBlock.TextAlignment="Center">
+    <Border BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+        <Grid Name="MainGrid"
+              TextBlock.FontSize="12"
+              TextBlock.TextAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Owner Number" />
+            <viblend:NumberEditor Name="txtOwnerNumber"
+                                  Grid.Row="0"
+                                  Grid.Column="1"
+                                  Width="30"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  DecimalPlaces="0"
+                                  MaxLength="2"
+                                  Text="{Binding OwnerNumber, Mode=TwoWay}" />
+            <TextBlock Grid.Row="1"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Owner Name" />
+            <TextBox Name="txtOwnerName"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Width="250"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{Binding OwnerName, Mode=TwoWay}" />
+            <TextBlock Grid.Row="2"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Billing Name" />
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Width="250"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{Binding BillingName, Mode=TwoWay}" />
+            <TextBlock Grid.Row="3"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Address" />
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{Binding Address1, Mode=TwoWay}" />
+            <TextBox Grid.Row="4"
+                     Grid.Column="1"
+                     Width="200"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{Binding Address2, Mode=TwoWay}" />
+            <TextBlock Grid.Row="5"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Telephone" />
+            <TextBox Grid.Row="5"
+                     Grid.Column="1"
+                     Width="150"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{Binding Telephone, Mode=TwoWay}" />
+            <TextBlock Grid.Row="6"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Federal ID#" />
+            <TextBox Grid.Row="6"
+                     Grid.Column="1"
+                     Width="150"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{Binding FederalID, Mode=TwoWay}"
+                     TextAlignment="Left" />
+            <TextBlock Grid.Row="7"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Bank Routing #" />
+            <TextBox Grid.Row="7"
+                     Grid.Column="1"
+                     Width="150"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     MaxLength="9"
+                     Text="{Binding BankRoutingNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     TextAlignment="Left" />
+            <TextBlock Grid.Row="8"
+                       Grid.Column="0"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Bank Account #" />
+            <TextBox Grid.Row="8"
+                     Grid.Column="1"
+                     Width="150"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     MaxLength="17"
+                     Text="{Binding BankAccountNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     TextAlignment="Left" />
+            <TextBlock Grid.Row="9"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Email" />
+            <TextBox Grid.Row="9"
+                     Grid.Column="1"
+                     Width="250"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Text="{Binding email, Mode=TwoWay}" />
+            <Button Name="cmdOk"
+                    Grid.Row="10"
+                    Width="50"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Click="cmdOk_Click"
+                    Content="OK" />
+            <StackPanel Grid.Row="10"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+                <Button Name="cmdPrint"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Click="cmdPrint_Click"
+                        Content="PRINT FORM" />
+                <Button Name="cmdCancel"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Click="cmdCancel_Click"
+                        Content="EXIT" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

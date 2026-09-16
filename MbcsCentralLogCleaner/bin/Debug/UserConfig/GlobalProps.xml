@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<global>
+  <connectionString>Data Source=MIKE-PC\SQLEXPRESSMBCS;Initial Catalog=MbcsCentral;Integrated Security=SSPI;</connectionString>
+</global>

@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="MbcsCentral.Help.DocumentFromFIle"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral.Help"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DocumentFromFIle"
+    d:DesignHeight="450"
+    d:DesignWidth="322"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer
+            Width="Auto"
+            Height="643"
+            VerticalAlignment="Top"
+            CanContentScroll="True"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel
+                Height="640"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                <TextBlock Style="{StaticResource HeaderText}">Add Document From File</TextBlock>
+                <Separator />
+                <Image
+                    Width="Auto"
+                    Height="Auto"
+                    Source="/MbcsCentral;component\Image9.png"
+                    Stretch="Fill" />
+                <Separator Height="10" />
+                <TextBlock Style="{StaticResource InnerText}">
+                    1. Click the <Italic>New Page</Italic>
+                    button</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    on<Italic>Document Page Layout Editor</Italic>
+                    form. The<Italic>Add New Document</Italic>
+                    form shown above will be displayed.</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">
+                    2. Click the <Italic>Browse</Italic>
+                    button</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    at the top under <Italic>Add From File</Italic>
+                    .</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">3. A windows FileBrowser</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    will open. From here you can navigate to and choose the file which you want to add. Click the <Italic>OPEN</Italic>
+                    button on the FileBrowser window.</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">4. At this point</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">the <Italic>Add New Documents</Italic> form should look similar to the above image with the file displayed on the right side.</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">5. Drop down the <Italic>Document Type</Italic></TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">and select <Italic>Lease Renewal.</Italic></TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">6. Click the <Italic>SAVE</Italic> button.</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">7. Fill in the <Italic>Name</Italic> and <Italic>Description</Italic> fields</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">then click <Italic>OK.</Italic></TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">8. Click the <Italic>Yes</Italic> button</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">when you see "Save in defualt location (recommended). You can also save the new document on any drive or folder on your system by clicking <Italic>No</Italic>. Once you click <Italic>No</Italic> the standard Windows File Save dialog will be displayed.</TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

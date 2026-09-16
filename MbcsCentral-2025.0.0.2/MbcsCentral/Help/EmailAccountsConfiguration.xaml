@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="MbcsCentral.Help.EmailAccountsConfiguration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral.Help"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="EmailAccountsConfiguration"
+    Name="pageEmailAccountConfiguration"
+    d:DesignWidth="322"
+    mc:Ignorable="d" Height="1213.499">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <ScrollViewer VerticalAlignment="Top" Width="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Height="643">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Height="640">
+                <TextBlock Style="{StaticResource HeaderText}">Email Accounts Configurations</TextBlock>
+                <Separator />
+                <TextBlock
+                    Width="Auto"
+                    HorizontalAlignment="Stretch"
+                    TextWrapping="Wrap">
+                    Before E-Mail can be sent at least one E-Mail Account must be configured (just as you would do in the E-Mail client
+                    that you normally use such as Outlook or Gmail).<LineBreak /><LineBreak />
+                    You do this in <Bold>Email Configurations.</Bold>
+                    This is found in <Bold>Tools-&gt;Email Configurations-&gt;Email Accounts</Bold>
+
+                </TextBlock>
+                <Separator Height="10" />
+                <Image
+                    Width="Auto"
+                    Height="Auto"
+                    Source="/MbcsCentral;component/Image7.png"
+                    Stretch="Fill" />
+                <TextBlock Margin="0,10,0,0" Style="{StaticResource HeaderText}">
+                    Account Configuration
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                    To setup a new Email Account you will need the account information from your Email Service Provider.
+                    Often all of the information that you need (except for password) can be found in the account setup within your Email client program.<LineBreak /><LineBreak />
+                    Once you have the information proceed as follows:</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}" TextWrapping="Wrap">
+                    1. Click the 'ADD New EMAIL Account' button.<LineBreak /><LineBreak />
+                    2. Give the new account a descriptive name.<LineBreak /><LineBreak />
+                    3. Click 'SAVE'.<LineBreak /><LineBreak />
+                    4. The new account description will appear in the Email Accounts list.<LineBreak /><LineBreak />
+                    5. Enter the email address for the account below the Email Accounts list in the box labeled 'Email Address'
+                    on the right of the screen.<LineBreak /></TextBlock>
+                <TextBlock Margin="10,0,0,0" Style="{StaticResource TitleText}">
+                    Outgoing Setup<LineBreak />
+                </TextBlock>
+                <TextBlock Style="{StaticResource InnerText}" TextWrapping="Wrap">
+                    1. DisplayName:  This is the name that will appear as 'From' in the recipient's inbox.<LineBreak /><LineBreak />
+                    2. User Name / Password: The credentials that you would use to sign on to your Email Provider. For Gmail it is your Gmail email address.<LineBreak /><LineBreak />
+                    3. Server URL: This is the outgoing mail server.  For Gmail currently it is: smtp.gmail.com.
+                    4. Port: The standard, non-encrypted port is 25.  Chances are that your Email Provider uses a different port number. Gmail's standard port is 587 
+                    5. Use SSL/Use TSL: Check these boxes as required by your Email Provider. Gmail: Use TSL.
+                    6. Click SAVE.<LineBreak/><LineBreak/>
+                    You can then use the TEST button to send a test message using that account.
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

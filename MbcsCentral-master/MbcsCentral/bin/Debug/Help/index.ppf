@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ppfml version="2.00" project="MbcsCentral Manual" type="4">
+  <contextmap>
+    
+  </contextmap>
+  <topiclist defaulttopic="Introduction_to_MbcsCentral.htm">
+    
+    <topic>
+      Introduction_to_MbcsCentral.htm
+    </topic>
+    
+    <topic>
+      System_Requirements.htm
+    </topic>
+    
+    <topic>
+      Documents\Documents_Overview.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Document_Acquisition.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Add_Document_From_File.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Add_Document_from_scanner.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Layout_Editing.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Working_With_Fonts.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Working_With_Insertion_Fields.htm
+    </topic>
+    
+    <topic>
+      Documents\Using_Documents\Lease_Renewal_Letters.htm
+    </topic>
+    
+    <topic>
+      Documents\Using_Documents\Tenant_Letters_Documents.htm
+    </topic>
+    
+    <topic>
+      Documents\Using_Documents\The_Email_Message_Window.htm
+    </topic>
+    
+    <topic>
+      Introduction_to_MbcsCentral.htm
+    </topic>
+    
+    <topic>
+      System_Requirements.htm
+    </topic>
+    
+    <topic>
+      Documents\Documents_Overview.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Document_Acquisition.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Add_Document_From_File.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Add_Document_from_scanner.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Layout_Editing.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Working_With_Fonts.htm
+    </topic>
+    
+    <topic>
+      Documents\Creating_and_Editing\Working_With_Insertion_Fields.htm
+    </topic>
+    
+    <topic>
+      Documents\Using_Documents\Lease_Renewal_Letters.htm
+    </topic>
+    
+    <topic>
+      Documents\Using_Documents\Tenant_Letters_Documents.htm
+    </topic>
+    
+    <topic>
+      Documents\Using_Documents\The_Email_Message_Window.htm
+    </topic>
+    
+  </topiclist>
+  <filenamemap>
+    <filenameentry moniker="wh_languagetype">
+      <filename>
+        en_US
+      </filename>
+    </filenameentry>
+    <filenameentry moniker="startpage">
+      <filename>
+        index.htm
+      </filename>
+    </filenameentry>
+        
+  </filenamemap>
+</ppfml>

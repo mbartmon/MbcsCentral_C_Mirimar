@@ -1,0 +1,567 @@
+﻿<Window
+    x:Class="MbcsCentral.WinPM.frmStmtMessages"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+    Name="formStmtMessages"
+    Title="Rent Statement Messages"
+    Width="739.72"
+    Height="586"
+    Background="LightSalmon"
+    Loaded="formStmtMessages_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="TypesSource" />
+        <CollectionViewSource x:Key="LegalSource" />
+        <CollectionViewSource x:Key="BuildingSource" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="55" />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.Row="0"
+            BorderBrush="Black"
+            BorderThickness="2">
+            <Grid Name="GeneralMessage">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="550" />
+                    <ColumnDefinition Width="65" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Name="pnlGenMessage" Grid.Column="0">
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="General Message" />
+                    <Border
+                        Height="29"
+                        Margin="5,0,0,0"
+                        BorderBrush="Gray"
+                        BorderThickness="1">
+                        <TextBox
+                            Name="GeneralOne"
+                            MaxLength="60"
+                            Text="{Binding StatementMessage1, Mode=TwoWay}" />
+                    </Border>
+                    <Border
+                        Height="29"
+                        Margin="5,0,0,0"
+                        BorderBrush="Gray"
+                        BorderThickness="1">
+                        <TextBox
+                            Name="GeneralTwo"
+                            MaxLength="60"
+                            Text="{Binding StatementMessage2, Mode=TwoWay}" />
+                    </Border>
+                    <Border
+                        Height="29"
+                        Margin="5,0,0,0"
+                        BorderBrush="Gray"
+                        BorderThickness="1">
+                        <TextBox
+                            Name="GeneralThree"
+                            MaxLength="60"
+                            Text="{Binding StatementMessage3, Mode=TwoWay}" />
+                    </Border>
+                </StackPanel>
+                <StackPanel
+                    Name="pnlGenColors"
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    DataContext="{Binding}">
+                    <RadioButton
+                        Name="GenColorBlack"
+                        Width="100"
+                        Background="Black"
+                        Content="Black"
+                        GroupName="GenColor" />
+                    <RadioButton
+                        Name="GenColorRed"
+                        Width="100"
+                        Background="Red"
+                        Content="Red"
+                        Foreground="Red"
+                        GroupName="GenColor" />
+                    <RadioButton
+                        Name="GenColorGreen"
+                        Width="100"
+                        Background="Green"
+                        Content="Green"
+                        Foreground="Green"
+                        GroupName="GenColor" />
+                    <RadioButton
+                        Name="GenColorYellow"
+                        Width="100"
+                        Background="Yellow"
+                        Content="Yellow"
+                        Foreground="Yellow"
+                        GroupName="GenColor" />
+                    <RadioButton
+                        Name="GenColorBlue"
+                        Width="100"
+                        Background="Blue"
+                        Content="Blue"
+                        Foreground="Blue"
+                        GroupName="GenColor" />
+                    <RadioButton
+                        Name="GenColorCyan"
+                        Width="100"
+                        Background="Cyan"
+                        Content="Cyan"
+                        Foreground="Cyan"
+                        GroupName="GenColor" />
+                </StackPanel>
+                <StackPanel
+                    Name="pnlGenLocation"
+                    Grid.Column="2"
+                    HorizontalAlignment="Center">
+                    <TextBlock FontWeight="Bold" Text="Location" />
+                    <viblend:NumberEditor
+                        Name="GenLocation"
+                        Width="25"
+                        Margin="0,5,0,0"
+                        DecimalPlaces="0"
+                        LostFocus="Location_LostFocus"
+                        MaxLength="1"
+                        Text="{Binding GeneralMsgLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="0,5,0,0"
+                        FontWeight="Bold"
+                        Text="1, 2 or 3" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border
+            Grid.Row="1"
+            BorderBrush="Black"
+            BorderThickness="2">
+            <Grid Name="LegalMessages">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="578" />
+                    <ColumnDefinition Width="65" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Legal Code Messages" />
+                    <DataGrid
+                        Name="grdLegalMessages"
+                        Height="150"
+                        Margin="5,0,0,0"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="True"
+                        CanUserDeleteRows="True"
+                        ItemsSource="{Binding}"
+                        SelectionChanged="grdLegalMessages_SelectionChanged"
+                        VerticalScrollBarVisibility="Visible">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem
+                                    Name="ctxLegalDelete"
+                                    Click="ctxLegalDelete_Click"
+                                    Header="DELETE" />
+                                <MenuItem
+                                    Name="ctxLegalInsert"
+                                    Click="ctxLegalInsert_Click"
+                                    Header="NEW MESSAGE" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <!-- <DataGridTextColumn Header="Code" Binding="{Binding Code, Mode=TwoWay}" Width="40"/> -->
+                            <DataGridComboBoxColumn
+                                Width="150"
+                                DisplayMemberPath="ChargeDescription"
+                                Header="Code"
+                                ItemsSource="{Binding Source={StaticResource LegalSource}}"
+                                SelectedValueBinding="{Binding Code, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                SelectedValuePath="ChargeCode" />
+
+                            <DataGridTextColumn
+                                Width="400"
+                                Binding="{Binding Message, Mode=TwoWay}"
+                                Header="Message" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel
+                    Name="pnlLglColors"
+                    Grid.Column="1"
+                    Margin="5,0,0,0">
+                    <RadioButton
+                        Name="LglColorBlack"
+                        Width="100"
+                        Background="Black"
+                        Content="Black"
+                        GroupName="LglColor" />
+                    <RadioButton
+                        Name="LglColorRed"
+                        Width="100"
+                        Background="Red"
+                        Content="Red"
+                        Foreground="Red"
+                        GroupName="LglColor" />
+                    <RadioButton
+                        Name="LglColorGreen"
+                        Width="100"
+                        Background="Green"
+                        Content="Green"
+                        Foreground="Green"
+                        GroupName="LglColor" />
+                    <RadioButton
+                        Name="LglColorYellow"
+                        Width="100"
+                        Background="Yellow"
+                        Content="Yellow"
+                        Foreground="Yellow"
+                        GroupName="LglColor" />
+                    <RadioButton
+                        Name="LglColorBlue"
+                        Width="100"
+                        Background="Blue"
+                        Content="Blue"
+                        Foreground="Blue"
+                        GroupName="LglColor" />
+                    <RadioButton
+                        Name="LglColorCyan"
+                        Width="100"
+                        Background="Cyan"
+                        Content="Cyan"
+                        Foreground="Cyan"
+                        GroupName="LglColor" />
+                </StackPanel>
+                <StackPanel
+                    Name="pnlLglLocation"
+                    Grid.Column="2"
+                    Width="62"
+                    Margin="1,0,-12,0"
+                    HorizontalAlignment="Center">
+                    <TextBlock FontWeight="Bold" Text="Location" />
+                    <viblend:NumberEditor
+                        Name="LglLocation"
+                        Width="25"
+                        Margin="0,5,0,0"
+                        DecimalPlaces="0"
+                        LostFocus="Location_LostFocus"
+                        MaxLength="1"
+                        Text="{Binding LegalMsgLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="0,5,0,0"
+                        FontWeight="Bold"
+                        Text="1, 2, 3 or 4" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border
+            Grid.Row="2"
+            BorderBrush="Black"
+            BorderThickness="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="578" />
+                    <ColumnDefinition Width="65" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Tenant Type Messages" />
+                    <DataGrid
+                        Name="grdTypeMessages"
+                        Grid.Row="1"
+                        Height="150"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Top"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="True"
+                        CanUserDeleteRows="True"
+                        ItemsSource="{Binding}"
+                        SelectionChanged="grdTypeMessages_SelectionChanged"
+                        VerticalScrollBarVisibility="Visible">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem
+                                    Name="ctxTypeDelete"
+                                    Click="ctxTypeDelete_Click"
+                                    Header="DELETE" />
+                                <MenuItem
+                                    Name="ctxTypeInsert"
+                                    Click="ctxTypeInsert_Click"
+                                    Header="NEW MESSAGE" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <!-- <DataGridTextColumn Header="Type" Binding="{Binding Type, Mode=TwoWay}" Width="40"/> -->
+                            <DataGridComboBoxColumn
+                                Width="150"
+                                DisplayMemberPath="Description"
+                                Header="Type"
+                                ItemsSource="{Binding Source={StaticResource TypesSource}}"
+                                SelectedValueBinding="{Binding Type, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                SelectedValuePath="Type" />
+                            <DataGridTextColumn
+                                Width="400"
+                                Binding="{Binding Message, Mode=TwoWay}"
+                                Header="Message" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <StackPanel
+                    Name="pnlTypeColors"
+                    Grid.Column="1"
+                    Margin="5,0,0,0">
+                    <RadioButton
+                        Name="TypeColorBlack"
+                        Width="100"
+                        Background="Black"
+                        Content="Black"
+                        GroupName="TypeColor" />
+                    <RadioButton
+                        Name="TypeColorRed"
+                        Width="100"
+                        Background="Red"
+                        Content="Red"
+                        Foreground="Red"
+                        GroupName="TypeColor" />
+                    <RadioButton
+                        Name="TypeColorGreen"
+                        Width="100"
+                        Background="Green"
+                        Content="Green"
+                        Foreground="Green"
+                        GroupName="TypeColor" />
+                    <RadioButton
+                        Name="TypeColorYellow"
+                        Width="100"
+                        Background="Yellow"
+                        Content="Yellow"
+                        Foreground="Yellow"
+                        GroupName="TypeColor" />
+                    <RadioButton
+                        Name="TypeColorBlue"
+                        Width="100"
+                        Background="Blue"
+                        Content="Blue"
+                        Foreground="Blue"
+                        GroupName="TypeColor" />
+                    <RadioButton
+                        Name="TypeColorCyan"
+                        Width="100"
+                        Background="Cyan"
+                        Content="Cyan"
+                        Foreground="Cyan"
+                        GroupName="TypeColor" />
+                </StackPanel>
+                <StackPanel
+                    Name="pnlTypeLocation"
+                    Grid.Column="2"
+                    Width="72"
+                    Margin="1,0,-22,0"
+                    HorizontalAlignment="Center">
+                    <TextBlock FontWeight="Bold" Text="Location" />
+                    <viblend:NumberEditor
+                        Name="TypeLocation"
+                        Width="25"
+                        Margin="0,5,0,0"
+                        DecimalPlaces="0"
+                        LostFocus="Location_LostFocus"
+                        MaxLength="1"
+                        Text="{Binding TypeMsgLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="10,5,0,0"
+                        FontWeight="Bold"
+                        RenderTransformOrigin="0.5,0.5"
+                        Text="1, 2, 3 or 4">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform />
+                                <SkewTransform />
+                                <RotateTransform Angle="-1.032" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border
+            Grid.Row="3"
+            BorderBrush="Black"
+            BorderThickness="2">
+            <Grid Margin="0,0,8,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="578" />
+                    <ColumnDefinition Width="65" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Building Messages" />
+                    <DataGrid
+                        Name="grdBuildingMessages"
+                        Grid.Row="1"
+                        Height="150"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Top"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="True"
+                        CanUserDeleteRows="True"
+                        ItemsSource="{Binding}"
+                        SelectionChanged="grdBuildingMessages_SelectionChanged"
+                        VerticalScrollBarVisibility="Visible">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem
+                                    Name="ctxBuildingDelete"
+                                    Click="ctxBuildingDelete_Click"
+                                    Header="DELETE" />
+                                <MenuItem
+                                    Name="ctxBuildingInsert"
+                                    Click="ctxBuildingInsert_Click"
+                                    Header="NEW MESSAGE" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <!-- <DataGridTextColumn Header="Type" Binding="{Binding Type, Mode=TwoWay}" Width="40"/> -->
+                            <DataGridComboBoxColumn
+                                Width="150"
+                                DisplayMemberPath="Address1"
+                                Header="Address1"
+                                ItemsSource="{Binding Source={StaticResource BuildingSource}}"
+                                SelectedValueBinding="{Binding BuildingNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                SelectedValuePath="BuildingNumber" />
+                            <DataGridTextColumn
+                                Width="400"
+                                Binding="{Binding Message, Mode=TwoWay}"
+                                Header="Message" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <StackPanel
+                    Name="pnlBuildingColors"
+                    Grid.Column="1"
+                    Margin="5,0,0,0">
+                    <RadioButton
+                        Name="BuildingColorBlack"
+                        Width="100"
+                        Background="Black"
+                        Content="Black"
+                        GroupName="BuildingColor" />
+                    <RadioButton
+                        Name="BuildingColorRed"
+                        Width="100"
+                        Background="Red"
+                        Content="Red"
+                        Foreground="Red"
+                        GroupName="BuildingColor" />
+                    <RadioButton
+                        Name="BuildingColorGreen"
+                        Width="100"
+                        Background="Green"
+                        Content="Green"
+                        Foreground="Green"
+                        GroupName="BuildingColor" />
+                    <RadioButton
+                        Name="BuildingColorYellow"
+                        Width="100"
+                        Background="Yellow"
+                        Content="Yellow"
+                        Foreground="Yellow"
+                        GroupName="BuildingColor" />
+                    <RadioButton
+                        Name="BuildingColorBlue"
+                        Width="100"
+                        Background="Blue"
+                        Content="Blue"
+                        Foreground="Blue"
+                        GroupName="BuildingColor" />
+                    <RadioButton
+                        Name="BuildingColorCyan"
+                        Width="100"
+                        Background="Cyan"
+                        Content="Cyan"
+                        Foreground="Cyan"
+                        GroupName="BuildingColor" />
+                </StackPanel>
+                <StackPanel
+                    Name="pnlBuildingLocation"
+                    Grid.Column="2"
+                    Width="64"
+                    Margin="1,0,-14,0"
+                    HorizontalAlignment="Center">
+                    <TextBlock FontWeight="Bold" Text="Location" />
+                    <viblend:NumberEditor
+                        Name="BuildingLocation"
+                        Width="25"
+                        Margin="0,5,0,0"
+                        DecimalPlaces="0"
+                        LostFocus="Location_LostFocus"
+                        MaxLength="1"
+                        Text="{Binding BuildingMsgLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Width="70"
+                        Margin="0,5,0,0"
+                        FontWeight="Bold"
+                        Text="1, 2, 3 or 4" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button
+                    Name="cmdSave"
+                    Width="50"
+                    Margin="5,0,0,0"
+                    Click="cmdSave_Click"
+                    Content="SAVE" />
+                <Button
+                    Name="cmdExit"
+                    Width="50"
+                    Margin="10,0,0,0"
+                    Click="cmdExit_Click"
+                    Content="EXIT" />
+                <TextBlock
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Background="Cyan"
+                    FontSize="13"
+                    Text="  Right-Click on a row and select from pop-up to add or delete LEGAL, TYPE or BUILDING messages  " />
+            </StackPanel>
+            <CheckBox
+                Name="chkPrior"
+                Grid.Row="1"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Reserve Location 4 for prior month payments"
+                FlowDirection="RightToLeft"
+                FontSize="14"
+                FontWeight="Bold" />
+        </Grid>
+    </Grid>
+</Window>

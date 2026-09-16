@@ -1,0 +1,17 @@
+﻿<Window x:Class="MbcsCentral.frmProgress"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Data Migration Progress" Height="414" Width="445"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <ListBox Name="lstProgress"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="cmdExit" Content="EXIT" Click="cmdExit_Click"/>
+            <Button Name="cmdPrint" Content="PRINT" Margin="20,0,0,0" Click="cmdPrint_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

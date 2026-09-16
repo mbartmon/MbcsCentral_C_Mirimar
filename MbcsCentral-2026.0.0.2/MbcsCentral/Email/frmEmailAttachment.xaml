@@ -1,0 +1,327 @@
+﻿<Window
+    x:Class="MbcsCentral.Email.frmEmailAttachment"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:MbcsCentral"
+    Name="FormfrmEmailAttachment"
+    Title="Email an Attachment"
+    Width="797.64"
+    Height="590.505"
+    Background="AliceBlue"
+    Closed="frmEmailAttachment_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmEmailAttachment_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="Email an Attachment"
+                TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <!--  Place your content here  -->
+                <Grid
+                    Name="grdTop"
+                    Margin="5,0,0,0"
+                    DataContext="{Binding}"
+                    ShowGridLines="True"
+                    TextBlock.FontSize="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="190" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="From" />
+                    <ComboBox
+                        Name="lstAccounts"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Width="400"
+                        Height="25"
+                        Margin="3,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        DisplayMemberPath="description"
+                        ItemsSource="{Binding}" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Text="Subject" />
+                    <TextBox
+                        Name="txtSubject"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="400"
+                        Height="25"
+                        Margin="3,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        TextAlignment="Left" />
+                    <StackPanel
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Top">
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Text="Recipients" />
+                        <TextBlock
+                            Margin="0,15,0,0"
+                            HorizontalAlignment="Left"
+                            FontWeight="Normal"
+                            Text="Add Individual Email Addresses" />
+                        <StackPanel Orientation="Horizontal">
+                            <ComboBox
+                                Name="lstEmailAddress"
+                                Width="170"
+                                Margin="0,0,3,0"
+                                HorizontalAlignment="Left"
+                                IsEditable="True"
+                                ItemsSource="{Binding Path=EmailAddresses}"
+                                TextBlock.TextAlignment="Left" />
+                            <StackPanel HorizontalAlignment="Center" Background="Coral">
+                                <Button
+                                    Name="cmdSingleAddress"
+                                    Width="15"
+                                    Height="23"
+                                    Background="Coral"
+                                    Click="cmdSingleAddress_Click"
+                                    Content="&gt;"
+                                    FontSize="16"
+                                    FontWeight="ExtraBold"
+                                    TextBlock.TextAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+                        <StackPanel Margin="3,0,0,0">
+                            <TextBlock
+                                FontSize="11"
+                                FontWeight="Normal"
+                                Text="Your Lists" />
+                            <ListBox
+                                Name="lstRecipientList"
+                                Width="180"
+                                Height="180"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="listName"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Center" Background="Coral">
+                            <Button
+                                Name="ListRightArrow"
+                                Width="15"
+                                Height="23"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Background="coral"
+                                Click="ListRightArrow_Click"
+                                Content="&gt;"
+                                FontSize="16"
+                                FontWeight="ExtraBold"
+                                TextBlock.TextAlignment="Center" />
+                            <Button
+                                Name="ListLeftArrow"
+                                Width="15"
+                                Height="23"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Background="coral"
+                                Click="ListLeftArrow_Click"
+                                Content="&lt;"
+                                FontSize="16"
+                                FontWeight="ExtraBold" />
+
+
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Text="Send To" />
+                            <ListBox
+                                Name="lstRecipients"
+                                Width="180"
+                                Height="180"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Center" Background="Coral">
+                            <Button
+                                Name="OutlookLeft"
+                                Width="15"
+                                Height="23"
+                                VerticalAlignment="Center"
+                                Background="Coral"
+                                Click="OutlookLeft_Click"
+                                Content="&lt;"
+                                FontSize="16"
+                                FontWeight="ExtraBold"
+                                TextBlock.TextAlignment="Center" />
+                            <Button
+                                Name="OutlookRight"
+                                Width="15"
+                                Height="23"
+                                VerticalAlignment="Center"
+                                Background="Coral"
+                                Click="OutlookRight_Click"
+                                Content="&gt;"
+                                FontSize="16"
+                                FontWeight="ExtraBold"
+                                TextBlock.TextAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel>
+                            <CheckBox
+                                Name="chkOutlook"
+                                Height="20"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom"
+                                Checked="chkOutlook_Checked"
+                                Content="Outlook Contacts"
+                                FlowDirection="RightToLeft"
+                                FontSize="11"
+                                FontWeight="Normal"
+                                IsChecked="{Binding Path=UseOutlook}"
+                                Unchecked="chkOutlook_Checked" />
+                            <ListBox
+                                Name="lstOutlook"
+                                Width="180"
+                                Height="180"
+                                VerticalAlignment="Center"
+                                DisplayMemberPath="Email" />
+
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+                        <CheckBox
+                            Name="chkBCC"
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Content="Use BCC instead of CC"
+                            IsChecked="{Binding UseBCC}" />
+                        <CheckBox
+                            Name="chkReceipt"
+                            Margin="20,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Content="Request Return Receipt" />
+                        <TextBlock
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="Maximum Size" />
+                        <my:NumberEntry
+                            x:Name="txtMaxSize"
+                            Width="50"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Decimals="1"
+                            MaxLength="4"
+                            Text="{Binding Path=MaxSize, Mode=TwoWay}" />
+                        <TextBlock VerticalAlignment="Center" Text="MB (0=unlimited)" />
+                    </StackPanel>
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Text="Message" />
+                    <TextBox
+                        Name="txtMessage"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Margin="3,0,3,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        TextAlignment="Left"
+                        TextWrapping="WrapWithOverflow" />
+                    <Border
+                        Grid.Row="5"
+                        BorderBrush="Blue"
+                        BorderThickness="0,0,0,2">
+                        <TextBlock
+                            Name="txtAttchment"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Text="Attached File"
+                            TextAlignment="Left" />
+                    </Border>
+                    <Border
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        BorderBrush="Blue"
+                        BorderThickness="0,0,0,2">
+                        <TextBlock
+                            Name="txtFileName"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center" />
+                    </Border>
+                </Grid>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="3"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdSend"
+                    Margin="10,0,0,0"
+                    Click="cmdSend_Click"
+                    Content="SEND" />
+                <Button
+                    Name="cmdClose"
+                    Margin="10,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CANCEL" />
+                <Button
+                    Name="cmdEmailConfig"
+                    Margin="50,0,0,0"
+                    Click="cmdEmailConfig_Click"
+                    Content="EMAIL ACCOUNTS CONFIGURATION" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

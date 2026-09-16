@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[pm_Charges] (
+    [Building Number] NVARCHAR (3)  NULL,
+    [Tenant Number]   NVARCHAR (4)  NULL,
+    [Sequence Number] INT           NULL,
+    [Charge Code]     NVARCHAR (2)  NULL,
+    [Type]            NVARCHAR (1)  NULL,
+    [Amount]          MONEY         NULL,
+    [Arrears]         MONEY         NULL,
+    [Paid]            MONEY         NULL,
+    [Starting Date]   DATETIME      NULL,
+    [Ending Date]     DATETIME      NULL,
+    [Future Amount]   MONEY         NULL,
+    [Future Date]     DATETIME      NULL,
+    [Charge Number]   INT           IDENTITY (1, 1) NOT NULL,
+    [History Date]    DATETIME      NULL,
+    [Comment]         NVARCHAR (30) NULL,
+    [OnBill]          BIT           NULL,
+    [ChargeToTenant]  BIT           NULL,
+    [LegalRent]       BIT           NULL,
+    [ShowOnBill]      BIT           NULL,
+    [clientId]        INT           NOT NULL,
+    [chargeID]        INT           NOT NULL,
+    CONSTRAINT [PK_pm_Charges] PRIMARY KEY CLUSTERED ([Charge Number] ASC)
+);
+

@@ -1,0 +1,63 @@
+cd..
+f:
+@ECHO ON
+
+DEL /S /Q g:*.*
+
+REM Pmsys
+REM =====
+IF NOT EXIST g:\PMSYS MD g:\PMSYS
+
+rem XCOPY F:\PMSYS\WINPM.MDB /Y g:\PMSYS > NUL
+XCOPY F:\PMSYS\WRITER.MDB /Y g:\PMSYS > NUL
+XCOPY F:\PMSYS\*.DOC /Y g:\PMSYS > NUL
+XCOPY F:\PMSYS\LWRITER.DOT g:\PMSYS > NUL
+XCOPY F:\PMSYS\ARTRANS /Y g:\PMSYS > NUL
+COPY F:\PMSYS\WINGL.MDB g:\PMSYS
+rem COPY F:\PMSYS\PMSYS.MDW g:\PMSYS
+
+REM MbcsCentral DB
+REM ==============
+IF NOT EXIST g:\MbcsCentralBackups MD g:\MbcsCentralBackups
+CALL c:\users\fileroom\desktop\SqlBackup.bat g
+
+REM Files
+REM =====
+IF NOT EXIST g:\FILES MD g:\FILES
+
+XCOPY F:\FILES\*.* /Y g:\FILES /S /E > NUL
+
+
+REM Quicken
+REM =======
+IF NOT EXIST g:\QUICKEN MD g:\QUICKEN
+
+XCOPY F:\QUICKEN\QDATA.* /Y g:\QUICKEN > NUL
+
+
+REM LeaseMaker
+REM ==========
+IF NOT EXIST g:\LEASEMAKER MD g:\LEASEMAKER
+
+XCOPY "F:\Program Files\MBCS\LeaseMaker\Documents\*.*" /Y g:\LEASEMAKER > NUL
+
+
+REM Printboss
+REM =========
+IF NOT EXIST g:\PRINTBOSS MD g:\PRINTBOSS
+
+XCOPY F:\PRNTBOSS\*.* /Y g:\PRINTBOSS /S /E > NUL
+
+
+REM Rent Reconciliations
+REM ====================
+IF NOT EXIST g:\RENTRECON MD g:\RENTRECON
+
+XCOPY "F:\RENT RECONCILIATIONS\*.*" /Y g:\RENTRECON > NUL
+
+
+REM Workorder Backups
+REM =================
+IF NOT EXIST g:\WORKORDER MD g:\WORKORDER
+
+XCOPY "F:\WORKORDER BACKUPS\*.*" /Y g:\WORKORDER > NUL

@@ -1,0 +1,214 @@
+﻿<Window
+    x:Class="MbcsCentral.WinGL.frmTransactionEdit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="clr-namespace:MbcsCentral"
+    Name="FormfrmTransactionEdit"
+    Width="831.36"
+    Height="300"
+    Background="AliceBlue"
+    Closed="frmTransactionEdit_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmTransactionEdit_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="Edit G/L Transactions"
+                TextAlignment="Center" />
+            <Grid Grid.Row="1" TextBlock.FontSize="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="60*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.ColumnSpan="2" Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Width="{Binding ElementName=txtDepartments, Path=Width}"
+                            VerticalAlignment="Center"
+                            Text="Index#"
+                            TextAlignment="Left" />
+                        <TextBox
+                            Width="50"
+                            Margin="5,0,0,0"
+                            IsReadOnly="True"
+                            Text="{Binding IndexNumber, Mode=OneTime}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Width="{Binding ElementName=txtDepartments, Path=Width}"
+                            VerticalAlignment="Center"
+                            Text="Company"
+                            TextAlignment="Left" />
+                        <ComboBox
+                            Name="lstCompanies"
+                            Width="250"
+                            Margin="5,0,0,0"
+                            Background="White"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{Binding}"
+                            SelectedValue="{Binding CompanyNumber, Mode=TwoWay}"
+                            SelectedValuePath="CompanyNumber" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Name="txtDepartments"
+                            Width="70"
+                            VerticalAlignment="Center"
+                            Text="Department"
+                            TextAlignment="Left" />
+                        <ComboBox
+                            Name="lstDepartments"
+                            Width="250"
+                            Margin="5,0,0,0"
+                            Background="White"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{Binding}"
+                            SelectedValue="{Binding DepartmentNumber, Mode=TwoWay}"
+                            SelectedValuePath="DepartmentNumber" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Width="{Binding ElementName=txtDepartments, Path=Width}"
+                            VerticalAlignment="Center"
+                            Text="Date"
+                            TextAlignment="Left" />
+                        <DatePicker
+                            Name="dtDate"
+                            Margin="5,0,0,0"
+                            SelectedDate="{Binding Path=Date, Mode=TwoWay, ValidatesOnExceptions=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Width="{Binding ElementName=txtDepartments, Path=Width}"
+                            VerticalAlignment="Center"
+                            Text="Check#"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            Width="60"
+                            Margin="5,0,0,0"
+                            Decimals="0"
+                            MaxLength="6"
+                            Text="{Binding CheckNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Width="{Binding ElementName=txtDepartments, Path=Width}"
+                            VerticalAlignment="Center"
+                            Text="Journal"
+                            TextAlignment="Left" />
+                        <!--
+                        <TextBox
+                            Width="250"
+                            Margin="5,0,0,0"
+                            MaxLength="32"
+                            Text="{Binding Journal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextAlignment="Left" />
+                        -->
+                        <ComboBox
+                            Name="lstJournals"
+                            Width="300"
+                            Margin="5,0,0,0"
+                            Background="White"
+                            DisplayMemberPath="JournalName"
+                            ItemsSource="{Binding}"
+                            SelectedValuePath="JournalName"
+                            SelectedValue="Journal"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Width="{Binding ElementName=txtDepartments, Path=Width}"
+                            VerticalAlignment="Center"
+                            Text="Source"
+                            TextAlignment="Left" />
+                        <TextBox
+                            Width="250"
+                            Margin="5,0,0,0"
+                            MaxLength="32"
+                            Text="{Binding Source, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextAlignment="Left" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="10,5,5,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Width="65"
+                            VerticalAlignment="Center"
+                            Text="Description" />
+                        <TextBox
+                            Name="txtDescription"
+                            Width="400"
+                            Margin="5,0,0,0"
+                            MaxLength="60"
+                            Text="{Binding Description}"
+                            TextAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Width="65"
+                            VerticalAlignment="Center"
+                            Text="Account"
+                            TextAlignment="Left" />
+                        <ComboBox
+                            Name="lstAccounts"
+                            Width="250"
+                            Margin="5,0,0,0"
+                            Background="White"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding}"
+                            SelectedValue="{Binding Path=AccountNumber}"
+                            SelectedValuePath="Key" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock
+                            Width="65"
+                            VerticalAlignment="Center"
+                            Text="Amount"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            Width="120"
+                            Margin="5,0,0,0"
+                            Decimals="2"
+                            MaxLength="10"
+                            Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:########0.00}}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,5,0,5"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdSave"
+                    Margin="10,0,0,0"
+                    Click="cmdSave_Click"
+                    Content="SAVE" />
+                <Button
+                    Name="cmdDelete"
+                    Margin="10,0,0,0"
+                    Click="cmdDelete_Click"
+                    Content="DELETE" />
+                <Button
+                    Name="cmdClose"
+                    Margin="10,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

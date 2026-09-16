@@ -1,0 +1,299 @@
+﻿<Window
+    x:Class="MbcsCentral.frmDocumentAquire"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Name="FormDocumentAquire"
+    Title="Add New Documents"
+    Width="1006"
+    Height="456"
+    MinWidth="939"
+    Closed="FormDocumentAquire_Closed"
+    Loaded="FormDocumentAquire_Loaded"
+    TextBlock.FontSize="14"
+    TextBlock.FontWeight="Bold"
+    TextBlock.TextAlignment="Center">
+    <Grid
+        TextBlock.FontSize="12"
+        TextBlock.FontWeight="Normal"
+        TextBlock.TextAlignment="Left">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="485" />
+            <ColumnDefinition Name="ViewImage" Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.Row="0"
+            BorderBrush="Blue"
+            BorderThickness="2"
+            CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border
+                    Background="LightBlue"
+                    BorderBrush="Black"
+                    BorderThickness="0,0,0,2">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        FontWeight="Bold"
+                        Text="Add From File" />
+                </Border>
+
+                <StackPanel Grid.Row="1" Background="BlanchedAlmond">
+                    <StackPanel Margin="5,5,10,5" Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="File" />
+                        <TextBox
+                            Name="txtFile"
+                            Width="350"
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            BorderBrush="Black" />
+                        <Button
+                            Name="cmdBrowse"
+                            Margin="10,0,0,0"
+                            Background="CadetBlue"
+                            BorderBrush="Blue"
+                            Click="cmdBrowse_Click"
+                            Content="Browse" />
+                    </StackPanel>
+                    <Button
+                        Name="cmdFileSave"
+                        Background="CadetBlue"
+                        Click="cmdFileSave_Click"
+                        Content="SAVE"
+                        IsEnabled="False" />
+                    <Button
+                        Name="cmdHelp"
+                        Margin="0,5,0,0"
+                        Click="cmdHelp_Click"
+                        Content="Help" />
+                    <Border
+                        Margin="0,5,0,0"
+                        VerticalAlignment="Bottom"
+                        BorderBrush="Blue"
+                        BorderThickness="2" />
+                    <StackPanel
+                        Margin="10"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="Document Type" />
+                        <ComboBox
+                            Name="lstCategory"
+                            Width="300"
+                            Margin="10,0,0,0"
+                            Background="White"
+                            DisplayMemberPath="CategoryName"
+                            ItemsSource="{Binding}" />
+                    </StackPanel>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            BorderBrush="Blue"
+            BorderThickness="2"
+            CornerRadius="5">
+            <ScrollViewer
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Auto">
+                <Image
+                    Name="pnlDocument"
+                    Width="850"
+                    Height="1100" />
+            </ScrollViewer>
+        </Border>
+        <Border
+            Grid.Row="1"
+            BorderBrush="Blue"
+            BorderThickness="2"
+            CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border
+                    Background="LightBlue"
+                    BorderBrush="Black"
+                    BorderThickness="0,0,0,2">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        FontWeight="Bold"
+                        Text="Copy From Document" />
+                </Border>
+                <StackPanel Grid.Row="1" Margin="5,5,10,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="Original Document" />
+                        <ComboBox
+                            Name="lstOriginalDocs"
+                            Width="345"
+                            Margin="10,0,0,0"
+                            DisplayMemberPath="DocumentName"
+                            ItemsSource="{Binding}"
+                            SelectionChanged="lstOriginalDocs_SelectionChanged" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <CheckBox
+                            Name="chkFields"
+                            Margin="0,5,0,0"
+                            VerticalAlignment="Center"
+                            Content="Include field definitions?"
+                            FontWeight="Bold"
+                            IsChecked="True" />
+                        <Button
+                            Name="cmdSaveFromDoc"
+                            Width="100"
+                            Margin="20,0,0,0"
+                            Click="cmdSaveFromDoc_Click"
+                            Content="SAVE"
+                            IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+        </Border>
+        <Border
+            Grid.Row="2"
+            BorderBrush="Blue"
+            BorderThickness="2"
+            CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border
+                    Grid.Row="0"
+                    Background="LightBlue"
+                    BorderBrush="Black"
+                    BorderThickness="0,0,0,2">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        FontWeight="Bold"
+                        Text="Add From Scanner" />
+                </Border>
+
+
+
+                <StackPanel
+                    Grid.Row="1"
+                    Background="BlanchedAlmond"
+                    TextBlock.FontWeight="Bold">
+                    <StackPanel Margin="10,5,10,10" Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Text="Scanner:" />
+                        <ComboBox
+                            Name="lstScanners"
+                            Width="250"
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            Background="White" />
+                    </StackPanel>
+                    <StackPanel Margin="5,5,0,0" Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Text="Page Size" />
+                        <ComboBox
+                            Name="lstPageSize"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Background="White"
+                            SelectedIndex="0">
+                            <ComboBoxItem>Letter</ComboBoxItem>
+                            <ComboBoxItem>Legal</ComboBoxItem>
+                        </ComboBox>
+                        <GroupBox
+                            Margin="10,0,0,0"
+                            BorderBrush="Blue"
+                            BorderThickness="1"
+                            FontWeight="Normal"
+                            Header="Color Preference">
+                            <StackPanel>
+                                <RadioButton
+                                    Name="optColor"
+                                    Margin="0,5,0,0"
+                                    Content="Color"
+                                    FontWeight="Bold"
+                                    GroupName="ColorGroup" />
+                                <RadioButton
+                                    Name="optGrey"
+                                    Content="Grey Scale"
+                                    FontWeight="Bold"
+                                    GroupName="ColorGroup" />
+                                <RadioButton
+                                    Name="optBlack"
+                                    Content="Black and White"
+                                    FontWeight="Bold"
+                                    GroupName="ColorGroup"
+                                    IsChecked="True" />
+                            </StackPanel>
+                        </GroupBox>
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Resolution" />
+                            <ListBox
+                                Name="lstResolution"
+                                Margin="10,0,0,0"
+                                FontWeight="Normal"
+                                SelectedIndex="3">
+                                <ListBoxItem Height="17">75</ListBoxItem>
+                                <ListBoxItem Height="17">100</ListBoxItem>
+                                <ListBoxItem Height="17">200</ListBoxItem>
+                                <ListBoxItem Height="17">300</ListBoxItem>
+                                <ListBoxItem Height="17">600</ListBoxItem>
+                            </ListBox>
+                        </StackPanel>
+                        <Button
+                            Name="cmdScan"
+                            Margin="15,0,0,0"
+                            Background="CadetBlue"
+                            BorderBrush="Blue"
+                            Click="cmdScan_Click"
+                            Content="SCAN" />
+                        <Button
+                            Name="cmdScanSave"
+                            Margin="10,0,0,0"
+                            Background="CadetBlue"
+                            BorderBrush="Blue"
+                            Click="cmdScanSave_Click"
+                            Content="SAVE"
+                            IsEnabled="False" />
+                        <Button
+                            Name="cmdRefresh"
+                            Click="CmdRefresh_Click"
+                            Content="REFRESH" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

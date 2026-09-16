@@ -1,0 +1,61 @@
+﻿<Window
+    x:Class="MbcsCentral.Help.HelpMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MbcsCentral Help"
+    Width="644.155"
+    Height="414.876">
+    <Window.Resources>
+        <Style x:Key="MainFrameStyle" TargetType="Frame">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Frame">
+                        <DockPanel Margin="7">
+                            <StackPanel
+                                Margin="7"
+                                DockPanel.Dock="Top"
+                                Orientation="Horizontal">
+                                <Button Command="{x:Static NavigationCommands.FirstPage}" Content="Contents" />
+                                <Button
+                                    Margin="10,0,0,0"
+                                    Command="{x:Static NavigationCommands.BrowseBack}"
+                                    Content="Previous"
+                                    IsEnabled="{TemplateBinding CanGoBack}" />
+                                <Button
+                                    Margin="10,0,0,0"
+                                    Command="{x:Static NavigationCommands.BrowseForward}"
+                                    Content="Next"
+                                    IsEnabled="{TemplateBinding CanGoForward}" />
+                            </StackPanel>
+
+                            <Border
+                                Margin="7"
+                                Padding="7"
+                                Background="White"
+                                BorderBrush="Blue"
+                                BorderThickness="7"
+                                CornerRadius="7">
+                                <ContentPresenter Name="HelpPanel" />
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="ContentsFrame" />
+        <GridSplitter
+            Grid.Column="1"
+            Width="5"
+            HorizontalAlignment="Stretch" />
+        <Frame x:Name="HelpFrame" Grid.Column="2" />
+    </Grid>
+</Window>

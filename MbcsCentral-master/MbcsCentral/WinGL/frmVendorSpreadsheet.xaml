@@ -1,0 +1,147 @@
+﻿
+<Window
+    x:Class="MbcsCentral.WinGL.frmVendorSpreadsheet"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:MbcsCentral"
+    Name="FormfrmVendorSpreadsheet"
+    Title="Vendor Spreadsheet"
+    Width="597.817"
+    Height="300"
+    Background="AliceBlue"
+    Closed="frmVendorSpreadsheet_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmVendorSpreadsheet_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <my:CurrencyPaddingConverter x:Key="CurrencyPadder" />
+    </Window.Resources>
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="Vendor Spreadsheet"
+                TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <!--  Place your content here  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        VerticalAlignment="Top"
+                        Padding="3"
+                        BorderBrush="Black"
+                        BorderThickness="3"
+                        TextBlock.FontSize="11"
+                        TextBlock.FontWeight="Normal">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox
+                                Name="chkActiveOnly"
+                                Content="Active Only"
+                                IsChecked="True" 
+                                Click="chkActiveOnly_Checked"/>
+                            <CheckBox
+                                Name="chkActivity"
+                                Margin="10,0,0,0"
+                                Content="Without Purchases"
+                                IsChecked="True" 
+                                Click="chkActivity_Checked"/>
+                        </StackPanel>
+                    </Border>
+                    <DataGrid
+                        Name="lstVendors"
+                        Grid.Row="1"
+                        AutoGenerateColumns="False"
+                        FontSize="12"
+                        ItemsSource="{Binding}"
+                        >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="250"
+                                Binding="{Binding VendorName}"
+                                Header="Vendor Name"
+                                IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Left"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                                Width="100"
+                                Binding="{Binding Path=AdditionalInfo}"
+                                Header="Additional Info"
+                                IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Left"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Path=CurrentPurchases, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Current Yr">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+
+                            </DataGridTextColumn>
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Path=PriorYearPurchases, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Prior Yr">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+
+                            </DataGridTextColumn>
+                            <DataGridCheckBoxColumn
+                                Binding="{Binding Path=Inactive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Header="InActive"
+                                TextBlock.TextAlignment="Center" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,5,0,5"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdSave"
+                    Margin="10,0,0,0"
+                    Click="cmdSave_Click"
+                    Content="SAVE" />
+                <Button
+                    Name="cmdClose"
+                    Margin="10,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

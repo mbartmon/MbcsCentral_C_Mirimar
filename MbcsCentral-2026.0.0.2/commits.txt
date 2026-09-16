@@ -1,0 +1,191 @@
+0b899a9e224ccee24a83e1cc0dc4bf606617f005 Trying to get repos to recognize debug dir
+d09b27d15e39ef3defa09078125326f4bcac5bce Bamboo
+1fc53ce7dc17acd539659777a13b9508aba588a3 Required by Bamboo build
+a601b5b08402143573e21687d5b33367eda37bd6 Needed by Bamboo build
+651f64c30c23c9cc58ace0ce22284035cbab08ce Needed for Bamboo builds
+0cbe492b18dd468df9d7ce0bb21dabcf042e015a Ignore these
+7e1dfb51dab519c0f4db5a18124b07eda834efdb Ignore these
+e4629429d43220217f495fd27f7a1e75b7231b87 MBCSCEN-9 MBCSCEN-10 Tenant Form Print and Lease Expiration highlight
+9d8009bae0f4a1670c5c6f4b1c18ac21099894d5 MBCSCEN-11 Payment Entry - Tenant name and apartment were not bound
+738570ca5b7029ad7afd43cd3fe778a41a1f761f Added constructor with proper number of parameters
+1e1689b24cdd362fcfd834b1bd0d989f4704c31e *) Added stored proc parameters for complete reporting of remove building. *) Added test for connection open and then open if it is not in remove building method
+ec9a6c5872889c1bf493a68ae40afaa4b8655672 Added this.Close() after save
+dfec046d78972a9675abae33f3a273c2c1707b2f Added test for open of connection
+72dcdb8e8197f9d4e571eb80cfa31a376e803e2b Was appending one too many value clauses on odd total records
+a99b8847d0068be6f04faf9938c77e08f53c79a8 Enhanced error reporting
+19ff3c2644dc74b739b97902cb04aefada833e85 Corrected SQL_LOAD_FOR_STATUS to avoid SQL exception
+735e8045411a7ab16945ae187a0ce6c006f668a3 In saveForm, added test for null in form parms
+e7258d9cf974cd712e040c70000f736629046cc2 Added renewing of connection string from GlobalShared to reinsert password after it is removed by AZURE SQL
+625a601eae9fb4032d1ee495e8741a066b031639 Removed image to prevent program crash
+671a5ba6c18959b5d6d43b2e8ff14b97eaa96ca4 No idea why this was not tracked
+e32cc1128ccd71855b3ba6e82435260ceaf45aad Corrected formatting of report
+3aeb90e420521032efa418d371236a62135ce68a Testing
+52845a39ec332232b9ef24968b94b552034b448b Adding permission checking
+44e326114e577cb87d0c1791d8af36eee8841773 do not track
+f21471a8a22dc74f33080eae22ddb49c2f7d7811 Major revisions to load query for batch edit.
+3d416c796be5912721ce0588d9c0254da666cecc Not needed at that level
+b06036e5333d5c825a6fcf4ea6a1f6cb890d951b Adding user permissions
+eed36af7c0a31ef31580682dcd1c9a1e62d0a7be Adding Permission checks
+b838ed1d2aeb02eeddc5425daa8b817a566fe9f2 Started added complete permission checking
+19d0c6716c0f889d95267f45b781e690082a1877 Tested cloned project
+e084411ac745017e4b60aebb3b500f8ce03d818d Added files
+13a29b2a8dc70eabeb7b1bb806a646fedae44528 Bringing repo up to date for Git migration
+045d74ad887f4ac1f18b502955192dd92607a824 Made the progress window work properly.
+5dae513a68cbbea6e70bf940994f46854dd95897 Making it work well in a RemoteApp envirionment
+bde4954651948a87d47b86443553f42339162e6f Provisioning and configuration documentation
+385e6dffba8bad93459523b49e9fddadc60076dd Conforming classes to include MbcsCentral namespace
+e91257e23f2586af12a601e7c0625d80b80209a1 Conforming classes to include MbcsCentral namespace
+a3b37d62eca5f72534364b465d03c1dc546d66f3 Conforming classes to include MbcsCentral namespace
+1c2d4594ff6db3dd594fb82b61768d69a7dd8d2c Coordination with MbcsMain
+7b4d936a05bcd5f91c0c1578c27daccc225648cb Added Late Notices
+9f0035aba0d17bceea36a696b02218a5469aa342 Corrected Fill method batch mode
+befbd4ccbd920c26a34de455f9ae5d8df119cdab no message
+6a991c30ef9c63aa79721a0d35b05cd72c1ad07e Corrected fontSize
+8c6bc365626d65f198a986413f1990d8160ad23f Extensive refactoring to bring all registry entries into the database as well as class serializations.
+b47ccc3f9fc03b283372f0221adeae31b588d388 Preferred Rent Worksheet
+c7df8b0c7fe7dce4a2652ccab112329f7e6a4a1d *) Added Relogin method for user to login as another user. *) Final touches for Account Management?  Tested.
+00ca1cc322c8f5fdd749a003a0cb6e8b1337b0ae Added Relogin method for user to login as another user.
+3393497cf67c234c9dfdb2dee02b5f35d49d9e21 Continuing Account Maintenance (frmAccout) Created new class (PermissionSets) for use on Permissions tab..
+083d0705ed43d1017ff1b329c1ab13bfd02f6b68 Started on Account Maintenance (frmAccout) Created new table: GroupMembers to connect accounts with groups.
+485147840dec5aed5c1097be374f1abd0d87ec53 no message
+9c94126070627e2e09295d8260b5f2fbec6d2870 Started on Account Maintenance (frmAccout) Created new table: GroupMembers to connect accounts with groups.
+20cac4270824a1565721c01ea2e0a3954dda5bfd Replaced methods with properties for Account.clientId
+ba236a7ce3fc92f135ad6fcc19be1a1fea6c9f79 Account Manager
+8ffcba00e56a0ef59e253958008091297bfb0a4a On-Demand Payment Register
+387c9f45d40f818d2509186b55605caf9d929f7e Lease Expiration Report
+cbe12c0410284c478eaf63cb34dab5ea7a6834a4 Vacancy List
+4f30e6f81df186a0a8768cd6ae8045adb9f6c23b Lease Letter templates
+856905c66514ab55886803b156fdf42ac2ae227a Unknown change
+54fe0575194358e19968dc03f1614dd5a1c6893a ArrearsReport added.
+02affa6ddd6e62cffe5c78925324115360a067f4 Added linefeed option to another PrintPageLine method
+0b60443afdc543c76f22fe05348d0bfffadfbaeb New SelectChargeReport
+d2c73caa002a46333dc5958874d00fe08eb6a750 Added linefeed parameters
+77642735d6ee05ce69bc576110ee7ebd2c6a4b8a New  general purpose Query method.
+64b0b4cee9829a092965bb92d8d271d8691614cd Cranking out reports
+8d90c44693a5cddfdd00795b442aa8f40ec06c56 *) Modified top margin value in BuildingMaster *) Added title and background color to frmReportSelections and coded Exit method
+14dd30276ff5dd815e894a188f5f245da5e54802 Added setting of current height value along with top margin.
+9ba5e2bc4d329a287a9c1755eb9dc459c0072aac Adding Building Master List Tweaking Report to support new features needed
+7d4b4403bdd614eb6881b58583efcd7cf5f78cd7 Senior Citizen Credit tested OK but see TODO in LeaseLetter.cs
+f9f891a5933fd313d6fb2064ce50bfc3ea5b950b Adjustments to Additional Charge positions
+cc719f134918b97acc7ae21eca379cf17d40e037 Attempting to cleanly close window when database cannot be opened and user selects not to continue.
+893bec83b285f1ea19c5d2cb2ba12e6be7d7e6a6 Attempting to cleanly close window when database cannot be opened and user selects not to continue.
+26528b3cabbb2d05f26f4309993b3ed9ae1d43c3 *) Cosmetic changes to PromptPay and PrefRent docs in LeaseLetter. *) Cleaning up of comments and TODO items in the rest.
+f2a19222122cb718bbe24b145c2e9edc5c0be021 Tested and debugged calculations
+641e7f5050ddfdd03dc74bf85470ad4356d095b2 When database connection timed out the selection to not continue did not end the application
+f3ee83464caab1f5ffea699a07dbcc9bdfeb2650 Finished coding an initial testing of PromptPayDoc
+8aee3e2070a4587eda45c65c17ed21274108829e no message
+4f4d43de084c328ba07b670c4eb3b194c8ac28fd Working on PromptPayDoc
+db36cd9014b6b6d2edf83c1dddeec35ec9ed7e1a In Progress: adding ability to skip moving to new line.
+ea2a701ccc5e247ce3f6e3e6646f47e5f45d228d Completed PreferentialRent Rider
+ed3ab6b4927e0002fefbddaa8d665a902e080a45 *) LeaseLetter: Finished main letter (STILL NEED TO GET DUPLEX WORKING)
+9a05e92154de983238c82f572229c27b5809788e Lease Renewal Letter
+614e6c39130a8eb55c284abc85bae865943bf8a1 Lease Renewal Letter.
+a53dee8e4ab0f888fd2f0cd6f25d69ae4e48dcde *) Added PrintPageLine method that takes positions in inches. *) Added GetNextPosition method. *) Dispose of Page and Doc at end of PrintDocument and DisplayDocument methods.
+edeb5c264661bae701dd8c428dedfe2bbaff9e17 Lease Renewal Letter
+f7f7744a7551bdcc251e5a2b585b4e2cb1139497 Configuration Editor
+a3bdb883a4cceca47ed4e938459090d194795d66 NEW Preferrential Rent Editor window
+a5a592161ed4d3d58aecd7bb7a2dd22f52e0274b NEW Old Tenants window
+0b803b60c1e91b00e533f7a3b224aa3e27cccad1 NEW Old Tenants window
+6bf6001099d3e4a7f69206d6a3fb3f5e81bb7619 Completed and unit tested Batch processing
+9e47fba5d5575b5d6e908bc513bceb3d87645c5a *) NEW WaitWindow for general progress *) NEW Startup for startup processing and progress
+f42aea3da0bea527cae7771e48c5dac271d50ee7 Includes MbcsWpfControls for testing and debugging
+e049e6d81faf9b6ab38e55b5b619c00b83e72f95 Batch Processing - Rent Payments UNTESTED
+4afa4037674008e109c1b52bc7f95163e8cf8599 Batch Processing
+303b95817a48cc1005e20679653f41092d33d1db UNIT TEST: EOM ROLL
+b0263f04947f662dd07c75676cc3ffce3d081847 UNIT TESTED: Rent Statements
+30050de4d4bbd5b820ddf10299983c469add800b Pointed Rent Statement to frmEOM
+05d5328c3a3a5fd34008808495a552db91344aab Working on end of month processing. Added new DCHR address and coop fields to Building table
+c5a3b51b5807b46d86718be1d7e2219063cd506d Added progress message and made progress bar work.
+5fab027e9e743ae23a1d6fcd2ea0ac081f72ff75 As a result of time profiling removed unnecessary data adapter code from insert method
+f5731c090f05f58e3cc95a9e2f956105efd2a289 Working on end of month processing
+4787b62fd6d96e95f35947d5c16edb2a79a71cdc Changed generic query function usage
+857250c9ce4e9d1a0375d00d12e18a8f2c73a887 Working on end of month processing
+21dc7922d437d9bfd32032565217b26f73fb67d3 Added generic query function
+a3046a70d393202c0b7fc6c77eeffc17f4d6db04 Various changes to get the app to work in an AzureVM
+44e6562e5713adbf81e0364f4d9ecb9b9b1f6e40 Changed Login form to WPF window
+a70d8035a991c7ce4a5060b1277690b2169cb88b Started work on End of Month processing
+0b3baada8a178083a81f6076bf887d095e021177 no message
+14b9cf1c611744da18b0c741155aac4ad30b4e60 Added verification of location entries
+e9ff18107f8633a36220527fa5eda01ce136fba4 New: Statement Messages
+338eae40e37a6dc45b78933b10f54212a501ecb1 Added Try/Catch on loadall open
+a394285abf823573a5a7574eb98d75d0f467a42c Added fontColor
+c9573b4ef768e0b8a7496e191574f4043c5e77e3 Rent Statements.  Still in progress
+920d261521ead757f3ad9facec83858090387c3d Regenerated from database
+2bedae500397c267cfcde950b6cba9b465c8d815 Added:  PrintPageLine(string line, double left, double top, fnt font)  PrintLine(double x1, double, y1, double x2, double y2, linecolor, bool box, fillcolor)
+42e4077ac834c4a8fa14010ef66b9f55f949b593 Ended work on Rent Statement by using functional StatusReport class to test print_template function.
+82914eb04139445e03ed01c39717540c42fdc725 Started work on Rent Statement by using functional StatusReport class to test print_template function
+93a27fdc7102a0689c3e3cf46e6f4f3315ec2cb9 Started work on Rent Statement
+0c6e0bc4c32ed70b4eef1456c8ebf925a7bc7c46 Adding line, box, and precise text position functions
+e0e17d5ac544b72228938247d87ff530e7fdd94c Ensuring that clientId is included in WHERE clause of every SELECT and is written to record on every INSERT
+17dac088138aa4b0119ccc0d564c92a1c26877da Increased width of Improvements/Maintenance button
+f09bb30390e355c5161dc78092b37e9dc1c168a6 Ensuring that clientId is included in WHERE clause of every SELECT and is written to record on every INSERT
+a1b4cdf0ccc95ad0226549c3900f4612e047ed6b Ensuring that clientId is included in WHERE clause of every SELECT and is written to record on every INSERT
+0f552628bbc9b6958f08e67008392fe490734047 ChargeCodes table replaces Codes
+1724b0634ab35b419aa0f1841f3da23fdb8d869d New Tables
+86b4100ac747a39f92008820ea2a4a74a3c6dbd1 Added new table
+6c5fe1edfc09065f8cea93e01c1d6c9674ee2a0b In process of modifying table columns sequence and clientId to long
+debcabac9ef3f529b38c9355f0e8af444f8420a7 Refactor of Charge code from 1 to 2 characters.  In progress
+a6b0ed6f3c640240083cb5249ce5131e015a1d96 Brought DataMigration into the main project and added table selections
+1a06230cf953b6aa579a4201b863a708f159228b Refactor of Charge code from 1 to 2 characters.  In progress
+5275534c9a3253199d6e1b09df67d452100bdf9e Refactor of Charge code from 1 to 2 characters.  In progress
+471e5657c26ed385dec9930a6831de6102b6573d Added to the menu
+e44f41680b7fd13ef81d1f7bece9c308319c7cad FIX: Tables read loop processed last record twice
+54e4e29334377bc8a78665afffeb51268f2c2ad0 FIX: Tables file read loop did one extra process.
+263d2aa70227a173585449e0c643d0b3124ed4dc *** empty log message ***
+0136584d2e53e73114604f431f0d4a2150f33509 Access to SQL data conversion
+3668b118f413a9bcd377900cc467a17f51fa9266 Finished Test and Debug of new frmChargeCodes
+5b0882159798abcbb5e3c9a019aad008b8721a19 Formatted queries for readability
+87bd4724663e9ac395318d6c62b2254b27ef88be Refactoring of pm_Codes table into pm_ChargeCodes table with additional flags and a larger ID column.
+b4b5297077186d35dc1fb849f33f360bca265b11 Refactoring of pm_Codes table into pm_ChargeCodes table with additional flags and a larger ID column
+87d69b99ef9e65e31d07b3c654ceb5d30ea0fb51 Created Payment Details window
+674cc31a1e6b805aadf0eea339cd5031f0930233 Security Payment Entries Fix to frmHistoryDisplay for starting and ending dates
+ab4d794667a6d7b619c9f7471ca0a3f5c8ecae6e Unhandled exceptions fixes
+fda71524aa3ae435ad65eb61ef7b450d7dd33706 Unknown.  Probably inadvertant changes to white space
+870d12f7943cf30d03c4234d5389323da6eb913d Fixes for TAB logic
+9f8adf34567da2f7b5ae86934e919cf1df213f9c Fixes for bad query syntax and unhandled exceptions
+8c409d0cc12bc176541e52ba6008d22169e73f95 Payment register report created and added
+fb68dfcc0bcedbe950124f134ced855075c06b7d Replaced DataGrid with stackpanels
+b15cc8e99a978d72cafb64d3be48b50863cdef19 Built class from DB
+56207a73f0595e12184076bba917ba7e37ff7c99 Fixed namespace references
+88f147ec46d55ec040fa2308137c7e533fdbbf5b Fixed Move Building Function
+ca3132c4f7f237aef0c29f446d49ba9fe2903481 Fixed: Move Building function
+57eb77bdd5e7382399ca43c7bbbb6692e2c37f7b *** empty log message ***
+0bd24d264ca3f4b056fb78bf7acccbc2e09cecc6 Debugging of Payment Entries
+b55e383b7aacd42c8f6d3bf3579fdb1221bd55a8 Split configurations
+28eb61e783bf118d8827f04ae776276bf766db2e Refined External Tool "DBCreateClass"
+8dae703acc5359a06d75d90e738c46feb4694e85 Made clientId an optional parameter on constructor Added code to lookup clientId from user object if not passed to constructor
+befb7086e8e619b45576c2861bba079d6279fd7b DEBUGGING Payment Entries
+63c209f763ad2ff091e6ee1c866592dcf3056a85 Cleaned up namespace references.  Clean compile.
+002089777589a495fd35cdd79f1208c0a0673560 *) General refactoring of namespaces *) working on payment entries
+5523c97d54b68b50196bc407178c44ede53a619d General refactoring of namespaces
+4c4cea5b0d1955569bf8546b97426a5c4e7fa0c9 Added Separator MenuItem
+d410071b0cb1c9d343e83c2b807b842c6b9104b7 Started Payment Entries
+75fb20c27d551e63cdc019ad85c2ab457b4c5729 Started on frmCodes
+84bd62d05866475bcaf877f8f58181e3a330fda9 Re-doing menu building
+869bd78ae89700900b44b2ed8e1c5242ef9e2202 Started on frmCodes
+5104a4f83e9093c4b666510e6f5a6f3124ddcf74 Globalized move when max length reached method
+5dd60a17674170e96b807e9431971eb4513a3f9e Working on Status Report
+260ea0fa279071f0bd4383cba8f1a3cb0141f64e Refactored to make Document and Page internal
+55766a034134aecddab61d247ba67d344f5dcfee Working on Status Report
+27689da955eeb97f0126e6c17c90c482b2050f4e Working on Status Report
+19e3b8912a581eb5ef5a3215f01ac233ac90c94d Working on Status Report
+d22edb065ad02cec6c4dd15d0a7c661f5b83f9d7 *) Started work on Status Report *)  Added DictUtils class
+08365deacc24dc6ab9481e8a266bdfc57a64ffbb Added DictUtils class
+c3de18b130c73627a616e5337f276df0bd79addd Started work on Status Report
+d90290deb8d982be2605640a6095815d4400f475 Finished correcting conversion errors in StatusReport
+4321c06f08dd58f033669587fb8957cd86cb4585 Trying NLog
+f3ffc182015b05278f25d2c50c27d71a04852b50 *) Creatred Report classes *) Created StatusReport class and began conversions and fixes
+64aad1ee8cc36e0e58c55013270756c829e98a72 Created StatusReport class and began conversions and fixes
+ff5cd2a7fd85b7e574869d2716a606c13d8779d0 Creatred Report classes
+33fd2634b68347a481477a56e81ead67c191f48a Fixes for frmCharges and frmCharge
+9dfd1450d2bf6e947d709af49c8594214058ecee no message
+c72a9023096c4f0a66d4a6125e39662b4acfc092 Fixes for Occupants and Legal as well as to some DateTime fields
+b0581c720ca7105def9240a5cb2e6c2c138e0e75 Updated to VS 2012 Some fixes for frmTenants
+1b541069c204335e81ceafc1a18654c1f4675b1e *) Added TenantsArchive and functionallity *) Added Vacate window and processing *) Fixed getTenants functionallity in frmTenants
+a7b0cf8cecc76f4dd4416e668fb4c37c3ea350b0 Fixed up table class
+6479e32d2441abd68c0d436af26325d8ce5493a7 *) Added TenantsArchive and functionallity
+e80afabc4fcbe321355184e17542c92934c2b461 FIX: More forms/functionallity working
+f1148b27460c4cab4c8cb66cb8b4380fe82afe1f All forms now displaying.
+dac06459494883086ad7812346751d5fe0d127a7 FIX: getting more forms working
+ff2a370e30ca2c5b460583e9dd8b41d596c532b2 FIX: Permissions testing DEBUG: frmOwnersBuildings
+75b150711e27ac9b5aa95cc74d5a35b978b41e9d no message

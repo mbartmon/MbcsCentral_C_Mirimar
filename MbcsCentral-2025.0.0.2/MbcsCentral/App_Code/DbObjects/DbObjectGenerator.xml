@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DbObjects>
+  <Connection>
+    <DbType>0</DbType>
+    <Server>MIKE-PC\SQLEXPRESSMBCS</Server>
+    <WinAuth>True</WinAuth>
+    <Express>True</Express>
+    <Database>MbcsCentral</Database>
+    <UserName>mike-PC\mike</UserName>
+    <Password>Vietnam65</Password>
+    <ConnectionString>Server=MIKE-PC\SQLEXPRESSMBCS; Database=MbcsCentral; Integrated Security=SSPI; Trusted_Connection=True;</ConnectionString>
+  </Connection>
+  <Generation>
+    <CodeType>1</CodeType>
+    <Namespace>dbo</Namespace>
+    <TablePrefix>pm_</TablePrefix>
+    <ColumnPrefix></ColumnPrefix>
+    <CharBoolean>False</CharBoolean>
+    <ScanCharBoolean>False</ScanCharBoolean>
+    <BooleanTrue>Y</BooleanTrue>
+    <BooleanFalse>N</BooleanFalse>
+  </Generation>
+  <Options>
+    <GenExists>false</GenExists>
+    <GenCreate>true</GenCreate>
+    <GenIndex>true</GenIndex>
+    <GenAddMissing>false</GenAddMissing>
+    <GenGetRecords>true</GenGetRecords>
+    <GenArray>false</GenArray>
+    <GenColInfo>false</GenColInfo>
+    <GenTrans>true</GenTrans>
+    <GenBeforeEvents>false</GenBeforeEvents>
+    <GenAfterEvents>false</GenAfterEvents>
+    <GenIdent>true</GenIdent>
+    <GenFirst>true</GenFirst>
+    <GenSetColumnDefaults>true</GenSetColumnDefaults>
+    <GenTrunc>false</GenTrunc>
+  </Options>
+</DbObjects>
+

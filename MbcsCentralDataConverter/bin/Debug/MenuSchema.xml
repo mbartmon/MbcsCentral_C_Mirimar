@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <MenuItem  Header="Exit" Name="exit" Type="Internal">
+  </MenuItem>
+  <MenuItem  Header="WinPM" Name="winpm" Application="WinPM" Type="Header">
+    <MenuItem  Header="Owners and Buildings" Name="pm_owner" Type="Form">
+      <Form Name="frmOwnersBuildings"/>
+    </MenuItem>
+    <MenuItem Header="Charge Codes" Name="pm_codes" Type="Form">
+      <Form Name="WinPM.frmCodes"/>
+    </MenuItem>
+    <MenuItem  Header="Tenants" Name="pm_tenants" Type="Form">
+      <Form Name="frmTenants"/>
+    </MenuItem>
+    <MenuItem Header="Reports" name="menuReports" Type="Header">
+      <MenuItem Header="Status Report" Name="pm_status" Type="Form">
+        <Form Name="WinPM.frmStatusReport"/>
+      </MenuItem>
+    </MenuItem>
+  </MenuItem>
+  <MenuItem Header="Documents" Name="windoc" Application="WinDoc" Type="Header">
+    <MenuItem Header="Acquire" Name="menuAcquire" Type="Form">
+      <Form Name="frmDoc"/>
+    </MenuItem>
+  </MenuItem>
+  <MenuItem  Header="WinPM Application" Name="winpmApp" Type="Application">
+    <Application Name="Winpm">
+      <AppPath Path="c:\pmsys\"  Name="winpm.exe"/>
+      <DataPath Path="c:\pmsys\" Name="winpm.mdb" />
+    </Application>
+  </MenuItem>
+  <FixedMenus />
+  <MenuItem  Header="Tools" Name="menuTools" Type="Header">
+    <MenuItem  Header="Options" Name="menuOptions" Type="Header">
+      <MenuItem  Header="Menu Editor" Name="menuEditor" Type="Form">
+        <Form Name="frmMenuEdit"/>
+      </MenuItem>
+      <MenuItem  Header="Preferences" Name="menuPref" Type="Form">
+        <Form Name="frmPreferences"/>
+      </MenuItem>
+      <MenuItem Header="Database Connection" Name="DbConnection" Type="Method" Target="SetDbConnection">
+      </MenuItem>
+    </MenuItem>
+    <MenuItem Header="Menu Font Size" Name="menuFontSize" Type="Method" Target="SetMenuFont">
+    </MenuItem>
+    <MenuItem  Header="Help" Name="menuHelp" Type="Form">
+      <Form Name="frmHelp"/>
+    </MenuItem>
+  </MenuItem>
+</Menu>

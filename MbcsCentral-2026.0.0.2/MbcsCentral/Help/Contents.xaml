@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="MbcsCentral.Help.Contents"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Help Contents"
+    d:DesignHeight="300"
+    d:DesignWidth="560"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="1"
+        CornerRadius="2">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="325" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer
+                Grid.Column="0"
+                Width="Auto"
+                HorizontalAlignment="Stretch"  Background="LightBlue">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource HeaderText}">MbcsCentral Help</TextBlock>
+                    <TreeView Name="treeContents" Background="AntiqueWhite">
+                        <TreeViewItem Header="General" IsExpanded="True" />
+                        <TreeViewItem Margin="0,15,0,0" Header="Email">
+                            <TreeViewItem.Items>
+                                <Hyperlink NavigateUri="EmailOverview.xaml" TargetName="frameContents">Overview</Hyperlink>
+                                <Hyperlink NavigateUri="EmailAccountsConfiguration.xaml" TargetName="frameContents">Email Accounts Configurations</Hyperlink>
+                            </TreeViewItem.Items>
+                        </TreeViewItem>
+                        <TreeViewItem Margin="0,15,0,0" Header="Document Layout Editor">
+                            <TreeViewItem.Items>
+                                <Hyperlink NavigateUri="DocumentOverview.xaml" TargetName="frameContents">Overview</Hyperlink>
+                                <TreeViewItem Margin="10,5,0,0" Header="Document Aquisition">
+                                    <TreeViewItem.Items>
+                                        <Hyperlink NavigateUri="DocumentAquisition.xaml" TargetName="frameContents">Document Aquisition Overview</Hyperlink>
+                                        <Hyperlink NavigateUri="DocumentFromFile.xaml" TargetName="frameContents">Add Document From File</Hyperlink>
+                                        <Hyperlink NavigateUri="DocumentFromScanner.xaml" TargetName="frameContents">Add Document From Scanner</Hyperlink>
+                                    </TreeViewItem.Items>
+                                 </TreeViewItem>
+                            </TreeViewItem.Items>
+                        </TreeViewItem>
+                        <TreeViewItem Margin="0,15,0,0" Header="Queries">
+                                <Hyperlink NavigateUri="QueryEditor.xaml" TargetName="frameContents">Query Editor</Hyperlink>
+                        </TreeViewItem>
+                    </TreeView>
+                </StackPanel>
+            </ScrollViewer>
+            <GridSplitter
+                Grid.Column="1"
+                Width="5"
+                HorizontalAlignment="Stretch" />
+            <Frame
+                x:Name="frameContents"
+                Grid.Column="2"
+                Width="Auto"
+                HorizontalAlignment="Stretch"  Background="LightBlue"/>
+        </Grid>
+    </Border>
+</Page>

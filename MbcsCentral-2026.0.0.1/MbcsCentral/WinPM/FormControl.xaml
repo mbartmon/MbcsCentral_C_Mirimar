@@ -1,0 +1,619 @@
+﻿<Window
+    x:Class="MbcsCentral.WinPM.FormControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:swf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+    xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+    xmlns:winpm="clr-namespace:MbcsCentral.WinPM"
+    Name="formControl"
+    Title="Options"
+    Width="831"
+    Height="403"
+    Closing="Window_Closing"
+    FontSize="16"
+    FontWeight="Bold"
+    Loaded="Window_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <my:RadioButtonCheckedConverter x:Key="RadioButtonConverter" />
+        <CollectionViewSource x:Key="Buildings" />
+        <CollectionViewSource x:Key="ChargeCodes" />
+        <my:BooleanAndConverter x:Key="booleanAndConverter" />
+    </Window.Resources>
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <TabControl
+                Name="Tabcontrol"
+                Background="AliceBlue"
+                DataContext="{Binding}"
+                FontSize="12">
+
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border
+                                        Name="Border"
+                                        Margin="2,0"
+                                        BorderBrush="Gainsboro"
+                                        BorderThickness="1,1,1,0"
+                                        CornerRadius="4,4,0,0">
+                                        <ContentPresenter
+                                            x:Name="ContentSite"
+                                            Margin="10,2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            ContentSource="Header" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="Bisque" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+
+                <TabItem FontSize="14" Header="Rent Statements">
+                    <Grid Margin="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <GroupBox
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            Margin="3"
+                            Background="Aqua"
+                            Header="Return Address">
+                            <StackPanel>
+                                <RadioButton
+                                    Margin="0,5,0,0"
+                                    Content="Use Owner Name/Address"
+                                    FontSize="12"
+                                    GroupName="ReturnAddress"
+                                    IsChecked="{Binding ReturnAddressFlag, Converter={StaticResource RadioButtonConverter}, ConverterParameter=0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <RadioButton
+                                    Name="RadioThisAddress"
+                                    Margin="0,5,0,0"
+                                    Content="Use Owner Name/THIS Address"
+                                    FontSize="12"
+                                    GroupName="ReturnAddress"
+                                    IsChecked="{Binding ReturnAddressFlag, Converter={StaticResource RadioButtonConverter}, ConverterParameter=1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Width="240"
+                                    Margin="20,3,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=RadioThisAddress, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding ReturnAddressA1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <TextBox
+                                    Width="240"
+                                    Margin="20,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=RadioThisAddress, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding ReturnAddressA2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <TextBox
+                                    Width="240"
+                                    Margin="20,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=RadioThisAddress, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding ReturnAddressA3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <!--
+                                    <TextBox Width="240"
+                                    Height="50"
+                                    Margin="20,3,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    AcceptsReturn="True"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    MaxLines="3"
+                                    TextWrapping="Wrap" />
+                                -->
+                                <RadioButton
+                                    Name="ThisNameThisAddress"
+                                    Margin="0,5,0,0"
+                                    Content="Use THIS Name/THIS Address"
+                                    FontSize="12"
+                                    GroupName="ReturnAddress"
+                                    IsChecked="{Binding ReturnAddressFlag, Converter={StaticResource RadioButtonConverter}, ConverterParameter=2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    Width="240"
+                                    Margin="20,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=ThisNameThisAddress, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding ReturnAddressB1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <TextBox
+                                    Width="240"
+                                    Margin="20,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=ThisNameThisAddress, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding ReturnAddressB2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <TextBox
+                                    Width="240"
+                                    Margin="20,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=ThisNameThisAddress, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding ReturnAddressB3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <TextBox
+                                    Width="240"
+                                    Margin="20,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=ThisNameThisAddress, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding ReturnAddressB4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <CheckBox Name="chkACHBypass"
+                                          Margin="0,15,0,0"
+                                          Content="Bypass ACH Statement Processing"
+                                          IsChecked="{Binding ACHBypass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="3"
+                            Background="Aqua"
+                            FontSize="14"
+                            Header="Pay To">
+                            <StackPanel>
+                                <RadioButton
+                                    Margin="0,5,0,0"
+                                    Content="Pay To Owner"
+                                    GroupName="PayTo"
+                                    IsChecked="{Binding PayToFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RadioButtonConverter}, ConverterParameter=0}" />
+                                <RadioButton
+                                    Name="PayToThis"
+                                    Content="Pay To THIS Name"
+                                    GroupName="PayTo"
+                                    IsChecked="{Binding PayToFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RadioButtonConverter}, ConverterParameter=1}" />
+                                <TextBox
+                                    Width="240"
+                                    Height="25"
+                                    Margin="20,3,0,0"
+                                    HorizontalAlignment="Left"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=PayToThis, Path=IsChecked}"
+                                    MaxLength="30"
+                                    Text="{Binding PayToName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="3"
+                            Background="Aqua"
+                            Header="Telephone Number">
+                            <StackPanel>
+                                <RadioButton
+                                    Margin="0,5,0,0"
+                                    Content="Use Owner Phone Number"
+                                    GroupName="Telephone"
+                                    IsChecked="{Binding TelephoneFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RadioButtonConverter}, ConverterParameter=0}" />
+                                <RadioButton
+                                    Name="ThisPhoneNumber"
+                                    Margin="0,5,0,0"
+                                    Content="Use THIS Phone Number"
+                                    GroupName="Telephone"
+                                    IsChecked="{Binding TelephoneFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RadioButtonConverter}, ConverterParameter=1}" />
+                                <TextBox
+                                    Width="240"
+                                    Height="25"
+                                    Margin="20,3,0,0"
+                                    FontSize="12"
+                                    FontWeight="Normal"
+                                    IsEnabled="{Binding ElementName=ThisPhoneNumber, Path=IsChecked}"
+                                    MaxLength="12"
+                                    Text="{Binding TelephoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+                <TabItem FontSize="14" Header="Document Scanning">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <CheckBox
+                            Name="CheckDocs"
+                            Margin="25,0,0,0"
+                            VerticalAlignment="Center"
+                            Content="Document Scanning Enabled"
+                            IsChecked="{Binding scan, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <StackPanel
+                            Grid.Row="1"
+                            Margin="25,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Document Database Location:" />
+                            <TextBlock
+                                Width="500"
+                                Margin="5,0,0,0"
+                                Background="White"
+                                Text="{Binding WindocDatabase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                TextAlignment="Left" />
+                            <Button
+                                Name="CmdWindoc"
+                                Margin="5,0,0,0"
+                                Click="CmdWindoc_Click"
+                                Content="BROWSE" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem FontSize="14" Header="General Ledger">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Margin="20">
+                            <CheckBox
+                                Name="chkGL"
+                                Content="Use General Ledger"
+                                IsChecked="{Binding UseWingl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox
+                                    Name="chkGlExternal"
+                                    VerticalAlignment="Center"
+                                    Content="Use External WinGL"
+                                    IsChecked="{Binding UseExternalWinGL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    Margin="21,0,5,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Text="Location" />
+                                <TextBlock
+                                    Name="txtGlLocation"
+                                    Width="300"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    Text="{Binding WinglDatabase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Left" />
+                                <Button
+                                    Name="cmdGlBrowse"
+                                    Margin="5,0,0,0"
+                                    Click="cmdGlBrowse_Click"
+                                    Content="BROWSE"
+                                    FontSize="13">
+                                    <Button.IsEnabled>
+                                        <MultiBinding Converter="{StaticResource booleanAndConverter}">
+                                            <Binding ElementName="chkGL" Path="IsChecked" />
+                                            <Binding ElementName="chkGlExternal" Path="IsChecked" />
+                                        </MultiBinding>
+                                    </Button.IsEnabled>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border
+                            Grid.Row="1"
+                            BorderBrush="Blue"
+                            BorderThickness="3"
+                            CornerRadius="5">
+                            <DataGrid
+                                Name="grdGlTable"
+                                AutoGenerateColumns="False"
+                                ItemsSource="{Binding}">
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem
+                                            Name="ctxAdd"
+                                            Click="ctxAdd_Click"
+                                            Header="ADD" />
+                                        <MenuItem
+                                            Name="ctxDelete"
+                                            Click="ctxDelete_Click"
+                                            Header="DELETE" />
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
+                                <DataGrid.Columns>
+
+                                    <DataGridTemplateColumn Width="250" Header="From Building">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding FromBuilding}"
+                                                    TextAlignment="Left" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <ComboBox
+                                                    Name="lstBuildingsFrom"
+                                                    Background="White"
+                                                    DisplayMemberPath="FullName"
+                                                    IsSynchronizedWithCurrentItem="False"
+                                                    IsTextSearchEnabled="True"
+                                                    ItemsSource="{Binding Source={StaticResource Buildings}}"
+                                                    SelectedValue="{Binding Path=FromBuilding}"
+                                                    SelectedValuePath="FullName"
+                                                    SelectionChanged="lstBuildingFrom_SelectionChanged" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Width="250" Header="To Building">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="{Binding ToBuilding}"
+                                                    TextAlignment="Left" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <ComboBox
+                                                    Name="lstBuildingsTo"
+                                                    Background="White"
+                                                    DisplayMemberPath="FullName"
+                                                    Foreground="Black"
+                                                    IsSynchronizedWithCurrentItem="False"
+                                                    IsTextSearchEnabled="True"
+                                                    ItemsSource="{Binding Source={StaticResource Buildings}}"
+                                                    SelectedValue="{Binding Path=ToBuilding}"
+                                                    SelectedValuePath="FullName"
+                                                    SelectionChanged="lstBuildingTo_SelectionChanged" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+
+                                    </DataGridTemplateColumn>
+                                    <!--
+                                    <DataGridComboBoxColumn x:Name="grdFrom" Header="From Building" SelectedItemBinding="{Binding FromBuilding}" DisplayMemberPath="FullName"/>
+                                    <DataGridComboBoxColumn x:Name="grdTo" Header="To Building" SelectedValueBinding="{Binding Path=ToBuilding}"  SelectedValuePath="ToBuilding" SelectedItemBinding="{Binding ToBuilding}" DisplayMemberPath="FullName"/>
+                                    -->
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+                <TabItem FontSize="14" Header="Other Features">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65*" />
+                            <RowDefinition Height="35*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel
+                            Grid.RowSpan="1"
+                            Grid.ColumnSpan="1"
+                            Margin="10"
+                            VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="Security Charge Code" />
+                                <ComboBox
+                                    Name="lstChargeCodes"
+                                    Width="235"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    Background="White"
+                                    DisplayMemberPath="DisplayDescription"
+                                    ItemsSource="{Binding Source={StaticResource ChargeCodes}}"
+                                    SelectedValue="{Binding Path=SecurityCode}"
+                                    SelectedValuePath="ChargeCode" />
+                            </StackPanel>
+                            <CheckBox
+                                Margin="0,10,0,0"
+                                Content="Alert Messages"
+                                IsChecked="{Binding alertMessages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="Name for General Emails" />
+                                <ComboBox
+                                    Name="lstEmail"
+                                    Width="225"
+                                    Margin="5,0,0,0"
+                                    DisplayMemberPath="description"
+                                    ItemsSource="{Binding}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                <TextBlock
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Text="Status Report Grouping" />
+                                <ListBox
+                                    Name="lstGrouping"
+                                    Margin="10,0,0,0"
+                                    SelectedIndex="{Binding StatusGroupBy}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="FontWeight" Value="Bold" />
+                                                    <Setter Property="Background" Value="AliceBlue" />
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter Property="FontWeight" Value="Normal" />
+                                                    <Setter Property="Background" Value="White" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.Items>
+                                        <TextBlock Text="By Owner Number" />
+                                        <TextBlock Text="By Building Number" />
+                                    </ListBox.Items>
+                                </ListBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <GroupBox
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Margin="50,0,50,40"
+                            Header="Clean-up Service">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition Height="70" />
+                                    <RowDefinition Height="70" />
+                                </Grid.RowDefinitions>
+                                <StackPanel
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <CheckBox
+                                        VerticalAlignment="Center"
+                                        Content="Run Clean-up every:"
+                                        IsChecked="{Binding CleanFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <viblend:NumberEditor
+                                        Width="45"
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        DecimalPlaces="0"
+                                        MaxLength="3"
+                                        TextAlignment="Right"
+                                        Value="{Binding CleanDays, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}0:{##0}}" />
+                                    <TextBlock
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Text="days" />
+                                </StackPanel>
+                                <StackPanel
+                                    Grid.Row="1"
+                                    Margin="10,0,0,0"
+                                    Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="Last Run Date" />
+                                    <TextBlock
+                                        Name="CleanDate"
+                                        Width="80"
+                                        Margin="68,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Background="White"
+                                        Text="{Binding CleanDate, Mode=OneTime, StringFormat=d}" />
+                                </StackPanel>
+                                <GroupBox
+                                    Grid.Row="2"
+                                    Margin="5"
+                                    FontWeight="Normal"
+                                    Header="Maintenance Records">
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <CheckBox
+                                            VerticalAlignment="Center"
+                                            Content="Delete records older than"
+                                            IsChecked="{Binding MaintFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <viblend:NumberEditor
+                                            Width="35"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            DecimalPlaces="0"
+                                            MaxLength="2"
+                                            Value="{Binding MaintYears, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:##}}" />
+                                        <TextBlock
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="years" />
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox
+                                    Grid.Row="3"
+                                    Margin="5"
+                                    FontWeight="Normal"
+                                    Header="Tenant History">
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <CheckBox
+                                            VerticalAlignment="Center"
+                                            Content="Delete records older than"
+                                            IsChecked="{Binding HistoryFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <viblend:NumberEditor
+                                            Width="35"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            DecimalPlaces="0"
+                                            MaxLength="2"
+                                            Value="{Binding HistoryYears, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:##}}" />
+                                        <TextBlock
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="years" />
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Name="CmdDhcr"
+                                    Click="CmdDhcr_Click"
+                                    Content="CLEAR DHCR DATA (On or before)" />
+                                <DatePicker
+                                    Name="DateDhcr"
+                                    Margin="5,0,0,0"
+                                    SelectedDateFormat="Short" />
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button
+                    Name="CmdSave"
+                    Margin="25,5,0,0"
+                    VerticalAlignment="Top"
+                    Click="CmdSave_Click"
+                    Content="SAVE" />
+                <Button
+                    Name="CmdExit"
+                    Margin="15,5,0,0"
+                    VerticalAlignment="Top"
+                    Click="CmdExit_Click"
+                    Content="EXIT" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

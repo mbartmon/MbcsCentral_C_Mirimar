@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[gl_PRaccounts] (
+    [Account00] INT NULL,
+    [Account01] INT NULL,
+    [Account02] INT NULL,
+    [Account03] INT NULL,
+    [Account04] INT NULL,
+    [Account05] INT NULL,
+    [Account06] INT NULL,
+    [Account07] INT NULL,
+    [Account08] INT NULL,
+    [Account09] INT NULL,
+    [Account10] INT NULL,
+    [Account11] INT NULL,
+    [Account12] INT NULL,
+    [Account13] INT NULL,
+    [Account14] INT NULL,
+    [Account15] INT NULL,
+    [Account16] INT NULL,
+    [Account17] INT NULL,
+    [Account18] INT NULL,
+    [Account19] INT NULL,
+    [Id]        INT IDENTITY (1, 1) NOT NULL,
+    CONSTRAINT [PRaccounts$PrimaryKey] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

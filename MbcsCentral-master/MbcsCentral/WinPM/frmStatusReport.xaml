@@ -1,0 +1,255 @@
+﻿<Window
+    x:Class="MbcsCentral.WinPM.frmStatusReport"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ext="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:my="clr-namespace:MbcsCentral"
+    Name="formStatusReport"
+    Title="Print Rent Status Report"
+    Width="437"
+    Height="300"
+    Background="AliceBlue"
+    Closed="formStatusReport_Closed_1"
+    Loaded="formStatusReport_Loaded_1">
+    <Window.Resources>
+        <my:BoolToVisibilityConverter x:Key="boolConverter" />
+    </Window.Resources>
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="150"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Starting Building Number:" />
+                <TextBox
+                    Name="txtStartingBuildingNumber"
+                    Width="30"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    GotFocus="TextBox_GotFocus"
+                    MaxLength="3"
+                    Text="000"
+                    TextChanged="moveNextOnMaxlength" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0"
+                Orientation="Horizontal">
+                <TextBlock
+                    Width="150"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="Ending Building Number:" />
+                <TextBox
+                    Name="txtEndingBuildingNumber"
+                    Width="30"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    GotFocus="TextBox_GotFocus"
+                    MaxLength="3"
+                    Text="999" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <TextBlock
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Reporting Date" />
+                <DatePicker
+                    Name="datReport"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    SelectedDateFormat="Short" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                Orientation="Vertical">
+                <StackPanel Margin="0,5,0,0">
+                    <CheckBox
+                        Name="chkChargeSummaries"
+                        VerticalAlignment="Center"
+                        Content="Print Charge Summaries" />
+                    <CheckBox
+                        Name="chkCollectedFrom"
+                        VerticalAlignment="Center"
+                        Content="Print Collected From Summeries" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Name="chkCondensePrint"
+                        VerticalAlignment="Center"
+                        Content="Condense Print" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Name="chkShortForm"
+                        VerticalAlignment="Center"
+                        Content="Use Short Form" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Name="chkLetterQuality"
+                        VerticalAlignment="Center"
+                        Content="Letter Quality Print" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox
+                        Name="chkBoldPrint"
+                        VerticalAlignment="Center"
+                        Content="Bold Print" />
+                </StackPanel>
+                <CheckBox
+                    Name="chkGrandTotals"
+                    VerticalAlignment="Center"
+                    Content="Print Grand Totals"
+                    IsChecked="True" />
+                <CheckBox
+                    Name="chkUnitTotals"
+                    VerticalAlignment="Center"
+                    Content="Print Unit Totals" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+                <TextBlock
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Font Name" />
+                <ComboBox
+                    Name="lstFontNames"
+                    Width="150"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center" />
+                <TextBlock
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Font Size" />
+                <ComboBox
+                    Name="lstFontSizes"
+                    Width="100"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+                  <ext:BusyIndicator Name="wait" BusyContent="Printing Status Report" IsBusy="False" DisplayAfter="0">
+            </ext:BusyIndicator>
+          <TextBlock
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Page Size" />
+                <ComboBox
+                    Name="lstPageSize"
+                    Width="200"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center" />
+                <Button
+                    Name="cmdGroups"
+                    Margin="100,0,0,0"
+                    VerticalAlignment="Center"
+                    Content="Groups" />
+            </StackPanel>
+            <StackPanel
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+                <TextBlock
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="Copies" />
+                <ext:IntegerUpDown
+                    Name="txtCopies"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Maximum="99"
+                    Minimum="1"
+                    Value="1" />
+                <Border
+                    Margin="3,0,0,0"
+                    Padding="2"
+                    VerticalAlignment="Center"
+                    BorderBrush="Blue"
+                    BorderThickness="2"
+                    CornerRadius="2">
+                    <StackPanel TextBlock.FontSize="11">
+                        <TextBlock Text="Duplex with new page per building:" />
+                        <TextBlock Text="Use PRINT button." />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="5"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdDisplay"
+                    Margin="10,0,5,0"
+                    VerticalAlignment="Center"
+                    Click="cmdDisplay_Click_1"
+                    Content="Display" />
+                <Button
+                    Name="cmdPrint"
+                    Margin="10"
+                    VerticalAlignment="Center"
+                    Click="cmdPrint_Click_1"
+                    Content="Print" />
+                <Button
+                    Name="cmdExit"
+                    Margin="10"
+                    VerticalAlignment="Center"
+                    Click="cmdExit_Click_1"
+                    Content="EXIT" />
+            </StackPanel>
+            <Border
+                Name="BorderWait"
+                Grid.RowSpan="5"
+                Grid.ColumnSpan="2"
+                Background="#80000000"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Visibility="Collapsed">
+                <Grid>
+                    <TextBlock
+                        Margin="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Foreground="#7EFFFFFF"
+                        Text="Report being processed... You may continue working."
+                        TextWrapping="Wrap" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

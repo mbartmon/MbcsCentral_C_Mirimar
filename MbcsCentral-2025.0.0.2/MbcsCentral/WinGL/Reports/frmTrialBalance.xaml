@@ -1,0 +1,108 @@
+﻿
+<Window x:Class="MbcsCentral.WinGL.frmTrialBalance"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Name="FormfrmTrialBalance"
+        Width="387.866"
+        Height="259.833"
+        Background="AliceBlue"
+        Title="Trial Balance"
+        Closed="frmTrialBalance_Closed"
+        FontSize="14"
+        FontWeight="Bold"
+        Loaded="frmTrialBalance_Loaded"
+        TextBlock.TextAlignment="Center">
+    <Border BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox Background="LightSteelBlue"
+                     BorderBrush="Blue"
+                     BorderThickness="2"
+                     FontSize="14"
+                     FontWeight="Bold"
+                     Text="Trial Balance"
+                     TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <!--  Place your content here  -->
+                <StackPanel Margin="5" >
+                    <StackPanel Orientation="Horizontal" TextBlock.FontSize="12">
+                        <TextBlock Text="Company" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left"/>
+                        <ComboBox Name="lstCompanies" 
+                                  ItemsSource="{Binding}" 
+                                  DisplayMemberPath="Name" 
+                                  SelectedValue="{Binding Company, Mode=TwoWay}" 
+                                  SelectedValuePath="CompanyNumber" 
+                                  Width="250" VerticalAlignment="Center" TextBlock.FontSize="10" Margin="5,0,0,0" 
+                                  SelectionChanged="lstCompanies_SelectionChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <CheckBox Name="chkConsolidated" Content="Consolidated Report" FlowDirection="RightToLeft" IsChecked="{Binding Path=Consolidated}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0" TextBlock.FontSize="10">
+                        <TextBlock Text="Department (if not consolidated)" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left" />
+                        <ComboBox Name="lstDepartments" ItemsSource="{Binding}" DisplayMemberPath="Name" SelectedValue="{Binding Path=Department}" SelectedValuePath="DepartmentNumber" Width="200" VerticalAlignment="Center" Margin="5,0,0,0">
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=chkConsolidated}" Value="True">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsChecked, ElementName=chkConsolidated}" Value="False">
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.Style>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <CheckBox Name="chkPrintZero" Content="Print Zero Balances" FlowDirection="RightToLeft" IsChecked="{Binding Path=ZeroBalances}" VerticalAlignment="Center"/>
+                        <CheckBox Name="chkExtended" Content="Print Extended Work Area" FlowDirection="RightToLeft" Margin="10,0,0,0" IsChecked="{Binding Path=XWorkArea}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock Text="Report Month/Year" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Left"/>
+                        <ComboBox Name="lstMonths" 
+                                  VerticalAlignment="Center" Width="100" 
+                                  Background="White"
+                                  Margin="5,0,0,0">
+                            <ComboBoxItem>January</ComboBoxItem>
+                            <ComboBoxItem>February</ComboBoxItem>
+                            <ComboBoxItem>March</ComboBoxItem>
+                            <ComboBoxItem>April</ComboBoxItem>
+                            <ComboBoxItem>May</ComboBoxItem>
+                            <ComboBoxItem>June</ComboBoxItem>
+                            <ComboBoxItem>July</ComboBoxItem>
+                            <ComboBoxItem>August</ComboBoxItem>
+                            <ComboBoxItem>September</ComboBoxItem>
+                            <ComboBoxItem>October</ComboBoxItem>
+                            <ComboBoxItem>November</ComboBoxItem>
+                            <ComboBoxItem>December</ComboBoxItem>
+                        </ComboBox>
+                        <TextBlock Text="/" VerticalAlignment="Center" Margin="2,0,0,0"/>
+                        <ComboBox Name="lstYears" VerticalAlignment="Center" Width="60"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Row="2"
+                        Margin="0,5,0,5"
+                        Background="AliceBlue"
+                        Orientation="Horizontal">
+                <Button Name="cmdDisplay"
+                        Margin="10,0,0,0"
+                        Click="cmdDisplay_Click"
+                        Content="DISPLAY" />
+                <Button Name="cmdClose"
+                        Margin="10,0,0,0"
+                        Click="cmdClose_Click"
+                        Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

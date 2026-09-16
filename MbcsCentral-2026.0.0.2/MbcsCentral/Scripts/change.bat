@@ -1,0 +1,1 @@
+FOR /f %%a IN ('dir /b *.sql') DO CALL sed s/\[dbo\].\[/\[dbo\].\[PM_/ <%%a >PM_%%a

@@ -1,0 +1,8 @@
+﻿<Window x:Class="MbcsCentral.WinTrm.WaitWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="" Height="100" Width="221" WindowStyle="None">
+    <Grid>
+        <Label Name="txtWait" Content="Please Wait..." FontSize="14" FontWeight="Bold" IsTabStop="False"  Height="53" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" />
+    </Grid>
+</Window>

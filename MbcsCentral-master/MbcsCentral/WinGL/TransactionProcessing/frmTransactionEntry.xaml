@@ -1,0 +1,204 @@
+﻿<Window x:Class="MbcsCentral.WinGL.frmTransactionEntry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Name="FormfrmTransactionEntry"
+        Title="Manual G/L Journal Entries"
+        Width="1070.14"
+        Height="358.063"
+        Background="AliceBlue"
+        Closed="frmTransactionEntry_Closed"
+        FontSize="14"
+        FontWeight="Bold"
+        Loaded="frmTransactionEntry_Loaded"
+        TextBlock.TextAlignment="Center">
+
+    <Border BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+        <Grid Width="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <TextBox Background="LightSteelBlue"
+                     BorderBrush="Blue"
+                     BorderThickness="2"
+                     FontSize="14"
+                     FontWeight="Bold"
+                     Text="Manual G/L Journal Entries"
+                     TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90" />
+                    <RowDefinition Height="60*" />
+                </Grid.RowDefinitions>
+                <Grid TextBlock.FontSize="12" TextBlock.TextAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.ColumnSpan="2" Margin="3">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Name="txtCompany"
+                                       Width="55"
+                                       VerticalAlignment="Center"
+                                       Text="Company" />
+                            <ComboBox Name="lstCompanies"
+                                      Width="300"
+                                      Margin="5,0,0,0"
+                                      DisplayMemberPath="Name"
+                                      ItemsSource="{Binding}"
+                                      SelectedValuePath="CompanyNumber"
+                                      SelectionChanged="lstCompanies_SelectionChanged" />
+                            <CheckBox Name="chkHoldCompany"
+                                      Margin="5,0,0,0"
+                                      VerticalAlignment="Center"
+                                      Content="Hold Company" />
+                        </StackPanel>
+                        <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                            <TextBlock Width="{Binding ElementName=txtCompany, Path=Width}"
+                                       VerticalAlignment="Center"
+                                       Text="Journal" />
+                            <ComboBox Name="lstJournals"
+                                      Width="300"
+                                      Margin="5,0,0,0"
+                                      Background="White"
+                                      DisplayMemberPath="JournalName"
+                                      ItemsSource="{Binding}"
+                                      SelectedValuePath="JournalName" />
+                        </StackPanel>
+                        <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                            <TextBlock Width="{Binding ElementName=txtCompany, Path=Width}"
+                                       VerticalAlignment="Center"
+                                       Text="Source" />
+                            <TextBox Name="txtSource"
+                                     Width="200"
+                                     Height="25"
+                                     Margin="5,0,0,0"
+                                     MaxLength="32" />
+                            <TextBlock Margin="70,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Text="Memorized Transactions" />
+                            <ComboBox Name="lstBatches"
+                                      Width="350"
+                                      Margin="5,0,0,0"
+                                      Background="White"
+                                      DisplayMemberPath="BatchName"
+                                      ItemsSource="{Binding}"
+                                      SelectionChanged="lstBatches_SelectionChanged" />
+                            <CheckBox Name="chkHoldBatch"
+                                      Margin="3,0,0,0"
+                                      VerticalAlignment="Center"
+                                      Content="Hold Batch" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="5">
+                        <StackPanel Orientation="Horizontal">
+                            <DatePicker Name="dtDate" />
+                            <TextBlock Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Text="Check#" />
+                            <my:NumberEntry x:Name="txtCheck"
+                                            Width="80"
+                                            Margin="5,0,0,0"
+                                            BorderThickness="2"
+                                            Decimals="0"
+                                            MaxLength="6" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ScrollViewer Margin="5,0,41,10">
+                        <Grid Name="grdTransactions" />
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <StackPanel Grid.Row="2">
+                <StackPanel Margin="170,0,0,0"
+                            Orientation="Horizontal"
+                            TextBlock.FontSize="9">
+                    <TextBox Width="467"
+                             VerticalAlignment="Center"
+                             Background="BlanchedAlmond"
+                             FontSize="11.5"
+                             IsReadOnly="True"
+                             Text="To DELETE a transaction line: RIGHT CLICK the line and select DELETE. Row turns gray." />
+                    <TextBlock Margin="150,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Balance" />
+                    <TextBlock Margin="70,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Debits" />
+                    <TextBlock Margin="60,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Credits" />
+                </StackPanel>
+                <StackPanel Width="Auto"
+                            Margin="10,3,22,15"
+                            HorizontalAlignment="Left"
+                            Background="AliceBlue"
+                            Orientation="Horizontal"
+                            TextBlock.FontSize="12">
+                    <Button x:Name="cmdSave"
+                            Margin="10,0,0,0"
+                            Click="cmdSave_Click"
+                            Content="SAVE" />
+                    <Border x:Name="bdrScan"
+                        Margin="10,0,0,0"
+                        BorderBrush="Blue"
+                        BorderThickness="2">
+                       <StackPanel Name="pnlScan"
+                                Margin="0,0,0,0"
+                                Orientation="Horizontal">
+                          <Button Name="cmdScan"
+                                Margin="0,0,0,0"
+                                Tag = "scan"
+                                Click="cmdSave_Click"
+                                Content="SCAN/SAVE"
+                                FontSize="10"/>
+                       </StackPanel>
+                    </Border>
+                    <Button x:Name="cmdClear"
+                            Margin="10,0,0,0"
+                            Click="cmdClear_Click"
+                            Content="CLEAR" />
+                    <Button x:Name="cmdClose"
+                            Margin="10,0,0,0"
+                            Click="cmdClose_Click"
+                            Content="CLOSE" />
+                    <TextBox Width="469"
+                             Margin="10,0,0,0"
+                             VerticalAlignment="Center"
+                             Background="BlanchedAlmond"
+                             FontSize="11.5"
+                             Foreground="Green"
+                             IsReadOnly="True"
+                             Text="Automatic Offset account is highlighted in GREEN and cannot be deleted." />
+                    <my:NumberEntry x:Name="txtTotal"
+                                    Width="90"
+                                    Margin="105,0,0,0"
+                                    Decimals="2"
+                                    IsReadOnly="True" />
+
+                    <my:NumberEntry x:Name="txtDebits"
+                                    Width="90"
+                                    Margin="7,0,0,0"
+                                    Decimals="2"
+                                    IsReadOnly="True" />
+                    <my:NumberEntry x:Name="txtCredits"
+                                    Width="90"
+                                    Margin="3,0,0,0"
+                                    HorizontalAlignment="Right"
+                                    Decimals="2"
+                                    IsReadOnly="True" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

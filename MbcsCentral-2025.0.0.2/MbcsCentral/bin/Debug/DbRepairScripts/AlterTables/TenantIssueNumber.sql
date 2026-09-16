@@ -1,0 +1,1 @@
+ALTER TABLE pm_Control ADD TenantIssueNumber int NOT NULL DEFAULT 0;

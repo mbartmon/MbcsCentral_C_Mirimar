@@ -1,0 +1,19 @@
+﻿<Window
+    x:Class="MbcsCentral.Help.frmHelp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral.Help"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="formHelp"
+    Title="MbcsCentral Help"
+    Width="500"
+    Height="350"
+    Closed="Window_Closed"
+    Loaded="Window_Loaded"
+    TextBlock.TextAlignment="Center"
+    mc:Ignorable="d">
+    <Grid>
+        <Frame Name="FrameMain"/> <!-- Source="Contents.xaml" /> -->
+    </Grid>
+</Window>

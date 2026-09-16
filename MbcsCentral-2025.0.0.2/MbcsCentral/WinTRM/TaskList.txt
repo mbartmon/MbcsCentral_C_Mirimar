@@ -1,0 +1,2 @@
+﻿Auto notifications to all parties who have worked on issue when a change/addition is made to the issue
+Additional tenants can be added to an issue

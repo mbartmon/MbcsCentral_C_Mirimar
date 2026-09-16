@@ -1,0 +1,100 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmReportSelections"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Name="formReportSelections"
+        Title=""
+        Width="Auto"
+        Height="183.503"
+        Background="LightSkyBlue"
+        Closed="formReportSelections_Closed"
+        Loaded="formReportSelections_Loaded"
+        SizeToContent="WidthAndHeight">
+    <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="25*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="10,0,0,0"
+                    Orientation="Horizontal">
+            <TextBlock Width="100"
+                       VerticalAlignment="Center"
+                       Text="Report Date" />
+            <DatePicker Name="datReport"
+                        Width="95"
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Name="pnlTop"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="10,10,0,0"
+                    Orientation="Horizontal" />
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="10,10,0,0"
+                    Orientation="Horizontal">
+            <TextBlock Name="lblStartBuilding"
+                       Width="100"
+                       VerticalAlignment="Center"
+                       Text="Starting Building" />
+            <TextBox Name="txtStartBuilding"
+                     Width="45"
+                     Margin="10,0,0,0"
+                     VerticalAlignment="Center"
+                     GotFocus="FocusObtained"
+                     MaxLength="3"
+                     Text="000" />
+        </StackPanel>
+        <StackPanel Name="pnlMiddle"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="10,10,0,0"
+                    Orientation="Horizontal" />
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="10,10,0,0"
+                    Orientation="Horizontal">
+            <TextBlock Name="lblEndBuilding"
+                       Width="100"
+                       VerticalAlignment="Center"
+                       Text="Ending Building" />
+            <TextBox Name="txtEndBuilding"
+                     Width="45"
+                     Margin="10,0,0,0"
+                     VerticalAlignment="Center"
+                     GotFocus="FocusObtained"
+                     MaxLength="3"
+                     Text="999" />
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="10,20,0,10"
+                    Orientation="Horizontal">
+            <Button Name="cmdDisplay"
+                    Width="75"
+                    Click="Process_Click"
+                    Content="DISPLAY" />
+            <Button Name="cmdPrint"
+                    Width="75"
+                    Margin="10,0,0,0"
+                    Click="Process_Click"
+                    Content="PRINT" />
+            <Button Name="cmdExit"
+                    Width="75"
+                    Margin="10,0,0,0"
+                    Click="cmdExit_Click"
+                    Content="EXIT" />
+        </StackPanel>
+
+    </Grid>
+</Window>

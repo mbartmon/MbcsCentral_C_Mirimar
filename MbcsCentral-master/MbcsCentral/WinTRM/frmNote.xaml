@@ -1,0 +1,11 @@
+﻿<Window x:Class="frmNote"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Add A Note" Height="380" Width="352" Name="frmNote" Background="#FF190000" FontWeight="SemiBold">
+    <Grid Height="Auto" Width="Auto">
+        <TextBox HorizontalAlignment="Stretch" Name="txtNote" VerticalAlignment="Stretch" AutoWordSelection="True" TextWrapping="Wrap" BorderThickness="1,1,1,5" ClipToBounds="False" VerticalScrollBarVisibility="Auto" UseLayoutRounding="False" MinLines="15" VerticalContentAlignment="Top" Margin="0,0,0,35" Background="Wheat" FontSize="14" />
+        <Button Content="SAVE" Height="23" Name="cmdSave" Width="75" Margin="12,226,192,6" VerticalAlignment="Bottom" HorizontalAlignment="Center" IsDefault="False" />
+        <Button Content="CANCEL" Height="23" Margin="118,0,136,6" Name="cmdCancel" Width="75" HorizontalAlignment="Center" VerticalAlignment="Bottom" IsCancel="True" />
+        <Button Content="DELETE" Height="23" HorizontalAlignment="Center" IsCancel="True" Margin="198,0,53,6" Name="cmdDelete" VerticalAlignment="Bottom" Width="75" Visibility="Hidden" />
+    </Grid>
+</Window>

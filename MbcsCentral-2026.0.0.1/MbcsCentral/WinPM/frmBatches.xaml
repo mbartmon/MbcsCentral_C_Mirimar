@@ -1,0 +1,981 @@
+﻿<Window
+    x:Class="MbcsCentral.WinPM.frmBatches"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ex="clr-namespace:MbcsWpfControls;assembly=MbcsWpfControls"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:xtc="http://schemas.xceed.com/wpf/xaml/toolkit"
+    Name="formBatches"
+    Title="Batch Updates"
+    Width="1045.782"
+    Height="384.586"
+    Closed="formBatches_Closed"
+    Loaded="formBatches_Loaded">
+    <Window.Resources>
+        <my:DateConverter x:Key="DateConverter" />
+        <my:CurrencyPaddingConverter x:Key="CurrencyPadder" />
+        <CollectionViewSource x:Key="TenantTypeSource" Source="{Binding}" />
+        <CollectionViewSource x:Key="ChargeDescriptions" Source="{Binding}" />
+        <CollectionViewSource x:Key="ChargeDescriptionsNotAll" Source="{Binding}" />
+        <x:Array x:Key="Compares" Type="sys:String">
+            <sys:String>ALL</sys:String>
+            <sys:String>Less</sys:String>
+            <sys:String>Less Or Equal</sys:String>
+            <sys:String>Equal</sys:String>
+            <sys:String>Greater Or Equal</sys:String>
+            <sys:String>Greater</sys:String>
+        </x:Array>
+        <Style x:Key="DataGridBorder" TargetType="DataGridCell">
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1,0,1,0" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <TabControl Name="tabBatches" SelectionChanged="TabBatches_SelectionChanged">
+
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border
+                                    Name="Border"
+                                    Margin="2,0"
+                                    BorderBrush="Gainsboro"
+                                    BorderThickness="1,1,1,0"
+                                    CornerRadius="4,4,0,0">
+                                    <ContentPresenter
+                                        x:Name="ContentSite"
+                                        Margin="10,2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        ContentSource="Header" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="Bisque" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+
+            <!--
+                FUTRE RENTS
+            -->
+            <TabItem Name="tabFutureRents" Header="Future Rents">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Background="DeepSkyBlue">
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <StackPanel>
+                                <StackPanel Margin="6" Orientation="Horizontal">
+                                    <TextBlock
+                                        Width="70"
+                                        VerticalAlignment="Center"
+                                        Text="Building" />
+                                    <TextBox
+                                        Name="txtFRStartBuilding"
+                                        Width="50"
+                                        Margin="5,0,0,0"
+                                        GotFocus="txtFRStartBuilding_GotFocus"
+                                        MaxLength="3"
+                                        Text="000" />
+                                    <TextBlock
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Text="to" />
+                                    <TextBox
+                                        Name="txtFREndBuilding"
+                                        Width="50"
+                                        Margin="5,0,0,0"
+                                        GotFocus="txtFRStartBuilding_GotFocus"
+                                        MaxLength="3"
+                                        Text="ZZZ" />
+                                </StackPanel>
+                                <StackPanel Margin="5" Orientation="Horizontal">
+                                    <TextBlock
+                                        Width="70"
+                                        VerticalAlignment="Center"
+                                        Text="Tenant Type" />
+                                    <ComboBox
+                                        Name="lstFRType"
+                                        Width="150"
+                                        Margin="5,0,0,0"
+                                        DisplayMemberPath="DisplayDescription"
+                                        ItemsSource="{Binding Source={StaticResource TenantTypeSource}}"
+                                        SelectedValuePath="Type" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <DataGrid
+                        Name="grdFutureRents"
+                        Grid.Row="1"
+                        AlternatingRowBackground="AntiqueWhite"
+                        AutoGenerateColumns="False"
+                        Background="LightSkyBlue"
+                        FontFamily="Courier New"
+                        ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="60"
+                                Binding="{Binding BuildingTenant}"
+                                Header="Ten #"
+                                IsReadOnly="True"
+                                SortMemberPath="BuildingTenant" />
+                            <DataGridTextColumn
+                                Width="200"
+                                Binding="{Binding TenantName}"
+                                Header="Name"
+                                IsReadOnly="True"
+                                SortMemberPath="TenantName" />
+                            <DataGridTextColumn
+                                Width="30"
+                                Binding="{Binding Apartment}"
+                                Header="Apt"
+                                IsReadOnly="True"
+                                SortMemberPath="Apartment" />
+                            <DataGridTextColumn
+                                Width="14"
+                                Binding="{Binding Type}"
+                                Header="Type"
+                                IsReadOnly="True"
+                                SortMemberPath="Type" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Rent, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Rent"
+                                IsReadOnly="True"
+                                SortMemberPath="Rent" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding RentLegal, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Legal Rent"
+                                IsReadOnly="False"
+                                SortMemberPath="RentLegal" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding LeaseExpirationDate, Converter={StaticResource DateConverter}}"
+                                Header="Lease Exp"
+                                IsReadOnly="True"
+                                SortMemberPath="LeaseExpirationDate" />
+                            <DataGridTextColumn CellStyle="{StaticResource DataGridBorder}" />
+                            <DataGridTemplateColumn Header="FutureDate-1" SortMemberPath="FutureDate1">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx SelectedDate="{Binding Path=Future1.FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="FutureRent-1" SortMemberPath="FutureRent1">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Width="82"
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding Path=Future1.FutureAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#######.00}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="FutureLegal-1" SortMemberPath="FutureLegal1">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Width="82"
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding Path=Future1.FutureLegal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#######.00}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="FutureDate-2" SortMemberPath="FutureDate2">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx SelectedDate="{Binding Path=Future2.FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="FutureRent-2" SortMemberPath="FutureRent2">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Width="82"
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding Path=Future2.FutureAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#######.00}}" />
+                                        <!--
+                                        <xtc:MaskedTextBox  Value="{Binding Path=FutureRent1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Mask="######0.00" ValueDataType="{x:Type sys:Decimal}" TextAlignment="Right" GotFocus="MaskedTextBox_GotFocus"/>
+                                        -->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="FutureLegal-2" SortMemberPath="FutureLegal2">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Future2.FutureLegal, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Width="82"
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding Path=Future2.FutureLegal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--
+                CHARGES - EDIT
+            -->
+            <TabItem Name="tabChargesEdit" Header="Charges - Edit">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Name="grdChargeEditParms"
+                        Background="DeepSkyBlue"
+                        DataContext="{Binding}">
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <StackPanel
+                                Name="pnlChargeEdit"
+                                DataContext="{Binding}"
+                                Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Margin="6" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="70"
+                                            VerticalAlignment="Center"
+                                            Text="Building" />
+                                        <TextBox
+                                            Name="txtChgEditStartBuilding"
+                                            Width="50"
+                                            Margin="5,0,0,0"
+                                            MaxLength="3"
+                                            Text="{Binding StartingBuilding, Mode=TwoWay}" />
+                                        <TextBlock
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="to" />
+                                        <TextBox
+                                            Name="txtChgEditEndBuilding"
+                                            Width="50"
+                                            Margin="5,0,0,0"
+                                            MaxLength="3"
+                                            Text="{Binding EndingBuilding, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="70"
+                                            VerticalAlignment="Center"
+                                            Text="Tenant Type" />
+                                        <ComboBox
+                                            Name="lstChgEditType"
+                                            Width="150"
+                                            Margin="5,0,0,0"
+                                            DisplayMemberPath="DisplayDescription"
+                                            ItemsSource="{Binding Source={StaticResource TenantTypeSource}}"
+                                            SelectedValuePath="Type" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel>
+                                    <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="75"
+                                            VerticalAlignment="Center"
+                                            Text="Charge Code" />
+                                        <ComboBox
+                                            Name="lstChgEditCharge"
+                                            Width="175"
+                                            DisplayMemberPath="DisplayDescription"
+                                            ItemsSource="{Binding Source={StaticResource ChargeDescriptions}}"
+                                            SelectedValuePath="ChargeCode" />
+                                    </StackPanel>
+                                    <StackPanel Margin="10,3,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="75"
+                                            VerticalAlignment="Center"
+                                            Text="Start Date" />
+                                        <ComboBox
+                                            Name="lstChgEditDate"
+                                            Width="75"
+                                            ItemsSource="{Binding Source={StaticResource Compares}}"
+                                            SelectedIndex="0" />
+                                        <DatePicker
+                                            Name="dtChgEditDate"
+                                            DisplayDate="{Binding Date}"
+                                            SelectedDate="{Binding Date}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="10,3,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="75"
+                                            VerticalAlignment="Center"
+                                            Text="Charge Paid" />
+                                        <ComboBox
+                                            Name="lstChgEditPaid"
+                                            Width="75"
+                                            ItemsSource="{Binding Source={StaticResource Compares}}"
+                                            SelectedIndex="0" />
+                                        <my:NumberEntry
+                                            x:Name="txtChgEditPaid"
+                                            Width="95"
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding ChargePaid, Mode=TwoWay}" />
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <DataGrid
+                        Name="grdChgEdit"
+                        Grid.Row="1"
+                        AlternatingRowBackground="AntiqueWhite"
+                        AutoGenerateColumns="False"
+                        Background="LightSkyBlue"
+                        FontFamily="Courier New"
+                        ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Binding="{Binding BuildingTenantNumber}"
+                                Header="TenNum"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="150"
+                                Binding="{Binding TenantName}"
+                                Header="Tenant Name"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Binding="{Binding Apartment}"
+                                Header="Apt"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Binding="{Binding ChargeCode}"
+                                Header="C"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Binding="{Binding Paid, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Paid"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn CellStyle="{StaticResource DataGridBorder}" />
+                            <DataGridTemplateColumn Width="75" Header="Amount">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat={}{0:#######.00}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Start Date">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx SelectedDate="{Binding StartingDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="End Date">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx SelectedDate="{Binding EndingDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="FutureDate">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx SelectedDate="{Binding FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="75" Header="FutureAmt">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding FutureAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#######.00}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding DeleteCharge, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Delete" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--
+                RENT PAYMENTS
+            -->
+            <TabItem Name="tabRentPayments" Header="Rent Payments">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Background="DeepSkyBlue">
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Margin="5,2,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="70"
+                                            VerticalAlignment="Center"
+                                            Text="Building" />
+                                        <TextBox
+                                            Name="txtRentPayStartBuilding"
+                                            Width="50"
+                                            Margin="5,0,0,0"
+                                            MaxLength="3"
+                                            Text="000"
+                                            GotFocus="txtFRStartBuilding_GotFocus"
+                                            TextChanged="moveNextOnMaxlength" />
+                                        <TextBlock
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="to" />
+                                        <TextBox
+                                            Name="txtRentPayEndBuilding"
+                                            Width="50"
+                                            Margin="5,0,0,0"
+                                            MaxLength="3"
+                                            Text="ZZZ" 
+                                            GotFocus="txtFRStartBuilding_GotFocus"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="70"
+                                            VerticalAlignment="Center"
+                                            Text="Tenant Type" />
+                                        <ComboBox
+                                            Name="lstRentPayType"
+                                            Width="150"
+                                            Margin="5,0,0,0"
+                                            DisplayMemberPath="DisplayDescription"
+                                            ItemsSource="{Binding Source={StaticResource TenantTypeSource}}"
+                                            SelectedValuePath="Type" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="Payment Date" />
+                                        <DatePicker
+                                            Name="dtRentPayDate"
+                                            Margin="5,0,0,0"
+                                            SelectedDate="{x:Static sys:DateTime.Now}"
+                                            SelectedDateFormat="Short" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <DataGrid
+                        Name="grdRentPay"
+                        Grid.Row="1"
+                        AlternatingRowBackground="AntiqueWhite"
+                        AutoGenerateColumns="False"
+                        Background="LightSkyBlue"
+                        FontFamily="Courier New"
+                        ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Binding="{Binding BuildingTenant}"
+                                Header="TenNum"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="200"
+                                Binding="{Binding TenantName}"
+                                Header="Tenant Name"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="40"
+                                Binding="{Binding Apartment}"
+                                Header="Apt"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Binding="{Binding Type}"
+                                Header="T"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Binding="{Binding LegalCode}"
+                                Header="L"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Rent, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Rent"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Arrears, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Arrears"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding TotalCharges, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Charges"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Balance, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Balance"
+                                IsReadOnly="True" />
+                            <DataGridTextColumn CellStyle="{StaticResource DataGridBorder}" />
+                            <DataGridTemplateColumn Header="Date Paid">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker Width="125" SelectedDate="{Binding DatePaid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="80" Header="Payment">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding Payment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#######.00}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridCheckBoxColumn Binding="{Binding Post, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <DataGridCheckBoxColumn.Header>
+                                    <CheckBox
+                                        Name="chkSelectAll"
+                                        Checked="chkSelectAll_Checked"
+                                        Content="Post"
+                                        IsChecked="True"
+                                        Unchecked="chkSelectAll_Unchecked" />
+                                </DataGridCheckBoxColumn.Header>
+                            </DataGridCheckBoxColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--
+                CHARGE - ADD
+            -->
+            <TabItem Name="tabChargesAdd" Header="Charges - Add">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Background="DeepSkyBlue">
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Margin="5,2,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="70"
+                                            VerticalAlignment="Center"
+                                            Text="Buildings" />
+                                        <TextBox
+                                            Name="txtChgAddStartBuilding"
+                                            Width="50"
+                                            Margin="5,0,0,0"
+                                            MaxLength="3"
+                                            Text="000" />
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="to" />
+                                        <TextBox
+                                            Name="txtChgAddEndBuilding"
+                                            Width="50"
+                                            Margin="10,0,0,0"
+                                            MaxLength="3"
+                                            Text="ZZZ" />
+                                    </StackPanel>
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="70"
+                                            VerticalAlignment="Center"
+                                            Text="Tenant Type" />
+                                        <ComboBox
+                                            Name="lstChgAddType"
+                                            Width="195"
+                                            Margin="5,0,0,0"
+                                            DisplayMemberPath="DisplayDescription"
+                                            ItemsSource="{Binding Source={StaticResource TenantTypeSource}}"
+                                            SelectedValuePath="Type" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkChgAddAmount"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Click="chkChgAddAmount_Click"
+                                            Content="Only where Arrears is equal to or more than:" />
+                                        <my:NumberEntry
+                                            x:Name="txtChgAddAmount"
+                                            Width="75"
+                                            Margin="5,0,0,0"
+                                            Decimals="2"
+                                            IsEnabled="{Binding ElementName=chkChgAddAmount, Path=IsChecked}"
+                                            MaxLength="10" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="10,0,0,0">
+                                    <StackPanel Margin="5,2,0,0" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Text="Charge Code:" />
+                                        <ComboBox
+                                            Name="lstChgAddCodes"
+                                            Width="200"
+                                            Margin="5,0,0,0"
+                                            DisplayMemberPath="DisplayDescription"
+                                            ItemsSource="{Binding Source={StaticResource ChargeDescriptionsNotAll}}"
+                                            SelectedValuePath="ChargeCode" />
+                                    </StackPanel>
+                                    <StackPanel Margin="5,2,0,0" Orientation="Horizontal">
+                                        <RadioButton
+                                            Name="optOneTime"
+                                            Margin="77,0,0,0"
+                                            Content="One-Time"
+                                            GroupName="ChgAddFrequency"
+                                            IsChecked="True" />
+                                        <RadioButton
+                                            Name="optRecurring"
+                                            Margin="35,0,0,0"
+                                            Content="Recurring"
+                                            GroupName="ChgAddFrequency" />
+                                    </StackPanel>
+                                    <StackPanel Margin="5,2,0,0" Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkChgAddAll"
+                                            Margin="0,5,0,0"
+                                            HorizontalAlignment="Center"
+                                            Click="chkChgAddAll_Click"
+                                            Content="Apply changes to ALL tenants"
+                                            FlowDirection="RightToLeft" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <DataGrid
+                        Name="grdChgAdd"
+                        Grid.Row="1"
+                        AlternatingRowBackground="AntiqueWhite"
+                        AutoGenerateColumns="False"
+                        Background="LightSkyBlue"
+                        FontFamily="Courier New"
+                        ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="60"
+                                Binding="{Binding BuildingTenantNumber}"
+                                Header="TenNum"
+                                IsReadOnly="True" 
+                                SortMemberPath="BuildingTenantNumber"/>
+                            <DataGridTextColumn
+                                Width="200"
+                                Binding="{Binding TenantName}"
+                                Header="Name"
+                                IsReadOnly="True" 
+                                SortMemberPath="TenantName"/>
+                            <DataGridTextColumn
+                                Width="30"
+                                Binding="{Binding Apartment}"
+                                Header="Apt"
+                                IsReadOnly="True" 
+                                SortMemberPath="Apartment"/>
+                            <DataGridTextColumn
+                                Width="75"
+                                Binding="{Binding Paid, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Paid"
+                                IsReadOnly="True" 
+                                SortMemberPath="Paid"/>
+                            <DataGridTemplateColumn Header="Arrears" SortMemberPath="TotalArrears">
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox
+                                            Width="75"
+                                            IsReadOnly="True"
+                                            Text="{Binding TotalArrears, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn CellStyle="{StaticResource DataGridBorder}" />
+                            <DataGridTemplateColumn Width="85" Header="Amount" SortMemberPath="chg.Amount">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Decimals="2"
+                                            LostFocus="NumberEditor_LostFocus"
+                                            MaxLength="10"
+                                            Text="{Binding chg.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#######.00}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn
+                                Width="150"
+                                Binding="{Binding chg.Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Header="Comment" 
+                                SortMemberPath="chg.Comment"/>
+                            <DataGridTemplateColumn Header="StartingDate" SortMemberPath="chg.StartingDate">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx LostFocus="DatePickerEx_LostFocus" SelectedDate="{Binding chg.StartingDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Ending Date" SortMemberPath="chg.EndingDate">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx SelectedDate="{Binding chg.EndingDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="FutureDate" SortMemberPath="chg.FutureDate">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ex:DatePickerEx SelectedDate="{Binding chg.FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Future Amt" SortMemberPath="chg.FutureAmount">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <my:NumberEntry
+                                            Decimals="2"
+                                            MaxLength="10"
+                                            Text="{Binding chg.FutureAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Name="tabLateFees" Header="Late Fees">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Background="DeepSkyBlue">
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <StackPanel Name="pnlLateFees" Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Margin="5,2,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="70"
+                                            VerticalAlignment="Center"
+                                            Text="Buildings" />
+                                        <TextBox
+                                            Name="txtLateFeesStartBuilding"
+                                            Width="50"
+                                            Margin="5,0,0,0"
+                                            MaxLength="3"
+                                            Text="{Binding Path=StartBuilding, Mode=TwoWay}" />
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="to" />
+                                        <TextBox
+                                            Name="txtLateFeesEndBuilding"
+                                            Width="50"
+                                            Margin="10,0,0,0"
+                                            MaxLength="3"
+                                            Text="{Binding Path=EndBuilding, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkLateFeesAmount"
+                                            Margin="5,10,0,0"
+                                            VerticalAlignment="Center"
+                                            Click="chkChgAddAmount_Click"
+                                            Content="Only where Rent + Legal is equal to or more than:"
+                                            IsChecked="{Binding Path=UseArrearsAmount, Mode=TwoWay}" />
+                                        <my:NumberEntry
+                                            x:Name="txtLateFeesAmount"
+                                            Width="75"
+                                            Margin="5,0,0,0"
+                                            Decimals="2"
+                                            IsEnabled="{Binding ElementName=chkLateFeesAmount, Path=IsChecked}"
+                                            MaxLength="10"
+                                            Text="{Binding ArrearsAmount, Mode=TwoWay}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="10,0,0,0">
+                                    <StackPanel Margin="5,2,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="120"
+                                            VerticalAlignment="Center"
+                                            Text="Late Fees Charge Code:" />
+                                        <ComboBox
+                                            Name="lstLateFeesCodes"
+                                            Width="200"
+                                            Margin="5,0,0,0"
+                                            DisplayMemberPath="DisplayDescription"
+                                            ItemsSource="{Binding Source={StaticResource ChargeDescriptionsNotAll}}"
+                                            SelectedValuePath="ChargeCode" />
+                                    </StackPanel>
+                                    <StackPanel Margin="5,10,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                            Width="125"
+                                            VerticalAlignment="Center"
+                                            Text="Charge Comment:" />
+                                        <TextBox
+                                            Name="txtLateFeeComment"
+                                            Width="400"
+                                            MaxLength="128"
+                                            Text="{Binding LateFeeComment, Mode=TwoWay}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <DataGrid
+                        Name="grdLateFees"
+                        Grid.Row="1"
+                        AlternatingRowBackground="AntiqueWhite"
+                        AutoGenerateColumns="False"
+                        Background="LightSkyBlue"
+                        FontFamily="Courier New"
+                        ItemsSource="{Binding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="60"
+                                Binding="{Binding BuildingTenant}"
+                                Header="Ten #"
+                                IsReadOnly="True"
+                                SortMemberPath="BuildingTenant" />
+                            <DataGridTextColumn
+                                Width="200"
+                                Binding="{Binding TenantName}"
+                                Header="Name"
+                                IsReadOnly="True"
+                                SortMemberPath="TenantName" />
+                            <DataGridTextColumn
+                                Width="30"
+                                Binding="{Binding Apartment}"
+                                Header="Apt"
+                                IsReadOnly="True"
+                                SortMemberPath="Apartment" />
+                            <DataGridTextColumn
+                                Width="14"
+                                Binding="{Binding Type}"
+                                Header="Type"
+                                IsReadOnly="True"
+                                SortMemberPath="Type" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Rent, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Rent"
+                                IsReadOnly="True"
+                                SortMemberPath="Rent" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding RentLegal, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Legal Rent"
+                                IsReadOnly="True"
+                                SortMemberPath="RentLegal" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding CalculatedArrears, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Rental Arrears"
+                                IsReadOnly="True" 
+                                SortMemberPath="CalculatedArrears"/>
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding CalculatedLateFee, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                Header="Late Fee"
+                                IsReadOnly="True"
+                                SortMemberPath="LateFee" />
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>
+                                    <CheckBox
+                                        Checked="LateFee_Checked"
+                                        Content="Charge"
+                                        FlowDirection="RightToLeft"
+                                        Unchecked="LateFee_UnChecked" />
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding ChargeLateFee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <xtc:BusyIndicator x:Name="_busy" />
+        <Border
+            Grid.Row="1"
+            Background="DeepSkyBlue"
+            BorderBrush="Black"
+            BorderThickness="2">
+            <Grid>
+                <StackPanel
+                    Name="pnlButtons"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        Name="cmdGetTenants"
+                        Width="100"
+                        Click="cmdGetTenants_Click"
+                        Content="Get Tenants" />
+                    <Button
+                        Name="cmdSave"
+                        Width="100"
+                        Margin="10,0,0,0"
+                        Click="cmdSave_Click"
+                        Content="Save Changes" />
+                    <Button
+                        Name="cmdExport"
+                        Width="100"
+                        Margin="10,0,0,0"
+                        Click="cmdExport_Click"
+                        Content="Export CSV" />
+                    <Button
+                        Name="cmdClear"
+                        Width="100"
+                        Margin="10,0,0,0"
+                        Click="cmdClear_Click"
+                        Content="Clear" />
+                    <Button
+                        Name="cmdExit"
+                        Width="100"
+                        Margin="10,0,0,0"
+                        Click="cmdExit_Click"
+                        Content="Exit" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

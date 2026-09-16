@@ -1,0 +1,26 @@
+﻿Application Path,C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\UserConfig\
+baseCatalog2,MbcsCentral_fishman
+baseCatalog1,MbcsCentral_deutschmann
+baseCatalog3,MbcsCentral_DEV
+baseCatalog,MbcsCentral_demo
+baseServer,eopvf6vltx.database.windows.net\MBCSCENTRALSQL
+baseServer1,WEB2\MBCSCENTRALSQL
+databaseSource3,MBCSCENTRALDB
+databaseSource2,MBCSCENTRALSQL
+databaseSource,eopvf6vltx.database.windows.net
+databaseSource1,ezq26tgdh7.database.windows.net
+MachineName,*Azure*
+MachineName1,DESKTOP-BEV9G3L
+MachineName2,WEB2
+Database,DESKTOP-BEV9G3L\MBCSCENTRALDB;MbcsCentral_fishman
+Database1,web2\MBCSCENTRALSQL;MbcsCentral_fishman
+WinPM.LeaseLetter,LeaseLetter.bmp
+WinPM.DuplexFile,Lease Renewal Back.bmp
+WinPM.PrefRentDoc,PreferentialRent.bmp
+EmailUse1,Tenant
+EmailUse2,LateNotice
+initialCatalog3,MbcsCentral_fishmanTEST_BU_20170314012135
+initialCatalog2,MbcsCentral_fishmanTEST
+initialCatalog4,MbcsCentral_fishman
+initialCatalog1,MbcsCentral_DEV
+initialCatalog,MbcsCentral_demo

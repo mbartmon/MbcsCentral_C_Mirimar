@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="MbcsCentral.Help.DocumentOverview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral.Help"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DocumentOverview"
+
+    d:DesignWidth="322"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer
+            Width="Auto"
+            Height="643"
+            VerticalAlignment="Top"
+            CanContentScroll="True"
+            VerticalScrollBarVisibility="Auto">
+            <StackPanel
+                Height="640"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                <TextBlock Style="{StaticResource HeaderText}">Document Layout Overview</TextBlock>
+                <Separator />
+                <Image
+                    Width="Auto"
+                    Height="Auto"
+                    Source="/MbcsCentral;component/Image8.png"
+                    Stretch="Fill" />
+                <Separator />
+                <TextBlock
+                    Width="Auto"
+                    HorizontalAlignment="Stretch"
+                    TextWrapping="Wrap"><Run Text="A Document is a special type of report over which the user has control of what is printed and how it is formatted.  An obvious example is a Tenant Lease Renewal Letter (which is the only Document Type currently supported)." /><LineBreak /><LineBreak /><Run Text="Lease Renewal Letters can vary considerably from municipality to municipality as well as with time. This module allows you to add new forms, select which fields from Tenant/Building/Owner records to include (many of which are calculated), and where on the form to place them." /></TextBlock>
+                <TextBlock>Document Layout consists of two parts:</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}" Text="1. Acquisition" />
+                <TextBlock Style="{StaticResource IndentedInnerText}">You can use existing files on your system or scan new documents. A standard NYC lease with its reverse are provided.</TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">2. Layout Editing</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">Select fields and postions for each document.</TextBlock>
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
+</Page>

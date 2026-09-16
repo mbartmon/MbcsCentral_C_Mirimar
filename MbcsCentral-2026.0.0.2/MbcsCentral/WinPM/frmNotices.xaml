@@ -1,0 +1,201 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmNotices"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        Name="formNotices"
+        Title="Late Notices"
+        Width="293.662"
+        Height="350"
+        Closed="formNotices_Closed"
+        Loaded="formNotices_Loaded"
+        TextBlock.FontWeight="Bold"
+        TextBlock.TextAlignment="Center">
+
+    <Border BorderBrush="Blue"
+            BorderThickness="2"
+            CornerRadius="5">
+        <Grid Name="MainGrid"
+              Background="AliceBlue"
+              TextBlock.TextAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="60*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Starting Tenant" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBox Name="txtStartBuilding"
+                         Width="35"
+                         VerticalAlignment="Center"
+                         GotFocus="FocusObtained"
+                         MaxLength="3"
+                         Text="000" 
+                         TextChanged="moveNextOnMaxlength"/>
+                <TextBox Name="txtStartTenant"
+                         Width="40"
+                         Margin="1,0,0,0"
+                         VerticalAlignment="Center"
+                         CharacterCasing="Upper"
+                         GotFocus="FocusObtained"
+                         MaxLength="4"
+                         Text="0000" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="1"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Ending Tenant" />
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+                <TextBox Name="txtEndBuilding"
+                         Grid.Row="1"
+                         Width="35"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         GotFocus="FocusObtained"
+                         MaxLength="3"
+                         Text="999" 
+                         TextChanged="moveNextOnMaxlength"/>
+                <TextBox Name="txtEndTenant"
+                         Width="40"
+                         Margin="1,0,0,0"
+                         VerticalAlignment="Center"
+                         CharacterCasing="Upper"
+                         GotFocus="FocusObtained"
+                         MaxLength="4"
+                         Text="ZZZZ" />
+            </StackPanel>
+            <TextBlock Grid.Row="2"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Top Margin" />
+            <viblend:NumberEditor Name="txtTopMargin"
+                                  Grid.Row="2"
+                                  Grid.Column="1"
+                                  Width="50"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  DecimalPlaces="1"
+                                  MaxLength="4"
+                                  Value="{Binding TopMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="3"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Left Margin" />
+            <viblend:NumberEditor Name="txtLeftMargin"
+                                  Grid.Row="3"
+                                  Grid.Column="1"
+                                  Width="50"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  DecimalPlaces="1"
+                                  MaxLength="4"
+                                  Value="{Binding LeftMargin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="4"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Minimum Amount" />
+            <viblend:NumberEditor Name="txtAmount"
+                                  Grid.Row="4"
+                                  Grid.Column="1"
+                                  Width="100"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  DecimalPlaces="2"
+                                  MaxLength="7"
+                                  Value="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Grid.Row="5"
+                       Margin="5,0,0,0"
+                       VerticalAlignment="Center"
+                       Text="Date of Notice" />
+            <DatePicker Name="dtDate"
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Width="105"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" />
+            <StackPanel Grid.Row="6">
+                <RadioButton Name="optOne"
+                             Margin="5,0,0,0"
+                             VerticalAlignment="Center"
+                             Content="Laser Form 1"
+                             GroupName="grpForm"
+                             IsChecked="True" />
+                <RadioButton Name="optTwo"
+                             Margin="5,0,0,0"
+                             VerticalAlignment="Center"
+                             Content="Laser Form 2"
+                             GroupName="grpForm" />
+            </StackPanel>
+            <StackPanel Grid.Row="6"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left">
+                <TextBlock HorizontalAlignment="Center"
+                           FontSize="10"
+                           Text="Legal Codes" />
+                <ComboBox Name="lstLegal1"
+                          Width="170"
+                          HorizontalAlignment="Left"
+                          DisplayMemberPath="ChargeDescription"
+                          ItemsSource="{Binding}"
+                          SelectedValue="{Binding Legal1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          SelectedValuePath="ChargeCode" />
+                <ComboBox Name="lstLegal2"
+                          Width="170"
+                          HorizontalAlignment="Left"
+                          DisplayMemberPath="ChargeDescription"
+                          ItemsSource="{Binding}"
+                          SelectedValue="{Binding Legal2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                          SelectedValuePath="ChargeCode" />
+            </StackPanel>
+            <Border Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    BorderBrush="Blue"
+                    BorderThickness="2"
+                    CornerRadius="3">
+                <TextBlock Grid.Row="7"
+                           Grid.ColumnSpan="2"
+                           Margin="3,0,3,0"
+                           VerticalAlignment="Center"
+                           Foreground="Red"
+                           TextWrapping="Wrap">
+                    NOTE: When printing, a printer capable of 'Borderless' printing is required such as a photo printer.
+                </TextBlock>
+            </Border>
+            <StackPanel Grid.Row="8"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal">
+                <Button Name="cmdPrint"
+                        Margin="5,0,5,5"
+                        VerticalAlignment="Bottom"
+                        Click="cmdPrint_Click"
+                        Content="PRINT" />
+                <Button Name="cmdEmail"
+                        Margin="20,0,5,5"
+                        VerticalAlignment="Bottom"
+                        Click="cmdEmail_Click"
+                        Content="EMAIL" />
+                <Button Name="cmdCancel"
+                        Margin="20,0,5,5"
+                        VerticalAlignment="Bottom"
+                        Click="cmdCancel_Click"
+                        Content="CANCEL" />
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>

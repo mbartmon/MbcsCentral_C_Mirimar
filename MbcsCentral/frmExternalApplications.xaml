@@ -1,0 +1,168 @@
+﻿<Window x:Class="MbcsCentral.frmExternalApplications"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MbcsCentral"
+        xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        x:Name="FormExternalApplications"
+        Title="External Applications"
+        Width="885"
+        Height="300"
+        Closing="FormExternalApplications_Closing"
+        Loaded="FormExternalApplications_Loaded"
+        TextBlock.FontSize="14"
+        TextBlock.FontWeight="Bold"
+        TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <CollectionViewSource x:Key="AppsViewSource" Source="{Binding}" />
+        <local:SetColor x:Key="DeleteThis" />
+        <!--  SINGLE CLICK EDITING  -->
+        <Style TargetType="{x:Type DataGridCell}">
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="DataGridCell_PreviewMouseLeftButtonDown" />
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="Blue"
+            BorderThickness="2"
+            CornerRadius="5">
+        <Grid DataContext="{StaticResource AppsViewSource}">
+            <Grid.Resources>
+                <DataTemplate x:Key="PathTemplate">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="55" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="12"
+                                   Foreground="{Binding Delete,
+                                                        Converter={StaticResource DeleteThis}}"
+                                   Text="{Binding ApplicationPath,
+                                                  Mode=TwoWay,
+                                                  UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Name="cmdPath"
+                                Grid.Column="1"
+                                Click="cmdPath_Click"
+                                Content="Browse" />
+                    </Grid>
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <DataGrid x:Name="AppsDataGrid"
+                      AutoGenerateColumns="False"
+                      EnableRowVirtualization="True"
+                      ItemsSource="{Binding}"
+                      MouseDoubleClick="externalApplicationsDataGrid_MouseDoubleClick"
+                      RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Click="cmdSave_Click" Header="Edit" />
+                        <MenuItem Click="cmdDelete_Click" Header="Delete" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="idColumn"
+                                        Width="SizeToHeader"
+                                        Binding="{Binding Id}"
+                                        Header="Id"
+                                        IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="{Binding Delete, Converter={StaticResource DeleteThis}}" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="menuNameColumn"
+                                        Width="SizeToHeader"
+                                        Binding="{Binding MenuName}"
+                                        Header="Menu Name">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="{Binding Delete, Converter={StaticResource DeleteThis}}" />
+                                <Setter Property="TextAlignment" Value="Left"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="menuContentColumn"
+                                        Width="SizeToHeader"
+                                        Binding="{Binding MenuContent}"
+                                        Header="Menu Content">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="{Binding Delete, Converter={StaticResource DeleteThis}}" />
+                                <Setter Property="TextAlignment" Value="Left"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn x:Name="applicationNameColumn"
+                                        Width="SizeToHeader"
+                                        Binding="{Binding ApplicationName}"
+                                        Header="Application Name">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="{Binding Delete, Converter={StaticResource DeleteThis}}" />
+                                <Setter Property="TextAlignment" Value="Left"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Width="300"
+                                            CellTemplate="{StaticResource PathTemplate}"
+                                            Header="Application Path" />
+                    <DataGridTextColumn x:Name="applicationAppNameColumn"
+                                        Width="SizeToHeader"
+                                        Binding="{Binding ApplicationAppName}"
+                                        Header="Application App Name">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="{Binding Delete, Converter={StaticResource DeleteThis}}" />
+                                <Setter Property="TextAlignment" Value="Left"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Order">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Sequence, StringFormat={}{0:#0}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <viblend:NumberEditor DecimalPlaces="0"
+                                                      MaxLength="2"
+                                                      Value="{Binding Path=Sequence,
+                                                                      Mode=TwoWay,
+                                                                      UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Name="cmdSave"
+                        Click="cmdSave_Click"
+                        Content="Save" />
+                <Button Name="cmdDelete"
+                        Margin="20,0,0,0"
+                        Click="cmdDelete_Click"
+                        Content="Delete" />
+                <Button Name="cmdAdd"
+                        Margin="20,0,0,0"
+                        Click="cmdAdd_Click"
+                        Content="Add" />
+                <Button Name="cmdReorder"
+                        Margin="20,0,0,0"
+                        Click="cmdReorder_Click"
+                        Content="Reorder"/>
+                <Button Name="cmdExit"
+                        Margin="20,0,0,0"
+                        Click="cmdExit_Click"
+                        Content="Exit" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

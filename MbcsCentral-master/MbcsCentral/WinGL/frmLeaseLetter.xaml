@@ -1,0 +1,470 @@
+﻿<Window x:Name="formLeaseLetter"
+    x:Class="MbcsCentral.WinPM.frmLeaseLetter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+    xmlns:xtc="http://schemas.xceed.com/wpf/xaml/toolkit"
+    Title="Lease Renewal Letters"
+    Width="851.634"
+    Height="451.126"
+    Closed="formLeaseLetter_Closed"
+    Loaded="formLeaseLetter_Loaded"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <my:UpperCase x:Key="UpperCase" />
+        <my:BooleanOnOffConverter x:Key="OnOff" />
+    </Window.Resources>
+    <Grid x:Name="MainGrid" Background="Aqua">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="colMain" Width="560" />
+            <ColumnDefinition x:Name="colAction" Width="95" />
+            <ColumnDefinition x:Name="colTenant" Width="185" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="2">
+            <StackPanel
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <CheckBox Name="chkUseTypeLeases"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding UseThisLease, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock Text="Use Tenant Type Leases when avalable?"
+                        Width="95"
+                        FontWeight="Black"
+                        TextWrapping="Wrap" />
+                </CheckBox>
+                <StackPanel Margin="3,0,0,0">
+                    <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                        <TextBlock Text="Default Lease"
+                            Width="100"
+                            VerticalAlignment="Center" />
+                        <ComboBox x:Name="lstLeases"
+                            Width="200"
+                            Background="White"
+                            DisplayMemberPath="DocumentName"
+                            ItemsSource="{Binding}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock Text="Default Reverse"
+                            Width="100"
+                            VerticalAlignment="Center" />
+                        <ComboBox x:Name="lstReverse"
+                            Width="200"
+                            Background="White"
+                            DisplayMemberPath="DocumentName"
+                            ItemsSource="{Binding}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Grid x:Name="Expander"
+            Grid.RowSpan="3"
+            Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.Row="0"
+                Grid.Column="2"
+                BorderBrush="Black"
+                BorderThickness="2,0,3,0">
+                <TextBlock Text="INDIVIDUAL TENANTS"
+                    Margin="5,0,5,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="SemiBold" />
+            </Border>
+            <Border x:Name="bdrTenants"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                BorderBrush="Black"
+                BorderThickness="2,3,3,3">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Tenant Number"
+                            Margin="5,5,0,0"
+                            VerticalAlignment="Center" />
+                        <TextBox x:Name="txtTenantNumber"
+                            Width="80"
+                            Margin="5,5,5,0"
+                            VerticalAlignment="Center"
+                            MaxLength="7"
+                            PreviewKeyDown="txtTenantNumber_PreviewKeyDown" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <Button x:Name="cmdAdd"
+                                Width="80"
+                                Margin="5,5,0,0"
+                                Click="cmdAdd_Click"
+                                Content="ADD"
+                                IsDefault="True"
+                                IsEnabled="False" />
+                            <Button x:Name="cmdRemove"
+                                Width="80"
+                                Margin="5,10,0,0"
+                                Click="cmdRemove_Click"
+                                Content="REMOVE" />
+                            <Button x:Name="cmdClear"
+                                Width="80"
+                                Margin="5,10,0,0"
+                                Click="cmdClear_Click"
+                                Content="CLEAR" />
+                        </StackPanel>
+                        <ListBox x:Name="lstTenants"
+                            Width="80"
+                            Height="224"
+                            Margin="8,5,0,0"
+                            VerticalAlignment="Stretch" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            BorderBrush="Black"
+            BorderThickness="3,0,2,0">
+            <TextBlock Text="ACTIONS"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                FontWeight="SemiBold" />
+        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Text="BUILDING NUMBER -start"
+                Margin="10,0,0,0"
+                VerticalAlignment="Center" />
+            <TextBox x:Name="txtStartBuilding" Text="000"
+                Width="30"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                GotFocus="FocusObtained"
+                MaxLength="3" />
+            <TextBlock Text="end"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center" />
+            <TextBox x:Name="txtEndBuilding" Text="ZZZ"
+                Width="30"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                GotFocus="FocusObtained"
+                MaxLength="3" />
+            <CheckBox x:Name="chkHistory"
+                      Content="Bypass History"
+                      FlowDirection="RightToLeft"
+                      Margin="10,0,0,0"
+                      VerticalAlignment="Center"/>
+            <TextBlock Text="Tenant Type"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                FontWeight="Bold" />
+        </StackPanel>
+        <Border
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Width="130"
+            Height="300"
+            Margin="420,-100,0,0"
+            BorderBrush="Black"
+            BorderThickness="3">
+            <ListBox x:Name="lstType"
+                Width="130"
+                Height="300"
+                VerticalAlignment="Center"
+                DisplayMemberPath="DisplayDescription"
+                ItemsSource="{Binding}"
+                SelectedValuePath="ChargeCode"
+                SelectionMode="Extended" />
+
+        </Border>
+        <Border
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            BorderBrush="Black"
+            BorderThickness="3,3,2,3">
+            <StackPanel>
+                <Button x:Name="cmdPrint"
+                    Width="93"
+                    Height="30"
+                    Margin="5,10,5,0"
+                    HorizontalAlignment="Center"
+                    Click="cmdPrint_Click"
+                    Content="PRINT" />
+                <Button x:Name="cmdTenants"
+                    Width="93"
+                    Height="30"
+                    Margin="5,10,5,0"
+                    HorizontalAlignment="Center"
+                    Click="cmdTenants_Click"
+                    Content="TENANTS&gt;&gt;" />
+                <Button x:Name="cmdSave"
+                    Width="93"
+                    Height="30"
+                    Margin="5,10,5,0"
+                    HorizontalAlignment="Center"
+                    Click="cmdSave_Click"
+                    Content="Save Settings" />
+                <Button x:Name="cmdExit"
+                    Width="93"
+                    Height="30"
+                    Margin="5,10,5,0"
+                    HorizontalAlignment="Center"
+                    Click="cmdExit_Click"
+                    Content="EXIT" />
+            </StackPanel>
+        </Border>
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,0,0,57"
+            Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="EXIPRATION DATE -from"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center" />
+                <DatePicker x:Name="dtFrom"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    SelectedDate="{Binding FromDate}" />
+                <TextBlock Text="to"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center" />
+                <DatePicker x:Name="dtTo"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    SelectedDate="{Binding ToDate}" />
+            </StackPanel>
+            <StackPanel x:Name="pnlPercents" Orientation="Horizontal">
+                <TextBlock Text="PERCENTAGES"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center" />
+                <viblend:NumberEditor x:Name="txtOneYear"
+                    Width="40"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    DecimalPlaces="3"
+                    MaxLength="4"
+                    Value="{Binding PercentOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="1 yr"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center" />
+                <viblend:NumberEditor x:Name="txtTwoYear"
+                    Width="40"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    DecimalPlaces="3"
+                    MaxLength="4"
+                    Value="{Binding PercentTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="2 yrs"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center" />
+                <TextBlock Text="LETTER DATE"
+                    Margin="5,10,5,10"
+                    VerticalAlignment="Center" />
+                <DatePicker Name="dtLetter"
+                    VerticalAlignment="Center"
+                    SelectedDateFormat="Short" />
+            </StackPanel>
+            <StackPanel x:Name="pnlCharges" Orientation="Horizontal">
+                <TextBlock Margin="10,0,0,0" VerticalAlignment="Center"><Run Text="Valid Separate" />
+                    <LineBreak /><Run Text="Charge Codes" />
+                </TextBlock>
+                <TextBox Name="txtChg0" Text="{Binding ChargeCode0, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="25,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg1" Text="{Binding ChargeCode1, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg2" Text="{Binding ChargeCode2, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg3" Text="{Binding ChargeCode3, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg4" Text="{Binding ChargeCode4, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg5" Text="{Binding ChargeCode5, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg6" Text="{Binding ChargeCode6, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg7" Text="{Binding ChargeCode7, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg8" Text="{Binding ChargeCode8, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+                <TextBox Name="txtChg9" Text="{Binding ChargeCode9, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="1,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="chkGuidlines"
+                    Margin="10,5,0,0"
+                    VerticalAlignment="Center"
+                    Content="Check here if Guidelines are UNKOWN"
+                    FlowDirection="RightToLeft"
+                    FontWeight="Bold"
+                    IsChecked="{Binding GuideLinesUnknown}" />
+                <TextBlock Margin="20,0,0,0" VerticalAlignment="Center"><Run Text="Senior Citizen" />
+                    <LineBreak /><Run Text="Charge Code" />
+                </TextBlock>
+                <xtc:MaskedTextBox x:Name="txtSeniorCharge" Text="{Binding SeniorCitizenCode, Converter={StaticResource UpperCase}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Width="25"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    MaxLength="2" />
+            </StackPanel>
+            <CheckBox x:Name="chkMinimum"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Use Minimum Increase"
+                FlowDirection="RightToLeft"
+                FontWeight="Bold"
+                IsChecked="{Binding UseMinimumIncrease}" />
+            <StackPanel x:Name="pnlMinimumRents" Orientation="Horizontal">
+                <TextBlock Text="1 year"
+                    Margin="30,5,0,0"
+                    VerticalAlignment="Center" />
+                <viblend:NumberEditor x:Name="txtMinimum1"
+                    Width="80"
+                    Margin="5,5,0,0"
+                    DecimalPlaces="2"
+                    IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                    MaxLength="10"
+                    Value="{Binding MinimumIncrease1, Mode=TwoWay}" />
+                <TextBlock Text="2 year"
+                    Margin="20,5,0,0"
+                    VerticalAlignment="Center" />
+                <viblend:NumberEditor x:Name="txtMinimum2"
+                    Width="80"
+                    Margin="5,5,0,0"
+                    DecimalPlaces="2"
+                    IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                    MaxLength="10"
+                    Value="{Binding MinimumIncrease2, Mode=TwoWay}" />
+            </StackPanel>
+            <StackPanel x:Name="pnlMinimumYears"
+                Margin="30,5,0,0"
+                Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Maximum Years" />
+                <viblend:NumberEditor x:Name="txtMaximumYears"
+                    Width="30"
+                    Margin="5,0,0,0"
+                    DecimalPlaces="0"
+                    IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                    MaxLength="2"
+                    Value="{Binding MinimumIncreaseYears, Mode=TwoWay}" />
+                <TextBlock Text="Maximum Rent"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center" />
+                <viblend:NumberEditor x:Name="txtMaximumRent"
+                    Width="80"
+                    Margin="5,0,0,0"
+                    DecimalPlaces="2"
+                    IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                    MaxLength="10"
+                    Value="{Binding MinimumIncreaseRent, Mode=TwoWay}" />
+            </StackPanel>
+            <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Copies" />
+                <xtc:IntegerUpDown x:Name="txtCopies" Text="1"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Maximum="10"
+                    Minimum="1"
+                    Value="{Binding Copies, Mode=TwoWay}" />
+                <CheckBox x:Name="chkStatementOption"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Content="Use Statement Address Option"
+                    IsChecked="{Binding StatementOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                <CheckBox x:Name="chkPref"
+                    Content="Print Preferential Rent Riders"
+                    IsChecked="{Binding PrintPref, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <CheckBox x:Name="chkPrompt"
+                    Margin="20,0,0,0"
+                    Content="Print Prompt Pay Riders"
+                    IsChecked="{Binding PrintPrompt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Printer" />
+                <ComboBox x:Name="PrinterList"
+                    Width="200"
+                    Margin="5,0,0,0"
+                    DisplayMemberPath="DisplayItem"
+                    ItemsSource="{Binding}"
+                    SelectionChanged="PrinterList_SelectionChanged" />
+                <Button x:Name="cmdDuplex"
+                    Margin="10,0,0,0"
+                    Click="cmdDuplex_Click"
+                    Content="Duplex"
+                    FontSize="14"
+                    FontWeight="Bold" />
+                <TextBlock x:Name="txtDuplexing" Text="Red=Enabled"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Foreground="Red" />
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0">
+                <Border BorderBrush="Black" BorderThickness="2">
+                    <StackPanel Height="35" Orientation="Horizontal">
+                        <TextBlock Text="Status:"
+                            VerticalAlignment="Center"
+                            FontFamily="Rockwell" />
+                        <Border
+                            Margin="5,0,0,0"
+                            BorderBrush="Gray"
+                            BorderThickness="2">
+                            <TextBlock x:Name="txtStatus" Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                Width="370"
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                FontFamily="Rockwell"
+                                FontSize="14" />
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

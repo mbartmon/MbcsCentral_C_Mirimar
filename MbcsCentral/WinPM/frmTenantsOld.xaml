@@ -1,0 +1,37 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmTenantsOld"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Loaded="Window_Loaded"
+        Name="formTenantsOld"
+        Title="Prior Tenants" Height="300" Width="825">
+    <Window.Resources>
+        <my:CurrencyPaddingConverter x:Key="CurrencyPadder"/>
+        <my:DateConverter x:Key="DateConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <DataGrid Name="grdTenants" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="AliceBlue" Background="Aquamarine">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="SeqNumber" Binding="{Binding SequenceNumber}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Building" Binding="{Binding BuildingNumber}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Tenant" Binding="{Binding TenantNumber}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Apt" Binding="{Binding Apartment}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Tenant Name" Binding="{Binding TenantName}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Move-In Date" Binding="{Binding MoveinDate, Converter={StaticResource DateConverter}}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Lease Start" Binding="{Binding LeaseStartDate, Converter={StaticResource DateConverter}}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Lease Expiration" Binding="{Binding LeaseExpirationDate, Converter={StaticResource DateConverter}}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Legal Rent" Binding="{Binding RentLegal, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rent" Binding="{Binding Rent, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}" IsReadOnly="True"/>     
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="Azure">
+            <CheckBox Name="chkVacant" Content="Include VACANT apartments?" VerticalAlignment="Center" Margin="10,0,0,0" Checked="chkVacant_Checked" Unchecked="chkVacant_Checked"/>
+            <Button Name="cmdExit" Content="EXIT" Width="150" Margin="50,0,0,0" Click="cmdExit_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

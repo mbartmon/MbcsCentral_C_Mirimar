@@ -1,0 +1,137 @@
+﻿<Window x:Class="MbcsCentral.WinGL.frmDepartment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        Name="formDepartment"
+        Title="Department Record"
+        Width="468.568"
+        Height="273"
+        Background="#FF00C0C0"
+        FontWeight="Bold">
+    <Grid Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+             <RowDefinition Height="30" />
+       </Grid.RowDefinitions>
+        <TextBlock Margin="5,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Department Number" />
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+            <TextBox Name="txtDepartmentNumber"
+                     Width="50"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     MaxLength="3"
+                     Text="{Binding DepartmentNumber,
+                                    Mode=TwoWay}"
+                     TextChanged="txtDepartmentNumber_TextChanged" />
+            <CheckBox Name="chkInactive"
+                      Margin="20,0,0,0"
+                      VerticalAlignment="Center"
+                      Content="InActive?"
+                      IsChecked="{Binding InActive,
+                                          Mode=TwoWay,
+                                          UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+        <TextBlock Grid.Row="1"
+                   Margin="5,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Company" />
+        <TextBlock Name="txtCompanyName"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Width="300"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Background="Linen"
+                   Text="{Binding Name,
+                                  Mode=OneTime}" />
+        <TextBlock Grid.Row="2"
+                   Margin="5,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Name" />
+        <TextBox Name="txtDepartmentName"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Width="300"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Text="{Binding Name, Mode=TwoWay}" />
+        <TextBlock Grid.Row="3"
+                   Margin="5,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="Street Address" />
+        <TextBox Name="txtAddress1"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Width="300"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 MaxLength="50"
+                 Text="{Binding StreetAddress,
+                                Mode=TwoWay}" />
+        <TextBlock Grid.Row="4"
+                   Margin="5,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="City" />
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Width="300"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 MaxLength="50"
+                 Text="{Binding City,
+                                Mode=TwoWay}" />
+        <TextBlock Grid.Row="5"
+                   Margin="5,0,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Text="State/Zip" />
+        <StackPanel Grid.Row="5"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+            <TextBox Width="30"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     MaxLength="2"
+                     Text="{Binding State}" />
+            <TextBox Width="85"
+                     Margin="5,0,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     MaxLength="11"
+                     Text="{Binding Zip}" />
+        </StackPanel>
+        <TextBlock Grid.Row="6" Text="Company Number" VerticalAlignment="Center" Margin="3,0,0,0"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding CompanyNumber}" IsReadOnly="True" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Linen"/>
+        <Grid Grid.Row="7" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <Button Name="cmdSave"
+                        Margin="50,0,0,0"
+                        Click="cmdSave_Click"
+                        Content="SAVE" />
+                <Button Name="cmdCancel"
+                        Margin="20,0,0,0"
+                        Click="cmdCancel_Click"
+                        Content="CANCEL" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

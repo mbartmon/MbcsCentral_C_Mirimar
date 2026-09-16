@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="MbcsCentral.Help.EmailOverview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral.Help"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="EmailOverview"
+    d:DesignHeight="636.031"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer 
+            Width="Auto" 
+            Height="643" 
+            VerticalAlignment="Top" 
+            VerticalScrollBarVisibility="Auto" 
+            CanContentScroll="True">
+            <StackPanel 
+                Height="640" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top">
+                <TextBlock Style="{StaticResource HeaderText}">Email Overview</TextBlock>
+                <Separator />
+                <TextBlock 
+                    Width="Auto"
+                    HorizontalAlignment="Stretch"
+                    TextWrapping="Wrap">
+                    The ability to E-Mail has been incorporated into several functions:
+                </TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">                    
+                    1.	Directly to Tenants (WinPM)
+                </TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    You can choose any E-Mail address from the tenant record.  You type the subject and message. 
+                    You can optionally include an attachment that is either a file on your system or scanned directly to the message.
+                </TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">
+                    2.	Late Notices (WinPM)
+                </TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    In addition to printing Late Notices for hand or regular mail distribution, they can be processed and immediately sent 
+                    via E-Mail to any address in the tenant record.  The Notice is sent as an attachment and looks the same as the printed version.
+                </TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">
+                    3.	Reports, individual (WinPM, WinGL)
+                </TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    All reports can be emailed to one or more recipients from the Report Display window.  Recipients can be pulled from 
+                    Outlook Contacts, personalized recipient lists, or added one at a time.
+                </TextBlock>
+                <TextBlock Style="{StaticResource InnerText}">
+                    4.	Batch Reports (WinGL)
+                </TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    This is similar to E-Mailing individual reports except that an entire batch is sent at one time to all recipients.
+                </TextBlock>
+                <TextBlock>
+                    <LineBreak/>
+                    There are different user interfaces depending on which of the functions you use.  But whichever one you use, you must first set up the E-Mail account(s) through which you will be sending the messages.
+                </TextBlock>
+                        
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

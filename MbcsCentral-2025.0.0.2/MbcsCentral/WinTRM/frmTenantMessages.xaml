@@ -1,0 +1,40 @@
+﻿<Window x:Class="frmTenantMessages"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Email Messages" Height="592" Width="681" FontWeight="SemiBold" FontStretch="Normal" FontSize="16" Background="#FF0BC2C2" Name="frmTenantMessages" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="150*" />
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="0" Text="Incoming" Width="Auto" HorizontalAlignment="Stretch"  Background="#FF00F5FF" Height="Auto" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+        <ListView  HorizontalAlignment="Stretch" Margin="0,25,0,0" Name="grdIncoming" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Grid.Row="0" Background="#FF00F5FF" FontSize="12">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true">
+                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding Path=fromAddr}"/>
+                    <GridViewColumn Header="To" DisplayMemberBinding="{Binding Path=toAddr}"/>
+                    <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=subject}"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=receiveDate}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Grid.Row="2" Text="Outgoing" Width="Auto" HorizontalAlignment="Stretch" Background="#FFFFB654" Height="Auto" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+        <ListView HorizontalAlignment="Stretch" Margin="0,25,0,0" Name="grdOutgoing" VerticalAlignment="Stretch" Width="Auto" Height="Auto " Grid.Row="2" Background="#FFFFB654" ItemsSource="{Binding}" FontSize="12">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true">
+                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding Path=fromAddr}" />
+                    <GridViewColumn Header="To" DisplayMemberBinding="{Binding Path=toAddr}"/>
+                    <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=subject}"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=receiveDate}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="cmdExit" Content="EXIT" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <GridSplitter Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" Margin="0" Height="Auto" HorizontalAlignment="Stretch" Width="Auto" Name="GridSplitter1" ShowsPreview="True"  Background="Black" ResizeDirection="Rows" IsManipulationEnabled="True" />
+    </Grid>
+</Window>

@@ -1,0 +1,2 @@
+﻿ALTER TABLE pm_Control ADD ACHBypass bit NOT NULL DEFAULT  1;
+GO

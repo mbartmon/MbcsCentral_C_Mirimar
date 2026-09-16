@@ -1,0 +1,862 @@
+﻿<Window
+    x:Class="MbcsCentral.WinGL.frmBankReconciliation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MbcsCentral.WinGL"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:vi="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+    Name="FormfrmBankReconciliation"
+    Title="Bank Reconciliation"
+    Width="1120"
+    Height="527"
+    Background="AliceBlue"
+    Closed="frmBankReconciliation_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmBankReconciliation_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <my:CurrencyPaddingConverter x:Key="CurrencyPadder" />
+        <my:BoolToVisibilityConverter x:Key="BoolVisible" />
+
+        <CollectionViewSource x:Key="accounts" />
+        <CollectionViewSource x:Key="journals" />
+
+        <!--
+        <local:BankReconCompanies x:Key="theData" />
+            <DataTemplate x:Key="level3">
+                <TextBlock Text="{Binding Date}" />
+            </DataTemplate>3
+
+            <HierarchicalDataTemplate
+                x:Key="level2"
+                ItemTemplate="{StaticResource level3}"
+                ItemsSource="{Binding BankReconRecords}">
+                <TextBlock Text="{Binding Path=DepartmentName}" />
+            </HierarchicalDataTemplate>
+            <HierarchicalDataTemplate
+                x:Key="level1"
+                ItemTemplate="{StaticResource level2}"
+                ItemsSource="{Binding BankReconDepartments}">
+                <TextBlock Text="{Binding Path=DepartmentName}" />
+            </HierarchicalDataTemplate>
+        -->
+
+    </Window.Resources>
+    <Border
+        Margin="0,0,0,1"
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <TextBox
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="Check Reconciliation"
+                TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <!--  Place your content here  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition x:Name="grdRowChecks" Height="*" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="305" />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Popup
+                        Name="popReload"
+                        Width="{Binding ElementName=FormfrmBankReconciliation, Path=Width}"
+                        Height="450"
+                        IsEnabled="True"
+                        IsOpen="False"
+                        Placement="Relative"
+                        VerticalOffset="-20">
+                        <DockPanel VerticalAlignment="Top" LastChildFill="True">
+                            <TextBox
+                                DockPanel.Dock="Top"
+                                Name="txtRecons"
+                                Background="Wheat"
+                                Text="Select a saved reconciliation to load." />
+                            <TreeView Name="lstRecons" DockPanel.Dock="Top" MouseDoubleClick="lstRecons_MouseDoubleClick" Height="398" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <TreeView.Resources>
+                                    <HierarchicalDataTemplate DataType="{x:Type local:BankReconCompanies}" ItemsSource="{Binding ReconDepartments}">
+                                        <TextBlock Text="{Binding CompanyName}">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Completed}" Value="True">
+                                                            <Setter Property="Foreground" Value="Black" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=Completed}" Value="False">
+                                                            <Setter Property="Foreground" Value="Red" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </HierarchicalDataTemplate>
+                                    <HierarchicalDataTemplate DataType="{x:Type local:BankReconDepartments}" ItemsSource="{Binding ReconRecords}">
+                                        <TextBlock Text="{Binding DepartmentName}">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Completed}" Value="True">
+                                                            <Setter Property="Foreground" Value="Black" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=Completed}" Value="False">
+                                                            <Setter Property="Foreground" Value="Red" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </HierarchicalDataTemplate>
+                                    <DataTemplate DataType="{x:Type local:BankReconRecords}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox VerticalAlignment="Center" Margin="2"
+                                                      IsChecked="{Binding Path=Selected, Mode=TwoWay}" />
+                                            <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyy}}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Completed}" Value="True">
+                                                                <Setter Property="Foreground" Value="Black" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=Completed}" Value="False">
+                                                                <Setter Property="Foreground" Value="Red" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </TreeView.Resources>
+                            </TreeView>
+                            <StackPanel Background="Wheat" Orientation="Horizontal">
+                                <Button
+                                    Name="cmdGetRecon"
+                                    Margin="20,0,0,0"
+                                    Click="cmdGetRecon_Click"
+                                    Content="RELOAD" />
+                                <Button Name="cmdMarkComplete" Margin="20,0,0,0" Click="CmdMarkComplete_Click" Content="MARK COMPLETE"/>
+                                <Button
+                                    Name="cmdDeleteRecon"
+                                    Margin="20,0,0,0"
+                                    Click="cmdDeleteRecon_Click"
+                                    Content="DELETE" />
+                                <Button
+                                    Name="cmdRetireveCancel"
+                                    Margin="20,0,0,0"
+                                    Click="cmdRetireveCancel_Click"
+                                    Content="CANCEL" />
+                            </StackPanel>
+                        </DockPanel>
+                    </Popup>
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="3,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="90"
+                            VerticalAlignment="Center"
+                            Text="Company"
+                            TextAlignment="Left" />
+                        <ComboBox
+                            Name="lstCompanies"
+                            Width="210"
+                            VerticalAlignment="Center"
+                            DisplayMemberPath="Name"
+                            ItemsSource="{Binding}"
+                            SelectionChanged="lstCompanies_SelectionChanged" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="3,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="90"
+                            VerticalAlignment="Center"
+                            Text="Book Balance"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            x:Name="txtBookBal"
+                            Width="105"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            IsEnabled="False"
+                            Text="{Binding Path=BookBalance, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="Statement"
+                            TextAlignment="Left" />
+                        <vi:NumberEditor
+                            Name="txtStatement"
+                            Width="105"
+                            Margin="5,2,0,0"
+                            VerticalAlignment="Top"
+                            DecimalPlaces="2"
+                            TextChanged="NumberEntry_TextChanged" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="3,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="90"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Text="Department"
+                            TextAlignment="Left" />
+                        <ComboBox
+                            Name="lstDepartments"
+                            Width="210"
+                            VerticalAlignment="Center"
+                            DisplayMemberPath="Name" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="3,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="90"
+                            VerticalAlignment="Center"
+                            Text="Adjustments"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            x:Name="txtAdjustments"
+                            Width="105"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            Text="{Binding Path=Adjustments, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="73"
+                            VerticalAlignment="Center"
+                            Text="Date"
+                            TextAlignment="Left" />
+                        <DatePicker
+                            Name="dtDate"
+                            Width="132"
+                            SelectedDateChanged="dtDate_SelectedDateChanged"
+                            SelectedDateFormat="Short" />
+                    </StackPanel>
+
+                    <Button
+                        Name="cmdRetrieve"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Width="210"
+                        Margin="91,0,0,0"
+                        VerticalAlignment="Center"
+                        Click="cmdRetrieve_Click"
+                        Content="Retrieve Items" />
+
+                    <StackPanel
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="3,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="90"
+                            VerticalAlignment="Center"
+                            Text="Adj Book Bal"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            x:Name="txtAdjBookBal"
+                            Width="105"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            IsEnabled="False"
+                            Text="{Binding Path=AdjBookBalance, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                    </StackPanel>
+
+                    <DataGrid
+                        Name="grdChecks"
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        IsSynchronizedWithCurrentItem="True"
+                        RowEditEnding="grdChecks_RowEditEnding"
+                        SelectionUnit="Cell"
+                        TextBlock.FontSize="12"
+                        TextBlock.FontWeight="Normal">
+                        <DataGrid.Resources>
+                            <!--  SINGLE CLICK EDITING  -->
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <EventSetter Event="PreviewMouseLeftButtonDown" Handler="DataGridCell_PreviewMouseLeftButtonDown" />
+                            </Style>
+
+                        </DataGrid.Resources>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="90"
+                                Binding="{Binding Path=Type}"
+                                Header="Chk#/Type"
+                                IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Width" Value="90" />
+                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                        <Setter Property="Margin" Value="0,0,2,0" />
+                                        <Setter Property="Background" Value="LightGray" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Width="90" Header="Date">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <vi:DateTimeEditor
+                                            Width="90"
+                                            TextAlignment="Right"
+                                            Value="{Binding Path=Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:MM/dd/yyy}}">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="False">
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="True">
+                                                            <Setter Property="IsReadOnly" Value="False" />
+                                                            <Setter Property="Background" Value="White" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </vi:DateTimeEditor>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="120" Header="Book Amount">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Width="120"
+                                            Padding="0,0,5,0"
+                                            Text="{Binding Path=BookAmount, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}"
+                                            TextAlignment="Right">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="False">
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <vi:NumberEditor
+                                            x:Name="txtBookAmount"
+                                            Width="120"
+                                            Padding="0,0,5,0"
+                                            DecimalPlaces="2"
+                                            LostFocus="NumberEntry_LostFocus"
+                                            MaxLength="15"
+                                            TextAlignment="Right"
+                                            Value="{Binding Path=BookAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}">
+                                            <vi:NumberEditor.Style>
+                                                <Style TargetType="vi:NumberEditor">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="True">
+                                                            <Setter Property="IsReadOnly" Value="False" />
+                                                            <Setter Property="Background" Value="White" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="False">
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+
+                                                </Style>
+                                            </vi:NumberEditor.Style>
+                                        </vi:NumberEditor>
+                                        <!--                                        <my:NumberEntry x:Name="txtBookAmount" Text="{Binding Path=BookAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}"
+                                            Width="120"
+                                            Padding="0,0,5,0"
+                                            Decimals="2"
+                                            LostFocus="NumberEntry_LostFocus"
+                                            MaxLength="15"
+                                            TextAlignment="Right">
+                                            <my:NumberEntry.Style>
+                                                <Style TargetType="my:NumberEntry">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="True">
+                                                            <Setter Property="IsReadOnly" Value="False" />
+                                                            <Setter Property="Background" Value="White" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="False">
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+
+                                                </Style>
+                                            </my:NumberEntry.Style>
+                                        </my:NumberEntry>-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="120" Header="Statement Amount">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Width="120"
+                                            Padding="0,0,5,0"
+                                            Text="{Binding Path=StatementAmount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}"
+                                            TextAlignment="Right">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="True">
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <vi:NumberEditor
+                                            Name="txtStatementAmount"
+                                            Width="120"
+                                            Padding="0,0,5,0"
+                                            DecimalPlaces="2"
+                                            MaxLength="15"
+                                            Text="{Binding Path=StatementAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}"
+                                            TextAlignment="Right"
+                                            TextChanged="NumberEntry_TextChanged">
+                                            <vi:NumberEditor.Style>
+                                                <Style TargetType="vi:NumberEditor">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="True">
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="False">
+                                                            <Setter Property="IsReadOnly" Value="False" />
+                                                            <Setter Property="Background" Value="White" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </vi:NumberEditor.Style>
+                                        </vi:NumberEditor>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="180" Header="Payee/Description">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Width="180"
+                                            Text="{Binding Path=Payee}"
+                                            TextAlignment="Left">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Manual}" Value="False">
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <TextBox
+                                            Width="180"
+                                            Text="{Binding Path=Payee}"
+                                            TextAlignment="Left">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="True">
+                                                            <Setter Property="Background" Value="White" />
+                                                            <Setter Property="IsReadOnly" Value="False" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=Manual}" Value="False">
+                                                            <Setter Property="Background" Value="LightGray" />
+                                                            <Setter Property="IsReadOnly" Value="True" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Cleared">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+                                            HorizontalAlignment="Center"
+                                            Checked="CheckBox_Checked"
+                                            IsChecked="{Binding Path=ReconFlag, UpdateSourceTrigger=PropertyChanged}"
+                                            Unchecked="CheckBox_Checked" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="EDIT">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Name="cmdDelete"
+                                            Click="cmdDelete_Click"
+                                            Content="DEL"
+                                            IsEnabled="{Binding Path=Manual}"
+                                            Visibility="{Binding Path=Manual, Converter={StaticResource BoolVisible}}" />
+                                    </DataTemplate>
+
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Name="cmdDelete"
+                                            Click="cmdDelete_Click"
+                                            Content="DEL"
+                                            IsEnabled="{Binding Path=Manual}"
+                                            Visibility="{Binding Path=Manual, Converter={StaticResource BoolVisible}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="250" Header="Account">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Width="250"
+                                            Margin="2,0,0,0"
+                                            VerticalAlignment="Center"
+                                            IsEnabled="{Binding Path=Manual}"
+                                            Text="{Binding Path=AccountDescription}"
+                                            TextAlignment="Left"
+                                            Visibility="{Binding Path=Manual, Converter={StaticResource BoolVisible}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox
+                                            Name="lstAccounts"
+                                            Width="250"
+                                            DisplayMemberPath="Description"
+                                            IsEnabled="{Binding Path=Manual}"
+                                            ItemsSource="{Binding Source={StaticResource accounts}}"
+                                            LostFocus="lstAccounts_LostFocus"
+                                            SelectedIndex="-1"
+                                            SelectedValue="{Binding Path=AccountDescription, UpdateSourceTrigger=PropertyChanged}"
+                                            SelectedValuePath="Description"
+                                            SelectionChanged="ComboBox_SelectionChanged"
+                                            Visibility="{Binding Path=Manual, Converter={StaticResource BoolVisible}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Width="150" Header="Journal">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="2,0,0,0"
+                                            VerticalAlignment="Center"
+                                            IsEnabled="{Binding Path=Manual}"
+                                            Text="{Binding Path=Journal}"
+                                            TextAlignment="Left"
+                                            Visibility="{Binding Path=Manual, Converter={StaticResource BoolVisible}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox
+                                            Name="lstJournals"
+                                            Width="150"
+                                            DisplayMemberPath="JournalName"
+                                            IsEnabled="{Binding Path=Manual}"
+                                            ItemsSource="{Binding Source={StaticResource journals}}"
+                                            SelectedValue="{Binding Path=Journal}"
+                                            SelectedValuePath="JournalName"
+                                            SelectionChanged="ComboBox_SelectionChanged"
+                                            Visibility="{Binding Path=Manual, Converter={StaticResource BoolVisible}}" />
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="3,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="177"
+                            VerticalAlignment="Center"
+                            Text="Total of Cleared Checks"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            x:Name="txtBookCleared"
+                            Width="120"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            FontSize="12"
+                            IsReadOnly="True"
+                            Text="{Binding Path=TotalBookCleared, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                        <my:NumberEntry
+                            x:Name="txtStatementCleared"
+                            Width="120"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            FontSize="12"
+                            IsReadOnly="True"
+                            Text="{Binding Path=TotalStatementCleared, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Margin="160,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="123"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Text="+ Uncleared Deposits"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            x:Name="txtUnclearedDeposits"
+                            Width="120"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            FontSize="12"
+                            IsReadOnly="True"
+                            Text="{Binding Path=UnclearedDeposits, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal">
+                        <Button
+                            Name="cmdAddDeposit"
+                            Click="cmdAddDeposit_Click"
+                            Content="Add Deposit" />
+                        <Button
+                            Name="cmdBankErrorAgainst"
+                            Width="138"
+                            Margin="2,0,0,0"
+                            HorizontalContentAlignment="Left"
+                            Click="cmdBankErrorAgainst_Click"
+                            Content="Bank Error Against" />
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="Difference" />
+                        <my:NumberEntry
+                            x:Name="txtDifference"
+                            Width="120"
+                            Margin="3,0,0,0"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            IsReadOnly="True"
+                            Text="{Binding Path=TotalDifference, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Margin="163,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="120"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Text="- Uncleared Debits"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            x:Name="txtUnclearedDebits"
+                            Width="120"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            FontSize="12"
+                            IsReadOnly="True"
+                            Text="{Binding Path=UnclearedDebits, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal">
+                        <Button
+                            Name="cmdAddDebit"
+                            Width="86"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Left"
+                            Click="cmdAddDebit_Click"
+                            Content="Add Debit" />
+                        <Button
+                            Name="cmdBankErrorFor"
+                            Width="137"
+                            Margin="2,0,0,0"
+                            HorizontalContentAlignment="Left"
+                            VerticalAlignment="Center"
+                            Click="cmdBankErrorFor_Click"
+                            Content="Bank Error In Favor" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Margin="163,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            Width="120"
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Text="- Uncleared Checks"
+                            TextAlignment="Left" />
+                        <my:NumberEntry
+                            x:Name="txtUnclearedChecks"
+                            Width="120"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            FontSize="12"
+                            IsReadOnly="False"
+                            Text="{Binding Path=UnclearedChecks, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}"
+                            TextAlignment="Right" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="7"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Margin="100,0,0,0"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="12"
+                            Text=" = Adjusted Statement Balance" />
+                        <my:NumberEntry
+                            x:Name="txtAdjStatementBalance"
+                            Width="120"
+                            Margin="9,0,0,0"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            FontSize="12"
+                            IsReadOnly="True"
+                            Text="{Binding Path=AdjStatementBalance, Converter={StaticResource CurrencyPadder}, ConverterParameter=14C}"
+                            TextAlignment="Right" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,3,0,0"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdClear"
+                    VerticalAlignment="Center"
+                    Background="Coral"
+                    Click="cmdClear_Click"
+                    FontSize="12">
+                    <Button.Content>
+                        <TextBlock>
+                            Clear ALL items with
+                            <LineBreak />
+                            date on or before
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+                <DatePicker
+                    Name="dtClear"
+                    Width="150"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    SelectedDateFormat="Short" />
+                <Button
+                    Name="cmdAccept"
+                    Margin="20,0,0,0"
+                    Click="cmdAccept_Click"
+                    Content="ACCEPT" />
+                <Button
+                    Name="cmdSave"
+                    Margin="3,0,0,0"
+                    Click="cmdSave_Click"
+                    Content="SAVE Incomplete" />
+                <Button
+                    Name="cmdReload"
+                    Margin="3,0,0,0"
+                    Click="cmdReload_Click"
+                    Content="RELOAD" />
+                <Button
+                    Name="cmdExport"
+                    Margin="3,0,0,0"
+                    Click="cmdExport_Click"
+                    Content="EXPORT TO EXCEL" />
+                <Button
+                    Name="cmdReport"
+                    Margin="3,0,0,0"
+                    Click="cmdReport_Click"
+                    Content="PRINT REPORT" />
+                <Button
+                    Name="cmdClose"
+                    Margin="3,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

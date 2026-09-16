@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Menu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="MenuItem">
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="Content" type="xs:string" use="required" />
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="xs:string" use="required" />
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="MenuHeader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:choice maxOccurs="unbounded">
+                  <xs:element maxOccurs="unbounded" name="MenuItem">
+                    <xs:complexType mixed="true">
+                      <xs:sequence minOccurs="0">
+                        <xs:element name="Form">
+                          <xs:complexType>
+                            <xs:attribute name="Name" type="xs:string" use="required" />
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="Content" type="xs:string" use="optional" />
+                      <xs:attribute name="Name" type="xs:string" use="optional" />
+                      <xs:attribute name="Type" type="xs:string" use="required" />
+                      <xs:attribute name="Class" type="xs:string" use="optional" />
+                      <xs:attribute name="Target" type="xs:string" use="optional" />
+                      <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="MenuHeader">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:choice maxOccurs="unbounded">
+                          <xs:element name="MenuHeader">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="MenuItem">
+                                  <xs:complexType mixed="true">
+                                    <xs:sequence minOccurs="0">
+                                      <xs:element name="Form">
+                                        <xs:complexType>
+                                          <xs:attribute name="Name" type="xs:string" use="required" />
+                                          <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="Content" type="xs:string" use="optional" />
+                                    <xs:attribute name="Name" type="xs:string" use="optional" />
+                                    <xs:attribute name="Type" type="xs:string" use="required" />
+                                    <xs:attribute name="Class" type="xs:string" use="optional" />
+                                    <xs:attribute name="Target" type="xs:string" use="optional" />
+                                    <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="Content" type="xs:string" use="required" />
+                              <xs:attribute name="Name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element maxOccurs="unbounded" name="MenuItem">
+                            <xs:complexType mixed="true">
+                              <xs:sequence minOccurs="0">
+                                <xs:element name="Form">
+                                  <xs:complexType>
+                                    <xs:attribute name="Name" type="xs:string" use="required" />
+                                    <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="Content" type="xs:string" use="optional" />
+                              <xs:attribute name="Name" type="xs:string" use="optional" />
+                              <xs:attribute name="Type" type="xs:string" use="required" />
+                              <xs:attribute name="Class" type="xs:string" use="optional" />
+                              <xs:attribute name="Target" type="xs:string" use="optional" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:choice>
+                      </xs:sequence>
+                      <xs:attribute name="Content" type="xs:string" use="required" />
+                      <xs:attribute name="Name" type="xs:string" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                </xs:choice>
+              </xs:sequence>
+              <xs:attribute name="Content" type="xs:string" use="required" />
+              <xs:attribute name="Name" type="xs:string" use="required" />
+              <xs:attribute name="Application" type="xs:string" use="optional" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="FixedMenus" />
+          <xs:element name="ExternalApplications" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

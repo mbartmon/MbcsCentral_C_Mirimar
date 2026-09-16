@@ -1,0 +1,3541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>MbcsCentral</name>
+  </assembly>
+  <members>
+    <member name="N:MbcsCentral">
+      <summary>
+   The MbcsCentral namespace.
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.Accounts">
+      <summary>
+   User Accounts for the application
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.Accounts.AccountTypes">
+      <summary>
+   Permission enumerations
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Accounts.fill(DataRow)">
+      <summary>
+   Populates Application Accounts Properties from the database
+   </summary>
+      <param name="dr">Datarow read from database</param>
+      <returns>Accounts object</returns>
+    </member>
+    <member name="M:MbcsCentral.Accounts.load(System.Int64)">
+      <summary>
+   Load by Primary Key
+   </summary>
+      <param name="id">Primary key value</param>
+      <returns>Single Accounts object</returns>
+    </member>
+    <member name="M:MbcsCentral.Accounts.load">
+      <summary>
+   Load all Accounts from database
+   </summary>
+      <returns>An array of Accounts objects</returns>
+    </member>
+    <member name="M:MbcsCentral.Accounts.loadByClientId(System.Int64)">
+      <summary>
+   Load all Accounts for a specified Client ID
+   </summary>
+      <param name="clientId">The client ID to retrieve</param>
+      <returns>An array of Accounts objects</returns>
+    </member>
+    <member name="M:MbcsCentral.Accounts.load(System.String)">
+      <summary>
+   Load the Account object for a specified user account
+   </summary>
+      <param name="login">Login name for user</param>
+      <returns>An Account object</returns>
+    </member>
+    <member name="M:MbcsCentral.Accounts.delete">
+      <summary>
+   Deletes an account and all group and permission ties
+   </summary>
+      <param name="acctId">Account Id</param>
+      <returns>true, if successful</returns>
+    </member>
+    <member name="P:MbcsCentral.Accounts.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.App">
+      <summary> Interaction logic for App.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.ApplicationAssignments.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.Applications.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.Classes.load(System.Object,System.Int32)">
+      <summary>
+   Load using object and optional acctid
+   </summary>
+      <param name="cls">Name of class</param>
+      <param name="acctId">Default to 0 for global class object</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.Classes.loadMultiple(System.String,System.Int32)">  -------------------------------------------------------------------------------------------------
+   <summary>   Loads multiple classes with the same base name. </summary><remarks>   Mike, 2017-03-12. </remarks><param name="name">     The name. </param><param name="acctId">   (Optional)
+                           Default to 0 for global class object. </param><returns>   An array of classes. </returns>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.Classes.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.Clients.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.clsDB">
+      <summary>
+   Base class for all SQL Server Database table classes
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.clsDB.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.Data.SqlClient.SqlConnection,System.String)">
+      <summary>
+   Full constructor
+   </summary>
+      <param name="table">Database Table Name</param>
+      <param name="priKeyName">Primary Key Column Name</param>
+      <param name="loadStmt">SQL Statement for retrieving record by Primary Key</param>
+      <param name="loadAllStmt">SQL Statement for retrieving all records in Table</param>
+      <param name="insertStmt">SQL Statement for inserting new records</param>
+      <param name="updateStmt">SQL Statement for updating a record</param>
+      <param name="cn">SQL Server connection string</param>
+      <param name="DataSetName">Optional name to apply to DataSet object</param>
+    </member>
+    <member name="M:MbcsCentral.clsDB.prepareStatement(System.String,System.String[])">
+      <summary>
+   Inserts options (parameters) in an SQL string to prepare it for execution.
+  
+   Options are indicated by question marks (? for numeric and '?' for strings) in the raw sql.
+   </summary>
+      <param name="sql">Raw SQL string with optional parameter inserts included</param>
+      <param name="options">Values for insertion in the SQL string. NOTE: the order of passed parameters must match the order of insertion point in the SQL string.</param>
+      <returns>Prepared SQL string</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.loadByPrimaryKey(System.String)">
+      <summary>
+   Load a record by Primary Key
+   </summary>
+      <param name="key">Primary Key value</param>
+      <returns>Dataset of retrieved record or null if not found</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.loadAll(System.Boolean)">
+      <summary>
+   Retrieve all records in a table
+   </summary>
+      <param name="debug">If true, logs extended error message if retrieval fails.</param>
+      <returns>Dataset of records found or null if nothing found</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.load(System.String,System.String[],System.Boolean)">
+      <summary>
+   Retrieve records from a table using the passes SQL string
+   </summary>
+      <param name="stmt">SQL string to use</param>
+      <param name="options">Any parameters needed to prepare the statement</param>
+      <param name="LogZero">Log if no records found</param>
+      <returns>Dataset of retrieved records or null if nothing found</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.updateRecord(System.String,System.String[],System.String,System.Boolean)">
+      <summary>
+   Updates records using update statement passed with child class instantiation
+   </summary>
+      <param name="key">Primary Key of record to update</param>
+      <param name="values">Values for insertion into SQL statement</param>
+      <param name="tableName">Optional table name for logging</param>
+      <param name="debug">Optionally include extended error info for logging</param>
+      <returns>True if successful, False if not</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.updateRecordSpecial(System.String,System.String[],System.String,System.String,System.Boolean)">
+      <summary>
+   Updates records using passed update statement
+   </summary>
+      <param name="key">Primary Key of record to be updated</param>
+      <param name="values">Values for insertion into SQL statement</param>
+      <param name="updateStatement">Update statement that overrides instantiated one</param>
+      <param name="tableName">Optional table name for logging</param>
+      <param name="debug">Optionally include extended error info for logging</param>
+      <returns>True if successful, False if not</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.insertRecord(System.String[])">
+      <summary>
+   Inserts a new record using instantiated Insert statement
+   </summary>
+      <param name="values">Values to be inserted</param>
+      <returns>Primary Key values of inserted record. -1 if insert failed</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.delete(System.String)">
+      <summary>
+   Delete record
+   </summary>
+      <param name="key">Primary Key of record to be deleted</param>
+      <returns>True if successful, False if not</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.query(System.String,System.String[])">
+      <summary>
+   Execute custom query. Used mainly for special deletion scenarios
+   </summary>
+      <param name="stmt">SQL statement of query to be performed</param>
+      <param name="options">Parameters to be inserted in SQL statement</param>
+      <returns>True if successful execution, False if not</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.queryWithCount(System.String,System.String[])">
+      <summary>
+   Custome query for getting record counts
+   </summary>
+      <param name="stmt">SQL statement to perform</param>
+      <param name="options">Values to be inserted in SQL Statement</param>
+      <returns>Count of records retrieved</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.Query(System.String,System.Data.SqlClient.SqlConnection)">
+      <summary>
+   Performs custom queries using ConnectionString
+   </summary>
+      <param name="stmt">SQL Statement to perform</param>
+      <param name="localCN">Database connection to use</param>
+      <returns>Dataset of reords retrieved or null if none found</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.Query2(System.String,System.Data.SqlClient.SqlConnection)">
+      <summary>
+   Performs custom queries using SQLConnection
+   </summary>
+      <param name="stmt">SQL Statement to perform</param>
+      <param name="localCN">Database connection to use</param>
+      <returns>Dataset of reords retrieved or null if none found</returns>
+    </member>
+    <member name="P:MbcsCentral.clsDB.Item(System.String)">
+      <summary>
+   Generic method for getting values of property by names. Useful when iterating through columns in a record
+   </summary>
+      <param name="propertyName">Name of Property value to be retrieved</param>
+      <returns>Property Value</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.GetColumn(System.String)">
+      <summary>
+   Finds if specified Column name is in table. Datarows must have already been fetched.
+   </summary>
+      <param name="name">Column name to find</param>
+      <returns>Datarow if column name found, null if not</returns>
+    </member>
+    <member name="M:MbcsCentral.clsDB.GetTableSchema">
+      <summary>
+   Gets a table schema
+   </summary>
+      <returns>DataTable with schema</returns>
+    </member>
+    <member name="P:MbcsCentral.clsDB.IsDupe">
+      <summary>
+   Set true when a duplicate record is found on insertion
+   </summary>
+    </member>
+    <member name="P:MbcsCentral.clsDB.ColumnCount">
+      <summary>
+   Reports column count
+   </summary>
+    </member>
+    <member name="P:MbcsCentral.clsDB.ErrorMessage">
+      <summary>
+   Used to retrieve internal error messages
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.clsDbOle">
+      <summary>
+   Used for interfacing with MS Access Databases
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.StringTrim">
+      <summary>
+   Returns passed string with Trim() applied
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.frmDatabaseBackup">
+      <summary> Interaction logic for frmDatabaseBackup.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmDatabases">
+      <summary> Interaction logic for frmDatabases.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmDatabaseScripts">
+      <summary> Interaction logic for frmDatabaseScripts.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmDatabasesEdit">
+      <summary> Provides the ability to edit, copy, delete, selection and other operation on the SQL server </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.formDatabaseEdit_Loaded(System.Object,RoutedEventArgs)">
+      <summary>
+   Sets up the DatabaseEdit function
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.LoadDictionary_OLD">
+      <summary>
+   DEPRECATED
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.cmdCopy_Click(System.Object,RoutedEventArgs)">
+      <summary>
+   Makes a copy of the current database
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.cmdDelete_Click(System.Object,RoutedEventArgs)">
+      <summary>
+   Deletes a selected database. The Production database cannot be deleted
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.cmdSchema_Click(System.Object,RoutedEventArgs)">
+      <summary>
+   Finds differences in schemas between two databases
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.GetTableSchema(System.String,System.String,System.String@)">
+      <summary>
+   Gets schema for passed table
+   </summary>
+      <param name="table">DB table name</param>
+      <param name="ConnectionsString">Connection String for database</param>
+      <param name="message">Error message, if any</param>
+      <returns>Schema for specified table</returns>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.MatchSchemas(System.String,DataColumnCollection,DataColumnCollection)">
+      <summary>
+   Gathers not matched results for tables
+   </summary>
+      <param name="table">Name of DB table</param>
+      <param name="dcMain">Source database column collection</param>
+      <param name="dcMatch">Match database column collection</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.GetTables(System.String)">
+      <summary>
+   Get all table names fro a database
+   </summary>
+      <param name="connectionString">Connection string for database</param>
+      <returns>List of table names</returns>
+    </member>
+    <member name="M:MbcsCentral.frmDatabasesEdit.cmdScripts_Click(System.Object,RoutedEventArgs)">
+      <summary>
+   Gets a list of SQL scripts from [Application Folder]\DbRepairScripts
+   Allows for a selected script to be run against the current database
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="T:MbcsCentral.frmProgress">
+      <summary> Interaction logic for frmProgress.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.MigrationWindow">
+      <summary> Interaction logic for MainWindow.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.DbControl.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.DocumentCategories.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.DocumentLayoutFieldMaster.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.DocumentLayoutFields.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.DocumentLayoutList.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.docViewerControl">
+      <summary> Interaction logic for docViewerControl.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.DragCanvas">
+      <summary>
+   A Canvas which manages dragging of the UIElements it contains.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.DragCanvas.#ctor">
+      <summary>
+   Initializes a new instance of DragCanvas.  UIElements in
+   the DragCanvas will immediately be draggable by the user.
+   </summary>
+    </member>
+    <member name="P:MbcsCentral.DragCanvas.AllowDragging">
+      <summary>
+   Gets/sets whether elements in the DragCanvas should be draggable by the user.
+   The default value is true.  This is a dependency property.
+   </summary>
+    </member>
+    <member name="P:MbcsCentral.DragCanvas.AllowDragOutOfView">
+      <summary>
+   Gets/sets whether the user should be able to drag elements in the DragCanvas out of
+   the viewable area.  The default value is false.  This is a dependency property.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.DragCanvas.BringToFront(UIElement)">
+      <summary>
+   Assigns the element a z-index which will ensure that
+   it is in front of every other element in the Canvas.
+   The z-index of every element whose z-index is between
+   the element's old and new z-index will have its z-index
+   decremented by one.
+   </summary>
+      <param name="targetElement">
+   The element to be sent to the front of the z-order.
+   </param>
+    </member>
+    <member name="M:MbcsCentral.DragCanvas.SendToBack(UIElement)">
+      <summary>
+   Assigns the element a z-index which will ensure that
+   it is behind every other element in the Canvas.
+   The z-index of every element whose z-index is between
+   the element's old and new z-index will have its z-index
+   incremented by one.
+   </summary>
+      <param name="targetElement">
+   The element to be sent to the back of the z-order.
+   </param>
+    </member>
+    <member name="P:MbcsCentral.DragCanvas.ElementBeingDragged">
+      <summary>
+   Returns the UIElement currently being dragged, or null.
+   </summary>
+      <remarks>
+   Note to inheritors: This property exposes a protected
+   setter which should be used to modify the drag element.
+   </remarks>
+    </member>
+    <member name="M:MbcsCentral.DragCanvas.FindCanvasChild(DependencyObject)">
+      <summary>
+   Walks up the visual tree starting with the specified DependencyObject,
+   looking for a UIElement which is a child of the Canvas.  If a suitable
+   element is not found, null is returned.  If the 'depObj' object is a
+   UIElement in the Canvas's Children collection, it will be returned.
+   </summary>
+      <param name="depObj">
+   A DependencyObject from which the search begins.
+   </param>
+    </member>
+    <member name="M:MbcsCentral.DragCanvas.CalculateDragElementRect(System.Double,System.Double)">
+      <summary>
+   Returns a Rect which describes the bounds of the element being dragged.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.DragCanvas.ResolveOffset(System.Double,System.Double,System.Boolean@)">
+      <summary>
+   Determines one component of a UIElement's location
+   within a Canvas (either the horizontal or vertical offset).
+   </summary>
+      <param name="side1">
+   The value of an offset relative to a default side of the
+   Canvas (i.e. top or left).
+   </param>
+      <param name="side2">
+   The value of the offset relative to the other side of the
+   Canvas (i.e. bottom or right).
+   </param>
+      <param name="useSide1">
+   Will be set to true if the returned value should be used
+   for the offset from the side represented by the 'side1'
+   parameter.  Otherwise, it will be set to false.
+   </param>
+    </member>
+    <member name="M:MbcsCentral.DragCanvas.UpdateZOrder(UIElement,System.Boolean)">
+      <summary>
+   Helper method used by the BringToFront and SendToBack methods.
+   </summary>
+      <param name="element">
+   The element to bring to the front or send to the back.
+   </param>
+      <param name="bringToFront">
+   Pass true if calling from BringToFront, else false.
+   </param>
+    </member>
+    <member name="T:MbcsCentral.Email.frmAccountAddEdit">
+      <summary> Interaction logic for frmAccountAddEdit.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Email.frmChooseEmailAccount">
+      <summary> Interaction logic for frmChooseEmailAccount.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Email.frmEmailAttachment">
+      <summary> Interaction logic for frmEmailAttachment.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Email.frmSmtpConfigurator">
+      <summary> Interaction logic for frmSmtpConfigurator.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.Email.SmtpConfig.loadByAccount(System.Int32,System.String)">
+      <summary>
+   Retrieves all SMTP records for a particular user account
+   </summary>
+      <param name="AccountId">User Account ID</param>
+      <param name="mailTag">OPTIONAL MailTag to resrtict email account usage</param>
+      <returns>Array of selected SMTP accounts</returns>
+    </member>
+    <member name="M:MbcsCentral.Email.Utils.GetEmailConfig(System.String,System.String@,Email.SmtpConfig@,System.String@,System.Boolean)">
+      <summary>
+   Retrieves SMTP account for all users or specified user that matches the passed mailTag
+   </summary>
+      <param name="mailTag">REQUIRED mailTag to retrieve</param>
+      <param name="message">Any error message generated</param>
+      <param name="smtp">The SMTP account found</param>
+      <param name="fromEmail">The EmailAddress of the SMTP acount, if found</param>
+      <param name="ByAcct">If looking for a user account this is set to TRUE</param>
+      <returns>The SMTP account, if any, that matches the criteria</returns>
+    </member>
+    <member name="M:MbcsCentral.Email.Utils.SaveEmail(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+      <summary>
+   Saves a formatted email message as a text file
+   </summary>
+      <param name="FromEmail">
+      </param>
+      <param name="DisplayName">
+      </param>
+      <param name="ToEmail">
+      </param>
+      <param name="Subject">
+      </param>
+      <param name="message">Body of the message</param>
+      <param name="fileName">Full path to which to save</param>
+      <param name="ReturnReceipt">Was there a return receipt specified</param>
+      <returns>Null if successful otherwise error message</returns>
+    </member>
+    <member name="M:ExtensionMethods.ExtensionMethods.Left(String,System.Int32)">
+      <summary>
+   Return left part of string
+   </summary>
+      <param name="str">string to parse</param>
+      <param name="number">Maximum number of characters</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:ExtensionMethods.ExtensionMethods.Left(String,System.Int32,System.Int32)">
+      <summary>
+   Return left part of string with right padding
+   </summary>
+      <param name="str">string to parse</param>
+      <param name="number">Maximum number characters</param>
+      <param name="padding">Pad on right with n characters</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:ExtensionMethods.ExtensionMethods.LeftPad(String,System.Int32,System.Int32)">
+      <summary>
+   Return left part of string with Left padding
+   </summary>
+      <param name="str">string to parse</param>
+      <param name="number">Maximum number characters</param>
+      <param name="padding">Pad on Left with n characters</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.ExternalApplications.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.frmAccount">
+      <summary> Interaction logic for frmAccount.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmAccountManagement">
+      <summary> Interaction logic for frmAccountManagement.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmConfiguration">
+      <summary> Interaction logic for frmConfiguration.xaml </summary>
+    </member>
+    <member name="F:MbcsCentral.frmDbTransfer.components">
+      <summary>
+   Required designer variable.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDbTransfer.Dispose(System.Boolean)">
+      <summary>
+   Clean up any resources being used.
+   </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:MbcsCentral.frmDbTransfer.InitializeComponent">
+      <summary>
+   Required method for Designer support - do not modify
+   the contents of this method with the code editor.
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.frmDocumentAquire">
+      <summary> Interaction logic for frmDocumentAquire.xaml </summary>
+    </member>
+    <member name="F:MbcsCentral.frmDocumentAquire._cancelTransferBecauseFormIsClosing">
+      <summary>
+   Determines that image acquistion must be canceled because application's form is closing.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.AcquireImagesSynchronously(System.String)">
+      <summary>
+   Acquire images synchronously.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.SubscribeToDeviceEvents(Device)">
+      <summary>
+   Subscribe to the device events.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.UnsubscribeFromDeviceEvents(Device)">
+      <summary>
+   Unsubscribe from the device events.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.device_ImageAcquiringProgress(System.Object,ImageAcquiringProgressEventArgs)">
+      <summary>
+   Image acquiring progress is changed.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.device_ImageAcquired(System.Object,ImageAcquiredEventArgs)">
+      <summary>
+   Image is acquired.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.device_ScanCompleted(System.Object,EventArgs)">
+      <summary>
+   Scan is completed.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.device_ScanCanceled(System.Object,EventArgs)">
+      <summary>
+   Scan is canceled.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.device_ScanFailed(System.Object,ScanFailedEventArgs)">
+      <summary>
+   Scan is failed.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.frmDocumentAquire.device_UserInterfaceClosed(System.Object,EventArgs)">
+      <summary>
+   Device UI is closed.
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.frmDocumentLayout">
+      <summary> Interaction logic for frmDocumentLayout.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmExternalApplications">
+      <summary> Interaction logic for frmExternalApplications.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmGroup">
+      <summary> Interaction logic for frmGroup.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmLogin">
+      <summary> Interaction logic for frmLogin.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmPrintDialog">
+      <summary> Interaction logic for frmPrintDialog.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmReportDispatcher">
+      <summary> Interaction logic for frmReportDistpatcher.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmReportList">
+      <summary> Interaction logic for frmReportList.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.frmReportList.#ctor(System.String,System.Double,System.String,System.Double)">
+      <summary>
+   Report Displayer that provides a
+   mechanism to call a class
+   and pass a specified portion of
+   the double-clicked line.
+   <para />
+   EditClass is the FQN of the class to call.
+   <para />
+   IndexStart is the starting position of the double-clicked line to pass.
+   <para />
+   IndextLength is the length of the captured line to pass.
+   </summary>
+      <param name="fontName">
+      </param>
+      <param name="fontSize">
+      </param>
+    </member>
+    <member name="T:MbcsCentral.frmReportViewer">
+      <summary> Interaction logic for frmReportViewer.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmVendorNoticesEmail">
+      <summary> Interaction logic for frmNoticesEmail.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmVerify">
+      <summary> Interaction logic for frmVerify.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmWait">
+      <summary> Interaction logic for frmWait.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.GlobalShared">
+      <summary>
+   Class GlobalShared.
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.GlobalShared.MAIL_TAGS_ENUM">
+      <summary>
+   Enum MAIL_TAGS_ENUM
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.GlobalShared.NoticeInsertionFields">
+      <summary>
+   Enum NoticeInsertionFields
+   </summary>
+    </member>
+    <member name="T:Tips.StaticConstants">
+      <summary>
+   Class StaticConstants.
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CloudApp">
+      <summary>
+   The cloud application
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.ValidateConnectionString">
+      <summary>
+   The validate connection string
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.ConnectionType">
+      <summary>
+   The connection type
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.SqlBaseConnectionString">
+      <summary>
+   The SQL base connection string
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.SqlConnectionString">
+      <summary>
+   The SQL connection string
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.MachineName">
+      <summary>
+   The machine name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.DatabaseSource">
+      <summary>
+   The database source
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.DatabaseName">
+      <summary>
+   The database name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.InitialCatalog">
+      <summary>
+   The initial catalog
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.DbBackupLocation">
+      <summary>
+   The database backup location
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.WinGlEnabled">
+      <summary>
+   The win gl enabled
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.DB_USER_NAME">
+      <summary>
+   The database user name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.DB_PASSWORD">
+      <summary>
+   The database password
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CN">
+      <summary>
+   The cn
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.appPath">
+      <summary>
+   The application path
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.baseAppPath">
+      <summary>
+   The base application path
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.clientFolderName">
+      <summary>
+   The client folder name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.pmPath">
+      <summary>
+   The pm path
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.dbPath">
+      <summary>
+   The database path
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.formKeyLoc">
+      <summary>
+   The form key loc
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.smtpKeyLoc">
+      <summary>
+   The SMTP key loc
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.popKeyLoc">
+      <summary>
+   The pop key loc
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.optionsKeyLoc">
+      <summary>
+   The options key loc
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.validationKeyLoc">
+      <summary>
+   The validation key loc
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.RdpFolder">
+      <summary>
+   The RDP folder
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.Log">
+      <summary>
+   The log
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CentralLog">
+      <summary>
+   The central log
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.ScriptPaths">
+      <summary>
+   The script paths
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.ScriptRepairLog">
+      <summary>
+   The script repair log
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.logFilePath">
+      <summary>
+   The log file path
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.logFileName">
+      <summary>
+   The log file name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.user">
+      <summary>
+   The user
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.clientName">
+      <summary>
+   The client name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.FQN">
+      <summary>
+   The FQN
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.domain">
+      <summary>
+   The domain
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.userName">
+      <summary>
+   The user name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.password">
+      <summary>
+   The password
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NULL_DATE">
+      <summary>
+   The null date
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.IsChanged">
+      <summary>
+   The is changed
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.history">
+      <summary>
+   The history
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.menuFontFamliy">
+      <summary>
+   The menu font famliy
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.mainWindow">
+      <summary>
+   The main window
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.COPY_DB_SOURCE_CONNECTIONSTRING">
+      <summary>
+   The copy database source connectionstring
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.COPY_DB_TARGET_CONNECTIONSTRING">
+      <summary>
+   The copy database target connectionstring
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.Screen_Height">
+      <summary>
+   The screen height
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.Screen_Width">
+      <summary>
+   The screen width
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.Table">
+      <summary>
+   For use when instantiating DB table classes with alternate table names in static constructor
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_FIRST_TIME_FILE">
+      <summary>
+   The configuration first time file
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_CLOUD_FILE_NAME">
+      <summary>
+   The configuration cloud file name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_LOCAL_USER_FOLDER_NAME">
+      <summary>
+   The configuration local user folder name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_MAIN_FILENAME">
+      <summary>
+   The configuration main filename
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_DB_BACKUP_FILENAME">
+      <summary>
+   The configuration database backup filename
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_BASE_CATALOG">
+      <summary>
+   The configuration base catalog
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_BASE_SERVER">
+      <summary>
+   The configuration base server
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_DATABASE_REG_KEY">
+      <summary>
+   The configuration database reg key
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_DATABASE_SOURCE">
+      <summary>
+   The configuration database source
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_MACHINE_NAME">
+      <summary>
+   The configuration machine name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_AVAILABLE_DATABASES">
+      <summary>
+   The configuration available databases
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_DATABASE_REG_FOLDER">
+      <summary>
+   The configuration database reg folder
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_DATABASE_REG_NAME">
+      <summary>
+   The configuration database reg name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_DEFAULT_PRINTER">
+      <summary>
+   The configuration winpm default printer
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_CHARGE_SUMMARIES">
+      <summary>
+   The configuration winpm charge summaries
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_COLLECTED_FROM">
+      <summary>
+   The configuration winpm collected from
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_CONDENSE_PRINT">
+      <summary>
+   The configuration winpm condense print
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_SHORT_FORM">
+      <summary>
+   The configuration winpm short form
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_PRINT_QUALITY">
+      <summary>
+   The configuration winpm print quality
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_BOLD_PRINT">
+      <summary>
+   The configuration winpm bold print
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_GRAND_TOTALS">
+      <summary>
+   The configuration winpm grand totals
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_UNIT_TOTALS">
+      <summary>
+   The configuration winpm unit totals
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_FONTSIZE">
+      <summary>
+   The configuration winpm fontsize
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_FONTNAME">
+      <summary>
+   The configuration winpm fontname
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_PAGESIZE">
+      <summary>
+   The configuration winpm pagesize
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_LEASE_LETTER">
+      <summary>
+   The configuration winpm lease letter
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_DUPLEX_FILE">
+      <summary>
+   The configuration winpm duplex file
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CONFIG_WINPM_PREFRENT_FILE">
+      <summary>
+   The configuration winpm prefrent file
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.CALL_FORM_PARMS_CLASS">
+      <summary>
+   The call form parms class
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.EventLogSource">
+      <summary>
+   The event log source
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.EventLogName">
+      <summary>
+   The event log name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.SP_BACKUP_DB">
+      <summary>
+   The sp backup database
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.VINTASOFT_REGCODE">
+      <summary>
+   The vintasoft regcode
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.VINTASOFT_EMAIL">
+      <summary>
+   The vintasoft email
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.VINTASOFT_USER">
+      <summary>
+   The vintasoft user
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.menuFontSize">
+      <summary>
+   The menu font size
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.WAIT_INTERVAL">
+      <summary>
+   The wait interval
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.tenantNamesTimer">
+      <summary>
+   The tenant names timer
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.TENANT_NAMES_INTERVAL">
+      <summary>
+   The tenant names interval
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.tenantNameInDelegate">
+      <summary>
+   The tenant name in delegate
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.tenantNames">
+      <summary>
+   The tenant names
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.TenantNumberList">
+      <summary>
+   The tenant number list
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APPNAME">
+      <summary>
+   The appname
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_MAIN_REG_KEY">
+      <summary>
+   The application main reg key
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINTRM_REG">
+      <summary>
+   The application wintrm reg
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINTRM_REG_KEY">
+      <summary>
+   The application wintrm reg key
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINTRM">
+      <summary>
+   The application wintrm
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINTRM_NAME">
+      <summary>
+   The application wintrm name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINTRM_DB_PREFIX">
+      <summary>
+   The application wintrm database prefix
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINPM">
+      <summary>
+   The application winpm
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINPM_NAME">
+      <summary>
+   The application winpm name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINPM_DB_PREFIX">
+      <summary>
+   The application winpm database prefix
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINGL">
+      <summary>
+   The application wingl
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINGL_NAME">
+      <summary>
+   The application wingl name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINGL_DB_PREFIX">
+      <summary>
+   The application wingl database prefix
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINPR">
+      <summary>
+   The application winpr
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINPR_NAME">
+      <summary>
+   The application winpr name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINPR_DB_PREFIX">
+      <summary>
+   The application winpr database prefix
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINDOC">
+      <summary>
+   The application windoc
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINDOC_NAME">
+      <summary>
+   The application windoc name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_WINDOC_DB_PREFIX">
+      <summary>
+   The application windoc database prefix
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_LEASEMAKER">
+      <summary>
+   The application leasemaker
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_LEASEMAKER_NAME">
+      <summary>
+   The application leasemaker name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.APP_LEASEMAKER_DB_PREFIX">
+      <summary>
+   The application leasemaker database prefix
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.MASTERUSER">
+      <summary>
+   The masteruser
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.ADMINUSER">
+      <summary>
+   The adminuser
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.PARM_CONNECTIONSTRING">
+      <summary>
+   The parm connectionstring
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.PARM_WINTRM_FLAG">
+      <summary>
+   The parm wintrm flag
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.PARM_WINTRM_CONNECTIONSTRING">
+      <summary>
+   The parm wintrm connectionstring
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.PARM_WINDOC_FLAG">
+      <summary>
+   The parm windoc flag
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.PARM_WINDOC_CONNECTIONSTRING">
+      <summary>
+   The parm windoc connectionstring
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.DbCopyStatus">
+      <summary>
+   The database copy status
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.MAIL_TAGS_ENUM.TenantDirect">
+      <summary>
+   The tenant direct
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.MAIL_TAGS_ENUM.TenantLateNotice">
+      <summary>
+   The tenant late notice
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.MAIL_TAGS_ENUM.ACHNotices">
+      <summary>
+   The ach notices
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.MAIL_TAGS">
+      <summary>
+   The mail tags
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.mailFilename">
+      <summary>
+   The mail filename
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.EMAIL_FOLDER">
+      <summary>
+   The email folder
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.EMAIL_FOLDER_IN">
+      <summary>
+   The email folder in
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.EMAIL_FOLDER_OUT">
+      <summary>
+   The email folder out
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.EMAIL_LATENOTICE">
+      <summary>
+   The email latenotice
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NoticeInsertionFields.PayDate">
+      <summary>
+   The pay date
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NoticeInsertionFields.Invoice">
+      <summary>
+   The invoice
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NoticeInsertionFields.Amount">
+      <summary>
+   The amount
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NoticeInsertionFields.Account">
+      <summary>
+   The account
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NoticeInsertionFields.Company">
+      <summary>
+   The company
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NoticeInsertionFields.VendorName">
+      <summary>
+   The vendor name
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.GlobalShared.NoticeInsertionFieldNames">
+      <summary>
+   The notice insertion field names
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.Main(System.String[])">
+      <summary>
+   GlobalShared.Main Application Startup Method
+   </summary>
+      <param name="args">The arguments.</param>
+      <remarks>
+        <b>Retrieves application path and stores it in the global variable GlobalShared.appPath.
+   <para>Instantiates Central Log.</para><para>Determines if application is runing in the cloud. DEPRECATED</para><para>Passes control to MainWindow for continued startup processing</para></b>
+      </remarks>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.FindRunningProcess(System.String)">
+      <summary>
+   Finds the running process.
+   </summary>
+      <param name="processName">Name of the process.</param>
+      <returns>System.Int32.</returns>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.CloseRunningProcess(System.Int32,System.Boolean)">
+      <summary>
+   Closes the running process.
+   </summary>
+      <param name="pid">The pid.</param>
+      <param name="kill">if set to <c>true</c> [kill].</param>
+      <returns>
+        <c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.CurrentDomain_UnhandledException(System.Object,UnhandledExceptionEventArgs)">
+      <summary>
+   Handles the UnhandledException event of the CurrentDomain control.
+   </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The <see cref="T:System.UnhandledExceptionEventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.SelectCellByIndex(DataGrid,System.Int32,System.Int32)">
+      <summary>
+   Selects the index of the cell by.
+   </summary>
+      <param name="dataGrid">The data grid.</param>
+      <param name="rowIndex">Index of the row.</param>
+      <param name="columnIndex">Index of the column.</param>
+      <exception cref="T:System.ArgumentException">The SelectionUnit of the DataGrid must be set to Cell.</exception>
+      <exception cref="T:System.ArgumentException">
+      </exception>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.GetCell(DataGrid,DataGridRow,System.Int32)">
+      <summary>
+   Gets the cell.
+   </summary>
+      <param name="dataGrid">The data grid.</param>
+      <param name="rowContainer">The row container.</param>
+      <param name="column">The column.</param>
+      <returns>DataGridCell.</returns>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.FindVisualChild``1(DependencyObject)">
+      <summary>
+   Finds the visual child.
+   </summary>
+      <typeparam name="T">
+      </typeparam>
+      <param name="obj">The object.</param>
+      <returns>T.</returns>
+    </member>
+    <member name="M:MbcsCentral.GlobalShared.validateRoutingNumber(System.String)">
+      <summary>
+   Validates the routing number.
+   </summary>
+      <param name="num">The number.</param>
+      <returns>
+        <c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+    </member>
+    <member name="F:Tips.StaticConstants.HoldTip">
+      <summary>
+   The hold tip
+   </summary>
+    </member>
+    <member name="F:Tips.StaticConstants.SaveTip">
+      <summary>
+   The save tip
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.GroupMembers.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.Groups.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.Help.Contents">
+      <summary> Interaction logic for Contents.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Help.DocumentAquisition">
+      <summary> Interaction logic for DocumentAquisition.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Help.DocumentFromFIle">
+      <summary> Interaction logic for DocumentFromFIle.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Help.DocumentOverview">
+      <summary> Interaction logic for DocumentOverview.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Help.EmailAccountsConfiguration">
+      <summary> Interaction logic for EmailAccountsConfiguration.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Help.EmailOverview">
+      <summary> Interaction logic for EmailOverview.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Help.frmHelp">
+      <summary> Interaction logic for frmHelp.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Help.HelpMain">
+      <summary> Interaction logic for HelpMain.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.HelpProvider">
+      <summary>
+   Provider class for online help.
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.HelpProvider.HelpTopicProperty">
+      <summary>
+   Help topic dependency property.
+   </summary>
+      <remarks>This property can be attached to an object such as a form or a textbox, and
+   can be retrieved when the user presses F1 and used to display context sensitive help.</remarks>
+    </member>
+    <member name="M:MbcsCentral.HelpProvider.#ctor">
+      <summary>
+   Static constructor that adds a command binding to Application.Help, binding it to
+   the CanExecute and Executed methods of this class.
+   </summary>
+      <remarks>With this in place, when the user presses F1 our help will be invoked.</remarks>
+    </member>
+    <member name="M:MbcsCentral.HelpProvider.GetHelpTopic(DependencyObject)">
+      <summary>
+   Getter for <see cref="F:MbcsCentral.HelpProvider.HelpTopicProperty" />. Get a help topic that's attached to an object.
+   </summary>
+      <param name="obj">The object that the help topic is attached to.</param>
+      <returns>The help topic.</returns>
+    </member>
+    <member name="M:MbcsCentral.HelpProvider.SetHelpTopic(DependencyObject,System.String)">
+      <summary>
+   Setter for <see cref="F:MbcsCentral.HelpProvider.HelpTopicProperty" />. Attach a help topic value to an object.
+   </summary>
+      <param name="obj">The object to which to attach the help topic.</param>
+      <param name="value">The value of the help topic.</param>
+    </member>
+    <member name="M:MbcsCentral.HelpProvider.ShowHelpTableOfContents">
+      <summary>
+   Show help table of contents.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.HelpProvider.ShowHelpTopic(System.String)">
+      <summary>
+   Show a help topic in the online CHM style help.
+   </summary>
+      <param name="helpTopic">The help topic to show. This must match exactly with the name
+   of one of the help topic's .htm files, without the .htm extention and with spaces instead of underscores
+   in the name. For instance, to display the help topic "This_is_my_topic.htm", pass the string "This is my topic".</param>
+      <remarks>You can also pass in the help topic with the underscore replacement already done. You can also
+   add the .htm extension.
+   Certain characters other than spaces are replaced by underscores in RoboHelp help topic names.
+   This method does not yet account for all those replacements, so if you really need to find a help topic
+   with one or more of those characters, do the underscore replacement before passing the topic.</remarks>
+    </member>
+    <member name="M:MbcsCentral.HelpProvider.ShowHelpCanExecute(System.Object,CanExecuteRoutedEventArgs)">
+      <summary>
+   Whether the F1 help command can execute.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.HelpProvider.ShowHelpExecuted(System.Object,ExecutedRoutedEventArgs)">
+      <summary>
+   Execute the F1 help command.
+   </summary>
+      <remarks>Calls ShowHelpTopic to show the help topic attached to the framework element that's the
+   source of the call.</remarks>
+    </member>
+    <member name="T:MbcsCentral.Help.QueryEditor">
+      <summary> Interaction logic for QueryEditor.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.PrintDialogx">
+      <summary>
+   Replacement class for System.Windows.PrintDialog
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.PrintDialogx.VerifyPrintSettings">
+      <summary>
+   Ensure Queue and Ticket prepared
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.PrintDialogx.DefaultPrintQueue">
+      <summary>
+   PrintQueue
+   </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.PrintDialogx.DefaultPrintTicket">
+      <summary>
+   PrintTicket
+   </summary>
+      <param name="printQueue">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.PrintDialogx.UpdateArea">
+      <summary>
+   Set Print Area
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.PrintDialogx.PrintDocument(DocumentPaginator,System.String)">
+      <summary>
+   Actually print an Xps Document with previously setup params
+   </summary>
+      <param name="paginator">Document to print</param>
+      <param name="description">Description</param>
+    </member>
+    <member name="M:MbcsCentral.PrintDialogx.ShowDialog(Window)">
+      <summary>
+   Show Dialog to allow user to adjust printer/settings
+   </summary>
+      <param name="window">Window owner</param>
+      <returns>True is user was ready to print</returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.#ctor(IntPtr,NativePrintDialog)">
+      <summary>
+   Constructor
+   </summary>
+      <param name="owner">The Owner Handle we will attach to</param>
+      <param name="dialog">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.ShowPrintDlgEx">
+      <summary>
+   Show dialog and return result
+   </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.~PrintDlgEx">
+      <summary>
+   Clean up
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.Is64Bits">
+      <summary>
+   Helper method to determine CPU mode
+   </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.AllocatePrintDlgExStruct">
+      <summary>
+   Allocate memory associated with PRINTDLGEX32 or PRINTDLGEX64 structures
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.DeallocatePrintDlgExStruct(IntPtr)">
+      <summary>
+   Frees memory associated with PRINTDLGEX32 or PRINTDLGEX64 structures
+   </summary>
+      <param name="ptr">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.FindPrintQueue(System.String)">
+      <summary>
+   Get the PrintQueue from the PrinterName
+   </summary>
+      <param name="printerName">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.FindPrintTicket(IntPtr,System.String)">
+      <summary>
+   Find the PrintTicket for the queue
+   </summary>
+      <param name="dModeHnd">
+      </param>
+      <param name="printQueueName">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.InitializeDevMode(System.String,PrintTicket)">
+      <summary>
+   Creates DevMode structure from Ticket
+   </summary>
+      <param name="printerName">
+      </param>
+      <param name="printTicket">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.InitializeDevNames(System.String)">
+      <summary>
+   Set DevName structure memory
+   </summary>
+      <param name="printerName">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.GetResultPrintDlgExHnd(IntPtr)">
+      <summary>
+   Get dwResultAction from Dlg
+   </summary>
+      <param name="ptrPrintDlg">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.GetSettings(IntPtr,System.String@,System.UInt32@,PageRange@,IntPtr@)">
+      <summary>
+   Get various settings
+   </summary>
+      <param name="nativeBuffer">
+      </param>
+      <param name="printerName">
+      </param>
+      <param name="flags">
+      </param>
+      <param name="pageRange">
+      </param>
+      <param name="dModeHnd">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.NativePrintDialog.PrintDlgEx.GetResult">
+      <summary>
+   Get's the result from the dialog
+   </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.ListItem.#ctor(System.String,System.Int64)">  -------------------------------------------------------------------------------------------------
+   <summary>   Constructor. </summary><remarks>   Mike, 2017-03-14. </remarks><param name="displayitem">  DisplayValuePath data. </param><param name="valueitem">    Used to store a record key. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.ListItem.#ctor(System.String,System.Int64,System.Object)">  -------------------------------------------------------------------------------------------------
+   <summary>   Constructor. </summary><remarks>   Mike, 2017-03-14. </remarks><param name="displayitem">  DisplayValuePath data. </param><param name="valueitem">    Used to store a record key. </param><param name="value">        The value. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="T:global.LogClass">
+      <summary>
+   Class for creating and writing an application log file
+   </summary>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="T:global.LogClass.logType">
+      <summary>
+   Enumeration that provides log type names
+   </summary>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="M:global.LogClass.Log(System.Int32,System.String,System.Boolean,MessageBoxButtons,System.String)">
+      <summary>
+   Method that writes log entry
+   </summary>
+      <param name="lType">Log Type</param>
+      <param name="message">Message string to write</param>
+      <param name="logOnly">Log only or also display message box</param>
+      <param name="buttons">For message box display, which buttons to use</param>
+      <param name="title">For message box display, title of window</param>
+      <returns>For message box display, which button was selected</returns>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="P:global.LogClass.logFileName">
+      <summary>
+   Full path of logfile
+   </summary>
+      <value>Logfile path</value>
+      <returns>Logfile path</returns>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="P:global.LogClass.logFileRef">
+      <summary>
+   Internal log file reference
+   </summary>
+      <value>
+      </value>
+      <returns>Log file reference</returns>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="P:global.LogClass.debug">
+      <summary>
+   Sets or resets debug mode
+   </summary>
+      <value>
+      </value>
+      <returns>
+      </returns>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="P:global.LogClass.maxFrames">
+      <summary>
+   Sets maximum number of stack frames to include in debu log entries
+   </summary>
+      <value>Maxium number of stack frames</value>
+      <returns>
+      </returns>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="T:MbcsCentral.MainWindow">
+      <summary> Interaction logic for MainWindow.xaml </summary>
+    </member>
+    <member name="F:MbcsCentral.MainWindow.typeTable">
+      <summary>
+   The type table
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.MainWindow.#ctor">
+      <summary>
+   Initializes a new instance of the <see cref="T:MbcsCentral.MainWindow" /> class.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.MainWindow.MainWindow_Closing(System.Object,System.ComponentModel.CancelEventArgs)">
+      <summary>
+   Handles the Closing event of the MainWindow control.
+   </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The <see cref="T:System.ComponentModel.CancelEventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:MbcsCentral.MainWindow.MainWindow_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+      <summary>
+   Called from GlobalShared.Main for application startup
+   </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" /> instance containing the event data.</param>
+      <remarks>Starup=MenuBuilder Information
+   <a href="../MbcsCentral Menu.html">MenuBuild</a></remarks>
+    </member>
+    <member name="M:MbcsCentral.MainWindow.CallLogin">
+      <summary>
+   Calls the login.
+   </summary>
+      <returns>
+        <c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+    </member>
+    <member name="T:MbcsCentral.MessageWindow">
+      <summary> Interaction logic for MessageWindow.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.permission.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboardUserControl.IsOpenChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for IsOpen Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboardUserControl.HookupParentPopup">
+      <summary>
+   Create the Popup and attach the CustomControl to it.
+   </summary>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboardUserControl.StateChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for State Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboardUserControl.HideKeyboard">
+      <summary>
+   Animation to hide keyboard
+   </summary>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboardUserControl.storyboard_Completed(System.Object,EventArgs)">
+      <summary>
+   Event handler for storyboard Completed
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboardUserControl.cmdNumericButton_Click(System.Object,RoutedEventArgs)">
+      <summary>
+   Event handler for all numeric keyboard events
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboardUserControl.CloseButton_Click(System.Object,RoutedEventArgs)">
+      <summary>
+   Event handler to close the UserControl when close button is clicked
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.PlacementProperty">
+      <summary>
+   Placement
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.PlacementTargetProperty">
+      <summary>
+   PlacementTarget
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.PlacementRectangleProperty">
+      <summary>
+   PlacementRectangle
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.HorizontalOffsetProperty">
+      <summary>
+   HorizontalOffset
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.VerticalOffsetProperty">
+      <summary>
+   VerticalOffset
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.CustomPopupPlacementCallbackProperty">
+      <summary>
+   CustomPopupPlacementCallback
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.StateProperty">
+      <summary>
+   State
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.HeightProperty">
+      <summary>
+   Height
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.WidthProperty">
+      <summary>
+   Width
+   </summary>
+    </member>
+    <member name="F:VirtualKeyboard.PopupKeyboard.IsEnabledProperty">
+      <summary>
+   IsEnabled
+   </summary>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnPlacementChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for Placement Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnPlacementTargetChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for PlacementTarget Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnPlacementRectangleChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for PlacementRectangle Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnHorizontalOffsetChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for HorizontalOffset Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnVerticalOffsetChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for VerticalOffset Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnCustomPopupPlacementCallbackChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for CustomPopupPlacementCallback Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnStateChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for State Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnHeightChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for Height Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.CoerceHeight(DependencyObject,System.Object)">
+      <summary>
+   CoerceValueCallback method for Height Attached Property
+   </summary>
+      <param name="d">
+      </param>
+      <param name="value">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnWidthChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for Width Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.CoerceWidth(DependencyObject,System.Object)">
+      <summary>
+   CoerceValueCallback method for Width Attached Property
+   </summary>
+      <param name="d">
+      </param>
+      <param name="value">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.OnIsEnabledChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+   PropertyChangedCallback method for IsEnabled Attached Property
+   </summary>
+      <param name="element">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.frameworkElement_GotKeyboardFocus(System.Object,System.Windows.Input.KeyboardFocusChangedEventArgs)">
+      <summary>
+   Event handler for GotKeyboardFocus
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.frameworkElement_LostKeyboardFocus(System.Object,System.Windows.Input.KeyboardFocusChangedEventArgs)">
+      <summary>
+   Event handler for LostKeyboardFocus
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.frameworkElement_MouseDown(System.Object,MouseButtonEventArgs)">
+      <summary>
+   Event handler for MouseDown
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.frameworkElement_SizeChanged(System.Object,SizeChangedEventArgs)">
+      <summary>
+   Event handler for SizeChanged
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="M:VirtualKeyboard.PopupKeyboard.currentWindow_LocationChanged(System.Object,EventArgs)">
+      <summary>
+   Event handler for LocationChanged
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="T:MbcsCentral.frmProcedureEdit">
+      <summary> Interaction logic for frmProcedureEdit.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmProcedures">
+      <summary> Interaction logic for frmProcedures.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmQueryBuilder">
+      <summary> Interaction logic for frmQueryBuilder.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.Registry.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.StartReport">
+      <summary>
+        <para> </para>
+   A class that facilitates the processing of background reports.
+   <para> </para>
+   Usage:
+   <para> </para>
+   The class for the report to be printed must inherit the abstract class: ReportBase<para />
+   and contain a method as follows:<para /><example>public override void Process(){}</example><para />
+   that either kicks off the report processing or calls the method that does.
+   <para> </para>
+   The class or window that initiates the report first encapsulates any constructor<para />
+   variables in an object array: <example> object[] parms = {arg1, arg2, arg3};</example>.<para />
+   These must be the same type and in the same order as the report class' constructor<para />
+   argument list.
+   <para> </para>
+  Then the initiating class/window makes the call: <code> StartReport.Start(reportClass, parms)</code><para />
+   where 'reportClass' is the fully qualified report class such as:<para /><example>StartReport.Start("MbcsCentral.WinPM.StatusReport", parms)</example></summary>
+    </member>
+    <member name="M:MbcsCentral.StartReport.Start(System.String,System.Object)">
+      <summary>
+   Sets up variables for report, create report thread and start it
+   </summary>
+      <param name="rptClass">The full Namespace of the report object to process</param>
+      <param name="parms">Array of arguments that match a constructor in the report object</param>
+    </member>
+    <member name="M:MbcsCentral.StartReport.ReportThread(System.Object)">
+      <summary>
+   This is the entry point for the report thread
+   Notice that it instantiates the class for the report
+   and calls the abstract method Process which must, of course,
+   exist in the report class and be the starting method there.
+   </summary>
+      <param name="data">Array of arguments for the report object.
+   The first argument is the name of the report class to process.</param>
+    </member>
+    <member name="F:SqlDbCloner.ChooseConnections.components">
+      <summary>
+   Required designer variable.
+   </summary>
+    </member>
+    <member name="M:SqlDbCloner.ChooseConnections.Dispose(System.Boolean)">
+      <summary>
+   Clean up any resources being used.
+   </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:SqlDbCloner.ChooseConnections.InitializeComponent">
+      <summary>
+   Required method for Designer support - do not modify
+   the contents of this method with the code editor.
+   </summary>
+    </member>
+    <member name="F:SqlDbCloner.CopyData.components">
+      <summary>
+   Required designer variable.
+   </summary>
+    </member>
+    <member name="M:SqlDbCloner.CopyData.Dispose(System.Boolean)">
+      <summary>
+   Clean up any resources being used.
+   </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:SqlDbCloner.CopyData.InitializeComponent">
+      <summary>
+   Required method for Designer support - do not modify
+   the contents of this method with the code editor.
+   </summary>
+    </member>
+    <member name="F:SqlDbCloner.CopySchema.components">
+      <summary>
+   Required designer variable.
+   </summary>
+    </member>
+    <member name="M:SqlDbCloner.CopySchema.Dispose(System.Boolean)">
+      <summary>
+   Clean up any resources being used.
+   </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:SqlDbCloner.CopySchema.InitializeComponent">
+      <summary>
+   Required method for Designer support - do not modify
+   the contents of this method with the code editor.
+   </summary>
+    </member>
+    <member name="F:SqlDbCloner.SelectSchema.components">
+      <summary>
+   Required designer variable.
+   </summary>
+    </member>
+    <member name="M:SqlDbCloner.SelectSchema.Dispose(System.Boolean)">
+      <summary>
+   Clean up any resources being used.
+   </summary>
+      <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    </member>
+    <member name="M:SqlDbCloner.SelectSchema.InitializeComponent">
+      <summary>
+   Required method for Designer support - do not modify
+   the contents of this method with the code editor.
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.Startup">
+      <summary> Interaction logic for Startup.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.Startup.Impersonator">
+      <summary>
+   Class Impersonator.
+   Implements the <see cref="T:System.IDisposable" /></summary>
+      <seealso cref="T:System.IDisposable" />
+    </member>
+    <member name="T:MbcsCentral.Startup.logProgressDelegate">
+      <summary>
+   Delegate logProgressDelegate
+   </summary>
+      <param name="s">The s.</param>
+    </member>
+    <member name="F:MbcsCentral.Startup.parms">
+      <summary>
+   The parms
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.Startup.parmFile">
+      <summary>
+   The parm file
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.Startup.mSession">
+      <summary>
+   The m session
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Startup.#ctor">
+      <summary>
+   Initializes a new instance of the <see cref="T:MbcsCentral.Startup" /> class.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Startup.Window_Loaded(System.Object,RoutedEventArgs)">
+      <summary>
+    Queues startUp background process
+   </summary>
+      <param name="sender">The source of the event.</param>
+      <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:MbcsCentral.Startup.startUp(System.Object)">
+      <summary>
+   Main Start Up method.
+   <para>Writes progress messages to window.</para></summary>
+      <param name="obj">The object.</param>
+    </member>
+    <member name="F:MbcsCentral.Startup.Impersonator._impersonatedUser">
+      <summary>
+   The impersonated user
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.Startup.Impersonator._userHandle">
+      <summary>
+   The user handle
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Startup.Impersonator.#ctor(System.String,System.String)">
+      <summary>
+   Initializes a new instance of the <see cref="T:MbcsCentral.Startup.Impersonator" /> class.
+   </summary>
+      <param name="user">The user.</param>
+      <param name="password">The password.</param>
+      <exception cref="T:System.ApplicationException">Could not impersonate user</exception>
+    </member>
+    <member name="M:MbcsCentral.Startup.Impersonator.Dispose">
+      <summary>
+   Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.Startup.Impersonator.LOGON32_LOGON_INTERACTIVE">
+      <summary>
+   The logo N32 logon interactive
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.Startup.Impersonator.LOGON32_LOGON_SERVICE">
+      <summary>
+   The logo N32 logon service
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.Startup.Impersonator.LOGON32_PROVIDER_DEFAULT">
+      <summary>
+   The logo N32 provider default
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Startup.Impersonator.LogonUser(String,String,String,System.Int32,System.Int32,IntPtr@)">
+      <summary>
+   Logons the user.
+   </summary>
+      <param name="lpszUserName">Name of the LPSZ user.</param>
+      <param name="lpszDomain">The LPSZ domain.</param>
+      <param name="lpszPassword">The LPSZ password.</param>
+      <param name="dwLogonType">Type of the dw logon.</param>
+      <param name="dwLogonProvider">The dw logon provider.</param>
+      <param name="phToken">The ph token.</param>
+      <returns>
+        <c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+    </member>
+    <member name="M:MbcsCentral.Startup.Impersonator.CloseHandle(IntPtr)">
+      <summary>
+   Closes the handle.
+   </summary>
+      <param name="handle">The handle.</param>
+      <returns>
+        <c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+    </member>
+    <member name="M:MbcsCentral.Startup.logProgress(System.String)">
+      <summary>
+   Logs the progress.
+   </summary>
+      <param name="s">The s.</param>
+      <returns>System.Object.</returns>
+    </member>
+    <member name="M:MbcsCentral.user_permissions.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.frmLogViewer">
+      <summary> Interaction logic for frmLogViewer.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmNachaLayout">
+      <summary> Interaction logic for frmNachaLayout.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.frmProgressWindow">
+      <summary> Interaction logic for frmProgressWindow.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.MessageBoxCustom">
+      <summary>
+   Custom message window.
+   Can be positioned at center of calling window.
+   Optionally accepts key board input.
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustom.Show(System.String,System.String,MessageBoxButton,Window,System.String[])">
+      <summary>
+   Basic message box
+   </summary>
+      <param name="message">
+      </param>
+      <param name="title">
+      </param>
+      <param name="buttons">
+      </param>
+      <param name="owner">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustom.Show(System.String,System.String,System.Windows.Media.Brush,MessageBoxButton,Window,System.String[])">
+      <summary>
+   Message box with optional background color
+   </summary>
+      <param name="message">
+      </param>
+      <param name="title">
+      </param>
+      <param name="Background">
+      </param>
+      <param name="buttons">
+      </param>
+      <param name="owner">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustom.Show(System.String[],System.String,System.Windows.Media.Brush,MessageBoxButton,Window,System.String[])">
+      <summary>
+      </summary>
+      <param name="message">
+      </param>
+      <param name="title">
+      </param>
+      <param name="Background">
+      </param>
+      <param name="buttons">
+      </param>
+      <param name="owner">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustom.Show(System.String,System.String@,System.Int32,System.Windows.Media.Brush,Window,System.String[])">
+      <summary>
+   Allows for keyboard input
+   </summary>
+      <param name="title">
+      </param>
+      <param name="value">Returned text value. MUST be declared as OUT.</param>
+      <param name="MaxLength">Maximum length of input</param>
+      <param name="Background">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:MbcsCentral.MessageBoxCustomWindow">
+      <summary> Interaction logic for MessageBoxCustomWindow.xaml </summary>
+    </member>
+    <member name="P:MbcsCentral.MessageBoxCustomWindow.Result">
+      <summary>
+   On return, contains MessageBoxButton that user clicked on
+   </summary>
+    </member>
+    <member name="P:MbcsCentral.MessageBoxCustomWindow.Value">
+      <summary>
+   Text value returned by Input method
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustomWindow.#ctor(System.String,System.String,MessageBoxButton,System.String[])">
+      <summary>
+   Basic message box
+   </summary>
+      <param name="message">
+      </param>
+      <param name="title">
+      </param>
+      <param name="buttons">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustomWindow.#ctor(System.String[],MessageBoxButton,System.String[])">
+      <summary>
+   Accepts string array.
+  
+   Each array element is printed on separate line.
+   </summary>
+      <param name="message">String array</param>
+      <param name="buttons">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustomWindow.#ctor(System.String,System.Int32,MessageBoxButton,System.String[])">
+      <summary>
+   For keyboard entry.
+  
+   Retrieve entered text value from Value public property after call
+   </summary>
+      <param name="title">
+      </param>
+      <param name="buttons">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.MessageBoxCustomWindow.SetControls(MessageBoxButton,System.String[])">
+      <summary>
+   Internal method to set the requested MessageBoxButtons
+   </summary>
+      <param name="buttons">MessageBoxButton enum</param>
+    </member>
+    <member name="T:MbcsCentral.TabContent">
+      <summary>
+   Attached properties for persistent tab control
+   </summary>
+      <remarks>By default WPF TabControl bound to an ItemsSource destroys visual state of invisible tabs.
+   Set ikriv:TabContent.IsCached="True" to preserve visual state of each tab.
+   </remarks>
+    </member>
+    <member name="F:MbcsCentral.TabContent.IsCachedProperty">
+      <summary>
+   Controls whether tab content is cached or not
+   </summary>
+      <remarks>When TabContent.IsCached is true, visual state of each tab is preserved (cached), even when the tab is hidden</remarks>
+    </member>
+    <member name="F:MbcsCentral.TabContent.TemplateProperty">
+      <summary>
+   Used instead of TabControl.ContentTemplate for cached tabs
+   </summary>
+    </member>
+    <member name="F:MbcsCentral.TabContent.TemplateSelectorProperty">
+      <summary>
+   Used instead of TabControl.ContentTemplateSelector for cached tabs
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WaitWindow">
+      <summary> Interaction logic for WaitWindow.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.AccountRanges.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.WinGL.Accounts">
+      <summary>
+   General Ledger Account Class
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Accounts.#ctor">
+      <summary>
+   Constructor
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Accounts.#ctor(System.Int16,System.Int32,System.Boolean,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+      <summary>
+   Constructor with arguments
+   </summary>
+      <param name="AccountNumber">
+      </param>
+      <param name="Key">
+      </param>
+      <param name="active">
+      </param>
+      <param name="MajorCategory">
+      </param>
+      <param name="MinorCategory">
+      </param>
+      <param name="Description">
+      </param>
+      <param name="CategoryPath">
+      </param>
+      <param name="OldAccountNumber">
+      </param>
+      <param name="OldSubNumber">
+      </param>
+      <param name="OldCategory">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Accounts.fill(DataRow)">
+      <summary>
+   Populates instantiated Account object from database
+   </summary>
+      <param name="dr">Datarow to parse</param>
+      <returns>Populated Account object</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Accounts.load(System.Int32)">
+      <summary>
+   Load from database
+   </summary>
+      <param name="m_Key">Record key to retrieve</param>
+      <returns>Account object</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Accounts.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.Accounts.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.ApChecks.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.ApTrans.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.ArTrans.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Balances.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.BatchControl.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmInvoiceNumber">
+      <summary> Interaction logic for frmInvoiceNumber.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.BatchJrnEntries.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.BatchJrnEntries.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.BatchJrnHeader.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Budgets.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Category.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.CheckNumbers.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.CheckNumbers.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Company.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.Company.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Control.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Department.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.Department.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmAccountBalances">
+      <summary> Interaction logic for frmAccountBalances.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmAccountRanges">
+      <summary> Interaction logic for frmAccountRanges.xaml </summary>
+    </member>
+    <member name="P:MbcsCentral.WinGL.frmAccountRanges.AccountCategories">
+      <summary>
+   0=All
+   1=Assets
+   2=Liabilities
+   3=Equities
+   4=Income
+   5=Expenses
+   6=Assets,Expenses
+   7=Assets,Income
+   8=Assets,Equity
+   9=Liability,Expenses
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmACHGenerate">
+      <summary> Interaction logic for frmACHGenerate.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmAPLaser">
+      <summary> Interaction logic for frmAPLaser.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmBankReconciliation">          ------------------------------------------------------------------------------------------------- <summary>   Interaction logic for frmBankReconciliation.xaml. </summary><remarks>   Mike, 2017-03-07. </remarks>-------------------------------------------------------------------------------------------------
+</member>
+    <member name="T:MbcsCentral.WinGL.Totals">  -------------------------------------------------------------------------------------------------
+   <summary>   A totals. </summary><remarks>   Mike, 2017-03-07. </remarks>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="T:MbcsCentral.WinGL.BankReconciliation">  -------------------------------------------------------------------------------------------------
+   <summary>   A bank reconciliation. </summary><remarks>   Mike, 2017-03-07. </remarks>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.#ctor">  -------------------------------------------------------------------------------------------------
+   <summary>   Default constructor. </summary><remarks>   Mike, 2017-03-07. </remarks>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.#ctor(System.String)">  -------------------------------------------------------------------------------------------------
+   <summary>   Constructor. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="app">  The application. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.frmBankReconciliation_Loaded(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by frmBankReconciliation for loaded events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.frmBankReconciliation_Closed(System.Object,EventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by frmBankReconciliation for closed events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdSave_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdSave for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdClose_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdClose for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdDelete_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdDelete for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdRetrieve_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdRetrieve for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.get_BookBalance">  -------------------------------------------------------------------------------------------------
+   <summary>   Gets book balance. </summary><remarks>   Mike, 2017-03-07. </remarks>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.get_CheckData">  -------------------------------------------------------------------------------------------------
+   <summary>   Gets check data. </summary><remarks>   Mike, 2017-03-07. </remarks>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.CalculateTotals">  -------------------------------------------------------------------------------------------------
+   <summary>   Calculates the totals. </summary><remarks>   Mike, 2017-03-07. </remarks>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.lstCompanies_SelectionChanged(System.Object,SelectionChangedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by lstCompanies for selection changed events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Selection changed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdAddDeposit_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdAddDeposit for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdBankErrorAgainst_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdBankErrorAgainst for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdAddDebit_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdAddDebit for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.cmdBankErrorFor_Click(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by cmdBankErrorFor for click events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.OnChecked(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Raises the routed event. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Event information to send to registered event handlers. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.NumberEntry_TextChanged(System.Object,TextChangedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by NumberEntry for text changed events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Text changed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.NumberEntry_LostFocus(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by NumberEntry for lost focus events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.CheckBox_Checked(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by CheckBox for checked events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.DataGridCell_PreviewMouseLeftButtonDown(System.Object,MouseButtonEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>
+       Event handler. Called by DataGridCell for preview mouse left button down events.
+   </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Mouse button event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.FindVisualParent``1(UIElement)">  -------------------------------------------------------------------------------------------------
+   <summary>   Finds the parent of this item. </summary><remarks>   Mike, 2017-03-07. </remarks><typeparam name="T">    Generic type parameter. </typeparam><param name="element">  The element. </param><returns>   The found visual parent. </returns>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.ComboBox_SelectionChanged(System.Object,SelectionChangedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by ComboBox for selection changed events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Selection changed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.dtDate_SelectedDateChanged(System.Object,SelectionChangedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by dtDate for selected date changed events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Selection changed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.lstAccounts_LostFocus(System.Object,RoutedEventArgs)">  -------------------------------------------------------------------------------------------------
+   <summary>   Event handler. Called by lstAccounts for lost focus events. </summary><remarks>   Mike, 2017-03-07. </remarks><param name="sender">   Source of the event. </param><param name="e">        Routed event information. </param>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.Post_Recon">  -------------------------------------------------------------------------------------------------
+   <summary>   Posts the recon. </summary><remarks>   Mike, 2017-03-07. </remarks><returns>   True if it succeeds, false if it fails. </returns>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="M:MbcsCentral.WinGL.frmBankReconciliation.Post_Budget">  -------------------------------------------------------------------------------------------------
+   <summary>   Posts the budget. </summary><remarks>   Mike, 2017-03-07. </remarks>
+  -------------------------------------------------------------------------------------------------
+</member>
+    <member name="T:MbcsCentral.WinGL.frmBatchReports">
+      <summary> Interaction logic for frmBatchReports.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmCategoriesAccounts">
+      <summary> Interaction logic for frmCategoriesAccounts.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmCheckNumbers">
+      <summary> Interaction logic for frmCheckNumbers.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmCheckRegisterEdit">
+      <summary> Interaction logic for frmCheckRegisterEdit.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmCloseYear">
+      <summary> Interaction logic for frmCloseYear.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmInvoiceList">
+      <summary> Interaction logic for frmInvoiceList.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmInvoiceNew">
+      <summary> Interaction logic for frmInvoice.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmInvoiceSelection">
+      <summary> Interaction logic for frmInvoiceSelection.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmInvoiceSelectionReport">
+      <summary> Interaction logic for frmInvoiceSelectionReport.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmInvoiceSelections">
+      <summary> Interaction logic for frmInvoiceSelections.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmJournalDesign">
+      <summary> Interaction logic for frmJournalDesign.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmJournalNames">
+      <summary> Interaction logic for frmJournalNames.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmLaserChk">
+      <summary> Interaction logic for frmLaserChk.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmMemos">
+      <summary> Interaction logic for frmMemos.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmOptions">
+      <summary> Interaction logic for frmOptions.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmPrintChecks">
+      <summary> Interaction logic for frmPrintChecks.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmVendorAllocations">
+      <summary> Interaction logic for frmVendorAllocations.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmVendorDupes">
+      <summary> Interaction logic for frmVendorDupes.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmVendors">
+      <summary> Interaction logic for frmVendors.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmVendorsEmail">
+      <summary> Interaction logic for frmNoticesEmail.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmVendorSpreadsheet">
+      <summary> Interaction logic for frmVendorSpreadsheet.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.InvoiceDistributions.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.InvoiceDistributions.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.InvoiceHistory.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.InvoiceHistory.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.JournalNames.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.JournalNames.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Journals.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Memos.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.Memos.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.OpStmt.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.PRaccounts.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frm1099Report">
+      <summary> Interaction logic for frm1099Report.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmBalanceSheet">
+      <summary> Interaction logic for frmBalanceSheet.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmCheckRegSelection">
+      <summary> Interaction logic for frmCheckRegSelection.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmDisbursementReport">
+      <summary> Interaction logic for frmDisbursementReport.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmGeneralLedger">
+      <summary> Interaction logic for frmGeneralLedger.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmJournalReport">
+      <summary> Interaction logic for frmJournalReport.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmOperatingStatement">
+      <summary> Interaction logic for frmOperatingStatement.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmPrReport">
+      <summary> Interaction logic for frmPrReport.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.frmPrReport.FindChild``1(DependencyObject,System.String)">
+      <summary>
+   Finds a Child of a given item in the visual tree.
+   </summary>
+      <param name="parent">A direct parent of the queried item.</param>
+      <typeparam name="T">The type of the queried item.</typeparam>
+      <param name="childName">x:Name or Name of child. </param>
+      <returns>The first parent item that matches the submitted type parameter.
+   If not matching item can be found,
+   a null parent is being returned.</returns>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmTrialBalance">
+      <summary> Interaction logic for frmTrialBalance.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmAPTrans">
+      <summary> Interaction logic for frmAPTrans.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmARTrans">
+      <summary> Interaction logic for frmARTrans.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmBatchJournalEdit">
+      <summary> Interaction logic for frmBatchJournalEdit.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmTransactionEdit">
+      <summary> Interaction logic for frmTransactionEdit.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmTransactionEntry">
+      <summary> Interaction logic for frmTransactionEntry.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.frmTransactionEntry.SetGrid(Grid,Transactiontemp[])">
+      <summary>
+   Create the payment grid with all charges and their amounts due
+   </summary>
+      <param name="grd">The grid object</param>
+      <param name="transactions">Array of payment entry objects that contains the charges</param>
+    </member>
+    <member name="T:MbcsCentral.WinGL.frmTransactionResearch">
+      <summary> Interaction logic for frmTransactionResearch.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Transactions.AccountBalance(System.Int32,System.Int32,DateTime,DateTime,System.Int32)">
+      <summary>
+   Retrieves SUM of all amounts for a single account for a data range
+   </summary>
+      <param name="Company">The CompanyNumber for which to retrieve balance</param>
+      <param name="Account">The Account Key for which to retrieve balance</param>
+      <param name="StartDate">The start of the date range</param>
+      <param name="EndDate">The end of the date range</param>
+      <param name="Department">The DepartmentNumber for which to retrieve balance</param>
+      <returns>The decimal balance value</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Transactions.FindCurrentPriorTrans(Category)">
+      <summary>
+   Given a category, drill down the chain to determine
+   if there are any transactions for the current or prior years.
+   </summary>
+      <param name="key">key for the highest level category to start checking.</param>
+      <returns>true = found transactions, false = no transactions found</returns>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Transactions.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.Transactions.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Transactiontemp.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.Transactiontemp.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="P:MbcsCentral.WinGL.VendorAllocations.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.VendorCategories.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.VendorMemos.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinGL.Vendors.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinGL.Vendors.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Building.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Building.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.BuildingMsg.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinPM.ChargeCodes.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.ChargeCodes.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Charges.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Charges.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Control.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Control.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.FormControl">
+      <summary> Interaction logic for FormControl.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmAddTenant">
+      <summary> Interaction logic for frmAddTenant.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmBatches">
+      <summary> Interaction logic for frmBatches.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.frmBatches.LateFee_Checked(System.Object,RoutedEventArgs)">
+      <summary>
+   Export current tab contents to CSV file
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmChargeCodes">
+      <summary> Interaction logic for frmChargeCodes.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmChargeCodesInternal">
+      <summary> Interaction logic for frmChargeCodesInternal.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmEOM">
+      <summary> Interaction logic for frmEOM.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmLeaseLetter">
+      <summary> Interaction logic for frmLeaseLetter.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmNotices">
+      <summary> Interaction logic for frmNotices.xaml </summary>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Parameters.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmNoticesEmail">
+      <summary> Interaction logic for frmNoticesEmail.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmPaymentDetails">
+      <summary> Interaction logic for frmPaymentDetails.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmPaymentEntry">
+      <summary> Interaction logic for frmPaymentEntry.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.frmPaymentEntry.SetGrid(Grid,PaymentEntries[])">
+      <summary>
+   Create the payment grid with all charges and their amounts due
+   </summary>
+      <param name="grd">The grid object</param>
+      <param name="payments">Array of payment entry objects that contains the charges</param>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmPaymentLBEntry">
+      <summary> Interaction logic for frmPaymentLBEntry.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmPaymentRegister">
+      <summary> Interaction logic for frmPaymentRegister.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmPreferredRent">
+      <summary> Interaction logic for frmPreferredRent.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmReportSelections">
+      <summary> Interaction logic for frmReportSelections.xaml </summary>
+    </member>
+    <member name="P:MbcsCentral.WinPM.ReportParameters.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmSecTrans">
+      <summary> Interaction logic for frmSecTrans.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmSecurityCodes">
+      <summary> Interaction logic for frmSecurityCodes.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmStatusReport">
+      <summary> Interaction logic for frmStatusReport.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmStmtLaser">
+      <summary> Interaction logic for frmStmtLaser.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmStmtMessages">
+      <summary> Interaction logic for frmStmtMessages.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.frmTenant.formTenant_ContentRendered(System.Object,EventArgs)">
+      <summary>
+   This is used to avoid having tenant.IsChanged
+   to be true after initial display of tenant record.
+   Was happening due to some necessary date field manipulations
+   </summary>
+      <param name="sender">
+      </param>
+      <param name="e">
+      </param>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmTenantDocuments">
+      <summary> Interaction logic for frmTenantDocuments.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmTenantLabels">
+      <summary> Interaction logic for frmTenantLabels.xaml </summary>
+    </member>
+    <member name="P:MbcsCentral.WinPM.LabelParameters.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmTenantsOld">
+      <summary> Interaction logic for frmTenantsOld.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmTypeCodes">
+      <summary> Interaction logic for frmTypeCodes.xaml </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.frmVacate">
+      <summary> Interaction logic for frmVacate.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.FutureRents.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.FutureRents.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.GLTable.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Histmast.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Histmast.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.HistChg.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.HistChg.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.HistPay.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.HistPay.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Improvements.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.Improvements.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Legal.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.Legal.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.LegalMsg.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Lockbox.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinPM.LockboxHistory.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.Maintenance.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.Maintenance.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Occupants.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.Occupants.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.Owners.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.Owners.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.PaymentRegister.#ctor(System.Boolean,System.Boolean)">
+      <summary>
+   Set printer as target for report
+   </summary>
+      <param name="printerTarget">
+      </param>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Payments.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Payments.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Paytemp.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Paytemp.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="T:MbcsCentral.WinPM.SpecialReports.frmRentRollMortgages">
+      <summary> Interaction logic for frmRentRollMortgages.xaml </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.StatGroups.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.StatGroups.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.STCodes.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.STCodes.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.STRates.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinPM.STTenants.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.STTenants.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.STTrans.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.STTrans.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Tenants.save(System.Boolean)">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Tenants.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.TenantsArchive.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.TenantsArchive.isChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.TenantsSnapShot.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinPM.TypeMsg.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="M:MbcsCentral.WinPM.Types.save">
+      <summary>
+   Save or Update a record
+   </summary>
+      <returns>True for success, False for failure. See MbcsCentral log for details</returns>
+    </member>
+    <member name="P:MbcsCentral.WinPM.Types.IsChanged">
+      <summary>
+   Has record been modified?
+   </summary>
+    </member>
+    <member name="M:MbcsCentral.WinPM.WinpmGlobal.getTenants(System.Windows.Controls.ListBox@,System.Int16)">
+      <summary>
+   Retrieves all tenants and places in a System.Windows.Controls.ListBox
+  
+   Optionally sorts the list
+   </summary>
+      <param name="lst">ListBox to populate</param>
+      <param name="orderBy">Order list by (see remarks)</param>
+      <remarks>orderBy:
+   (0) Tenant name
+   (1) Building/Tenant numbers
+   (2) Building/Apartment</remarks>
+    </member>
+    <member name="M:MbcsCentral.WinTrm.Utils.getTenants(System.Windows.Controls.TreeView)">
+      <summary>
+   Gets hierachical list of buildings with tenant email data
+   </summary>
+      <param name="lst">Treeview list object to populate</param>
+      <returns>True when successful</returns>
+      <remarks>
+      </remarks>
+    </member>
+    <member name="M:MbcsCentral.WinTrm.Utils.parseName(System.String)">
+      <summary>
+   Parses a full name string into first and last name
+   </summary>
+      <param name="fullName">The full name to parse</param>
+      <returns>A one or two element string array that contains:
+   1) A single element when there is only a single name in fullName
+   2) The first and middle names in element 0 and the last name in element 1</returns>
+   3) If the name ends with recognizable suffix then the first and middle names in element 0 and the last name and suffix in element 1
+   <remarks></remarks></member>
+  </members>
+</doc>

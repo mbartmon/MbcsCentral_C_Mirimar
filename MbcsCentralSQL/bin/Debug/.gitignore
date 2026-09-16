@@ -1,0 +1,3 @@
+*.dacpac
+/MbcsCentralSQL_StaticCodeAnalysisSucceededFile
+*.StaticCodeAnalysis.Results.xml

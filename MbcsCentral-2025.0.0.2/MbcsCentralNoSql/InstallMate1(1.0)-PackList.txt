@@ -1,0 +1,72 @@
+﻿2017-11-24 11:41:07|       9.76.0.6538|      506760|-R-S|C:\Program Files\InstallMate 9\Stubs80\Tsu32u.dll
+2017-12-16 22:30:57|                  |      189297|-R-S|C:\workfiles\MbcsCentral_C\MbcsCentralNoSql\InstallMate1\MbcsCentralNoSql-Setup.dat
+2017-12-16 22:30:57|                  |      199680|-R-S|C:\workfiles\MbcsCentral_C\MbcsCentralNoSql\InstallMate1\MbcsCentralNoSql-Setup32.dll
+2017-08-08 09:27:13|                  |        4846|-R-S|C:\Program Files\InstallMate 9\Data\Resources\Generic.ico
+2017-12-16 22:30:57|                  |        2027|-R-S|C:\workfiles\MbcsCentral_C\MbcsCentralNoSql\InstallMate1\Readme.txt
+2017-11-24 11:39:54|       9.76.0.6538|       24968|-R-S|C:\Program Files\InstallMate 9\Stubs80\Setup.Administrator\Setup32u.exe
+2017-04-12 14:46:02|                  |      118112|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\UserConfig\Files\5 DAY NOTICE - STORE.pdf
+2017-07-24 08:56:43|                  |      108032|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\CSharp.pdb
+2017-02-15 11:12:39|       14.0.6119.0|    26554784|----|C:\workfiles\MbcsCentral_C\InstallFiles\AccessDatabaseEngine.exe
+2015-10-29 17:40:30|          9.5.0.52|     6667264|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\ChilkatDotNet46.dll
+2017-04-12 14:46:02|          1.76.3.3|     4170240|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\WPTextDLL01.DLL
+2017-12-01 00:02:04|     13.0.14500.10|     4037832|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.SqlServer.Smo.dll
+2017-12-16 16:54:54|           1.2.3.1|     3690496|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsCentral.exe
+2015-07-03 07:47:47|           2.5.0.0|     2266112|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Xceed.Wpf.DataGrid.dll
+2017-12-01 00:02:05|     13.0.14500.10|     1419976|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
+2015-07-03 07:47:37|           2.5.0.0|     1038336|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Xceed.Wpf.Toolkit.dll
+2016-03-21 06:45:40|          10.0.5.1|      651264|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Vintasoft.Twain.dll
+2017-12-06 18:17:32|       1.31.1789.0|      510464|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\PdfSharp-wpf.dll
+2017-12-01 00:01:56|     13.0.14500.10|      504520|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+2015-07-03 07:47:34|           2.5.0.0|      429568|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Xceed.Wpf.AvalonDock.dll
+2013-01-19 20:09:09|                  |      401920|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.Data.ConnectionUI.Dialog.dll
+2015-01-19 04:45:10|           9.0.6.1|      398336|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Vintasoft.WpfTwain.dll
+2012-01-02 16:20:20|           5.0.0.0|      389120|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\VIBlend.WPF.Editors.dll
+2017-04-12 14:30:10|           2.0.0.0|      388096|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\NLog.dll
+2017-04-12 15:22:22|      11.0.2100.60|      363608|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.SqlServer.Dmf.dll
+2017-12-01 00:02:12|        2.1.1648.0|      288624|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.Synchronization.dll
+2015-08-14 13:03:38|           2.4.0.0|      235008|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.Win32.TaskScheduler.dll
+2017-12-01 00:02:04|       13.0.1601.5|      230592|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.SqlServer.SmoExtended.dll
+2010-10-19 17:34:10|           1.0.0.0|      207872|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Email.Net.dll
+2009-12-22 12:29:46|          1.64.0.0|      175616|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\WPTDynInt3.dll
+2017-12-01 00:01:47|     13.0.14500.10|      163528|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+2012-01-02 16:20:14|           5.0.0.0|      129536|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\VIBlend.WPF.Utilities.dll
+2017-12-07 07:30:34|           1.0.0.0|      126464|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\PdfSharp.Xps.dll
+2017-08-25 13:12:48|       1.50.4619.0|       94208|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\PdfSharp.Charting-wpf.dll
+2015-07-03 07:47:38|           2.5.0.0|       86016|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+2017-04-12 15:22:22|      11.0.2100.60|       85080|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.SqlServer.RegSvrEnum.dll
+2015-07-03 07:47:37|           2.5.0.0|       83456|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+2017-04-12 14:46:00|           1.0.0.0|       82432|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsCentralLogCleaner.exe
+2015-07-03 07:47:37|           2.5.0.0|       78848|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+2017-05-09 08:24:08|                  |       63488|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsCentralService.exe
+2017-07-24 08:56:43|           1.0.0.0|       45568|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\CSharp.dll
+2017-12-07 07:39:09|           1.0.0.0|       37376|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsMail.dll
+2013-04-16 16:20:58|          1.0.16.0|       37024|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.Threading.Tasks.dll
+2017-11-25 09:04:19|           1.0.0.0|       34816|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsScanAquire.exe
+2013-04-16 16:20:58|          1.0.16.0|       31440|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+2017-04-12 14:46:02|           1.0.0.0|       28160|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\WPFMessageBox.dll
+2017-04-12 14:46:01|           1.0.0.0|       27136|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsDbAutoBackup.exe
+2016-11-29 09:54:20|          1.4.0.12|       24576|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Pdf2Image.dll
+2017-04-12 14:46:00|           1.0.0.0|       22016|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MBCS.ControlLib.dll
+2017-02-09 14:07:40|           1.0.0.0|       19456|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsUtils.dll
+2017-04-12 14:29:35|           1.0.0.0|       15872|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\System.Net.Json.dll
+2017-11-25 09:04:17|           1.0.0.0|       13312|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsWpfControls.dll
+2013-01-19 20:09:09|                  |        4096|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\Microsoft.Data.ConnectionUI.dll
+2017-04-12 14:29:47|                  |     6316256|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\UserConfig\Files\LEASE RENEWAL BACK.bmp
+2015-05-27 18:12:34|                  |     5950324|----|C:\workfiles\MbcsCentral_C\InstallFiles\UserConfig\WinPm\Files\LEASE RENEWAL BACK.bmp
+2015-11-04 14:26:17|                  |     4224704|----|C:\workfiles\MbcsCentral_C\InstallFiles\UserConfig\WinPm\Files\PreferentialRent.bmp
+2017-04-12 14:29:47|                  |     4224704|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\UserConfig\Files\PreferentialRent.bmp
+2017-04-12 14:29:47|                  |     2126100|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\UserConfig\Files\LeaseLetter.bmp
+2015-05-27 18:12:34|                  |     1713904|----|C:\workfiles\MbcsCentral_C\InstallFiles\UserConfig\WinPm\Files\LeaseLetter.bmp
+2017-04-12 14:46:02|                  |     1074770|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\UserConfig\Files\Decontrol Lease Renewal.bmp
+2017-12-16 08:50:46|                  |      212608|----|C:\workfiles\MbcsCentral_C\InstallFiles\CreateDB.sql
+2017-12-15 17:51:56|                  |       93538|----|C:\workfiles\MbcsCentral_C\InstallFiles\InstallInitialData.sql
+2017-04-14 11:26:10|                  |        2607|----|C:\workfiles\MbcsCentral_C\InstallFiles\UserConfig\WinPm\MbcsWinpm.config
+2016-06-28 19:02:31|                  |         842|----|C:\workfiles\MbcsCentral_C\InstallFiles\UserConfig\MbcsWinpm.config
+2017-12-15 08:36:54|                  |         241|----|C:\workfiles\MbcsCentral_C\InstallFiles\UserConfig\MbcsCentral.config
+2017-04-12 14:29:33|                  |         138|----|C:\workfiles\MbcsCentral_C\MbcsCentral\FirstTime.txt
+2017-12-16 11:38:23|                  |       18397|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MenuFile.xml
+2017-02-09 14:07:39|                  |        7763|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsUtils.xml
+2017-04-12 15:24:49|                  |         194|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\GlobalProps.xml
+2015-06-17 14:12:45|                  |         194|----|C:\workfiles\MbcsCentral_C\InstallFiles\UserConfig\GlobalProps.xml
+2017-12-15 07:15:48|                  |        1756|----|C:\workfiles\MbcsCentral_C\MbcsCentral\DataMigration\WinglTables.xml
+2017-04-12 14:45:52|                  |        1546|----|C:\workfiles\MbcsCentral_C\MbcsCentral\DataMigration\WinpmTables.xml

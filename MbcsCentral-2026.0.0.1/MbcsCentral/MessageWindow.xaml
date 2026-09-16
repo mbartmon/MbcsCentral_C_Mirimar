@@ -1,0 +1,21 @@
+﻿<Window x:Class="MbcsCentral.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MessageWindow"
+        Height="145"
+        Loaded="Window_Loaded"
+        TextBlock.FontSize="14"
+        TextBlock.FontWeight="Bold"
+        TextBlock.TextAlignment="Center" Width="536">
+    <Border Background="Coral"
+            BorderBrush="Blue"
+            BorderThickness="4"
+            CornerRadius="10">
+        <TextBlock Name="Message"
+                   Width="Auto"
+                   Height="Auto"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" 
+                   TextWrapping="Wrap"/>
+    </Border>
+</Window>

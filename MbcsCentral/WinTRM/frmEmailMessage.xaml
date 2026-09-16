@@ -1,0 +1,35 @@
+﻿<Window x:Class="frmEmailMessage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Email Message" Height="408" Width="365">
+    <Grid>
+        <DockPanel VerticalAlignment="Stretch" Height="Auto" HorizontalAlignment="Stretch" Width="Auto">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="From: " Width="55"/>
+                <Label Name="lblFrom" />
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="To:" Width="55"/>
+                <Label Name="lblTo"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="Bcc:" Width="55"/>
+                <Label Name="lblBcc"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="Date:" Width="55"/>
+                <Label Name="lblDate"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="Subject:" Width="55"/>
+                <Label Name="lblSubject"/>
+            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel DockPanel.Dock="top" Height="Auto" VerticalAlignment="Stretch" Width="Auto" HorizontalAlignment="Stretch">
+                    <TextBlock Name="txtMessage" Height="Auto" VerticalAlignment="Stretch" Width="Auto" HorizontalAlignment="Stretch" TextWrapping="Wrap" Background="Cornsilk" Margin="5" />
+            </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+        <WebBrowser Height="100" HorizontalAlignment="Left" Margin="0,277,0,0" Name="WebBrowser1" VerticalAlignment="Top" Width="200" />
+    </Grid>
+</Window>

@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"Introduction to MbcsCentral","type":"item","url":"Introduction_to_MbcsCentral.htm"},{"name":"System requirements","type":"item","url":"System_Requirements.htm"},{"name":"Documents","type":"book","key":"toc1"},{"name":"Appendix","type":"book","key":"toc4"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

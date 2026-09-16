@@ -1,0 +1,40 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmVacate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        Title="Vacate Apartment" Height="182" Width="325" 
+        Name="formVacate"
+        Background="LightSteelBlue"
+        Loaded="formVacate_Loaded">
+    <Grid Name="grdMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Text=" Tenant Number: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Name="txtTenantNumber"  IsReadOnly="True" Width="80" VerticalAlignment="Center" Height="25"/>
+            <TextBlock Text=" Apartment: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Name="txtApartment" IsReadOnly="True" Width="50" VerticalAlignment="Center" Height="25"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Text=" Current Tenant: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Name="txtTenantName" IsReadOnly="True" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+            <TextBlock Text=" Rent Amount: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <viblend:NumberEditor
+                MaxLength="10" DecimalPlaces="2"
+                Width="100" Name="txtRentAmount" 
+                HorizontalAlignment="Left" VerticalAlignment="Center" Height="25"/>
+        </StackPanel>
+        <Button Grid.Row="2" Grid.Column="1" Name="cmdVacate" Content="VACATE" Margin="5" Click="cmdVacate_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Name="cmdCancel" Content="CANCEL" Margin="5" Click="cmdCancel_Click"/>
+    </Grid>
+</Window>

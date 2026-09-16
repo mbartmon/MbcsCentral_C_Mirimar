@@ -1,0 +1,196 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmHistoryDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Name="formHistoryDisplay"
+        Title="Tenant History"
+        Width="880"
+        Height="418">
+
+    <Window.Resources>
+        <my:DateConverter x:Key="DateConverter" />
+        <my:AmountConverter x:Key="AmountConverter" />
+        <my:PaidConverter x:Key="PaidConverter" />
+        <my:TotalConverter x:Key="TotalConverter" />
+        <my:HistoryList x:Key="HistoryList" />
+
+        <Style x:Key="CellRightAlign">
+            <Setter Property="Control.HorizontalAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="DeepSkyBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Text="Tenant Number" />
+                <TextBox Name="txtBuildingNumber"
+                         Width="40"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         MaxLength="3"
+                         GotFocus="TextBox_GotFocus"
+                         
+                         TextChanged="txtBuildingNumber_TextChanged" />
+                <TextBox Name="txtTenantNumber"
+                         Width="50"
+                         Margin="1,0,0,0"
+                         VerticalAlignment="Center"
+                         GotFocus="TextBox_GotFocus"
+                         MaxLength="4" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Text="Name" />
+                <TextBox Name="txtTenantName"
+                         Width="250"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Text="Apt" />
+                <TextBox Name="txtApartment"
+                         Width="50"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Text="Starting Date" />
+                <DatePicker Name="dtStart"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Text="Ending Date" />
+                <DatePicker Name="dtEnd"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center" />
+                <Button Name="cmdGetHistory"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        Click="cmdGetHistory_Click"
+                        Content="GET History"
+                        FontWeight="Bold"
+                        IsDefault="True" />
+                <Border BorderBrush="Blue"
+                        BorderThickness="3"
+                        CornerRadius="5"
+                        Height="35"
+                        Margin="10,0,0,0">
+                    <Grid Margin="5,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <!-- Column 0 -->
+                        <CheckBox Name="chkSelect"
+                                  Content="Single Charge"
+                                  VerticalAlignment="Center"/>
+                        <ComboBox Name="lstSelect"
+                                  Grid.Column="1"
+                                  ItemsSource="{Binding}"
+                                  DisplayMemberPath="ChargeDescription"
+                                  IsEnabled="{Binding ElementName=chkSelect, Path=IsChecked, UpdateSourceTrigger=PropertyChanged}"                               
+                                  Width="275"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <DataGrid Name="grdHistory"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding}">
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Path=Name}" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding HistoryDescription}" Header="Description" />
+                <DataGridTextColumn Binding="{Binding Amount,
+                                                      Converter={StaticResource AmountConverter}}"
+                                    CellStyle="{StaticResource CellRightAlign}"
+                                    Header="Amount" />
+                <DataGridTextColumn Binding="{Binding Arrears,
+                                                      Converter={StaticResource AmountConverter}}"
+                                    CellStyle="{StaticResource CellRightAlign}"
+                                    Header="Arrears" />
+                <DataGridTextColumn Binding="{Binding Paid,
+                                                      Converter={StaticResource PaidConverter}}"
+                                    CellStyle="{StaticResource CellRightAlign}"
+                                    Header="Paid" />
+                <DataGridTextColumn Binding="{Binding PaidDate, Converter={StaticResource DateConverter}}" Header="Date" />
+                <DataGridTextColumn Binding="{Binding Balance,
+                                                      Converter={StaticResource TotalConverter}}"
+                                    CellStyle="{StaticResource CellRightAlign}"
+                                    Header="Balance" />
+                <DataGridTextColumn Binding="{Binding Notes}" Header="Notes" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2"
+                    Background="DeepSkyBlue"
+                    Orientation="Horizontal">
+            <Button Name="cmdClear"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Click="cmdClear_Click"
+                    Content="CLEAR"
+                    FontWeight="Bold" />
+            <Button Name="cmdExit"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Click="cmdExit_Click"
+                    Content="EXIT"
+                    FontWeight="Bold" />
+            <Button Name="cmdPrint"
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    Click="cmdPrint_Click"
+                    Content="PRINT"
+                    FontWeight="Bold" />
+        </StackPanel>
+    </Grid>
+</Window>

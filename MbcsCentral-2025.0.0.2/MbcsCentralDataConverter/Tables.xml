@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Tables>
+  <Table Source="Building" Target="pm_Building"/>
+  <Table Source="Charges" Target="pm_Charges" Identity="True"/>
+  <Table Source="Codes" Target="pm_ChargeCodes" Converter=""/>
+  <Table Source="Control" Target="pm_Control"/>
+  <Table Source="GLTable" Target="pm_GLTable"/>
+  <Table Source="HistChg" Target="pm_HistChg"/>
+  <Table Source="HistMast" Target="pm_HistMast"/>
+  <Table Source="HistPay" Target="pm_HistPay"/>
+  <Table Source="Improvements" Target="pm_Improvements" Identity="True"/>
+  <Table Source="Legal" Target="pm_Legal"/>
+  <Table Source="LegalMsg" Target="pm_LegalMsg"/>
+  <Table Source="Maintenance" Target="pm_Maintenance" Identity="True"/>
+  <Table Source="Occupants" Target="pm_Occupants"/>
+  <Table Source="Owner" Target="pm_Owner"/>
+  <Table Source="Payments" Target="pm_Payments"/>
+  <Table Source="PayTemp" Target="pm_PayTemp"/>
+  <Table Source="StatGroups" Target="pm_StatGroups"/>
+  <Table Source="STCodes" Target="pm_STCodes" Identity="True"/>
+  <Table Source="STPeriods" Target="pm_STPeriods"/>
+  <Table Source="STRates" Target="pm_STRates"/>
+  <Table Source="STTenants" Target="pm_STTenants"/>
+  <Table Source="STTrans" Target="pm_STTrans"/>
+  <Table Source="Tenants" Target="pm_Tenants" Identity="True"/>
+  <Table Source="TenantsArchive" Target="pm_TenantsArchive"/>
+  <Table Source="TypeMsg" Target="pm_TypeMsg"/>
+  <Table Source="Types" Target="pm_Types"/>
+</Tables>

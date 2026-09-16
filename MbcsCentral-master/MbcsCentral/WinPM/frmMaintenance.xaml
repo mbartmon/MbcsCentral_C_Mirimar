@@ -1,0 +1,245 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmMaintenance"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Name="formMaintenance"
+        Title="Apartment Improvements/Maintenance"
+        Width="869"
+        Height="393">
+
+    <Window.Resources>
+        <my:CurrencyPaddingConverter x:Key="CurrencyPaddingConverter" />
+        <my:DateConverter x:Key="DateConverter" />
+        <my:StringTruncate x:Key="StringTruncate" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Name="rowOne" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel Background="LightSkyBlue" Orientation="Horizontal">
+                <TextBlock Margin="5,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Tenant Number" />
+                <TextBox Name="txtBuildingNumber"
+                         Width="40"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         MaxLength="3" />
+                <TextBox Name="txtTenantNumber"
+                         Width="50"
+                         Margin="1,0,0,0"
+                         VerticalAlignment="Center"
+                         MaxLength="4" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Apt" />
+                <TextBox Name="txtApartment"
+                         Width="50"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Current Tenant" />
+                <TextBox Name="txtTenantName"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True" />
+            </StackPanel>
+            <StackPanel Margin="0,2,0,0"
+                        Background="LightSkyBlue"
+                        Orientation="Horizontal">
+                <TextBlock Margin="5,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Home Phone" />
+                <TextBox Name="txtHomePhone"
+                         Width="200"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Business Phone" />
+                <TextBox Name="txtBusinessPhone"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True" />
+            </StackPanel>
+        </StackPanel>
+        <Border Grid.Row="1"
+                BorderBrush="Black"
+                BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="23" />
+                </Grid.RowDefinitions>
+                <StackPanel Height="Auto" Background="LightSkyBlue">
+                    <TextBlock Margin="5,0,0,0"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Text="Improvement Records" />
+                </StackPanel>
+                <DataGrid Name="grdImprovement"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          FontFamily="Courier New"
+                          ItemsSource="{Binding}"
+                          MouseDoubleClick="grdImprovement_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding ImprovementDate,
+                                                              Converter={StaticResource DateConverter}}"
+                                            Header="Date"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Type}"
+                                            Header="Type"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Brand}"
+                                            Header="Brand"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Model}"
+                                            Header="Model"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Size}"
+                                            Header="Size"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Color}"
+                                            Header="Color"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Vendor}"
+                                            Header="Vendor"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Cost,
+                                                              Converter={StaticResource CurrencyPaddingConverter},
+                                                              ConverterParameter=10}"
+                                            Header="Cost"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding RentIncreaseAmount,
+                                                              Converter={StaticResource CurrencyPaddingConverter},
+                                                              ConverterParameter=10}"
+                                            Header="Increase Amount"
+                                            IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding RentIncreaseDate,
+                                                              Converter={StaticResource DateConverter}}"
+                                            Header="Increase Date"
+                                            IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="2"
+                            VerticalAlignment="Bottom"
+                            Background="LightSkyBlue"
+                            Orientation="Horizontal">
+                    <Button Name="cmdImpEdit"
+                            Margin="10,0,0,0"
+                            Click="cmdImpEdit_Click"
+                            Content="EDIT" />
+                    <Button Name="cmdImpDelete"
+                            Margin="10,0,0,0"
+                            Click="cmdImpDelete_Click"
+                            Content="DELETE" />
+                    <Button Name="cmdImpAdd"
+                            Margin="10,0,0,0"
+                            Click="cmdImpAdd_Click"
+                            Content="ADD" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border Grid.Row="2"
+                VerticalAlignment="Stretch"
+                BorderBrush="Black"
+                BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="23" />
+                </Grid.RowDefinitions>
+                <StackPanel Height="Auto" Background="LightSkyBlue">
+                    <TextBlock Margin="5,0,0,0"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Text="Maintenance Records" />
+                </StackPanel>
+                <DataGrid Name="grdMaintenance"
+                          Grid.Row="1"
+                          VerticalAlignment="Stretch"
+                          AutoGenerateColumns="False"
+                          FontFamily="Courier New"
+                          ItemsSource="{Binding}"
+                          MouseDoubleClick="grdMaintenance_MouseDoubleClick">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding MaintenanceDate,
+                                                              Converter={StaticResource DateConverter}}"
+                                            Header="Date"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Description,
+                                                              Converter={StaticResource StringTruncate},
+                                                              ConverterParameter=96}"
+                                            Header="Description"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Vendor}"
+                                            Header="Vendor"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Cost,
+                                                              Converter={StaticResource CurrencyPaddingConverter},
+                                                              ConverterParameter=10}"
+                                            Header="Cost"
+                                            IsReadOnly="True" />
+                        <DataGridCheckBoxColumn Binding="{Binding Inspected}"
+                                                Header="Ins"
+                                                IsReadOnly="True" />
+                        <!--
+                        <DataGridCheckBoxColumn Binding="{Binding XrfTested}"
+                                                Header="Xrf Tested"
+                                                IsReadOnly="True"/>
+                        <DataGridCheckBoxColumn Binding="{Binding XrfPassed}"
+                                                Header="Xrf Passed"
+                                                IsReadOnly="True"/>
+                        <DataGridCheckBoxColumn Binding="{Binding XrfFailed}"
+                                                Header="Xrf Failed"
+                                                IsReadOnly="True"/>
+-->
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="2"
+                            Background="LightSkyBlue"
+                            Orientation="Horizontal">
+                    <Button Name="cmdMntEdit"
+                            Margin="10,0,0,0"
+                            Click="cmdMntEdit_Click"
+                            Content="EDIT" />
+                    <Button Name="cmdMntDelete"
+                            Margin="10,0,0,0"
+                            Click="cmdMntDelete_Click"
+                            Content="DELETE" />
+                    <Button Name="cmdMntAdd"
+                            Margin="10,0,0,0"
+                            Click="cmdMntAdd_Click"
+                            Content="ADD" />
+                    <StackPanel Margin="100,0,0,0"
+                                HorizontalAlignment="Left"
+                                Background="LightSkyBlue"
+                                Orientation="Horizontal">
+                        <Rectangle Width="4"
+                                   Height="Auto"
+                                   HorizontalAlignment="Right"
+                                   Fill="Black" />
+                        <Button Name="cmdPrint"
+                                Margin="10,0,0,0"
+                                Click="cmdPrint_Click"
+                                Content="PRINT" />
+                        <Button Name="cmdExit"
+                                Margin="10,0,0,0"
+                                Click="cmdExit_Click"
+                                Content="EXIT" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

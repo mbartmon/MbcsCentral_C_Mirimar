@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="MbcsCentral.Help.DocumentAquisition"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DocumentAquisition"
+    Height="662.757"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer Width="Auto" Height="Auto">
+            <StackPanel>
+                <TextBlock Style="{StaticResource HeaderText}">Document Aquisition</TextBlock>
+                <Separator />
+                <TextBlock Style="{StaticResource SubTitleText}">General Guidelines</TextBlock>
+                <TextBlock Style="{StaticResource InnerTitleText}">Definitions</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    <Bold>Page:</Bold>
+                    The image of a single letter or legal size page added by either scanning or loading from a file on a hard drive or network.</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    <Bold>Document:</Bold>
+                    A collection of one or more<Bold>Pages</Bold>
+                    .</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    <Bold>Field:</Bold>
+                    A tag that represents a piece of Owner, Building, Tenant or calculated data. Fields are dragged and dropped from the right column to locations on a<Bold>Page</Bold>
+                    .</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    <Bold>Drag and Drop:</Bold>
+                    Hover mouse pointer over field you want to use. Click and hold left mouse button while moving mouse pointer to the location on the page where you want the field to appear.  Then release the left button.  The field can be repositioned by reselecting it and moving.</TextBlock>
+                <TextBlock Style="{StaticResource InnerTitleText}"><LineBreak />
+                    Miscellaneous</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    <Bold>Document Formats:</Bold>
+                    Document files may be added via file browser or scanner in the following formats: jpg, bmp, gif, png</TextBlock>
+                <TextBlock Style="{StaticResource IndentedInnerText}">
+                    <Bold>Available Fields:</Bold>
+                    These are determined by the &gt;<Italic>Document Type</Italic>
+                    which is currently only Lease Renewal. They are displayed automatically and cannot be changed by the user.</TextBlock>
+                <TextBlock Style="{StaticResource SubTitleText}">Adding a Document</TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

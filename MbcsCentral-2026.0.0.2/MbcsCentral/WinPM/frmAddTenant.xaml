@@ -1,0 +1,392 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmAddTenant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:MbcsCentral"
+        xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        Name="formAddTenant"
+        Title="Add Tenant"
+        Width="951"
+        Height="423"
+        Background="AliceBlue"
+        Closing="formAddTenant_Closing"
+        Loaded="formAddTenant_Loaded"
+        TextBlock.FontSize="14"
+        TextBlock.FontWeight="Bold"
+        TextBlock.TextAlignment="Center">
+
+    <Window.Resources>
+        <CollectionViewSource x:Key="FutureRentsView" Source="{Binding}" />
+        <my:DateConverter x:Key="DateConverter" />
+    </Window.Resources>
+
+    <Grid TextBlock.FontSize="12"
+          TextBlock.FontWeight="Normal"
+          TextBlock.TextAlignment="Left">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel Margin="0,20,5,0">
+                <GroupBox Margin="10,0,0,0"
+                          Background="Beige"
+                          FontWeight="Bold"
+                          Header="New Tenant">
+                    <StackPanel>
+                        <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                            <TextBlock Width="80"
+                                       VerticalAlignment="Center"
+                                       FontWeight="Bold"
+                                       Text="Building" />
+                            <ComboBox Name="lstBuilding"
+                                      Width="50"
+                                      Margin="10,0,0,0"
+                                      VerticalAlignment="Center"
+                                      Background="Beige"
+                                      DisplayMemberPath="BuildingNumber"
+                                      ItemsSource="{Binding}"
+                                      SelectionChanged="lstBuilding_SelectionChanged" />
+                            <TextBlock Name="txtBuilding"
+                                       Margin="5,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding ElementName=lstBuilding,
+                                                      Path=SelectedItem.Address1,
+                                                      Mode=TwoWay,
+                                                      UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel Margin="10,20,0,0" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center"
+                                       FontWeight="Bold"
+                                       Text="Tenant Number" />
+                            <TextBox Name="txtNumber"
+                                     Width="50"
+                                     Margin="5,0,0,0"
+                                     VerticalAlignment="Center"
+                                     BorderBrush="Gray"
+                                     CharacterCasing="Upper"
+                                     LostFocus="txtNumber_LostFocus"
+                                     MaxLength="4" />
+                            <TextBlock Margin="5,0,5,0"
+                                       VerticalAlignment="Center"
+                                       FontWeight="Bold"
+                                       Text="Name" />
+                            <TextBox Name="txtName"
+                                     Width="200"
+                                     Margin="5,0,0,0"
+                                     VerticalAlignment="Center"
+                                     BorderBrush="Gray"
+                                     MaxLength="30" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel Margin="10,30,0,0">
+                    <GroupBox Name="grpReplacing"
+                              BorderBrush="Black"
+                              DataContext="{Binding}"
+                              Header="Replacing Tenant"
+                              TextBlock.FontWeight="Bold">
+                        <StackPanel TextBlock.FontWeight="Normal">
+                            <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="Name" />
+                                <TextBlock Name="txtOldTenantName"
+                                           Width="250"
+                                           Margin="35,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Path=TenantName,
+                                                          UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                            <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="Apartment" />
+                                <TextBlock Name="txtOldApartment"
+                                           Width="50"
+                                           Margin="5,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Path=Apartment,
+                                                          UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Margin="30,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="Rooms" />
+                                <TextBlock Name="txtOldRooms"
+                                           Width="50"
+                                           Margin="5,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Path=Rooms,
+                                                          UpdateSourceTrigger=PropertyChanged,
+                                                          StringFormat={}{0:#0.0}}" />
+                                <TextBlock Margin="30,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="Rent" />
+                                <viblend:NumberEditor Name="txtOldRent"
+                                                      Width="100"
+                                                      Margin="3,0,0,0"
+                                                      VerticalAlignment="Center"
+                                                      DecimalPlaces="2"
+                                                      MaxLength="11"
+                                                      Value="{Binding Path=Rent,
+                                                                      Mode=TwoWay,
+                                                                      UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Content="XRF Tested" IsChecked="{Binding Path=XrfTested}" IsEnabled="False" FlowDirection="RightToLeft" Margin="10,0,0,0"/>
+                                <CheckBox Content="XRF Exempt" IsChecked="{Binding Path=XrfExempt}" IsEnabled="False" FlowDirection="RightToLeft" Margin="10,0,0,0"/>
+                                <CheckBox Name="chkDHCR" Content="DHCR Data" IsChecked="True" FlowDirection="RightToLeft" Margin="20,0,0,0"/>
+                            </StackPanel>
+                            <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="Lease Expires" />
+                                <TextBlock Margin="5,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding LeaseExpirationDate,
+                                                          UpdateSourceTrigger=PropertyChanged,
+                                                          Converter={StaticResource DateConverter}}" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Margin="10,80,40,0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button Name="cmdSave"
+                            VerticalAlignment="Center"
+                            Click="cmdSave_Click"
+                            Content="SAVE"
+                            FontSize="16"
+                            IsTabStop="False" />
+                    <Button Name="cmdExit"
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            Click="cmdExit_Click"
+                            Content="EXIT"
+                            FontSize="16"
+                            IsTabStop="False" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+        <Border Grid.Column="1"
+                Background="Beige"
+                BorderBrush="Gray"
+                BorderThickness="2">
+            <Grid>
+                <StackPanel>
+                    <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="172"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="Apartment" />
+                        <TextBox Name="txtNewApartment"
+                                 Width="50"
+                                 BorderBrush="Black"
+                                 BorderThickness="1"
+                                 CharacterCasing="Upper"
+                                 IsReadOnly="True"/>
+                        <TextBlock Margin="60,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="Rooms" />
+                        <TextBox Name="txtRooms"
+                                 Width="50"
+                                 Margin="10,0,0,0"
+                                 VerticalAlignment="Center"
+                                 BorderBrush="Black"
+                                 BorderThickness="1"
+                                 IsReadOnly="True"/>
+                    </StackPanel>
+                    <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                        <TextBlock Width="162"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="New Tenant Move-in Date" />
+                        <DatePicker Name="dtMovein"
+                                    Margin="10,0,0,0"
+                                    SelectedDateChanged="dtMovein_SelectedDateChanged" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                        <TextBlock Width="162"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="New Tenant Lease Start" />
+                        <DatePicker Name="dtStart" Margin="10,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="New Tenant Lease Expiration" />
+                        <DatePicker Name="dtLease" Margin="10,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                        <TextBlock Width="171"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="Tenant Type" />
+                        <ComboBox Name="lstTypes"
+                                  Width="200"
+                                  VerticalAlignment="Center"
+                                  Background="White"
+                                  BorderBrush="Black"
+                                  BorderThickness="1"
+                                  DisplayMemberPath="Description"
+                                  ItemsSource="{Binding}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                        <TextBlock Width="162"
+                                   Margin="10,5,0,0"
+                                   VerticalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="Social Security Numbers" />
+                        <xceed:MaskedTextBox Name="txtSSNumber1"
+                                             Grid.Row="2"
+                                             Grid.Column="1"
+                                             Width="90"
+                                             Margin="10,0,0,0"
+                                             HorizontalAlignment="Left"
+                                             FontSize="14"
+                                             Mask="000-00-0000" />
+                        <xceed:MaskedTextBox Name="txtSSNumber2"
+                                             Grid.Row="2"
+                                             Grid.Column="2"
+                                             Width="90"
+                                             Margin="10,0,0,0"
+                                             HorizontalAlignment="Left"
+                                             FontSize="14"
+                                             Mask="000-00-0000" />
+                    </StackPanel>
+                    <Border Margin="10"
+                            BorderBrush="Gray"
+                            BorderThickness="2"
+                            CornerRadius="10"
+                            Padding="10">
+                        <StackPanel>
+                            <StackPanel Margin="0,0,5,0"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="Full Legal Rent:" />
+                                <viblend:NumberEditor Name="txtLegalRent"
+                                                      Width="85"
+                                                      Margin="5,0,0,0"
+                                                      DecimalPlaces="2"
+                                                      LostFocus="txtLegalRent_LostFocus"
+                                                      MaxLength="10" />
+                                <TextBlock Margin="10,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="Monthly Chargeable Rent:" />
+                                <viblend:NumberEditor Name="txtFullMonthRent"
+                                                      Width="85"
+                                                      Margin="10,0,0,0"
+                                                      DecimalPlaces="2"
+                                                      LostFocus="txtFullMonthRent_LostFocus"
+                                                      MaxLength="10" />
+
+                            </StackPanel>
+                            <StackPanel Margin="0,10,5,0"
+                                        HorizontalAlignment="Right"
+                                        Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Text="Initial Month Rent:" />
+                                <viblend:NumberEditor Name="txtFirstMonthRent"
+                                                      Width="85"
+                                                      Margin="10,0,0,0"
+                                                      DecimalPlaces="2"
+                                                      LostFocus="txtFirstMonthRent_LostFocus"
+                                                      MaxLength="10" />
+
+                            </StackPanel>
+                            <TextBlock Margin="0,10,0,0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Background="LightGray"
+                                       Text="Future Rents" />
+                            <StackPanel DataContext="{StaticResource FutureRentsView}">
+                                <DataGrid Name="grdFutureRents"
+                                          Grid.Row="2"
+                                          Height="110"
+                                          VerticalAlignment="Top"
+                                          AutoGenerateColumns="False"
+                                          ItemsSource="{Binding}">
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Name="ctxDelete"
+                                                      Click="ctxDelete_Click"
+                                                      Header="Delete" />
+                                            <MenuItem Name="ctxAdd"
+                                                      Click="ctxAdd_Click"
+                                                      Header="Add" />
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="105" Header="Date">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker Text="{Binding Path=FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker Text="{Binding Path=FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="75" Header="Rent">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock VerticalAlignment="Center"
+                                                               Text="{Binding FutureAmount,
+                                                                              StringFormat={}{0:#####0.00},
+                                                                              Mode=TwoWay,
+                                                                              UpdateSourceTrigger=PropertyChanged}"
+                                                               TextAlignment="Right" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <viblend:NumberEditor VerticalAlignment="Center"
+                                                                          DecimalPlaces="2"
+                                                                          MaxLength="10"
+                                                                          Text="{Binding FutureAmount,
+                                                                                         StringFormat={}{0:#####0.00},
+                                                                                         Mode=TwoWay,
+                                                                                         UpdateSourceTrigger=PropertyChanged}"
+                                                                          Value="{Binding FutureAmount,
+                                                                                          Mode=TwoWay,
+                                                                                          UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="75" Header="Legal Rent">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock VerticalAlignment="Center"
+                                                               Text="{Binding FutureLegal,
+                                                                              StringFormat={}{0:#####0.00},
+                                                                              Mode=TwoWay,
+                                                                              UpdateSourceTrigger=PropertyChanged}"
+                                                               TextAlignment="Right" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <viblend:NumberEditor DecimalPlaces="2"
+                                                                          MaxLength="10"
+                                                                          Text="{Binding FutureLegal,
+                                                                                         StringFormat={}{0:#####0.00},
+                                                                                         Mode=TwoWay,
+                                                                                         UpdateSourceTrigger=PropertyChanged}"
+                                                                          Value="{Binding FutureLegal,
+                                                                                          Mode=TwoWay,
+                                                                                          UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

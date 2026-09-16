@@ -1,0 +1,4 @@
+ALTER TABLE gl_CheckNumbers ADD ACHCheck int NOT NULL DEFAULT 0;
+GO
+UPDATE gl_CheckNumbers SET ACHCheck = 900000;
+GO

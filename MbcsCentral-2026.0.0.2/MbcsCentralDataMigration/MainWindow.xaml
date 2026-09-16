@@ -1,0 +1,17 @@
+﻿<Window x:Class="MbcsCentral.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" Name="lstTables" ItemsSource="{Binding}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Button Name="cmdProcess" Content="PROCESS" Click="cmdProcess_Click"/>
+            <Button Name="cmdCancel" Content="CANCEL" Margin="20,0,0,0" Click="cmdCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

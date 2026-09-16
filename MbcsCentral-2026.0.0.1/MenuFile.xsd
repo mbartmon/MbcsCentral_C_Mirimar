@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Menu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="MenuItem">
+             <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="Content" type="xs:string" use="required" />
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                  <xs:attribute name="Type" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="Internal" />
+                        <xs:enumeration value="Form" />
+                        <xs:enumeration value="Application" />
+                        <xs:enumeration value="Header" />
+                        <xs:enumeration value="Method" />
+                        <xs:enumeration value="Separator" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="Target" type="xs:string" use="optional" />
+                  <xs:attribute name="Class" type="xs:string" use="optional"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="MenuHeader">
+            <xs:complexType mixed="true">
+              <xs:sequence minOccurs="0">
+                <xs:choice maxOccurs="unbounded">
+                  <xs:element maxOccurs="unbounded" name="MenuItem">
+                    <xs:complexType mixed="true">
+                      <xs:sequence minOccurs="0">
+                        <xs:element name="Form">
+                          <xs:complexType>
+                            <xs:attribute name="Name" type="xs:string" use="required" />
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="Content" type="xs:string" use="optional" />
+                      <xs:attribute name="Name" type="xs:string" use="optional" />
+                      <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                      <xs:attribute name="Type" use="required">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:enumeration value="Internal" />
+                            <xs:enumeration value="Form" />
+                            <xs:enumeration value="Application" />
+                            <xs:enumeration value="Header" />
+                            <xs:enumeration value="Method" />
+                            <xs:enumeration value="Separator" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="Target" type="xs:string" use="optional" />
+                      <xs:attribute name="Class" type="xs:string" use="optional"/>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="MenuHeader">
+                    <xs:complexType mixed="true">
+                      <xs:sequence>
+                        <xs:choice>
+                          <xs:element maxOccurs="unbounded" name="MenuItem">
+                            <xs:complexType mixed="true">
+                              <xs:sequence minOccurs="0">
+                                <xs:element name="Form">
+                                  <xs:complexType>
+                                    <xs:attribute name="Name" type="xs:string" use="required" />
+                                    <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="Content" type="xs:string" use="optional" />
+                              <xs:attribute name="Name" type="xs:string" use="optional" />
+                              <xs:attribute name="Type" use="required">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Internal" />
+                                    <xs:enumeration value="Form" />
+                                    <xs:enumeration value="Application" />
+                                    <xs:enumeration value="Header" />
+                                    <xs:enumeration value="Method" />
+                                    <xs:enumeration value="Separator" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Target" type="xs:string" use="optional" />
+                              <xs:attribute name="Class" type="xs:string" use="optional"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:choice>
+                      </xs:sequence>
+                      <xs:attribute name="Content" type="xs:string" use="required" />
+                      <xs:attribute name="Name" type="xs:string" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element maxOccurs="unbounded" name="MenuHeader">
+                    <xs:complexType mixed="true">
+                      <xs:sequence minOccurs="0">
+                        <xs:choice maxOccurs="unbounded">
+                          <xs:element maxOccurs="unbounded" name="MenuItem">
+                            <xs:complexType mixed="true">
+                              <xs:sequence minOccurs="0">
+                                <xs:element name="Form">
+                                  <xs:complexType>
+                                    <xs:attribute name="Name" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="Content" type="xs:string" use="optional" />
+                              <xs:attribute name="Name" type="xs:string" use="optional" />
+                              <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                              <xs:attribute name="Type" use="required">
+                                <xs:simpleType>
+                                  <xs:restriction base="xs:string">
+                                    <xs:enumeration value="Internal" />
+                                    <xs:enumeration value="Form" />
+                                    <xs:enumeration value="Application" />
+                                    <xs:enumeration value="Header" />
+                                    <xs:enumeration value="Method" />
+                                    <xs:enumeration value="Separator" />
+                                  </xs:restriction>
+                                </xs:simpleType>
+                              </xs:attribute>
+                              <xs:attribute name="Target" type="xs:string" use="optional" />
+                              <xs:attribute name="Class" type="xs:string" use="optional"/>
+                            </xs:complextype>
+                          </xs:element>
+                        </xs:choice>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+              </xs:sequence>
+              <xs:attribute name="Content" type="xs:string" use="required" />
+              <xs:attribute name="Name" type="xs:string" use="required" />
+              <xs:attribute name="Application" type="xs:string" use="optional" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="FixedMenus" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

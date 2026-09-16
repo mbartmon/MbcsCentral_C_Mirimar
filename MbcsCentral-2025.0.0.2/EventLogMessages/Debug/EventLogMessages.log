@@ -1,0 +1,13 @@
+﻿Build started 12/22/2014 4:13:36 PM.
+     1>Project "C:\workfiles\MbcsCentral_C\EventLogMessages\EventLogMessages.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuildStep:
+         mc.exe -A "\.mc" -r "\res" -h ""
+         :VCEnd
+     1>mc : error : 0x2 trying to open file <\.mc>.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(202,5): error MSB3073: The command "mc.exe -A "\.mc" -r "\res" -h ""
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(202,5): error MSB3073: :VCEnd" exited with code 1.
+     1>Done Building Project "C:\workfiles\MbcsCentral_C\EventLogMessages\EventLogMessages.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.03

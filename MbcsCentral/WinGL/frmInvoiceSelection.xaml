@@ -1,0 +1,98 @@
+﻿<Window
+    x:Class="MbcsCentral.WinGL.frmInvoiceSelection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="formInvoiceSelection"
+    Title="Select Invoices for Payment"
+    Width="404.427"
+    Height="281.288"
+    FontSize="14"
+    FontWeight="Bold"
+    TextBlock.TextAlignment="Center"
+    mc:Ignorable="d">
+    <Grid
+        TextBlock.FontSize="11"
+        TextBlock.FontWeight="Normal"
+        TextBlock.TextAlignment="Center">
+        <Border
+            BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+            <StackPanel>
+                <StackPanel
+                    Margin="5"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="Pay all invoices with payment due date on or before:" />
+                    <DatePicker Name="dtDate" Margin="5,0,0,0" />
+                </StackPanel>
+                <GroupBox
+                    Margin="5"
+                    Padding="2"
+                    BorderThickness="3"
+                    Header="Force Discount?"
+                    TextBlock.FontSize="9"
+                    TextBlock.FontWeight="Bold">
+                    <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Normal">
+                        <TextBlock
+                            Margin="0,5,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="10"
+                            TextAlignment="Left">
+                            You can decide to take available discounts even if the payment due dates<LineBreak />
+                            have passed.<LineBreak />
+                            <LineBreak />
+                            Normally, if the payment due date has passed, discounts will<Bold>not</Bold>
+                            be taken.<LineBreak />
+                            However, you may choose to take the discounts anyway by checking this box:</TextBlock>
+                        <CheckBox
+                            Name="chkDiscounts"
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Content="Take" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
+                    Padding="5"
+                    BorderThickness="3"
+                    FontSize="9"
+                    Header="Selection Option"
+                    TextBlock.FontWeight="Bold"
+                    Visibility="Collapsed">
+                    <StackPanel TextBlock.FontSize="10" TextBlock.FontWeight="Normal">
+                        <RadioButton
+                            Name="optSelectOnly"
+                            VerticalAlignment="Center"
+                            Content="Select and add invoices to payment list."
+                            GroupName="grpSelect"
+                            IsChecked="True" />
+                        <RadioButton
+                            Name="optSelectClear"
+                            Margin="0,5,0,0"
+                            VerticalAlignment="Center"
+                            Content="Clear the list then select invoices."
+                            GroupName="grpSelect" />
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <Button
+                        Name="cmdProcess"
+                        VerticalAlignment="Center"
+                        Click="cmdProcess_Click"
+                        Content="PROCESS" />
+                    <Button
+                        Name="cmdExit"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        Click="cmdExit_Click"
+                        Content="EXIT" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

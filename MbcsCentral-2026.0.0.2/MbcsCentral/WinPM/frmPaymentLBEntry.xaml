@@ -1,0 +1,148 @@
+﻿
+<Window
+    x:Class="MbcsCentral.WinPM.frmPaymentLBEntry"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="FormfrmPaymentLBEntry"
+    Title="LockBox Processing"
+    Width="452.716"
+    Height="250.402"
+    Background="AliceBlue"
+    Closed="frmPaymentLBEntry_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmPaymentLBEntry_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox
+                Name="txtBanner"
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="LockBox Processing"
+                TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <!--  Place your content here  -->
+                <TabControl Name="Tab">
+                    <TabItem
+                        Name="tabProcess"
+                        Header="PROCESS"
+                        TextBlock.FontSize="10"
+                        TextBlock.FontWeight="Normal">
+                        <StackPanel Margin="15" TextBlock.FontSize="12">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Text="Processing Date: " />
+                                <DatePicker
+                                    Name="dtProcessingDate"
+                                    Width="125"
+                                    Margin="10,0,0,0"
+                                    SelectedDateFormat="Short" />
+                                <CheckBox
+                                    Name="chkFileDate"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Content="Use LockBox Deposit Date" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Name="lblLastFile"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Text="LockBox File: " />
+                                <TextBlock Text="Last File= "
+                                           FontWeight="Light"
+                                           VerticalAlignment="Center"
+                                           Margin="30,20,0,0"/>
+                                <TextBlock Name="txtLastFile"
+                                           Width="250"
+                                           FontWeight="Light"
+                                           TextAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="2,20,0,0"/>
+                            </StackPanel>
+                            <TextBox
+                                Name="txtLockBoxFile"
+                                Width="400"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <Button
+                                Name="cmdLockBoxFile"
+                                Width="{Binding ElementName=txtLockBoxFile, Path=ActualWidth}"
+                                HorizontalAlignment="Left"
+                                Click="cmdLockBoxFile_Click"
+                                Content="BROWSE" />
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem
+                        Name="tabReport"
+                        Header="REPORT"
+                        TextBlock.FontSize="10"
+                        TextBlock.FontWeight="Normal">
+                        <ListBox
+                            Name="lstReport"
+                            Width="{Binding ElementName=Tab, Path=ActualWidth}"
+                            Margin="0" 
+                            FontFamily="Courier New"
+                            FontSize="12"/>
+                    </TabItem>
+                    <TabItem Name="tabTransfer"
+                             Header="Lockbox File"
+                             TextBlock.FontSize="10"
+                             TextBlock.FontWeight="Normal">
+                        <ListBox
+                            Name="lstTransfer"
+                            Width="{Binding ElementName=Tab, Path=ActualWidth}"
+                            Margin="0"
+                            FontFamily="Courier New"
+                            FontSize="12"/>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,5,0,5"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdSave"
+                    Margin="10,0,0,0"
+                    Click="cmdSave_Click"
+                    Content="PROCESS" />
+                <Button
+                    Name="cmdClose"
+                    Margin="10,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CLOSE" />
+                <Button
+                    Name="cmdPrint"
+                    Margin="20,0,0,0"
+                    Click="cmdPrint_Click"
+                    Content="PRINT"
+                    Visibility="Collapsed" />
+                <Button
+                    Name="cmdCancel"
+                    Margin="20,0,0,0"
+                    Click="cmdCancel_Click"
+                    Content="CANCEL"
+                    Visibility="Collapsed"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

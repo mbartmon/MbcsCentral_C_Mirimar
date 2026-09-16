@@ -1,0 +1,4 @@
+INSERT INTO [dbo].StoredQueries (Name, Parameters, Query) VALUES('Apartments with Succession', ' ', 'SELECT CONCAT(pm_Tenants.[Building Number], [Tenant Number]), Apartment, pm_Building.[Address 1], [Tenant Name] FROM pm_Tenants, pm_Building WHERE pm_Tenants.[Building Number] = pm_Building.[Building Number] AND (pm_Tenants.Succeeded = 1 OR pm_Tenants.[SecondSuccession] = 1) ORDER BY pm_Tenants.[Building Number], pm_Tenants.[Tenant Number]')
+GO
+INSERT INTO [dbo].StoredQueries (Name, Parameters, Query) VALUES('Decontrolled Apartments', ' ', 'SELECT CONCAT(pm_Tenants.[Building Number], [Tenant Number]), Apartment, pm_Building.[Address 1], [Tenant Name] FROM pm_Tenants, pm_Building WHERE pm_Tenants.[Building Number] = pm_Building.[Building Number] AND pm_Tenants.Type = ''D'' ORDER BY pm_Tenants.[Building Number], pm_Tenants.[Tenant Number]')
+GO

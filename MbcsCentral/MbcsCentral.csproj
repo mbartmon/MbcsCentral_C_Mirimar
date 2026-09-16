@@ -1,0 +1,2318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.1.0.0.0-beta2\build\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.1.0.0.0-beta2\build\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.0.7.4091001-beta\build\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.0.7.4091001-beta\build\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.props')" />
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{B4EFC4CC-1E05-43C5-B2B5-71DA83DCE741}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MbcsCentral</RootNamespace>
+    <AssemblyName>MbcsCentral</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <MyType>Custom</MyType>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
+    <ShouldCreateLogs>False</ShouldCreateLogs>
+    <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>None.None.None.IncrementOnDemand</AssemblyVersionSettings>
+    <PrimaryVersionType>AssemblyInfoVersionAttribute</PrimaryVersionType>
+    <AssemblyFileVersionSettings>None.None.None.IncrementOnDemand</AssemblyFileVersionSettings>
+    <AssemblyInfoVersionSettings>None.None.None.IncrementOnDemand</AssemblyInfoVersionSettings>
+    <AssemblyInfoFilePath>Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
+    <AssemblyVersion>1.6.0.5</AssemblyVersion>
+    <UpdatePackageVersion>False</UpdatePackageVersion>
+    <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
+    <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>DEBUG;CODE_ANALYSIS;CODE_ANALYSIS;TRACE</DefineConstants>
+    <IncrementalBuild>true</IncrementalBuild>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>bin\Debug\MbcsCentral.XML</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>Mbcscentral.ruleset</CodeAnalysisRuleSet>
+    <Optimize>false</Optimize>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineConstants>
+    </DefineConstants>
+    <IncrementalBuild>false</IncrementalBuild>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>MbcsCentral.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>MbcsCentral.xml</DocumentationFile>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>MbcsCentral.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>City.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\MbcsCentral.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\MbcsCentral.XML</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>Mbcscentral.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>MbcsCentral.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Azure.Core, Version=1.47.1.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Core.1.47.1\lib\net472\Azure.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.Identity, Version=1.14.2.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Azure.Identity.1.14.2\lib\netstandard2.0\Azure.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\packages\Caliburn.Micro.Core.2.0.0\lib\net45\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform">
+      <HintPath>..\packages\Caliburn.Micro.2.0.0\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="ChilkatDotNet46, Version=9.5.0.52, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\Chilkat Software Inc\ChilkatDotNet46\ChilkatDotNet46.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorFont">
+      <HintPath>..\..\ColorFont\ColorFont\bin\Debug\ColorFont.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MbcsUtils\CSharp\bin\Debug\CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="DirectoryInfoEx">
+      <HintPath>..\packages\DirectoryInfoEx.0.25.0\lib\net45\DirectoryInfoEx.dll</HintPath>
+    </Reference>
+    <Reference Include="DropNet">
+      <HintPath>..\packages\DropNet.1.9.6\lib\net40\DropNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DumpExtensions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DumpExtensions.2.0.0\lib\net45\DumpExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Email.Net, Version=1.0.0.33423, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Email.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ExifLib">
+      <HintPath>..\packages\ExifLib.1.5.1.0\lib\net40\ExifLib.dll</HintPath>
+    </Reference>
+    <Reference Include="GemBox.Document, Version=27.3.30.1043, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\GemBox Software\GemBox.Document 2.7\Bin\GemBox.Document.dll</HintPath>
+    </Reference>
+    <Reference Include="IllusoryStudios.Wpf.LostControls, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MbcsScanAquire\bin\x64\Debug\IllusoryStudios.Wpf.LostControls.dll</HintPath>
+    </Reference>
+    <Reference Include="MbcsMail, Version=1.0.0.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MbcsMail\MbcsMail\bin\x86\Debug\MbcsMail.dll</HintPath>
+    </Reference>
+    <Reference Include="MbcsScanAquire">
+      <HintPath>..\MbcsScanAquire\bin\Debug\MbcsScanAquire.exe</HintPath>
+    </Reference>
+    <Reference Include="MBCSsmtp">
+      <HintPath>..\..\MBCSsmtp\bin\Debug\MBCSsmtp.dll</HintPath>
+    </Reference>
+    <Reference Include="MbcsUtils_C">
+      <HintPath>..\..\MbcsUtils_C\bin\Debug\MbcsUtils_C.dll</HintPath>
+    </Reference>
+    <Reference Include="MbcsWpfControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MbcsWpfControls\MbcsWpfControls\bin\Debug\MbcsWpfControls.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroLog.Platform">
+      <HintPath>..\packages\MetroLog.0.8.6\lib\net45\MetroLog.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.Cryptography, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Cryptography.8.0.0\lib\net462\Microsoft.Bcl.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.ConnectionUI.Sample.VB, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\DataConnectionDialog\Sample.VB\bin\Debug\Microsoft.Data.ConnectionUI.Sample.VB.exe</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.SqlClient, Version=6.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.SqlClient.6.1.3\lib\net462\Microsoft.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Sql.BatchParser, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.Data.Tools.Sql.BatchParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=8.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.8.0.1\lib\net462\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.3, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.3\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.8.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client, Version=4.73.1.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Identity.Client.4.73.1\lib\net472\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client.Extensions.Msal, Version=4.73.1.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Identity.Client.Extensions.Msal.4.73.1\lib\netstandard2.0\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.7.7.1\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.7.7.1\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.7.7.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.7.7.1\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.7.7.1\lib\net472\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.7.7.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook">
+      <HintPath>E:\Program Files (x86)\Microsoft Office\root\Office16\ADDINS\Microsoft Power Query for Excel Integrated\bin\Microsoft.Office.Interop.Outlook.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dmf, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Dmf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dmf.Common, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Dmf.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Collector, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.Collector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.CollectorEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.CollectorEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.HadrData, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.HadrData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.HadrModel, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.HadrModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.RegisteredServers, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.RegisteredServers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.SqlScriptPublish, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.SqlScriptPublish.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Utility">
+      <HintPath>D:\Assemblies\Microsoft.SqlServer.Management.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.UtilityEnum">
+      <HintPath>D:\Assemblies\Microsoft.SqlServer.Management.UtilityEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEvent, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.XEvent.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventDbScoped, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.XEventDbScoped.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventDbScopedEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.XEventDbScopedEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Management.XEventEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.PolicyEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.PolicyEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.RegSvrEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Replication">
+      <HintPath>D:\Assemblies\Microsoft.SqlServer.Replication.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ServiceBrokerEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.ServiceBrokerEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SmoExtended, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.SmoExtended.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlClrProvider, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.SqlClrProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlWmiManagement, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.SqlWmiManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SString">
+      <HintPath>D:\Assemblies\Microsoft.SqlServer.SString.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MbcsCentral_NOW\MbcsCentral\bin\Debug\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=18.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.181.36.0\lib\net472\Microsoft.SqlServer.WmiEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Synchronization, Version=2.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Synchronization\2.1.0.0__89845dcd8080cc91\Microsoft.Synchronization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Synchronization.Data, Version=3.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Synchronization.Data\3.1.0.0__89845dcd8080cc91\Microsoft.Synchronization.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Synchronization.Data.Server, Version=3.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Synchronization.Data.Server\3.1.0.0__89845dcd8080cc91\Microsoft.Synchronization.Data.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Synchronization.Data.SqlServerCe, Version=3.1.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Synchronization.Data.SqlServerCe\3.1.0.0__89845dcd8080cc91\Microsoft.Synchronization.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net45\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MBCS.ControlLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MBCS.ControlLib\bin\Debug\MBCS.ControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MbcsUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MbcsUtils\MbcsUtils\bin\Debug\MbcsUtils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.ConnectionUI, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DataConnectionDialog\ConnectionUI\bin\Debug\Microsoft.Data.ConnectionUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.ConnectionUI.Dialog, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DataConnectionDialog\ConnectionUIDialog\bin\Debug\Microsoft.Data.ConnectionUI.Dialog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.4.0.0, Culture=neutral, PublicKeyToken=0d013ddd5178a2ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\TaskScheduler.2.4.0\lib\net40\Microsoft.Win32.TaskScheduler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel">
+      <HintPath>..\..\MigraDoc\code\MigraDoc.Rendering\bin\Debug\MigraDoc.DocumentObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering">
+      <HintPath>..\..\MigraDoc\code\MigraDoc.Rendering\bin\Debug\MigraDoc.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="ObjectDumper, Version=1.0.0.12, Culture=neutral, PublicKeyToken=9e2fabf3af85dba9, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectDumper.1.0.0.12\lib\net35-Client\ObjectDumper.dll</HintPath>
+    </Reference>
+    <Reference Include="Pdf2Image">
+      <HintPath>..\..\SuperPDF2Image\Pdf2Image.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp-WPF">
+      <HintPath>..\IntallFiles\PdfSharp 1.31\PdfSharp-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Xps, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\TestProjects\PDFsharp_1_3_1\PDFsharp\code\PdfSharp.Xps\bin\Release\PdfSharp.Xps.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Quartz">
+      <HintPath>..\CommonDLLS\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="QueryBuilder">
+      <HintPath>..\..\MbcsUtils\QueryBuilder\bin\Debug\QueryBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License">
+      <HintPath>bin\Debug\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>bin\Debug\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ClientModel, Version=1.5.1.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ClientModel.1.5.1\lib\netstandard2.0\System.ClientModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.7.7.1\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.AccessControl.5.0.0\lib\net461\System.IO.FileSystem.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory.Data, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.Data.8.0.1\lib\net462\System.Memory.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.10\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Net.Json">
+      <HintPath>.\System.Net.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.8.0.1\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.ProtectedData, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.ProtectedData.4.5.0\lib\net461\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.5, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.5\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.2.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="VIBlend.WPF.Editors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5f568d4f9cd901f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\VIBlend\WPF Controls v.5.0\VIBlend.WPF.Editors.dll</HintPath>
+    </Reference>
+    <Reference Include="Vintasoft.Twain, Version=10.3.2.1, Culture=neutral, PublicKeyToken=153caf29a10d2e31, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\VintaSoft\VintaSoft Twain .NET v10.3\Bin-Registered-Signed\DotNet4\AnyCPU\Vintasoft.Twain.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfBindingErrors, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfBindingErrors.1.1.0\lib\net46\WpfBindingErrors.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFMessageBox">
+      <HintPath>..\..\..\Temp\WPFMessageBox\WPFMessageBox\bin\Debug\WPFMessageBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\ExtendedWPFToolkit\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\ExtendedWPFToolkit\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\ExtendedWPFToolkit\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\ExtendedWPFToolkit\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\ExtendedWPFToolkit\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable">
+      <HintPath>..\packages\Zlib.Portable.1.9.2\lib\portable-net4+sl4+wp71+win8\Zlib.Portable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts.cs" />
+    <Compile Include="ClientEmails.cs" />
+    <Compile Include="clsDbOle.cs" />
+    <Compile Include="DatabaseEdit\SqlCreateSchemaAndTables.cs" />
+    <Compile Include="DatabaseEdit\Data\DataObject.cs" />
+    <Compile Include="DatabaseEdit\Data\DataTransfer.cs" />
+    <Compile Include="DatabaseEdit\Schema\SqlObject.cs" />
+    <Compile Include="DatabaseEdit\Schema\SqlTransfer.cs" />
+    <Compile Include="DataGridCustom.cs" />
+    <Compile Include="DirectPrint.cs" />
+    <Compile Include="DocumentClasses.cs" />
+    <Compile Include="Email\EmailMessage.cs" />
+    <Compile Include="Email\frmAccountAddEdit.xaml.cs">
+      <DependentUpon>frmAccountAddEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Email\frmChooseEmailAccount.xaml.cs">
+      <DependentUpon>frmChooseEmailAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Email\frmEmailAttachment.xaml.cs">
+      <DependentUpon>frmEmailAttachment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Email\frmSmtpConfigurator.xaml.cs">
+      <DependentUpon>frmSmtpConfigurator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Email\MailTags.cs" />
+    <Compile Include="Email\SmtpConfig.cs" />
+    <Compile Include="Email\Utils.cs" />
+    <Compile Include="DatabaseEdit\frmDatabaseScripts.xaml.cs">
+      <DependentUpon>frmDatabaseScripts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocumentAquire.xaml.cs">
+      <DependentUpon>frmDocumentAquire.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmVendorNoticesEmail.xaml.cs">
+      <DependentUpon>frmVendorNoticesEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility Classes\BackgroundTasks.cs" />
+    <Compile Include="Utility Classes\EnumBindingSourceExtension.cs" />
+    <Compile Include="Utility Classes\frmNachaLayout.xaml.cs">
+      <DependentUpon>frmNachaLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\HelpProvider.cs" />
+    <Compile Include="Utility Classes\NACHA_Layout.cs" />
+    <Compile Include="PopupKeyboard\PopupKeyboard.xaml.cs" />
+    <Compile Include="QueryProcessor\frmQueryBuilder.xaml.cs">
+      <DependentUpon>frmQueryBuilder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryProcessor\frmProcedureEdit.xaml.cs">
+      <DependentUpon>frmProcedureEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\DocumentFromFIle.xaml.cs">
+      <DependentUpon>DocumentFromFIle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\EmailAccountsConfiguration.xaml.cs">
+      <DependentUpon>EmailAccountsConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\EmailOverview.xaml.cs">
+      <DependentUpon>EmailOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\frmHelp.xaml.cs">
+      <DependentUpon>frmHelp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\QueryEditor.xaml.cs">
+      <DependentUpon>QueryEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryProcessor\StoredQueries.cs" />
+    <Compile Include="QueryProcessor\Where.cs" />
+    <Compile Include="SqlDbCloner\ChooseConnections.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SqlDbCloner\ChooseConnections.Designer.cs">
+      <DependentUpon>ChooseConnections.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlDbCloner\CopyData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SqlDbCloner\CopyData.Designer.cs">
+      <DependentUpon>CopyData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlDbCloner\CopySchema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SqlDbCloner\CopySchema.Designer.cs">
+      <DependentUpon>CopySchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlDbCloner\Core\Data\DataObject.cs" />
+    <Compile Include="SqlDbCloner\Core\Data\DataTransfer.cs" />
+    <Compile Include="SqlDbCloner\Core\Schema\SqlObject.cs" />
+    <Compile Include="SqlDbCloner\Core\Schema\SqlTransfer.cs" />
+    <Compile Include="SqlDbCloner\SelectSchema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SqlDbCloner\SelectSchema.Designer.cs">
+      <DependentUpon>SelectSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility Classes\TabContent.cs" />
+    <Compile Include="Utility Classes\frmLogViewer.xaml.cs">
+      <DependentUpon>frmLogViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportDispatcher.xaml.cs">
+      <DependentUpon>frmReportDispatcher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportList.xaml.cs">
+      <DependentUpon>frmReportList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmWait.xaml.cs">
+      <DependentUpon>frmWait.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility Classes\frmMbcsCentralService.xaml.cs">
+      <DependentUpon>frmMbcsCentralService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility Classes\frmProgressWindow.xaml.cs">
+      <DependentUpon>frmProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utility Classes\ServiceParms.cs" />
+    <Compile Include="Utility Classes\ServicesControl.cs" />
+    <Compile Include="WinGL\BankReconCompanies.cs" />
+    <Compile Include="WinGL\frmACHGenerate.xaml.cs">
+      <DependentUpon>frmACHGenerate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmAchSelectReport.xaml.cs">
+      <DependentUpon>frmAchSelectReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmCheckNumbers.xaml.cs">
+      <DependentUpon>frmCheckNumbers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmCheckRegisterEditNew.xaml.cs" />
+    <Compile Include="WinGL\frmInvoiceNew.xaml.cs">
+      <DependentUpon>frmInvoiceNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmVendorAchReport.xaml.cs">
+      <DependentUpon>frmVendorAchReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmVendorsEmail.xaml.cs">
+      <DependentUpon>frmVendorsEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\TransactionProcessing\frmTransactionResearch.xaml.cs">
+      <DependentUpon>frmTransactionResearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmVendorDupes.xaml.cs">
+      <DependentUpon>frmVendorDupes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmVendorSpreadsheet.xaml.cs">
+      <DependentUpon>frmVendorSpreadsheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\InvoiceList.cs" />
+    <Compile Include="WinGL\Reports\DistributionReport.cs" />
+    <Compile Include="WinGL\Reports\frmDisbursementReport.xaml.cs">
+      <DependentUpon>frmDisbursementReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\AgingReport.cs" />
+    <Compile Include="WinPM\BuildingMsg.cs" />
+    <Compile Include="WinPM\frmChargeCodesInternal.xaml.cs">
+      <DependentUpon>frmChargeCodesInternal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmPaymentLBEntry.xaml.cs">
+      <DependentUpon>frmPaymentLBEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmTenantDocuments.xaml.cs">
+      <DependentUpon>frmTenantDocuments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\GlChargeDispatcher.cs" />
+    <Compile Include="Utility Classes\MessageBoxCustom.cs" />
+    <Compile Include="Utility Classes\MessageBoxCustomWindow.xaml.cs">
+      <DependentUpon>MessageBoxCustomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinDoc\Interface.cs" />
+    <Compile Include="WinGL\ArTrans.cs" />
+    <Compile Include="WinGL\TransactionProcessing\frmARTrans.xaml.cs">
+      <DependentUpon>frmARTrans.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\1099Report.cs" />
+    <Compile Include="WinGL\Reports\frm1099Report.xaml.cs">
+      <DependentUpon>frm1099Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmCloseYear.xaml.cs">
+      <DependentUpon>frmCloseYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\PayrollReport.cs" />
+    <Compile Include="WinGL\Reports\frmPrReport.xaml.cs">
+      <DependentUpon>frmPrReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\CheckReconReport.cs" />
+    <Compile Include="WinGL\frmAccountBalances.xaml.cs">
+      <DependentUpon>frmAccountBalances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmBankReconciliation.xaml.cs">
+      <DependentUpon>frmBankReconciliation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\frmTrialBalance.xaml.cs">
+      <DependentUpon>frmTrialBalance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\frmBalanceSheet.xaml.cs">
+      <DependentUpon>frmBalanceSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\AccountMasterReport.cs" />
+    <Compile Include="WinGL\AccountRanges.cs" />
+    <Compile Include="WinGL\Accounts.cs" />
+    <Compile Include="WinGL\ApChecks.cs" />
+    <Compile Include="WinGL\ApTrans.cs" />
+    <Compile Include="WinGL\Balances.cs" />
+    <Compile Include="WinGL\Reports\BalanceSheet.cs" />
+    <Compile Include="WinGL\BatchInvoices\BatchInvoiceOptions.cs" />
+    <Compile Include="WinGL\BatchInvoices\BatchControl.cs" />
+    <Compile Include="WinGL\BatchInvoices\BatchInvoiceReport.cs" />
+    <Compile Include="WinGL\BatchInvoices\frmInvoiceNumber.xaml.cs">
+      <DependentUpon>frmInvoiceNumber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\BatchJrnEntries.cs" />
+    <Compile Include="WinGL\BatchJrnHeader.cs" />
+    <Compile Include="WinGL\Reports\BatchReports.cs" />
+    <Compile Include="WinGL\Reports\BatchRptList.cs" />
+    <Compile Include="WinGL\Budgets.cs" />
+    <Compile Include="WinGL\Category.cs" />
+    <Compile Include="WinGL\CategoryHierarchy.cs" />
+    <Compile Include="WinGL\CheckNumbers.cs" />
+    <Compile Include="WinGL\Reports\CheckRegister.cs" />
+    <Compile Include="WinGL\Company.cs" />
+    <Compile Include="WinGL\Control.cs" />
+    <Compile Include="WinGL\Department.cs" />
+    <Compile Include="WinGL\frmAccountRanges.xaml.cs">
+      <DependentUpon>frmAccountRanges.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmAPLaser.xaml.cs">
+      <DependentUpon>frmAPLaser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\BatchInvoices\frmBatchInvoices.xaml.cs">
+      <DependentUpon>frmBatchInvoices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmBatchReports.xaml.cs">
+      <DependentUpon>frmBatchReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\frmCheckRegSelection.xaml.cs">
+      <DependentUpon>frmCheckRegSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmJournalDesign.xaml.cs">
+      <DependentUpon>frmJournalDesign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\frmJournalReport.xaml.cs">
+      <DependentUpon>frmJournalReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\frmOperatingStatement.xaml.cs">
+      <DependentUpon>frmOperatingStatement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmOptions.xaml.cs">
+      <DependentUpon>frmOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\JournalReport.cs" />
+    <Compile Include="WinGL\Reports\JournalReportsTable.cs" />
+    <Compile Include="WinGL\Reports\OperatingStatement.cs" />
+    <Compile Include="WinGL\ParameterClasses.cs" />
+    <Compile Include="WinGL\TransactionProcessing\frmBatchJournalEdit.xaml.cs">
+      <DependentUpon>frmBatchJournalEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmCategoriesAccounts.xaml.cs">
+      <DependentUpon>frmCategoriesAccounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmCompaniesDepartments.xaml.cs">
+      <DependentUpon>frmCompaniesDepartments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmCompany.xaml.cs">
+      <DependentUpon>frmCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmDepartment.xaml.cs">
+      <DependentUpon>frmDepartment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\frmGeneralLedger.xaml.cs">
+      <DependentUpon>frmGeneralLedger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmInvoiceList.xaml.cs">
+      <DependentUpon>frmInvoiceList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmInvoiceSelection.xaml.cs">
+      <DependentUpon>frmInvoiceSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmInvoiceSelectionReport.xaml.cs">
+      <DependentUpon>frmInvoiceSelectionReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmInvoiceSelections.xaml.cs">
+      <DependentUpon>frmInvoiceSelections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmJournalNames.xaml.cs">
+      <DependentUpon>frmJournalNames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmLaserChk.xaml.cs">
+      <DependentUpon>frmLaserChk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinGL\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmMemos.xaml.cs">
+      <DependentUpon>frmMemos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmMoveDepartment.xaml.cs">
+      <DependentUpon>frmMoveDepartment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmPrintChecks.xaml.cs">
+      <DependentUpon>frmPrintChecks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\TransactionProcessing\frmTransactionEntry.xaml.cs">
+      <DependentUpon>frmTransactionEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmVendorAllocations.xaml.cs">
+      <DependentUpon>frmVendorAllocations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\frmVendors.xaml.cs">
+      <DependentUpon>frmVendors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\Reports\GeneralLedgerReport.cs" />
+    <Compile Include="WinGL\BatchInvoices\InvBatchDistributions.cs" />
+    <Compile Include="WinGL\InvoiceDistributions.cs" />
+    <Compile Include="WinGL\InvoiceHistory.cs" />
+    <Compile Include="WinGL\Invoices.cs" />
+    <Compile Include="WinGL\BatchInvoices\InvoicesBatch.cs" />
+    <Compile Include="WinGL\InvoiceSelection.cs" />
+    <Compile Include="WinGL\InvoiceSelectionReport.cs" />
+    <Compile Include="WinGL\JournalNames.cs" />
+    <Compile Include="WinGL\Journals.cs" />
+    <Compile Include="WinGL\Memos.cs" />
+    <Compile Include="WinGL\OpStmt.cs" />
+    <Compile Include="WinGL\PRaccounts.cs" />
+    <Compile Include="WinGL\TransactionProcessing\frmAPTrans.xaml.cs">
+      <DependentUpon>frmAPTrans.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\TransactionProcessing\frmTransactionEdit.xaml.cs">
+      <DependentUpon>frmTransactionEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinGL\TransactionProcessing\TransactionEditList.cs" />
+    <Compile Include="WinGL\Transactions.cs" />
+    <Compile Include="WinGL\Transactiontemp.cs" />
+    <Compile Include="WinGL\Reports\TrialBalance.cs" />
+    <Compile Include="WinGL\VendorAllocations.cs" />
+    <Compile Include="WinGL\VendorCategories.cs" />
+    <Compile Include="WinGL\VendorMemos.cs" />
+    <Compile Include="WinGL\Vendors.cs" />
+    <Compile Include="WinGL\WinglGlobal.cs" />
+    <Compile Include="WinPM\frmNoticesEmail.xaml.cs">
+      <DependentUpon>frmNoticesEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\Lockbox.cs" />
+    <Compile Include="WinPM\LockboxHistory.cs" />
+    <Compile Include="WinPM\LockBoxProcessReport.cs" />
+    <Compile Include="WinPM\RentRollForMortgages.cs" />
+    <Compile Include="WinPM\SpecialReports\frmRentRollMortgages.xaml.cs">
+      <DependentUpon>frmRentRollMortgages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\StmtLaser2.cs" />
+    <Compile Include="WinPM\BankTenantDocumentsPrint.cs" />
+    <Compile Include="WinPM\TenantDocumentsPrint.cs" />
+    <Compile Include="WinPM\WinpmGlobal.cs" />
+    <Compile Include="WinTRM\BindingClasses.cs" />
+    <Compile Include="WinTRM\EmailMessage.cs" />
+    <Compile Include="WinTRM\frmRecipient.xaml.cs">
+      <DependentUpon>frmRecipient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinTRM\frmRecipientEdit.xaml.cs">
+      <DependentUpon>frmRecipientEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinTRM\frmRecipientImports.xaml.cs">
+      <DependentUpon>frmRecipientImports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinTRM\frmRecipientMaster.xaml.cs">
+      <DependentUpon>frmRecipientMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinTRM\frmRecipListSelect.xaml.cs">
+      <DependentUpon>frmRecipListSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinTRM\GlobalShared.cs" />
+    <Compile Include="WinTRM\Help\Help.xaml.cs" />
+    <Compile Include="WinTRM\Help\HelpFilters.xaml.cs" />
+    <Compile Include="WinTRM\Help\HelpMain.xaml.cs" />
+    <Compile Include="WinTRM\MessageSchedule.cs" />
+    <Compile Include="WinTRM\RecipientMaster.cs" />
+    <Compile Include="WinTRM\Recipients.cs" />
+    <Compile Include="WinTRM\StringUtils.cs" />
+    <Compile Include="WinTRM\Utils.cs" />
+    <Compile Include="WinTRM\WaitWindow.xaml.cs">
+      <DependentUpon>WaitWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ApplicationAssignments.cs" />
+    <Compile Include="Applications.cs" />
+    <Compile Include="Classes.cs" />
+    <Compile Include="ClientRecord.cs" />
+    <Compile Include="Converters\BoolConverters.cs" />
+    <Compile Include="Converters\EnumConverters.cs" />
+    <Compile Include="DatabaseEdit\frmDatabases.xaml.cs">
+      <DependentUpon>frmDatabases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseEdit\frmDatabasesEdit.xaml.cs">
+      <DependentUpon>frmDatabasesEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataMigration\MigrationWindow.xaml.cs" />
+    <Compile Include="DbControl.cs" />
+    <Compile Include="DocumentCategories.cs" />
+    <Compile Include="DocumentLayoutFieldMaster.cs" />
+    <Compile Include="DocumentLayoutFields.cs" />
+    <Compile Include="DocumentLayoutList.cs" />
+    <Compile Include="docViewerControl.xaml.cs">
+      <DependentUpon>docViewerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DragCanvas.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="ExternalApplications.cs" />
+    <Compile Include="frmAccount.xaml.cs">
+      <DependentUpon>frmAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmAccountManagement.xaml.cs">
+      <DependentUpon>frmAccountManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseEdit\frmDatabaseBackup.xaml.cs">
+      <DependentUpon>frmDatabaseBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocumentLayout.xaml.cs">
+      <DependentUpon>frmDocumentLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmExternalApplications.xaml.cs">
+      <DependentUpon>frmExternalApplications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmGroup.xaml.cs">
+      <DependentUpon>frmGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintDialog.xaml.cs">
+      <DependentUpon>frmPrintDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QueryProcessor\frmProcedures.xaml.cs">
+      <DependentUpon>frmProcedures.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerify.xaml.cs">
+      <DependentUpon>frmVerify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\Contents.xaml.cs">
+      <DependentUpon>Contents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\DocumentAquisition.xaml.cs">
+      <DependentUpon>DocumentAquisition.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\DocumentOverview.xaml.cs">
+      <DependentUpon>DocumentOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\HelpMain.xaml.cs">
+      <DependentUpon>HelpMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NumberEntry.cs" />
+    <Compile Include="TreeViewItemProps.cs" />
+    <Compile Include="VisualTreeEnumeration.cs" />
+    <Compile Include="WinDoc\Documents.cs" />
+    <Compile Include="VisualExtensions.cs" />
+    <Compile Include="WinPM\frmSecTrans.xaml.cs">
+      <DependentUpon>frmSecTrans.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmSecurityCodes.xaml.cs">
+      <DependentUpon>frmSecurityCodes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\MaintenanceReport.cs" />
+    <Compile Include="WinPM\NewLeaseLetter.cs" />
+    <Compile Include="WinPM\WinDocRetrieval.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WinPM\FormControl.xaml.cs">
+      <DependentUpon>FormControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmAddTenant.xaml.cs">
+      <DependentUpon>frmAddTenant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmTenantLabels.xaml.cs">
+      <DependentUpon>frmTenantLabels.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmTypeCodes.xaml.cs">
+      <DependentUpon>frmTypeCodes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupMembers.cs" />
+    <Compile Include="Groups.cs" />
+    <Compile Include="PermissionSets.cs" />
+    <Compile Include="Registry.cs" />
+    <Compile Include="WinPM\frmNotices.xaml.cs">
+      <DependentUpon>frmNotices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\FutureRents.cs" />
+    <Compile Include="WinPM\GLTable.cs" />
+    <Compile Include="WinPM\GlTableList.cs" />
+    <Compile Include="WinPM\GLTransactions.cs" />
+    <Compile Include="WinPM\LateNotices.cs" />
+    <Compile Include="WinPM\PreferredReport.cs" />
+    <Compile Include="WinPM\ArrearsReport.cs" />
+    <Compile Include="BackgroundTasks.cs" />
+    <Compile Include="CallFormParms.cs" />
+    <Compile Include="Clients.cs" />
+    <Compile Include="clsDB.cs" />
+    <Compile Include="ControlPanel.xaml.cs">
+      <DependentUpon>ControlPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\NumericConverters.cs" />
+    <Compile Include="Converters\StringConverters.cs" />
+    <Compile Include="DataMigration\ConverterControl.cs" />
+    <Compile Include="DataMigration\frmProgress.xaml.cs" />
+    <Compile Include="DataMigration\ProcessTables.cs" />
+    <Compile Include="DataMigration\Table.cs" />
+    <Compile Include="frmConfiguration.xaml.cs">
+      <DependentUpon>frmConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmDbTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDbTransfer.Designer.cs">
+      <DependentUpon>frmDbTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.xaml.cs">
+      <DependentUpon>frmLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuEdit.xaml.cs">
+      <DependentUpon>frmMenuEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuFont.xaml.cs">
+      <DependentUpon>frmMenuFont.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmReport.xaml.cs">
+      <DependentUpon>frmReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportViewer.xaml.cs">
+      <DependentUpon>frmReportViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\BuildingMaster.cs" />
+    <Compile Include="WinPM\frmLeaseLetter.xaml.cs">
+      <DependentUpon>frmLeaseLetter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmPreferredRent.xaml.cs">
+      <DependentUpon>frmPreferredRent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmReportSelections.xaml.cs">
+      <DependentUpon>frmReportSelections.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmTenantsOld.xaml.cs">
+      <DependentUpon>frmTenantsOld.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalShared.cs" />
+    <Compile Include="HelperMethods.cs" />
+    <Compile Include="ListItem.cs" />
+    <Compile Include="LogClass.cs" />
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Manager.cs" />
+    <Compile Include="MenuEntry.cs" />
+    <Compile Include="permission.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Startup.xaml.cs">
+      <DependentUpon>Startup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs" />
+    <Compile Include="user_permissions.cs" />
+    <Compile Include="WaitWindow.xaml.cs">
+      <DependentUpon>WaitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\ChargeCodes.cs" />
+    <Compile Include="WinPM\Charges.cs" />
+    <Compile Include="WinPM\frmBatches.xaml.cs">
+      <DependentUpon>frmBatches.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmChargeCodes.xaml.cs">
+      <DependentUpon>frmChargeCodes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmEOM.xaml.cs">
+      <DependentUpon>frmEOM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmPaymentDetails.xaml.cs">
+      <DependentUpon>frmPaymentDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmPaymentRegister.xaml.cs">
+      <DependentUpon>frmPaymentRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmStmtLaser.xaml.cs">
+      <DependentUpon>frmStmtLaser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmStmtMessages.xaml.cs">
+      <DependentUpon>frmStmtMessages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\LeaseExpirationReport.cs" />
+    <Compile Include="WinPM\LegalMsg.cs" />
+    <Compile Include="WinPM\OwnerMaster.cs" />
+    <Compile Include="WinPM\PaymentRegister.cs" />
+    <Compile Include="WinPM\Control.cs" />
+    <Compile Include="WinPM\frmBuilding.xaml.cs">
+      <DependentUpon>frmBuilding.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmCharge.xaml.cs">
+      <DependentUpon>frmCharge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmCharges.xaml.cs">
+      <DependentUpon>frmCharges.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmChooseTenant.xaml.cs">
+      <DependentUpon>frmChooseTenant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmHistoryDisplay.xaml.cs">
+      <DependentUpon>frmHistoryDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmImprovementEdit.xaml.cs">
+      <DependentUpon>frmImprovementEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmMaintenance.xaml.cs">
+      <DependentUpon>frmMaintenance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmMaintenanceEdit.xaml.cs">
+      <DependentUpon>frmMaintenanceEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmMoveBuilding.xaml.cs">
+      <DependentUpon>frmMoveBuilding.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmOwner.xaml.cs">
+      <DependentUpon>frmOwner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmOwnersBuildings.xaml.cs">
+      <DependentUpon>frmOwnersBuildings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmPaymentEntry.xaml.cs">
+      <DependentUpon>frmPaymentEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmStatusReport.xaml.cs">
+      <DependentUpon>frmStatusReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmTenant.xaml.cs">
+      <DependentUpon>frmTenant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmTenants.xaml.cs">
+      <DependentUpon>frmTenants.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\frmVacate.xaml.cs">
+      <DependentUpon>frmVacate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinPM\Histmast.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WinPM\HistoryChg.cs" />
+    <Compile Include="WinPM\HistoryDisplay.cs" />
+    <Compile Include="WinPM\HistPay.cs" />
+    <Compile Include="WinPM\Improvements.cs" />
+    <Compile Include="WinPM\Legal.cs" />
+    <Compile Include="WinPM\Maintenance.cs" />
+    <Compile Include="WinPM\Occupants.cs" />
+    <Compile Include="WinPM\Building.cs" />
+    <Compile Include="WinPM\Owners.cs" />
+    <Compile Include="WinPM\PaymentEntries.cs" />
+    <Compile Include="WinPM\Payments.cs" />
+    <Compile Include="WinPM\Paytemp.cs" />
+    <Compile Include="WinPM\PreferredRentWS.cs" />
+    <Compile Include="WinPM\PrefRentDoc.cs" />
+    <Compile Include="WinPM\ProcessEOM.cs" />
+    <Compile Include="WinPM\PromptPayDoc.cs" />
+    <Compile Include="WinPM\SelectChargeReport.cs" />
+    <Compile Include="WinPM\StatGroups.cs" />
+    <Compile Include="WinPM\StatusReport.cs" />
+    <Compile Include="WinPM\STCodes.cs" />
+    <Compile Include="WinPM\StmtLaser.cs" />
+    <Compile Include="WinPM\STRates.cs" />
+    <Compile Include="WinPM\STTenants.cs" />
+    <Compile Include="WinPM\STTrans.cs" />
+    <Compile Include="WinPM\TenantCalcFields.cs" />
+    <Compile Include="WinPM\TenantMaster.cs" />
+    <Compile Include="WinPM\TenantPhoneList.cs" />
+    <Compile Include="WinPM\Tenants.cs" />
+    <Compile Include="WinPM\TenantsArchive.cs" />
+    <Compile Include="WinPM\TenantsSnapShot.cs" />
+    <Compile Include="WinPM\TypeMsg.cs" />
+    <Compile Include="WinPM\Types.cs" />
+    <Compile Include="WinPM\VacancyList.cs" />
+    <Page Include="ControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DatabaseEdit\frmDatabases.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DatabaseEdit\frmDatabasesEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataMigration\frmProgress.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataMigration\MigrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="docViewerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Email\frmAccountAddEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Email\frmChooseEmailAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Email\frmEmailAttachment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Email\frmSmtpConfigurator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmAccountManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DatabaseEdit\frmDatabaseBackup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DatabaseEdit\frmDatabaseScripts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmDocumentAquire.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="frmDocumentLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmExternalApplications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmVendorNoticesEmail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utility Classes\frmNachaLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupKeyboard\PopupKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QueryProcessor\frmQueryBuilder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QueryProcessor\frmProcedureEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\DocumentFromFIle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\EmailAccountsConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\EmailOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\frmHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\QueryEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utility Classes\frmLogViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmMenuEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmMenuFont.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="frmPrintDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QueryProcessor\frmProcedures.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="frmReportDispatcher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmReportList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmReportViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmVerify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frmWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\Contents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\DocumentAquisition.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\DocumentOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\HelpMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\HelpStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utility Classes\frmMbcsCentralService.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utility Classes\frmProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utility Classes\MessageBoxCustomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\BatchInvoices\frmInvoiceNumber.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmACHGenerate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmAchSelectReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmCheckNumbers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmCheckRegisterEditNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmInvoiceNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmVendorAchReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmVendorsEmail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\TransactionProcessing\frmTransactionResearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmVendorDupes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmVendorSpreadsheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frmDisbursementReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\TransactionProcessing\frmARTrans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frm1099Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmAccountBalances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmAccountRanges.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmAPLaser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\BatchInvoices\frmBatchInvoices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmBankReconciliation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmCloseYear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frmPrReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frmTrialBalance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frmBalanceSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmBatchReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frmCheckRegSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmJournalDesign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frmJournalReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\Reports\frmOperatingStatement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\TransactionProcessing\frmBatchJournalEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmCategoriesAccounts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmCompaniesDepartments.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmCompany.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmDepartment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\Reports\frmGeneralLedger.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmInvoiceList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmInvoiceSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmInvoiceSelectionReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmInvoiceSelections.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmJournalNames.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmLaserChk.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmMemos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmMoveDepartment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmPrintChecks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\TransactionProcessing\frmTransactionEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\frmVendorAllocations.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\frmVendors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinGL\TransactionProcessing\frmAPTrans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinGL\TransactionProcessing\frmTransactionEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\FormControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmAddTenant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmChargeCodesInternal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmNoticesEmail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmPaymentLBEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmSecTrans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmSecurityCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmTenantDocuments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmTenantLabels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmTypeCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmLeaseLetter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmNotices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmPreferredRent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinPM\frmReportSelections.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmTenantsOld.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Startup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WaitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmBatches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmBuilding.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmCharge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmChargeCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmCharges.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmChooseTenant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmEOM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmHistoryDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmImprovementEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmMaintenance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmMaintenanceEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmMoveBuilding.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmOwner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmOwnersBuildings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmPaymentDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmPaymentEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmPaymentRegister.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmStatusReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmStmtLaser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmStmtMessages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmTenant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmTenants.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\frmVacate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinPM\SpecialReports\frmRentRollMortgages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinTRM\frmRecipient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinTRM\frmRecipientEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="WinTRM\frmRecipientImports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="WinTRM\frmRecipientMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="WinTRM\frmRecipListSelect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinTRM\Help\Help.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinTRM\Help\HelpFilters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinTRM\Help\HelpMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinTRM\Help\HelpStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WinTRM\WaitWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.Data.ConnectionUI" />
+    <Import Include="Microsoft.CSharp.CompilerServices" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows" />
+    <Import Include="System.Windows.Controls" />
+    <Import Include="System.Windows.Data" />
+    <Import Include="System.Windows.Documents" />
+    <Import Include="System.Windows.Input" />
+    <Import Include="System.Windows.Shapes" />
+    <Import Include="System.Windows.Media" />
+    <Import Include="System.Windows.Media.Imaging" />
+    <Import Include="System.Windows.Navigation" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Content Include="BackupDatabases.sql" />
+    <EmbeddedResource Include="SqlDbCloner\ChooseConnections.resx">
+      <DependentUpon>ChooseConnections.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlDbCloner\CopyData.resx">
+      <DependentUpon>CopyData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlDbCloner\CopySchema.resx">
+      <DependentUpon>CopySchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlDbCloner\SelectSchema.resx">
+      <DependentUpon>SelectSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <Resource Include="WinTRM\ARW08LT.ICO" />
+    <Resource Include="WinTRM\ARW08RT.ICO" />
+    <Fakes Include="Fakes\Microsoft.SqlServer.SmoExtended.fakes" />
+    <None Include="bin\Debug\DbRepairScripts\CreateTables\BackupDatabase_SP.tmp" />
+    <None Include="DailyG.bat" />
+    <None Include="DatabaseScripts\DailyG.bat" />
+    <None Include="DatabaseScripts\InsertData.bat" />
+    <None Include="DatabaseScripts\MbcsCentral.dacpac" />
+    <None Include="DatabaseScripts\Sqlbackup.bat" />
+    <None Include="InsertData.bat" />
+    <None Include="MbcsCentral.dacpac" />
+    <None Include="MenuFile.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Accounts.datasource" />
+    <None Include="Properties\DataSources\Clients.datasource" />
+    <None Include="Properties\DataSources\Clients1.datasource" />
+    <None Include="Properties\DataSources\MbcsCentral.WinGL.VendorCategories.datasource" />
+    <None Include="WinPM\Files\PreferentialRent.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WinPM\Files\LeaseLetter.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="WinPM\Files\LEASE RENEWAL BACK.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="frmDbTransfer.resx">
+      <DependentUpon>frmDbTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MbcsCentral.config" />
+    <None Include="WinTRM\buttons.pcc" />
+    <None Include="WinTRM\obj\Debug\CoreCompileInputs.cache" />
+    <None Include="WinTRM\obj\Release\CoreCompileInputs.cache" />
+    <None Include="WinTRM\obj\x64\Debug\CoreCompileInputs.cache" />
+    <None Include="WinTRM\obj\x64\Release\CoreCompileInputs.cache" />
+    <None Include="WinTRM\obj\x86\Debug\CoreCompileInputs.cache" />
+    <None Include="WinTRM\obj\x86\Release\CoreCompileInputs.cache" />
+    <Resource Include="DataMigration\WinpmTables.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="LogoPictureBox.png" />
+    <Resource Include="City.ico" />
+    <Content Include="Accounts.sql" />
+    <Content Include="backup.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\Add Vendor Control Records.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\AddendaRecord.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\AddVendorBatchHeader.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\CheckNumbers.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\Company ACH Additions.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\CopyDocumentFields.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\DocumentLayoutFieldMaster_Add_prefRent2_1.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\DocumentLayoutFields.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\DocumentLayoutMaster_BankFormFields.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\Improvements.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\Invoices ACH Additions.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\Invoices Add ACH Type.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\LeadPaintDocumentFields.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\LockBoxHistoryDefaults.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\MailTag.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\NACHA_Layout Modify.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\NewDhcrFields2020.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\Permissions_Add_ACH.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_Building_Add_Email2.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_control.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_Control_AddPercentTwoYr1.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_Control_Add_ACHBypass.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_Owner.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_PayTemp_Note.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_Tenants-XRF.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_Tenants-XrfWorkComplete.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_Tenants.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_TenantsArchive_Defaults.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\pm_TypeMsg.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\ProposedRentNew_Tenants.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\TenantArchive.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\TenantIssueNumber.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\UpdateDB_LegalCodes.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\UpdateDocuments_NewNotices.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\V.1.8.5.7_PrivateBatches_Create.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\AlterTables\Vendor ACH Additions.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\CreateTables\BuildingMsg.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\CreateTables\CreateDocumentClass.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\CreateTables\LockBoxHistory.sql" />
+    <Content Include="bin\Debug\DbRepairScripts\CreateTables\NACHA_Layout.sql" />
+    <Content Include="DatabaseScripts\Accounts.sql" />
+    <Content Include="DatabaseScripts\backup.sql" />
+    <Content Include="DatabaseScripts\BackupDatabases.sql" />
+    <Content Include="DatabaseScripts\CreateBareDatabase.sql" />
+    <Content Include="DatabaseScripts\CreateDatabase-Drop.sql" />
+    <Content Include="DatabaseScripts\CreateDatabase.sql" />
+    <Content Include="DatabaseScripts\CreateDatabaseAzure.sql" />
+    <Content Include="DatabaseScripts\CreateDatabase_InitialContent.sql" />
+    <Content Include="DatabaseScripts\CREATE_mbcs_FUTURE RENT LEGAL ROLL.sql" />
+    <Content Include="DatabaseScripts\CREATE_mbcs_RENT ROLL FOR TAX REDUCTION.sql" />
+    <Content Include="DatabaseScripts\CREATE_mbcs_SECURITY PAID TO GET SS And AC NUMBERS.sql" />
+    <Content Include="DatabaseScripts\dbo.permission_dump.sql" />
+    <Content Include="DatabaseScripts\DeleteAllTables.sql" />
+    <Content Include="DatabaseScripts\DeleteDupeRegistryEntries.sql" />
+    <Content Include="DatabaseScripts\DELETE_Duplicate_permission_records.sql" />
+    <Content Include="DatabaseScripts\Find 1 year Lease Tenants.sql" />
+    <Content Include="DatabaseScripts\FindNullFields.sql" />
+    <Content Include="DatabaseScripts\FullCreate.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.Accounts.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.ApplicationAssignments.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.Applications.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.Classes.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.Clients.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.DbControl.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.DeletePmBuilding.StoredProcedure.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.DocumentCategories.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.DocumentLayoutFieldMaster.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.DocumentLayoutFields.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.DocumentLayoutList.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.do_Documents.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.ExternalApplications.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_AccountRanges.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Accounts.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_ApChecks.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_ApTrans.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Balances.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_BatchControl.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_BatchJrnEntries.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_BatchJrnHeader.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_BatchRptSave.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Budgets.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Category.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_CheckNumbers.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Company.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Control.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Department.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_InvBatchDistributions.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_InvoiceDistributions.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_InvoiceHistory.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Invoices.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_InvoicesBatch.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_JournalNames.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Journals.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Memos.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_OpStmt.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_PRaccounts.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Transactions.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Transactiontemp.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_VendorCategories.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.gl_Vendors.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.GroupMembers.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.groups.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.group_permissions.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.MailTags.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.mbcs_CURRENT RENT ROLL - FOR MCI CALCULATION.StoredProcedure.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.mbcs_FUTURE RENT LEGAL ROLL.StoredProcedure.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.mbcs_SECURITY PAID TO GET SS And AC NUMBERS.StoredProcedure.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.parameters.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.permission.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Building.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_ChargeCodes.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Charges.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Control.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_FutureRents.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_GLTable.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_HistChg.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Histmast.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_HistPay.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Improvements.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Legal.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_LegalMsg.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Maintenance.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Occupants.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Owner.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Payments.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Paytemp.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_StatGroups.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_STCodes.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_STPeriods.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_STRates.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_STTenants.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_STTrans.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Tenants.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_TenantsArchive.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_TenantsSnapShot.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_TypeMsg.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.pm_Types.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.Registry.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.SmtpConfig.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.sp_BackupDatabases.StoredProcedure.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_Accounts.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_BuildingLocation.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_categories.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_contents.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_issues.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_IssueTenants.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_JobMaster.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_LocalSMTP.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_messages.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_MessageSchedule.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_notes.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_options.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_RecipientMaster.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_Recipients.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_schedules.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.tr_Vendors.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\dbo.user_permissions.Table.sql" />
+    <Content Include="DatabaseScripts\FullEmptyDb\MbcsCentral_fishman.Database.sql" />
+    <Content Include="DatabaseScripts\InsertDataAllTables.sql" />
+    <Content Include="DatabaseScripts\PrivateBatches_Create.sql" />
+    <Content Include="DatabaseScripts\QueryUpdates_20190410.sql" />
+    <Content Include="DatabaseScripts\ReCreateDatabase.sql" />
+    <Content Include="DatabaseScripts\SORTED_CHARGES.sql" />
+    <Content Include="DatabaseScripts\SqlDoBackup.sql" />
+    <Content Include="DatabaseScripts\StoredProcedures.sql" />
+    <Content Include="DatabaseScripts\UpdateDB_20160425.sql" />
+    <Content Include="DatabaseScripts\UpdateDB_StoredProcedures.sql" />
+    <Content Include="DatabaseScripts\UpdateDB_V1030008.sql" />
+    <Content Include="DatabaseScripts\UpdateDocuments_NewNotices.sql" />
+    <Content Include="DatabaseScripts\UpdateGL_20160901.sql" />
+    <Content Include="DatabaseScripts\V1.2.2\DbUpdate_V122.sql" />
+    <Content Include="DatabaseScripts\V1.2.4\DbUpdate_V1224.sql" />
+    <Content Include="DataMigration\WinglTables.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="CITYSCPE_raw.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="FirstTime.txt" />
+    <Resource Include="Image7.png" />
+    <Resource Include="Image8.png" />
+    <Resource Include="Image9.png" />
+    <Content Include="FullCreate.sql" />
+    <Content Include="MenuFile.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\Improvements.datasource" />
+    <None Include="Properties\DataSources\Maintenance.datasource" />
+    <None Include="Properties\DataSources\MbcsCentral.WinPM.Payments.datasource" />
+    <None Include="Properties\DataSources\MbcsCentral.WinPM.TenantCalcFields.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="WinPM\MbcsWinpm.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GlobalProps.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Resource>
+    <Content Include="..\..\DataConnectionDialog\ConnectionUIDialog\DataProvider.cs">
+      <Link>DataProvider.cs</Link>
+    </Content>
+    <Content Include="..\..\DataConnectionDialog\ConnectionUIDialog\DataSource.cs">
+      <Link>DataSource.cs</Link>
+    </Content>
+    <None Include="obj\Resources\LogoPictureBox.png" />
+    <None Include="obj\Resources\LogoPicture.bmp" />
+    <Resource Include="obj\Resources\CITYSCPE_raw.bmp" />
+    <Resource Include="Resources\cityscape_raw.bmp" />
+    <Resource Include="Resources\ARW03UP.ICO" />
+    <Resource Include="Resources\ARW03DN.ICO" />
+    <Resource Include="Resources\ARW03UP.png" />
+    <Resource Include="Resources\ARW03UP.bmp" />
+    <Resource Include="Resources\ARW03DN.png" />
+    <Resource Include="Resources\LogoPictureBox.png" />
+    <None Include="Resources\ArrowLeft.ico" />
+    <Resource Include="Resources\ARW08LT.ICO">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ARW08RT.ICO">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Resources\Image8.bmp" />
+    <None Include="Resources\failure.png" />
+    <None Include="Resources\success.png" />
+    <None Include="Resources\images.png" />
+    <Content Include="SQLScripts\MbcsCentralCache.dbo.Building.sql" />
+    <Content Include="SQLScripts\MbcsCentralCache.dbo.Codes.sql" />
+    <Content Include="SQLScripts\MbcsCentralCache.dbo.Owner.sql" />
+    <Content Include="SQLScripts\MbcsCentralCache.dbo.Tenants.sql" />
+    <Content Include="SQLScripts\MbcsCentralCache.MbcsCentral.sql" />
+    <Content Include="SQLUndoScripts\MbcsCentralCache.dbo.Building.disable.sql" />
+    <Content Include="SQLUndoScripts\MbcsCentralCache.dbo.Codes.disable.sql" />
+    <Content Include="SQLUndoScripts\MbcsCentralCache.dbo.Owner.disable.sql" />
+    <Content Include="SQLUndoScripts\MbcsCentralCache.dbo.Tenants.disable.sql" />
+    <Content Include="SQLUndoScripts\MbcsCentralCache.MbcsCentral.disable.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\DbObjects\" />
+    <Folder Include="Logs\" />
+    <Folder Include="Properties\MyExtensions\" />
+    <Folder Include="WinTRM\bin\Debug\" />
+    <Folder Include="WinTRM\bin\Release\" />
+    <Folder Include="WinTRM\bin\x64\Debug\" />
+    <Folder Include="WinTRM\bin\x64\Release\" />
+    <Folder Include="WinTRM\Help\Screens\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.1.0.0.0-beta2\tools\analyzers\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.0.7.4091001-beta\tools\analyzers\Microsoft.CodeAnalysis.FxCopAnalyzers.dll" />
+    <Analyzer Include="E:\Program Files %28x86%29\Microsoft Office\root\Office16\ADDINS\Microsoft Power Query for Excel Integrated\bin\Microsoft.Office.Interop.Outlook.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties DatabasePath="C:\Program Files (x86)\MBCS\WinTRM\WinTRM.accdb" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.0.7.4091001-beta\build\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.0.7.4091001-beta\build\Microsoft.CodeAnalysis.FxCopAnalyzers.Common.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.1.0.0.0-beta2\build\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.1.0.0.0-beta2\build\Microsoft.CodeAnalysis.CSharp.FxCopAnalyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
+</Project>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <MenuItem  Content="Exit" Name="exit" Type="Internal">
+  </MenuItem>
+  <MenuHeader Content="WinPM" Name="winpm" Application="WinPM">
+    <MenuItem  Content="Owners and Buildings" Name="pm_owner" Type="Form">
+      <Form Name="WinPM.frmOwnersBuildings"/>
+    </MenuItem>
+    <MenuItem Content="Charge Codes" Name="pm_codes" Type="Form">
+      <Form Name="WinPM.frmChargeCodes"/>
+    </MenuItem>
+    <MenuItem Content="Rent Statement Messages" Name="pm_stmtmsgs" Type="Form">
+      <Form Name="WinPM.frmStmtMessages"/>
+    </MenuItem>
+    <MenuItem Content="Batch Updates" Name="pm_batches" Type="Form">
+      <Form Name="WinPM.frmBatches"/>
+    </MenuItem>
+    <MenuItem Type="Separator"></MenuItem>
+    <!-- WORK WITH TENANTS -->
+    <MenuHeader Content="Work With Tenants" Name="menuTenants">
+      <MenuItem  Content="Tenant Records" Name="pm_tenants" Type="Form">
+        <Form Name="frmTenants"/>
+      </MenuItem>
+      <MenuItem Content="Old Tenants" Name="pm_oldtenants" Type="Form">
+        <Form Name="WinPM.frmTenantsOld"/>
+      </MenuItem>
+      <MenuItem Content="Payment Entries" Name="pm_paymententries" Type="Form">
+        <Form Name="WinPM.frmPaymentEntry"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Preferrential Updates" Name="pm_prefrentupdates" Type="Form">
+        <Form Name="WinPM.frmPreferredRent"/>
+      </MenuItem>
+    </MenuHeader>
+    <!-- END OF MONTH -->
+    <MenuItem Type="Separator"></MenuItem>
+    <MenuHeader Content="End Of Month" Name="menuEOM">
+      <MenuItem Content="1) Reorganize Tenant Files" Name="pm_reorg" Type="Form">
+        <Form Name="WinPM.frmEOM" Parameter="E"/>
+      </MenuItem>
+      <MenuItem Content="2) Print Rent Statements" Name="pm_statements" Type="Form">
+        <Form Name="WinPM.frmEOM" Parameter="S"/>
+      </MenuItem>
+      <MenuItem Content="3) Roll Tenant Accounts" Name="pm_roll" Type="Form">
+        <Form Name="WinPM.frmEOM" Parameter="R"/>
+      </MenuItem>
+    </MenuHeader>
+    <!-- REPORTS -->
+    <MenuItem Type="Separator"></MenuItem>
+    <MenuHeader Content="Reports" Name="menuReports">
+      <MenuItem Content="Owner Master" Name="pm_ownermaster" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="0"/>
+      </MenuItem>
+      <MenuItem Content="Building Master" Name="pm_buildingmaster" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="1"/>
+      </MenuItem>
+      <MenuItem Content="Tenant Social Security List" Name="pm_tenantmaster" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="2"/>
+      </MenuItem>
+      <MenuItem Content="Tenant Telephone List" Name="pm_tenantphone" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="3"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+       <MenuItem Content="Status Report" Name="pm_status" Type="Form">
+        <Form Name="WinPM.frmStatusReport"/>
+      </MenuItem>
+      <MenuItem Content="Select Charge Report" Name="pm_selectcharge" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="4"/>
+      </MenuItem>
+      <MenuItem Content="Arrears Report" Name="pm_arrearsreport" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="5"/>
+      </MenuItem>
+      <MenuItem Content="Payment Register" Name="pm_paymentregister" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="6"/>
+      </MenuItem>
+      <MenuItem Content="Late Notices" Name="pm_notices" Type="Form">
+        <Form Name="WinPM.frmNotices"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Vacancy List" Name="pm_vacancylist" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="7"/>
+      </MenuItem>
+      <MenuItem Content="Lease Expiration Report" Name="pm_leaseexpirationreport" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="8"/>
+      </MenuItem>
+      <MenuItem Content="Lease Renewal Letters" Name="pm_leaseLetter" Type="Form">
+        <Form Name="WinPM.frmLeaseLetter"/>
+      </MenuItem>
+      <MenuItem Content="Preferred Rent Worksheet" Name="pm_preferredws" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="9"/>
+      </MenuItem>
+      <MenuItem Content="Preferred Rent Report" Name="pm_preferedReport" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="10"/>
+      </MenuItem>
+    </MenuHeader>
+    <!-- REPORTS END -->
+  </MenuHeader>
+  <MenuHeader Content="Documents" Name="windoc" Application="WinDoc">
+    <MenuItem Content="Acquire" Name="menuAcquire" Type="Form">
+      <Form Name="frmDoc"/>
+    </MenuItem>
+  </MenuHeader>
+  <MenuItem  Content="WinPM Application" Name="winpmApp" Type="Application">
+    <Application Name="Winpm">
+      <AppPath Path="c:\pmsys\"  Name="winpm.exe"/>
+      <DataPath Path="c:\pmsys\" Name="winpm.mdb" />
+    </Application>
+  </MenuItem>
+  <!-- WINPM END -->
+  
+  <FixedMenus />
+  <MenuHeader Content="Tools" Name="menuTools">
+    <MenuItem Content="Login as a Different User" Name="menuReLogin" Type="Method" Target="ReLogin">
+    </MenuItem>
+    <MenuItem Content="User Account Management" Name="useracctmgmt" Type="Form">
+      <Form Name="frmAccountManagement"/>
+    </MenuItem>
+    <MenuHeader Content="Options" Name="menuOptions">
+      <MenuItem  Content="Menu Editor" Name="menuEditor" Type="Form">
+        <Form Name="frmMenuEdit"/>
+      </MenuItem>
+      <MenuItem Content="Menu Font Size" Name="menuFontSize" Type="Method" Target="SetMenuFont">
+      </MenuItem>
+      <MenuItem  Content="Preferences" Name="menuPref" Type="Form">
+        <Form Name="frmPreferences"/>
+      </MenuItem>
+      <MenuItem Content="Configuration Editor" Name="ConfigEditor" Type="Form">
+        <Form Name="frmConfiguration"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuHeader Content="Database" Name="menuDatabase">
+      <MenuItem Content="Database Connection" Name="DbConnection" Type="Method" Target="SetDbConnection">
+      </MenuItem>
+      <MenuItem Content="Migrate Data" Name="mbcs_transfer" Type="Form">
+        <Form Name="frmDbTransfer"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuItem  Content="Help" Name="menuHelp" Type="Form">
+      <Form Name="frmHelp"/>
+    </MenuItem>
+  </MenuHeader>
+</Menu>

@@ -1,0 +1,34 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmEOM"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="End of Month Processing" Height="188" Width="300"
+        Name="formEOM" Background="AntiqueWhite"
+        Loaded="formEOM_Loaded">
+    <Grid Name="mainGrid" DataContext="{Binding}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="70"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
+                <TextBlock Text="Closing Date" Width="80" VerticalAlignment="Center"/>
+                <DatePicker Name="dtClosing" Text="{Binding ClosingDate, Mode=TwoWay}" Margin="10,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
+                <TextBlock Text="Billing Date" Width="80" VerticalAlignment="Center"/>
+                <DatePicker Name="dtBillDate" Text="{Binding BillingDate, Mode=TwoWay}" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Name="cmdProcess" Content="PROCESS" Click="cmdProcess_Click"/>
+            <Button Name="cmdCancel" Content="EXIT" Margin="0,20,0,0" Click="cmdCancel_Click"/>
+        </StackPanel>
+        <TextBlock Name="txtProgress" Grid.Row="1" Grid.ColumnSpan="2" Width="Auto" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="14" FontWeight="Bold" VerticalAlignment="Bottom"/>
+        <ProgressBar Name="prgProgress" Grid.Row="2" Grid.ColumnSpan="2" Minimum="0" Maximum="100" />
+    </Grid>
+</Window>

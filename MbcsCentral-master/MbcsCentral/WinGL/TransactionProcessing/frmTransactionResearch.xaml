@@ -1,0 +1,425 @@
+﻿
+<Window
+    x:Class="MbcsCentral.WinGL.frmTransactionResearch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="FormfrmTransactionResearch"
+    Title="Transaction Research"
+    Width="743.513"
+    Height="413.793"
+    Background="AliceBlue"
+    Closed="frmTransactionResearch_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmTransactionResearch_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <TextBox
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="Transaction Research"
+                TextAlignment="Center" />
+            <Grid
+                Grid.Row="1"
+                TextBlock.FontSize="12"
+                TextBlock.FontWeight="Normal">
+                <!--  Place your content here  -->
+                <TabControl>
+                    <TabItem Name="tabEntry" Header="Selections">
+                        <StackPanel>
+                            <Border
+                                Height="Auto"
+                                VerticalAlignment="Stretch"
+                                BorderBrush="Black"
+                                BorderThickness="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="3">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    Width="75"
+                                                    VerticalAlignment="Center"
+                                                    Text="Company"
+                                                    TextAlignment="Left" />
+                                                <ComboBox
+                                                    Name="lstCompanies"
+                                                    Width="300"
+                                                    DisplayMemberPath="Name"
+                                                    ItemsSource="{Binding}"
+                                                    SelectionChanged="lstCompanies_SelectionChanged" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                                                <TextBlock
+                                                    Width="75"
+                                                    VerticalAlignment="Center"
+                                                    Text="Departments"
+                                                    TextAlignment="Left" />
+                                                <ComboBox
+                                                    Name="lstDepartments"
+                                                    Width="300"
+                                                    DisplayMemberPath="Name"
+                                                    ItemsSource="{Binding}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel Margin="3,3,3,3">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Text="Dates"
+                                                    TextAlignment="Left" />
+                                                <DatePicker
+                                                    Name="dtFrom"
+                                                    Width="100"
+                                                    Margin="3,0,0,0"
+                                                    SelectedDateFormat="Short" />
+                                                <TextBlock
+                                                    Margin="1,0,1,0"
+                                                    VerticalAlignment="Center"
+                                                    Text="To" />
+                                                <DatePicker
+                                                    Name="dtTo"
+                                                    Width="100"
+                                                    Margin="3,0,0,0"
+                                                    SelectedDateFormat="Short" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                                                <TextBlock VerticalAlignment="Center" Text="Journal" />
+                                                <ComboBox
+                                                    Name="lstJournals"
+                                                    Width="150"
+                                                    Margin="10,0,0,0"
+                                                    DisplayMemberPath="JournalName"
+                                                    ItemsSource="{Binding}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Margin="3">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Text="Sources [Sources separated by commas]"
+                                                TextAlignment="Left" />
+                                            <TextBox
+                                                Name="txtSources"
+                                                MinWidth="420"
+                                                Margin="3,0,0,0"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center"
+                                                TextAlignment="Left" />
+                                        </StackPanel>
+                                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                Text="Description"
+                                                TextAlignment="Left" />
+                                            <TextBox
+                                                Name="txtDescrption"
+                                                Width="250"
+                                                Margin="3,0,0,0"
+                                                VerticalAlignment="Center"
+                                                TextAlignment="Left" />
+                                            <TextBlock
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Text="Check Numbers"
+                                                TextAlignment="Left" />
+                                            <TextBox
+                                                Name="txtChecks"
+                                                Width="220"
+                                                Margin="3,0,0,0"
+                                                VerticalAlignment="Center"
+                                                TextAlignment="Left" />
+                                        </StackPanel>
+                                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                                            <TextBlock
+                                                VerticalAlignment="Center"
+                                                Text="Amount Ranges"
+                                                TextAlignment="Left" />
+                                            <TextBox
+                                                Name="txtAmounts"
+                                                Width="400"
+                                                Margin="3,0,0,0"
+                                                VerticalAlignment="Center"
+                                                TextAlignment="Left"
+                                                TextChanged="txtAmounts_TextChanged" />
+                                            <CheckBox
+                                                Name="chkDebits"
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Checked="chkDebits_Checked"
+                                                Content="Debits Only" />
+                                            <CheckBox
+                                                Name="chkCredits"
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Checked="chkCredits_Checked"
+                                                Content="Credits Only" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border BorderBrush="Black" BorderThickness="2,0,2,2">
+                                <StackPanel Margin="3" Orientation="Horizontal">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+                                                VerticalAlignment="Top"
+                                                Text="Accounts"
+                                                TextAlignment="Left" />
+                                            <ComboBox
+                                                Name="lstAccounts"
+                                                Width="200"
+                                                Margin="3,0,0,0"
+                                                VerticalAlignment="Top"
+                                                DisplayMemberPath="Description"
+                                                ItemsSource="{Binding}" />
+                                            <Button
+                                                Name="cmdAddAccount"
+                                                Margin="3,0,0,0"
+                                                Click="cmdAddAccount_Click"
+                                                Content="ADD&gt;&gt;" />
+                                            <Button
+                                                Name="cmdDeleteAccount"
+                                                Margin="5,0,0,0"
+                                                Click="cmdDeleteAccount_Click"
+                                                Content="REMOVE" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Margin="3,0,0,0">
+                                        <ListBox
+                                            Name="lstActiveAccounts"
+                                            Width="300"
+                                            Height="100"
+                                            DisplayMemberPath="Description" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border BorderBrush="Black" BorderThickness="2,0,2,2">
+                                <StackPanel Margin="3" Orientation="Horizontal">
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontWeight="Bold"
+                                        Text="Find Orphaned Transactions" />
+                                    <Button
+                                        Name="cmdOrphaned"
+                                        Margin="5,10,0,10"
+                                        VerticalAlignment="Center"
+                                        Click="cmdOrphaned_Click"
+                                        Content="BEGIN" />
+                                    <TextBlock
+                                        Margin="30,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontWeight="Bold"
+                                        Text="Find All Transactions" />
+                                    <Button
+                                        Name="cmdAll"
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Click="cmdAll_Click"
+                                        Content="BEGIN" />
+                                    <Button
+                                        Name="cmdClear"
+                                        Margin="50,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Click="cmdClear_Click"
+                                        Content="CLEAR" />
+                                </StackPanel>
+                            </Border>
+                            <Border BorderBrush="Black" BorderThickness="2,0,2,2" />
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Name="tabResults" Header="Results">
+                        <DockPanel>
+                            <Border
+                                BorderBrush="Blue"
+                                BorderThickness="3"
+                                DockPanel.Dock="Top">
+                                <StackPanel
+                                    Margin="20,2,0,2"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    TextBlock.FontWeight="Bold">
+                                    <TextBlock Name="txtResultsType" Margin="40,0,0,0" />
+                                    <TextBlock Text="{Binding ElementName=lstCompanies, Path=Text}" />
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding ElementName=dtFrom, Path=SelectedDate, StringFormat={}{0:MM/dd/yyyy}}" />
+                                    <TextBlock Text=" to " />
+                                    <TextBlock Text="{Binding ElementName=dtTo, Path=SelectedDate, StringFormat={}{0:MM/dd/yyyy}}" />
+                                </StackPanel>
+                            </Border>
+                            <DataGrid
+                                Name="grdResults"
+                                VerticalAlignment="Stretch"
+                                AutoGenerateColumns="False"
+                                DockPanel.Dock="Top"
+                                ItemsSource="{Binding}">
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu StaysOpen="True" Background="Beige">
+                                        <MenuItem Header="DRILL DOWN" StaysOpenOnClick="True" />
+                                        <MenuItem Header="==========" StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxDate"
+                                            Checked="ctxDate_Checked"
+                                            Header="By Individual Date"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxOriginalDates"
+                                            Checked="ctxOriginalDates_Checked"
+                                            Header="Use Original Date Range"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True" />
+                                        <MenuItem Header="" StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxCheckNumber"
+                                            Click="ctxCheckNumber_Click"
+                                            Header="By Check Numberr"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxOriginalCheckNumber"
+                                            Click="ctxOriginalCheckNumber_Click"
+                                            Header="Use Original Check Number"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True" />
+                                        <MenuItem Header="" StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxAccount"
+                                            Checked="ctxAccount_Click"
+                                            Header="By Account"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxOriginalAccount"
+                                            Checked="ctxOriginalAccount_Checked"
+                                            Header="Use Original Account Range"
+                                            IsCheckable="True" />
+                                        <MenuItem Header="" StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxAmount"
+                                            Click="ctxAmount_Click"
+                                            Header="By Amount"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxOriginalAmount"
+                                            Click="ctxOriginalAmount_Click"
+                                            Header="Use Original Amount Ranges"
+                                            IsCheckable="True"
+                                            StaysOpenOnClick="True" />
+                                        <MenuItem Header="" StaysOpenOnClick="True" />
+                                        <MenuItem
+                                            Name="ctxFetch"
+                                            Click="ctxFetch_Click"
+                                            Header="Fetch" />
+                                        <MenuItem
+                                            Name="ctxRevert"
+                                            Click="ctxRevert_Click"
+                                            Header="Revert to Original Query" />
+                                        <MenuItem Header="========" StaysOpenOnClick="True"/>
+                                        <MenuItem Header="" StaysOpenOnClick="True"/>
+                                        <MenuItem Header="EDIT" Name="ctxEdit" Click="CtxEdit_Click" Background="LightCoral"/>
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=IndexNumber}" Visibility="Collapsed" />
+                                    <DataGridTextColumn
+                                        Binding="{Binding Path=Date, StringFormat={}{0:MM/dd/yyy}}"
+                                        Header="Date"
+                                        TextBlock.TextAlignment="Left" />
+                                    <DataGridTemplateColumn Header="Account" SortMemberPath="Account">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Account}" TextBlock.TextAlignment="Left" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="CheckNumber" SortMemberPath="CheckNumber">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=CheckNumber, StringFormat={}{0:######}}" TextAlignment="Right" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Journal" SortMemberPath="Journal">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Journal}" TextAlignment="Left" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Source" SortMemberPath="Source">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Source}" TextBlock.TextAlignment="Left" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Description" SortMemberPath="Description">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Description}" TextBlock.TextAlignment="Left" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn
+                                        Width="100"
+                                        Header="Debits"
+                                        SortMemberPath="Debit">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Debit, StringFormat={}{0:C}}" TextBlock.TextAlignment="Right" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn
+                                        Width="100"
+                                        Header="Credits"
+                                        SortMemberPath="Credit">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Credit, StringFormat={}{0:C}}" TextBlock.TextAlignment="Right" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridComboBoxColumn
+                                        Width="300"
+                                        Header="New Account"
+                                        ItemsSource="{Binding}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,5,0,5"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdClose"
+                    Margin="10,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

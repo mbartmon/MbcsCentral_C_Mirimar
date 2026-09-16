@@ -1,0 +1,769 @@
+﻿<Window x:Class="MbcsCentral.frmNachaLayout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:BindingEnums"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Name="FormfrmNachaLayout"
+        Title="NACHA File Layout"
+        Width="1050"
+        Height="443.551"
+        Background="AliceBlue"
+        Closed="frmNachaLayout_Closed"
+        FontSize="14"
+        FontWeight="Bold"
+        Loaded="frmNachaLayout_Loaded"
+        TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <CollectionViewSource x:Key="NachaFileHeader" />
+        <CollectionViewSource x:Key="NachaBatchHeader" />
+        <CollectionViewSource x:Key="NachaDetail" />
+        <CollectionViewSource x:Key="NachaBatchControl" />
+        <CollectionViewSource x:Key="NachaFileControl" />
+        <CollectionViewSource x:Key="NachaRequirements" />
+    </Window.Resources>
+    <Border BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox Background="LightSteelBlue"
+                     BorderBrush="Blue"
+                     BorderThickness="2"
+                     FontSize="14"
+                     FontWeight="Bold"
+                     Text="NACHA File Layout"
+                     TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <TabControl Name="tabNacha">
+                    <TabItem Name="tabControlData" Header="Master Control Record">
+                        <DataGrid Name="grdControlData"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAddControl"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDeleteControl"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Type">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Value">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+            <TabItem Name="tabFileHeader" Header="File Header">
+                        <DataGrid Name="grdFileHeader"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAdd"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDelete"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Position">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Length">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                    <TabItem Name="tabBatchHeader" Header="Batch Tenant Header">
+                        <DataGrid Name="grdBatchHeader"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAddBatchHeader"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDeleteBatchH"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Position">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Length">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+                    
+                    <TabItem Name="tabBatchVendorHeader" Header="Batch Vendor Header">
+                        <DataGrid Name="grdBatchVendorHeader"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAddBatchVendorHeader"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDeleteBatchVendorH"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Position">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Length">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+
+                    
+                    <TabItem Name="tabDetail" Header="Entry Detail">
+                        <DataGrid Name="grdDetailRecord"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAddDetail"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDeleteDetail"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Position">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Length">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+                    
+                    <TabItem Name="tabAddenda" Header="Entry Addenda">
+                        <DataGrid Name="grdAddendaRecord"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAddAddenda"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDeleteAddenda"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Position">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Length">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+
+                    
+                    <TabItem Name="tabBatchControl" Header="Batch Control">
+                        <DataGrid Name="grdBatchControl"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAddBatchControl"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDeleteBatchControl"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Position">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Length">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+                    <TabItem Name="tabFileControl" Header="File Control">
+                        <DataGrid Name="grdFileControl"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding}">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Delete}" Value="True">
+                                            <Setter Property="Background" Value="Red" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Delete}" Value="False">
+                                            <Setter Property="Background" Value="White" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Name="ctxAddFileControl"
+                                              Click="ctxAdd_Click"
+                                              Header="ADD" />
+                                    <MenuItem Name="ctxDeleteFileControl"
+                                              Click="ctxDelete_Click"
+                                              Header="DELETE" />
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Field}"
+                                                    Header="Field"
+                                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn Header="Position">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Position, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Length">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Length, StringFormat={}{0:##0}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <my:NumberEntry Decimals="0"
+                                                            MaxLength="3"
+                                                            Text="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Contents, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Contents">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="200"
+                                                    Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Name">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Left" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <!-- <DataGridTextColumn Binding="{Binding Path=Requirement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Requirement" /> -->
+                                <DataGridComboBoxColumn Header="Requirement"
+                                                        ItemsSource="{Binding Source={StaticResource NachaRequirements}}"
+                                                        SelectedItemBinding="{Binding Requirement}" />
+                                <DataGridComboBoxColumn Header="DataType"
+                                                        ItemsSource="{Binding Source={my:EnumBindingSource {x:Type l:DataTypes}}}"
+                                                        SelectedItemBinding="{Binding DataType}" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="DELETE" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <StackPanel Grid.Row="2"
+                        Margin="0,5,0,5"
+                        Background="AliceBlue"
+                        Orientation="Horizontal">
+                <Button Name="cmdSave"
+                        Margin="10,0,0,0"
+                        Click="cmdSave_Click"
+                        Content="SAVE" />
+                <Button Name="cmdClose"
+                        Margin="10,0,0,0"
+                        Click="cmdClose_Click"
+                        Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <MenuItem  Content="Exit" Name="exit" Type="Internal">
+  </MenuItem>
+  <MenuHeader Content="WinPM" Name="winpm" Application="WinPM">
+    <MenuItem  Content="Tenant Records" Name="pm_tenants" Type="Form" Parameter="BackGround">
+      <Form Name="frmTenants"/>
+    </MenuItem>
+    <MenuItem Content="Add Tenants" Name="pm_addtenants" Type="Form">
+      <Form Name="WinPM.frmAddTenant"/>
+    </MenuItem>
+    <MenuItem Content="Payment Entries" Name="pm_paymententries" Type="Form">
+      <Form Name="WinPM.frmPaymentEntry"/>
+    </MenuItem>
+    <MenuItem Type="Separator"></MenuItem>
+    <MenuHeader Content="Electronic Payment Processing" Name="menuElectonicPaymentProcess">
+      <MenuItem Content="Process LockBox Data File" Name="pm_lockboxprocess" Type="Form">
+        <Form Name="WinPM.frmPaymentLBEntry" Parameter="0"/>
+      </MenuItem>
+       <MenuItem Content="Process Remittance Data File" Name="pm_remittanceprocess" Type="Form">
+        <Form Name="WinPM.frmPaymentLBEntry" Parameter="1"/>
+      </MenuItem>
+      <MenuItem Content="Process RPS Data File" Name="pm_rpsprocess" Type="Form">
+        <Form Name="WinPM.frmPaymentLBEntry" Parameter="2"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Post ACH Rents to WinPM" Name="pm_nacharesults" Type="Method" Class="MbcsCentral.WinPM.frmStmtLaser" Target="PostNachaResults" Parameter="P">      
+      </MenuItem>
+   </MenuHeader>
+    <MenuItem Type="Separator"></MenuItem>
+    <!-- LEASE RENEWAL PROCESSING -->
+    <MenuHeader Content="Lease Renewal Processing" Name="menuLeaseProcess">
+      <MenuHeader Content="Preferrential RentProcess" Name="menuPrefRentProcess">
+        <MenuItem Content="Preferred Rent Worksheet" Name="pm_preferredws01" Type="Form">
+          <Form Name="WinPM.frmReportSelections" Parameter="9"/>
+        </MenuItem>
+        <MenuItem Content="Preferrential Updates" Name="pm_prefrentupdates" Type="Form">
+          <Form Name="WinPM.frmPreferredRent"/>
+        </MenuItem>
+        <MenuItem Content="Preferred Rent Report" Name="pm_preferredReport01" Type="Form">
+          <Form Name="WinPM.frmReportSelections" Parameter="10"/>
+        </MenuItem>   
+      </MenuHeader>
+      <MenuItem Content="Lease Renewal Letters" Name="pm_leaseLetter01" Type="Form">
+        <Form Name="WinPM.frmLeaseLetter"/>
+      </MenuItem>      
+    </MenuHeader>
+    <MenuItem Content="Batch Updates" Name="pm_batches" Type="Form">
+      <Form Name="WinPM.frmBatches"/>
+    </MenuItem>
+    <MenuItem Content="Rent Statement Messages" Name="pm_stmtmsgs" Type="Form">
+      <Form Name="WinPM.frmStmtMessages"/>
+    </MenuItem>
+    <MenuItem Type="Separator"></MenuItem>
+    <!-- END OF MONTH -->
+    <MenuHeader Content="End Of Month" Name="menuEOM">
+      <MenuItem Content="1) Closing Status Report" Name="pm_status01" Type="Form">
+        <Form Name="WinPM.frmStatusReport"/>
+      </MenuItem>
+     <MenuItem Content="2) Reorganize Tenant Files" Name="pm_reorg" Type="Form">
+        <Form Name="WinPM.frmEOM" Parameter="E"/>
+      </MenuItem>
+      <MenuItem Content="3) Print Rent Statements" Name="pm_statements01" Type="Form">
+        <Form Name="WinPM.frmStmtLaser" Parameter="P"/>
+      </MenuItem>
+      <MenuItem Content="4) Roll Tenant Accounts" Name="pm_roll" Type="Form">
+        <Form Name="WinPM.frmEOM" Parameter="R"/>
+      </MenuItem>
+      <MenuItem Content="5) Opening Status Report" Name="pm_status02" Type="Form">
+        <Form Name="WinPM.frmStatusReport"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Generate Billing File (Optional)" Name="pm_statements02" Type="Form">
+        <Form Name="WinPM.frmStmtLaser" Parameter="B"/>
+      </MenuItem>
+      <MenuItem Content="Generate ACH for Bank (Optional)" Name="pm_statements03" Type="Form">
+        <Form Name="WinPM.frmStmtLaser" Parameter="N"/>
+      </MenuItem>
+  <MenuItem Content="Email Notices for ACH" Name="pm_nacharesults01" Type="Method" Class="MbcsCentral.WinPM.frmStmtLaser" Target="PostNachaResults" Parameter="N">
+      </MenuItem>
+</MenuHeader>
+    <MenuItem Type="Separator"></MenuItem>
+    <!-- ADDITIONAL TENANT INFO -->
+    <MenuHeader Content="Additional Tenant Info" Name="menuTenants">
+      <MenuItem Content="Tenant Mailing Labels" Name="pm_tenantlabels" Type="Form">
+        <Form Name="WinPM.frmTenantLabels"/>
+      </MenuItem> 
+      <MenuItem Content="Tenant Letters/Documents" Name="pm_tenantletters" Type="Form">
+        <Form Name="WinPM.frmTenantDocuments"/>
+      </MenuItem>
+      <MenuItem Content="Old Tenants" Name="pm_oldtenants" Type="Form">
+        <Form Name="WinPM.frmTenantsOld"/>
+      </MenuItem>
+      <MenuItem Content="Tenant History" Name="pm_tenanthistory" Type="Form">
+        <Form Name="WinPM.frmHistoryDisplay"/>
+      </MenuItem>
+      <MenuItem Content="Tenant Type Codes" Name="pm_typecodes" Type="Form">
+        <Form Name="WinPM.frmTypeCodes"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Preferrential Updates" Name="pm_prefrentupdates01" Type="Form">
+        <Form Name="WinPM.frmPreferredRent"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuHeader Content="Tenant Securities" Name="menuSecurities">
+        <MenuItem Content="Security Transactions" Name="pm_sttrans" Type="Form">
+          <Form Name="WinPM.frmSecTrans"/>
+        </MenuItem>
+        <MenuItem Content="Security Transaction Report" Type="Form">
+          <Form Name="WinPM.frmSecTransReport"/>
+        </MenuItem>
+        <MenuItem Content="Security Codes" Name="pm_stcodes" Type="Form">
+          <Form Name="WinPM.frmSecurityCodes"/>
+        </MenuItem>
+      </MenuHeader>
+    </MenuHeader>
+    <!-- REPORTS -->
+    <MenuItem Type="Separator"></MenuItem>
+    <MenuHeader Content="Reports" Name="menuReports">
+      <MenuItem Content="Status Report" Name="pm_status03" Type="Form">
+        <Form Name="WinPM.frmStatusReport"/>
+      </MenuItem>
+      <MenuItem Content="Arrears Report" Name="pm_arrearsreport" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="5"/>
+      </MenuItem>
+      <MenuItem Content="Aging Report" Name="pm_agingreport" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="12"/>
+      </MenuItem>
+      <MenuItem Content="Payment Register" Name="pm_paymentregister" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="6"/>
+      </MenuItem>
+      <MenuItem Content="Late Notices" Name="pm_notices" Type="Form">
+        <Form Name="WinPM.frmNotices" Parameter="L"/>
+      </MenuItem>
+      <MenuItem Content="Select Charge Report" Name="pm_selectcharge" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="4"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Vacancy List" Name="pm_vacancylist" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="7"/>
+      </MenuItem>
+      <MenuItem Content="Lease Expiration Report" Name="pm_leaseexpirationreport02" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="8"/>
+      </MenuItem>
+      <MenuItem Content="Lease Renewal Letters" Name="pm_leaseLetter02" Type="Form">
+        <Form Name="WinPM.frmLeaseLetter"/>
+      </MenuItem>
+      <MenuItem Content="Preferred Rent Worksheet" Name="pm_preferredws02" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="9"/>
+      </MenuItem>
+      <MenuItem Content="Preferred Rent Report" Name="pm_preferredReport02" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="10"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Owner Master" Name="pm_ownermaster" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="0"/>
+      </MenuItem>
+      <MenuItem Content="Building Master" Name="pm_buildingmaster" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="1"/>
+      </MenuItem>
+      <MenuItem Content="Tenant Social Security List" Name="pm_tenantmaster" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="2"/>
+      </MenuItem>
+      <MenuItem Content="Tenant Telephone List" Name="pm_tenantphone" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="3"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Rent Roll For Mortgages" Name="pm_rentrollmortgages" Type="Form">
+        <Form Name="WinPM.frmReportSelections" Parameter="11"/>
+      </MenuItem>
+   </MenuHeader>
+    <!-- REPORTS END -->
+     <MenuItem Type="Separator"></MenuItem>
+     <MenuHeader Content="Options" Name="pmOptions">
+       <MenuItem Content="Options" Name="pm_options" Type="Form">
+        <Form Name="WinPM.FormControl"/>
+       </MenuItem>
+       <MenuItem Content="Email Account Maintenance" Name="mbcs_smtpconfig" Type="Form">
+         <Form Name="Email.frmSmtpConfigurator" Parameter="Account"/>
+       </MenuItem>
+     </MenuHeader>
+     <MenuItem  Content="Owners and Buildings" Name="pm_owner" Type="Form">
+      <Form Name="WinPM.frmOwnersBuildings"/>
+    </MenuItem>
+    <MenuItem Content="Charge Codes" Name="pm_codes" Type="Method" Class="MbcsCentral.WinPM.GlChargeDispatcher" Target="Dispatch" Parameter="pm_codes">
+    </MenuItem>
+   <!-- Last 4 edited tenants -->
+    <MenuItem Type="Separator"></MenuItem>
+    <MenuItem Name="pm_tenant1" Type="Method" Class="MbcsCentral.WinPM.WinpmGlobal" Target="EditLastViewedTenant"></MenuItem>
+    <MenuItem Name="pm_tenant2" Type="Method" Class="MbcsCentral.WinPM.WinpmGlobal" Target="EditLastViewedTenant"></MenuItem>
+    <MenuItem Name="pm_tenant3" Type="Method" Class="MbcsCentral.WinPM.WinpmGlobal" Target="EditLastViewedTenant"></MenuItem>
+    <MenuItem Name="pm_tenant4" Type="Method" Class="MbcsCentral.WinPM.WinpmGlobal" Target="EditLastViewedTenant"></MenuItem>
+  </MenuHeader>
+ <!-- WINPM END -->
+  
+  <!--***************************************************************************************************************-->
+  
+  <!-- WINGL -->
+  <MenuHeader Content="WinGL" Name="wingl" Application="WinGL">
+    
+    <!-- Accounts Payable -->
+    <MenuHeader Content="Account Payable" Name="gl_accountspayable">
+      <MenuItem Content="Invoice Entry and Edit" Name="gl_invoiceentry" Type="Form" Parameter="BackGround">
+        <Form Name="WinGL.frmInvoiceList"/>
+      </MenuItem>
+      <MenuItem Content="Batch Invoices" Name="gl_batchinvoices" Type="Form">
+        <Form Name="WinGL.frmBatchInvoices"/>
+      </MenuItem>
+      <MenuItem Type="Separator"> </MenuItem> 
+        <MenuItem Content="Manual Journal Entries" Name="gl_manualentries01" Type="Form">
+          <Form Name="WinGL.frmTransactionEntry"/>
+        </MenuItem>
+     <MenuItem Type="Separator">      
+      </MenuItem>
+      <MenuHeader Content="Check Processing" Name="gl_checkprocessing">
+        <MenuItem Content="Invoice Payment Selection" Name="gl_selectinvoices" Type="Form">
+          <Form Name="WinGL.frmInvoiceSelections"/>
+        </MenuItem>
+        <MenuItem Content="Invoice Payment Selection Report" Name="gl_invoiceselectionreport" Type="Method" Class="MbcsCentral.WinGL.InvoiceSelectionReport" Target="print_report" Parameter="False">
+        </MenuItem>
+       <MenuItem Content="Print Checks" Name="gl_printchecks" Type="Form">
+         <Form Name="WinGL.frmPrintChecks" />
+       </MenuItem>
+      <MenuItem Content="Post Invoices" Name="gl_postchecks" Type="Method" Class="MbcsCentral.WinGL.WinglGlobal" Target="Post_Invoices" Parameter="False,False,False">
+      </MenuItem>
+        <MenuItem Type="Separator"></MenuItem>
+        <MenuItem Content="EFT Report" Name="gl_eftreport" Type="Method" Class="MbcsCentral.WinGL.InvoiceSelectionReport" Target="print_EFT" Parameter="True,False">
+        </MenuItem>
+        <MenuItem Content="Post EFT Invoices" Name="gl_postetc" Type="Method" Class="MbcsCentral.WinGL.WinglGlobal" Target="Post_Invoices" Parameter="False,True,False">      
+        </MenuItem>
+         <MenuItem Type="Separator"></MenuItem>
+	   <MenuHeader Content="ACH Reports" Name="gl_achreports">
+          <!-- <MenuItem Content="ACH Selection Report" Name="gl_achreport" Type="Method" Class="MbcsCentral.WinGL.InvoiceSelectionReport" Target="print_report" Parameter="False,True"> -->
+          <MenuItem Content="ACH Selection Report" Name="gl_achreport" Type="Form" >
+			  <Form Name="WinGL.frmAchSelectReport" />
+         </MenuItem>
+		  <MenuItem Content="ACH Cumulative Report" Name="gl_achaggreport" Type="Form">
+			<Form Name="WinGL.frmVendorAchReport"/>		   
+		  </MenuItem>
+	   </MenuHeader>
+     	<MenuItem Content="Generate ACH Payments" Name="gl_achpayment" Type="Form">
+		  <Form Name="WinGL.frmACHGenerate" />
+	    </MenuItem>
+		  <MenuItem Content="Send Vendor ACH Notices" Name="gl_achnotice" Type="Form">
+			  <Form Name="frmVendorNoticesEmail" />
+		  </MenuItem>
+        <MenuItem Content="Post ACH Invoices" Name="gl_postach" Type="Method" Class="MbcsCentral.WinGL.WinglGlobal" Target="Post_Invoices" Parameter="False,False,True">      
+        </MenuItem>
+        <MenuItem Type="Separator">
+        </MenuItem>
+        <MenuItem Content="Bank Reconciliation" Name="gl_bankreconciliation" Type="Form">
+          <Form Name="WinGL.frmBankReconciliation"/>
+        </MenuItem>
+      </MenuHeader>
+    </MenuHeader>
+    <MenuItem Type="Separator"></MenuItem>
+    
+    <!-- General Ledger-->
+    <MenuHeader Content="General Ledger" Name="gl_generalledger">
+      <MenuHeader Content="Transaction Processing"  Name="gl_transactionprocessing">
+        <MenuItem Content="Manual Journal Entries" Name="gl_manualentries" Type="Form">
+          <Form Name="WinGL.frmTransactionEntry"/>
+        </MenuItem>
+           <MenuItem Type="Separator"></MenuItem>
+        <MenuItem Content="View Pending Receivables" Name="gl_pendingreceivables" Type="Form">
+          <Form Name="WinGL.frmARTrans"/>
+        </MenuItem>
+        <MenuItem Content="View Pending Payables" Name="gl_pendingpayables" Type="Form">
+          <Form Name="WinGL.frmAPTrans"/>
+        </MenuItem>
+        <MenuItem Type="Separator"></MenuItem>
+        <MenuItem Content="Post To G/L From Tenant Receivables" Name="gl_postfromar" Type="Method" Class="MbcsCentral.WinGL.WinglGlobal" Target="PostTenantReceivables"></MenuItem>
+         <MenuItem Type="Separator"></MenuItem>
+       <MenuItem Content="Post To G/L From Accounts Payable" Name="gl_postfromap" Type="Method" Class="MbcsCentral.WinGL.WinglGlobal" Target="PostAccountsPayable"></MenuItem>
+        <MenuItem Content="Print Transaction Edit List" Name="gl_transactioneditlist" Type="Form">
+          <Form Name="frmReportDispatcher" Parameter="MbcsCentral.WinGL.TransactionEditList"/>
+        </MenuItem>
+        <MenuItem Content="Post G/L Transactions" Name="gl_postgltransactions" Type="Method" Class="MbcsCentral.WinGL.WinglGlobal" Target="PostTransactions">
+        </MenuItem>
+      </MenuHeader>
+      <MenuItem Type="Form" Name="gl_closeyear" Content="Close Year">
+        <Form Name="WinGL.frmCloseYear"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuItem Type="Separator"></MenuItem>
+    <!-- Reports -->
+    <MenuHeader Content="Reports" Name="glMenuReports">
+      <MenuItem Content="Display Account Balances" Name="gl_accountbalance" Type="Form">
+        <Form Name="WinGL.frmAccountBalances"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+     <MenuItem Content="General Ledger Report" Name="gl_generalledger" Type="Form">
+        <Form Name="WinGL.frmGeneralLedger"/>
+      </MenuItem>
+      <MenuItem Content="Journal Reports" Name="gl_journalreports" Type="Form">
+        <Form Name="WinGL.frmJournalReport"/>
+      </MenuItem>
+      <MenuItem Content="Operating Statements" Name="gl_operatingstatements" Type="Form">
+        <Form Name="WinGL.frmOperatingStatement"/>
+      </MenuItem>
+      <MenuItem Content="Balance Sheet" Name="gl_balancesheet" Type="Form">
+        <Form Name="WinGL.frmBalanceSheet"/>
+      </MenuItem>
+      <MenuItem Content="Trial Balance" Name="gl_trialbalance" Type="Form">
+        <Form Name="WinGL.frmTrialBalance"/>
+      </MenuItem>
+      <MenuItem Content="Disbursement Report" Name="gl_disbursementreport" Type="Form">
+        <Form Name="WinGL.frmDisbursementReport"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Check Register" Name="gl_checkregister" Type="Form">
+        <Form Name="WinGL.frmCheckRegSelection"/>
+      </MenuItem>
+      <MenuItem Content="1099 Report" Name="gl_1099report" Type="Form">
+        <Form Name="WinGL.frm1099Report"/>
+      </MenuItem>
+      <MenuItem Content="Payroll Report" Name="gl_payrollreport" Type="Form">
+        <Form Name="WinGL.frmPrReport"/>
+      </MenuItem>
+       <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Account Master List" Name="gl_accountmasterlist" Type="Method" Class="MbcsCentral.WinGL.AccountMasterReport" Target="process">
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Type ="Form" Content="Batch Reports" Name="gl_batchreports" Parameter="BackGround">
+        <Form Name="WinGL.frmBatchReports"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuItem Type="Separator"></MenuItem>
+    <!-- File Maintenance -->
+    <MenuHeader Content="Maintain Files" Name="glFileMaintenance">
+      <MenuItem Content="Account Master" Name="gl_categories" Type="Form">
+        <Form Name="WinGL.frmCategoriesAccounts"/>
+      </MenuItem>
+      <MenuItem Content="Companies and Departments" Name="gl_companiesdepartments" Type="Form">
+        <Form Name="WinGL.frmCompaniesDepartments"/>
+      </MenuItem>
+      <MenuItem Content="Vendors" Name="gl_vendors" Type="Form">
+        <Form Name="WinGL.frmVendors"/>
+      </MenuItem>
+      <MenuItem Content="Vendor Active Worksheet" Name="gl_activevendors" Type="Form">
+        <Form Name="WinGL.frmVendorSpreadsheet"/>
+      </MenuItem>
+      <MenuItem Content="Check Numbers" Name="glchecknumbers" Type="Form">
+        <Form Name="WinGL.frmCheckNumbers"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Journal Names" Name="gl_journals" Type="Form">
+        <Form Name="WinGL.frmJournalNames"/>
+      </MenuItem>
+      <MenuItem Content="Edit Batch Journal Entries" Name="gl_batchjournaledit" Type="Form">
+        <Form Name="WinGL.frmBatchJournalEdit"/>
+      </MenuItem>
+      <MenuItem Content="Journal Report Design" Name="gl_journalreportdesign" Type="Form">
+        <Form Name="WinGL.frmJournalDesign"/>
+      </MenuItem>
+      <MenuItem Type="Separator"></MenuItem>
+      <MenuItem Content="Transaction Research" Name="gl_transactionresearch" Type="Form" Parameter="BackGround">
+        <Form Name="WinGL.frmTransactionResearch"/>
+      </MenuItem>
+      <MenuItem Content="Options" Name="gl_options" Type="Form">
+        <Form Name="WinGL.frmOptions"/>
+      </MenuItem>
+        <MenuItem Content="Clean Duplicate Summary Check Records" Name="gl_cleandupecheck" Type="Method" Class="MbcsCentral.WinGL.ApChecks" Target="CleanDupeMasterRecords">
+        </MenuItem>
+    </MenuHeader>
+  </MenuHeader>
+  <!-- WINGL END-->
+   
+  <FixedMenus />
+  <MenuHeader Content="Tools" Name="menuTools">
+    <MenuHeader Content="Email Configurations" Name="menuEmail">
+      <MenuItem Content="Email Accounts" Name="mbcs_smtpconfig2" Type="Form">
+        <Form Name="Email.frmSmtpConfigurator"/>
+      </MenuItem>
+     <MenuItem Content="Email Accounts - ALL" Name="mbcs_smtpconfig3" Type="Form" Parameter="ALL">
+        <Form Name="Email.frmSmtpConfigurator"/>
+      </MenuItem> <MenuItem Content="Recipient Lists" Name="mbcs_reciplists" Type="Form">
+        <Form Name="WinTrm.frmRecipientMaster"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuItem Content="NACHA File Layout" Name="menuNacha" Type="Form">
+      <Form Name="frmNachaLayout"/>
+    </MenuItem>
+    <MenuItem Content="Queries" Name="queries" Type="Form">
+      <Form Name="frmProcedures"/>
+    </MenuItem>
+    <MenuItem Content="Document Layout Editor" Name="menuDocumentLayout" Type="Form">
+      <Form Name="frmDocumentLayout"/>
+    </MenuItem>
+    <MenuItem Content="Document Acquisition" Name="documentacquisition" Type ="Form">
+      <Form Name="frmDocumentAquire"/>
+    </MenuItem>
+    <MenuItem Content="Login as a Different User" Name="menuReLogin" Type="Method" Target="ReLogin">
+    </MenuItem>
+      <MenuItem Content="Configuration/User Management" Name="useracctmgmt" Type="Form">
+      <Form Name="frmAccountManagement"/>
+    </MenuItem>
+    <MenuHeader Content="Options/System" Name="menuOptions">
+      <MenuItem  Content="Menu Editor" Name="menuEditor" Type="Form">
+        <Form Name="frmExternalApplications"/>
+      </MenuItem>
+      <MenuItem Content="Menu Font Size" Name="menuFontSize" Type="Method" Target="SetMenuFont">
+      </MenuItem>
+      <MenuItem  Content="Preferences" Name="menuPref" Type="Form">
+        <Form Name="frmPreferences"/>
+      </MenuItem>
+      <MenuItem Content="MbcsCentral Service" Name="menuService" Type="Form">
+        <Form Name="frmMbcsCentralService"/>
+      </MenuItem>
+    <MenuItem Name="menuLogs" Content="View Application Logs" Type="Form">
+      <Form Name="frmLogViewer"/>
+    </MenuItem>
+     </MenuHeader>
+    <MenuHeader Content="Database" Name="menuDatabase">
+      <MenuItem Content="Database Utility" Name="DbConnection" Type="Form">
+        <Form Name="frmDatabases"/>
+      </MenuItem>
+      <MenuItem Content="Edit Databases" Name="menuDbEdit" Type="Form">
+        <Form Name="frmDatabasesEdit"/>
+      </MenuItem>
+      <MenuItem Content="Backup/Restore" Name="menuDbBackup" Type="Form">
+        <Form Name="frmDatabaseBackup"/>
+      </MenuItem>
+      <MenuItem Content="Database Servers" Name="DbServers" Type="Form">
+        <Form Name="frmDatabaseServers"/>
+      </MenuItem>
+      <MenuItem Content="Migrate Data" Name="mbcs_transfer" Type="Form">
+        <Form Name="frmDbTransfer"/>
+      </MenuItem>
+    </MenuHeader>
+  </MenuHeader>
+  <!--
+    <MenuItem  Content="Help" Name="menuHelp" Type="Form">
+      <Form Name="Help.frmHelp"/>
+    </MenuItem>
+    -->
+    <MenuItem Content="Help" Name="menuHelp" Type="Application" Parameter="http://www.MbcsCentral.com/MbcsCentralHelp/index.htm">
+      
+    </MenuItem>
+  <!-- OTHER APPLICATIONS -->
+  <ExternalApplications/>
+
+</Menu>

@@ -1,0 +1,69 @@
+﻿<Window x:Class="frmJobDashboard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Message Delivery Dashboard" Height="402" Width="1020" FontWeight="Medium" Background="{StaticResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my="clr-namespace:WinTRM">
+    <Window.Resources>
+        <CollectionViewSource x:Key="JobMasterViewSource" d:DesignSource="{d:DesignInstance my:JobMaster, CreateList=True}" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource JobMasterViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="{StaticResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <Label Content="Show Jobs That Are: " VerticalAlignment="Center"/>
+            <CheckBox Name="chkActive" Content="Active" VerticalAlignment="Center"/>
+            <CheckBox Name="chkReady" Content="Ready" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <CheckBox Name="chkPaused" Content="Paused" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <CheckBox Name="chkCompleted" Content="Completed" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Label Content="Delivery Dates:" Margin="15,0,0,0" VerticalAlignment="Center"/>
+            <DatePicker Name="dtFrom" VerticalAlignment="Center" />
+            <Label Content="To" VerticalAlignment="Center" />
+            <DatePicker Name="dtTo" VerticalAlignment="Center"/>
+            <Button Name="cmdRefresh" Content="REFRESH" Margin="15,3,0,3" />
+        </StackPanel>
+        <DataGrid AutoGenerateColumns="False" Grid.Row="1" Name="grdJobs" AlternationCount="1" AlternatingRowBackground="{StaticResource {x:Static SystemColors.ControlLightLightBrushKey}}" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=jobId}" Width="50" />
+                <DataGridTextColumn Header="Account" Width="100" Binding="{Binding Path=accountId}" />
+                <DataGridTextColumn Header="Status" Width="80" Binding="{Binding Path=status}" />
+                <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Path=jobName}" />
+                <DataGridTextColumn Header="Content" Width="150" Binding="{Binding Path=contentId}" />
+                <DataGridTextColumn Header="Deliver on" Binding="{Binding Path=deliveryTime}" Width="75" />
+                <DataGridTextColumn Header="Created" Binding="{Binding Path=created}" Width="75" />
+                <DataGridTextColumn Header="Finished" Binding="{Binding Path=finished}" Width="75" />
+                <DataGridTextColumn Header="Sent" Binding="{Binding Path=messageCount}" Width="50" />
+                <DataGridTemplateColumn Header="Pause">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="cmdPause" CommandParameter="{Binding Path=jobId}">Pause</Button> 
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="cmdEdit" CommandParameter="{Binding Path=jobId}">Edit</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate />
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="cmdDelete" CommandParameter="{Binding Path=jobId}">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Label Content="Last Refreshed: " FontSize="10" VerticalAlignment="Center" />
+            <TextBox Name="txtRefreshed" IsReadOnly="True" Margin="0,4,0,4" HorizontalContentAlignment="Center"/>
+            <Button Name="cmdExit" Content="EXIT" Margin="10,4,0,4"/>
+        </StackPanel>
+    </Grid>
+</Window>

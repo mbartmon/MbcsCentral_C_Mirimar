@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <MenuItem  Content="Exit" Name="exit" Type="Internal">
+  </MenuItem>
+  <MenuHeader Content="WinPM" Name="winpm" Application="WinPM">
+    <MenuItem  Content="Owners and Buildings" Name="pm_owner" Type="Form">
+      <Form Name="WinPM.frmOwnersBuildings"/>
+    </MenuItem>
+    <MenuItem Content="Charge Codes" Name="pm_codes" Type="Form">
+      <Form Name="WinPM.frmChargeCodes"/>
+    </MenuItem>
+    <MenuItem Type="Separator">
+    </MenuItem>
+    <MenuHeader Content="Work With Tenants" Name="menuTenants">
+      <MenuItem  Content="Tenant Records" Name="pm_tenants" Type="Form">
+        <Form Name="frmTenants"/>
+      </MenuItem>
+      <MenuItem Content="Payment Entries" Name="pm_paymententries" Type="Form">
+        <Form Name="WinPM.frmPaymentEntry"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuItem Type="Separator">
+    </MenuItem>
+    <MenuHeader Content="Reports" name="menuReports">
+      <MenuItem Content="Status Report" Name="pm_status" Type="Form">
+        <Form Name="WinPM.frmStatusReport"/>
+      </MenuItem>
+    </MenuHeader>
+  </MenuHeader>
+  <MenuHeader Content="Documents" Name="windoc" Application="WinDoc">
+    <MenuItem Content="Acquire" Name="menuAcquire" Type="Form">
+      <Form Name="frmDoc"/>
+    </MenuItem>
+  </MenuHeader>
+  <MenuItem  Content="WinPM Application" Name="winpmApp" Type="Application">
+    <Application Name="Winpm">
+      <AppPath Path="c:\pmsys\"  Name="winpm.exe"/>
+      <DataPath Path="c:\pmsys\" Name="winpm.mdb" />
+    </Application>
+  </MenuItem>
+  <FixedMenus />
+  <MenuHeader Content="Tools" Name="menuTools">
+    <MenuHeader Content="Options" Name="menuOptions">
+      <MenuItem  Content="Menu Editor" Name="menuEditor" Type="Form">
+        <Form Name="frmMenuEdit"/>
+      </MenuItem>
+      <MenuItem Content="Menu Font Size" Name="menuFontSize" Type="Method" Target="SetMenuFont">
+      </MenuItem>
+      <MenuItem  Content="Preferences" Name="menuPref" Type="Form">
+        <Form Name="frmPreferences"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuHeader Content="Database" Name="menuDatabase">
+      <MenuItem Content="Database Connection" Name="DbConnection" Type="Method" Target="SetDbConnection">
+      </MenuItem>
+      <MenuItem Content="Transfer from Access" Name="mbcs_transfer" Type="Form">
+        <Form Name="frmDbTransfer"/>
+      </MenuItem>
+    </MenuHeader>
+    <MenuItem  Content="Help" Name="menuHelp" Type="Form">
+      <Form Name="frmHelp"/>
+    </MenuItem>
+  </MenuHeader>
+</Menu>

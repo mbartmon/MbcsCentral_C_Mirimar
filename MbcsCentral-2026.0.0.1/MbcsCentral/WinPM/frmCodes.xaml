@@ -1,0 +1,39 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmCodes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:MbcsCentral="clr-namespace:MbcsCentral" 
+        mc:Ignorable="d"
+        Title="Charge Codes" 
+        x:Name="formCodes"
+        Height="339" Width="965" 
+        Loaded="formCodes_Loaded_1"
+        Closed="formCodes_Closed_1">
+    <Window.Resources>
+        <CollectionViewSource x:Key="codesViewSource" d:DesignSource="{d:DesignInstance {x:Type MbcsCentral:Codes}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource codesViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" x:Name="codesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="chargeCodeColumn" Binding="{Binding ChargeCode}" Header="Code" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="chargeDescriptionColumn" Binding="{Binding ChargeDescription}" Header="Description" Width="Auto"/>
+                <DataGridTextColumn x:Name="gLCashAccountColumn" Binding="{Binding GLCashAccount}" Header="GLCash Account" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="glCashSubAccountColumn" Binding="{Binding GlCashSubAccount}" Header="Gl Cash Sub Account" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gLCreditAccountColumn" Binding="{Binding GLCreditAccount}" Header="GLCredit Account" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gLCreditSubAccountColumn" Binding="{Binding GLCreditSubAccount}" Header="GLCredit Sub Account" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gLDebitAccountColumn" Binding="{Binding GLDebitAccount}" Header="GLDebit Account" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="gLDebitSubAccountColumn" Binding="{Binding GLDebitSubAccount}" Header="GLDebit Sub Account" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="legalCodeColumn" Binding="{Binding LegalCode}" Header="Legal Code" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Name="cmdSave" Content="SAVE" VerticalAlignment="Center" Margin="20,0,0,0" Click="cmdSave_Click_1"/>
+            <Button Name="cmdClose" Content="CLOSE" VerticalAlignment="Center" Margin="10,0,0,0" Click="cmdClose_Click_1"/>
+        </StackPanel>
+    </Grid>
+</Window>

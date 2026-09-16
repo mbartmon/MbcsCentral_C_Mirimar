@@ -1,0 +1,177 @@
+/*Created with Adobe RoboHelp 10.*/
+body {
+  font-family: Arial;
+  background-color: #ffffff;
+}
+h1 {
+  font-weight: bold;
+  font-size: 28.0pt;
+}
+h2 {
+  font-weight: bold;
+  font-size: 24.0pt;
+}
+h3 {
+  font-weight: bold;
+  font-size: 18.0pt;
+}
+h4 {
+  font-weight: bold;
+  font-size: 12.0pt;
+}
+h5 {
+  font-weight: bold;
+  font-size: 10.0pt;
+}
+h6 {
+  font-weight: bold;
+  font-size: 8.0pt;
+}
+p {
+  font-size: 12.0pt;
+  margin-top: 0pt;
+  margin-bottom: 0pt;
+}
+a.expandspot {
+  color: #008000;
+  cursor: hand;
+  font-style: italic;
+  text-decoration: none;
+}
+span.expandtext {
+  font-style: italic;
+  font-weight: normal;
+  color: #ff0000;
+}
+a.dropspot {
+  cursor: hand;
+  color: #008000;
+  font-style: italic;
+  text-decoration: none;
+}
+a.glossterm {
+  color: #800000;
+  cursor: hand;
+  font-style: italic;
+  text-decoration: none;
+}
+span.glosstext {
+  font-style: italic;
+  font-weight: normal;
+  color: #0000ff;
+}
+ol,
+ul {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+ol.Decimal {
+  list-style-type: decimal;
+}
+ol.NestedNumbering {
+  list-style: none;
+  counter-reset: item1;
+}
+ol.NestedNumbering>li>ol {
+  list-style: none;
+  counter-reset: item2;
+}
+ol.NestedNumbering>li>ol>li:before {
+  counter-increment: item2;
+  content: counter(item1, decimal)"."counter(item2, decimal)".";
+  padding-right: 0.5rem;
+}
+ol.NestedNumbering>li:before {
+  counter-increment: item1;
+  content: counter(item1, decimal)".";
+  padding-right: 0.5rem;
+}
+ol.NestedNumbering>li>ol>li>ol {
+  list-style: none;
+  counter-reset: item3;
+}
+ol.NestedNumbering>li>ol>li>ol>li:before {
+  counter-increment: item3;
+  content: counter(item1, decimal)"."counter(item2, decimal)"."counter(item3, decimal)".";
+  padding-right: 0.5rem;
+}
+ol.NestedNumbering>li>ol>li>ol>li>ol {
+  counter-reset: item4;
+  list-style: none;
+}
+ol.NestedNumbering>li>ol>li>ol>li>ol>li:before {
+  counter-increment: item4;
+  content: counter(item1, decimal)"."counter(item2, decimal)"."counter(item3, decimal)"."counter(item4, decimal)".";
+  padding-right: 0.5rem;
+}
+ol.NestedNumbering>li>ol>li>ol>li>ol>li>ol {
+  counter-reset: item5;
+  list-style: none;
+}
+ol.NestedNumbering>li>ol>li>ol>li>ol>li>ol>li:before {
+  counter-increment: item5;
+  content: counter(item1, decimal)"."counter(item2, decimal)"."counter(item3, decimal)"."counter(item4, decimal)"."counter(item5, decimal)".";
+  padding-right: 0.5rem;
+}
+ol.NestedNumbering>li>ol>li>ol>li>ol>li>ol>li>ol {
+  counter-reset: item6;
+  list-style: none;
+}
+ol.NestedNumbering>li>ol>li>ol>li>ol>li>ol>li>ol>li:before {
+  counter-increment: item6;
+  content: counter(item1, decimal)"."counter(item2, decimal)"."counter(item3, decimal)"."counter(item4, decimal)"."counter(item5, decimal)"."counter(item6, decimal)".";
+  padding-right: 0.5rem;
+}
+ol.LowerAlpha {
+  list-style-type: lower-alpha;
+}
+ol.AlphaNumeric {
+  list-style: decimal;
+}
+ol.AlphaNumeric>li>ol {
+  list-style: lower-alpha;
+}
+ol.AlphaNumeric>li>ol>li>ol {
+  list-style: lower-roman;
+}
+ol.AlphaNumeric>li>ol>li>ol>li>ol {
+  list-style: none;
+  counter-reset: item4;
+}
+ol.AlphaNumeric>li>ol>li>ol>li>ol>li:before {
+  counter-increment: item4;
+  content: "("counter(item4, decimal)")";
+  padding-right: 0.5rem;
+}
+ol.AlphaNumeric>li>ol>li>ol>li>ol>li>ol {
+  list-style: none;
+  counter-reset: item5;
+}
+ol.AlphaNumeric>li>ol>li>ol>li>ol>li>ol>li:before {
+  counter-increment: item5;
+  content: "("counter(item5, lower-alpha)")";
+  padding-right: 0.5rem;
+}
+ol.AlphaNumeric>li>ol>li>ol>li>ol>li>ol>li>ol {
+  list-style: none;
+  counter-reset: item6;
+}
+ol.AlphaNumeric>li>ol>li>ol>li>ol>li>ol>li>ol>li:before {
+  counter-increment: item6;
+  content: "("counter(item6, lower-roman)")";
+  padding-right: 0.5rem;
+}
+ul.Disc {
+  list-style-type: disc;
+}
+ul.Circle {
+  list-style-type: circle;
+}
+h2.border {
+  font-weight: bold;
+  font-size: 24.0pt;
+  border-style: solid;
+  border-bottom-width: 4px;
+  text-align: center;
+  background-color: rgb(0, 255, 255);
+}

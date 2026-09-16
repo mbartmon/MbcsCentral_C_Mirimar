@@ -1,0 +1,4 @@
+ALTER TABLE gl_Company ADD RoutingNumber VARCHAR(9) NOT NULL DEFAULT '';
+GO
+ALTER TABLE gl_Company ADD BankAccount VARCHAR(17) NOT NULL DEFAULT '';
+GO

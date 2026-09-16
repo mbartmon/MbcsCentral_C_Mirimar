@@ -1,0 +1,85 @@
+﻿<Page x:Class="MbcsCentral.WinTrm.HelpMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="HelpMain">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="23"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource HeaderText}">WinTRM Help</TextBlock>
+                <TreeView >
+                    <TreeViewItem Header="General" IsExpanded="True">
+                        <Hyperlink NavigateUri="HelpOverView.xaml">Overview</Hyperlink>
+                        <Hyperlink NavigateUri="HelpProcessing.xaml">Processing</Hyperlink>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Main Screen Items" IsExpanded="True">
+                        <TreeViewItem.Items>
+                            <Hyperlink NavigateUri="HelpRegistrationYear.xaml">Registration Year</Hyperlink>
+                            <Hyperlink NavigateUri="HelpProviderCode.xaml">Provider Code</Hyperlink>
+                            <Hyperlink NavigateUri="HelpWinpmDatabase.xaml">WinPM Database</Hyperlink>
+                            <Hyperlink NavigateUri="HelpTenantSelections.xaml">Tenant Selections</Hyperlink>
+                            <Hyperlink NavigateUri="HelpBuildingSelections.xaml">Buildings List</Hyperlink>
+                            <Hyperlink NavigateUri="HelpFiles.xaml">Output Files</Hyperlink>
+                            <TreeViewItem Header="Additional Functions" IsExpanded="True">
+                                <Hyperlink NavigateUri="HelpAdditionalFunctions.xaml">Overview of Additional Functions</Hyperlink>
+                                <Hyperlink NavigateUri="HelpVerifyProcessing.xaml">Verify Processing</Hyperlink>
+                                <Hyperlink NavigateUri="HelpVerificationRules.xaml">Verification Rules</Hyperlink>
+                                <Hyperlink NavigateUri="HelpCorrectErrors.xaml">Correct Errors</Hyperlink>
+                                <Hyperlink NavigateUri="HelpReports.xaml">Reports</Hyperlink>
+                            </TreeViewItem>
+                        </TreeViewItem.Items>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Screens" IsExpanded="True">
+                        <TreeViewItem.Items>
+                            <Hyperlink NavigateUri="HelpMainScreen.xaml">The Main Screen</Hyperlink>
+                            <Hyperlink NavigateUri="HelpProcessingScreen.xaml">Processing</Hyperlink>
+                        </TreeViewItem.Items>
+                    </TreeViewItem>
+                </TreeView>
+                <TextBlock Foreground="Black">
+                Part of the MBCS Property Management Suite
+                </TextBlock>
+                <TextBlock>
+                Michael Bartmon Computer Services LLC (MBCS) is a full-service computer consulting, 
+                programming and support company that has been providing computer solutions for 
+                businesses for over 30 years.  MBCS offers pre-programmed systems for residential 
+                property management, general bookkeeping and payroll, as well as customized applications 
+                for a wide range of industries.  The company also offers a comprehensive system support 
+                service that ensures a business's computer hardware and software, whether stand-alone or 
+                networked, always performs at its best and relieves office personnel from having to deal 
+                with complicated computer system issues.
+                </TextBlock>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="20">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource InnerText}">
+                        Telephone: (347) 527-7220
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource InnerText}">
+                        E-mail: support@bartmon.com
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource InnerText}">
+                        Website: http://www.bartmon.com
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Grid.Row="1" Name="cmdExit" Content="EXIT" Click="cmdExit_Click"/>
+    </Grid>
+</Page>

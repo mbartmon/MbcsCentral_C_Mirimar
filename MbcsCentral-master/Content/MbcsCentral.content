@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="433B1CD02-C037-47F2-AC43-E245FD464704" visible="True" isDefault="true" title="Welcome">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+</Topics>
+

@@ -1,0 +1,1 @@
+﻿Existence of this file triggers retrieval of the machine name so that the DatabaseSource can be built.  Then this file will be deleted.

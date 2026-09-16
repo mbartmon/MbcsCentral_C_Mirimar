@@ -1,0 +1,239 @@
+﻿<Window
+    x:Class="MbcsCentral.frmDatabaseBackup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xtc="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+    Name="FormDatabaseBackup"
+    Title="Database Backup Utility"
+    Width="668.295"
+    Height="586.767"
+    Background="AliceBlue"
+    Closed="Window_Closed"
+    Loaded="Window_Loaded"
+    TextBlock.FontSize="14"
+    TextBlock.FontWeight="Bold"
+    TextBlock.TextAlignment="Center"
+    mc:Ignorable="d">
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="120" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border
+                Grid.Row="0"
+                BorderBrush="Blue"
+                BorderThickness="0,0,0,3">
+                <StackPanel>
+                    <TextBlock Text="Automated Backup" />
+                    <StackPanel
+                        Margin="5,0,0,0"
+                        TextBlock.FontSize="12"
+                        TextBlock.FontWeight="DemiBold"
+                        TextBlock.TextAlignment="Left">
+                        <CheckBox
+                            Name="chkAutoEnable"
+                            Content="Enable"
+                            IsChecked="{Binding DbBackupEnabled}" />
+                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Last Backup " />
+                            <TextBox
+                                Name="txtLastBackup"
+                                Width="100"
+                                VerticalAlignment="Center"
+                                IsReadOnly="True"
+                                Text="{Binding DbBackupLastDate, Mode=OneTime, StringFormat={}{0:MM/dd/yyyy}}" />
+                            <TextBlock
+                                Margin="20,0,5,0"
+                                VerticalAlignment="Center"
+                                Text="Current Backup Period Start" />
+                            <xtc:DateTimePicker
+                                Name="dtStartDate"
+                                Width="120"
+                                AllowSpin="False"
+                                Format="ShortDate"
+                                Value="{Binding DbBackupStartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Location " />
+                            <TextBox
+                                Name="txtAutoLocation"
+                                Width="500"
+                                VerticalAlignment="Center"
+                                IsReadOnly="True"
+                                Text="{Binding DbBackupLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button
+                                Name="cmdAutoLocation"
+                                Margin="5,0,0,0"
+                                Click="cmdAutoLocation_Click"
+                                Content="BROWSE" />
+                        </StackPanel>
+                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                            <TextBlock Text="Period (days between full backups. Differential backups will be made in the interrim." />
+                            <local:NumberEntry
+                                x:Name="txtPeriod"
+                                Width="30"
+                                Margin="5,0,0,0"
+                                Decimals="0"
+                                MaxLength="2"
+                                Text="{Binding DbBackupPeriod}" />
+                        </StackPanel>
+                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                            <TextBlock Text="Time of day to perform backup" />
+                            <xtc:TimePicker
+                                Name="dtTimeOfDay"
+                                Width="100"
+                                Margin="5,0,0,0"
+                                AllowSpin="False"
+                                Format="Custom"
+                                FormatString="HH:mm"
+                                Value="{Binding DbBackupTime24}" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="24 hour time (9am = 09:00, 1pm = 13:00, 11:15pm = 23:15)" />
+                        </StackPanel>
+                        <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Days to keep old backups" />
+                            <local:NumberEntry
+                                x:Name="txtDaysToKeep"
+                                Width="55"
+                                Margin="5,0,0,0"
+                                Decimals="0"
+                                MaxLength="3"
+                                Text="{Binding DbBackupClearDays}" />
+                        </StackPanel>
+                        <Button
+                            Name="cmdAutoSave"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"
+                            Click="cmdAutoSave_Click"
+                            Content="SAVE AUTO SETTINGS" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border
+                Grid.Row="1"
+                BorderBrush="Blue"
+                BorderThickness="0,0,0,3">
+                <StackPanel>
+                    <TextBlock Text="Manual Backup/Restore" />
+                    <StackPanel
+                        Margin="2,0,0,0"
+                        TextBlock.FontSize="12"
+                        TextBlock.FontWeight="DemiBold">
+                        <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Locdation of Backup " />
+                            <TextBox
+                                Name="txtManualLocation"
+                                Width="425"
+                                VerticalAlignment="Center"
+                                Text="{Binding DbManualLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                TextAlignment="Left" />
+                            <Button
+                                Name="cmdManualLocation"
+                                Margin="5,0,0,0"
+                                Click="cmdManualLocation_Click"
+                                Content="BROWSE" />
+                        </StackPanel>
+                        <StackPanel Margin="5,5,0,0" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Mapped drive of SQL Server" />
+                            <ComboBox
+                                Name="lstMappedDrive"
+                                Width="50"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Name"
+                                IsEditable="False"
+                                ItemsSource="{Binding}" />
+                            <CheckBox
+                                Name="chkCurrent"
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                Content="CURRENT instead of PRODUCTION" />
+                            <CheckBox
+                                Name="chkOverwrite"
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                Content="Overwrite output file if it exists" />
+                            <!--
+                            <TextBox Name="txtMappedDrive"
+                                     Width="353"
+                                     Margin="5,0,0,0"
+                                     VerticalAlignment="Center"
+                                     Text="{Binding DbMappedDirve}" />
+                            <Button Name="cmdMappedDrive"
+                                    Margin="5,0,0,0"
+                                    Click="cmdMappedDrive_Click"
+                                    Content="BROWSE" />
+                            -->
+                        </StackPanel>
+                        <StackPanel
+                            Margin="10,5,0,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal" />
+                        <StackPanel
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <Button
+                                Name="cmdBackupManual"
+                                Margin="10,0,0,0"
+                                Click="cmdBackupManual_Click"
+                                Content="START BACKUP" />
+                            <Button
+                                Name="cmdRestoreManual"
+                                Margin="100,0,0,0"
+                                Click="cmdRestoreManual_Click"
+                                Content="START RESTORE" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="Restore" />
+                <TextBlock
+                    Margin="5"
+                    FontSize="12"
+                    TextAlignment="Left"
+                    TextWrapping="Wrap">
+                    IMPORTANT: When restoring a database, select the backup from the date to which you wish to restore whether it is a FULL or DIFFERENTRIAL one.<LineBreak />
+                    <LineBreak />
+                    Doing otherwise could corrupt the database.</TextBlock>
+                <DataGrid
+                    Name="grdRestore"
+                    MaxHeight="150"
+                    FontSize="12"
+                    ItemsSource="{Binding}"
+                    TextBlock.TextAlignment="Left">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem
+                                Name="ctxStartRestore"
+                                Click="ctxStartRestore_Click"
+                                Header="Start Restore" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <Button
+                        Name="cmdRestore"
+                        Click="ctxStartRestore_Click"
+                        Content="Start Restore from selected backup" />
+                    <Button
+                        Name="cmdExit"
+                        Margin="200,0,0,0"
+                        Click="cmdExit_Click"
+                        Content="EXIT" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

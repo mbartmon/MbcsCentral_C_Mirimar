@@ -1,0 +1,9 @@
+*.exe.CodeAnalysisLog.xml
+*.pdb
+*.exe.lastcodeanalysissucceeded
+/MbcsUtils.dll
+/Microsoft.SqlServer.SmoExtended.13.0.0.0.Fakes.fakesconfig
+*.exe.config
+*.xml
+/WpfBindingErrors.dll
+/MbcsCentralTEST.exe

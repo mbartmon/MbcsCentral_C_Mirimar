@@ -1,0 +1,455 @@
+﻿Build started 12/23/2014 12:29:15 PM.
+     1>Project "C:\workfiles\MbcsCentral_C\EventLogging\EventLogging.vcxproj" on node 2 (Rebuild target(s)).
+     1>CustomBuild:
+         Compiling Event Log Messages
+         MC: Compiling c:\workfiles\MbcsCentral_C\EventLogging\MbcsMessages.mc
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\EventLogging.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\EventLogging.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt EventLogging.cpp
+         EventLogging.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /I./res /nologo /fo"Debug\EventLogging.res" EventLogging.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\workfiles\MbcsCentral_C\Debug\EventLogging.dll" /VERBOSE /INCREMENTAL /NOLOGO /FORCE kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\workfiles\MbcsCentral_C\Debug\EventLogging.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\workfiles\MbcsCentral_C\Debug\EventLogging.lib" /MACHINE:X86 /DLL Debug\EventLogging.res
+         Debug\EventLogging.obj
+         Debug\stdafx.obj
+     1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/FORCE' specification
+         
+         Starting pass 1
+         Processed /DEFAULTLIB:uuid.lib
+         Processed /DEFAULTLIB:MSVCRTD
+         Processed /DEFAULTLIB:OLDNAMES
+     1>EventLogging.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+         
+         Searching libraries
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib\MSVCRTD.lib:
+               Found __RTC_InitBase
+                 Referenced in EventLogging.obj
+                 Loaded MSVCRTD.lib(init.obj)
+               Found __DllMainCRTStartup@12
+                 Loaded MSVCRTD.lib(crtdll.obj)
+               Found __RTC_SetErrorFuncW
+                 Referenced in MSVCRTD.lib(init.obj)
+                 Loaded MSVCRTD.lib(userapi.obj)
+               Found __CRT_RTC_INITW
+                 Referenced in MSVCRTD.lib(init.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found ___CppXcptFilter
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __amsg_exit
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __imp___malloc_dbg
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __imp___free_dbg
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __imp___CrtSetCheckCount
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __IsNonwritableInCurrentImage
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(pesect.obj)
+               Found _atexit
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(atonexit.obj)
+               Found ___security_init_cookie
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(gs_support.obj)
+               Found _DllMain@12
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(dllmain.obj)
+               Found __RTC_Initialize
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(initsect.obj)
+               Found __initterm
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __initterm_e
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found ___clean_type_info_names
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(tncleanup.obj)
+               Found __except_handler4
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Referenced in MSVCRTD.lib(pesect.obj)
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded MSVCRTD.lib(chandler4gs.obj)
+               Found ___native_startup_state
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(natstart.obj)
+               Found ___xi_a
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Loaded MSVCRTD.lib(cinitexe.obj)
+         Processed /DEFAULTLIB:kernel32.lib
+          Processed /DISALLOWLIB:libcmt.lib
+          Processed /DISALLOWLIB:libcmtd.lib
+          Processed /DISALLOWLIB:msvcrt.lib
+               Found ___security_cookie
+                 Referenced in MSVCRTD.lib(chandler4gs.obj)
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Referenced in MSVCRTD.lib(pesect.obj)
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Referenced in MSVCRTD.lib(gs_support.obj)
+                 Loaded MSVCRTD.lib(gs_cookie.obj)
+               Found "int * _RTC_ErrorLevels" (?_RTC_ErrorLevels@@3PAHA)
+                 Referenced in MSVCRTD.lib(userapi.obj)
+                 Loaded MSVCRTD.lib(error.obj)
+               Found __IMPORT_DESCRIPTOR_MSVCR120D
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __lock
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __unlock
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __imp___CrtDbgReportW
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __imp___calloc_dbg
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found ___dllonexit
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __imp___onexit
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found ___clean_type_info_names_internal
+                 Referenced in MSVCRTD.lib(tncleanup.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found @__security_check_cookie@4
+                 Referenced in MSVCRTD.lib(chandler4gs.obj)
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Loaded MSVCRTD.lib(secchk.obj)
+               Found __except_handler4_common
+                 Referenced in MSVCRTD.lib(chandler4gs.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found "int __cdecl _RTC_GetSrcLine(unsigned char *,wchar_t *,unsigned long,int *,wchar_t *,unsigned long)" (?_RTC_GetSrcLine@@YAHPAEPA_WKPAH1K@Z)
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Loaded MSVCRTD.lib(pdblkup.obj)
+               Found __NULL_IMPORT_DESCRIPTOR
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found MSVCR120D_NULL_THUNK_DATA
+                 Referenced in MSVCRTD.lib(MSVCR120D.dll)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found ___report_gsfailure
+                 Referenced in MSVCRTD.lib(secchk.obj)
+                 Loaded MSVCRTD.lib(gs_report.obj)
+               Found _wcscpy_s
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __wmakepath_s
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __wsplitpath_s
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found __crt_debugger_hook
+                 Referenced in MSVCRTD.lib(gs_report.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found ___crtUnhandledException
+                 Referenced in MSVCRTD.lib(gs_report.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+               Found ___crtTerminateProcess
+                 Referenced in MSVCRTD.lib(gs_report.obj)
+                 Loaded MSVCRTD.lib(MSVCR120D.dll)
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\kernel32.lib:
+               Found __imp__EncodePointer@4
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__DecodePointer@4
+                 Referenced in MSVCRTD.lib(crtdll.obj)
+                 Referenced in MSVCRTD.lib(atonexit.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__QueryPerformanceCounter@4
+                 Referenced in MSVCRTD.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetCurrentProcessId@0
+                 Referenced in MSVCRTD.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetCurrentThreadId@0
+                 Referenced in MSVCRTD.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetSystemTimeAsFileTime@4
+                 Referenced in MSVCRTD.lib(gs_support.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__DisableThreadLibraryCalls@4
+                 Referenced in MSVCRTD.lib(dllmain.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__IsDebuggerPresent@0
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Referenced in MSVCRTD.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__RaiseException@16
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetLastError@0
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetProcAddress@8
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__LoadLibraryExW@12
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__MultiByteToWideChar@24
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__WideCharToMultiByte@32
+                 Referenced in MSVCRTD.lib(error.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__HeapAlloc@12
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__HeapFree@12
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetProcessHeap@0
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__VirtualQuery@12
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__FreeLibrary@4
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetModuleFileNameW@12
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __imp__GetModuleHandleW@4
+                 Referenced in MSVCRTD.lib(pdblkup.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found _IsProcessorFeaturePresent@4
+                 Referenced in MSVCRTD.lib(gs_report.obj)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found __IMPORT_DESCRIPTOR_KERNEL32
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Loaded kernel32.lib(KERNEL32.dll)
+               Found KERNEL32_NULL_THUNK_DATA
+                 Referenced in kernel32.lib(KERNEL32.dll)
+                 Loaded kernel32.lib(KERNEL32.dll)
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib\MSVCRTD.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib\OLDNAMES.lib:
+         
+         Finished searching libraries
+         
+         Finished pass 1
+         
+         
+         Searching libraries
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbccp32.lib:
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib\MSVCRTD.lib:
+               Found __load_config_used
+                 Loaded MSVCRTD.lib(loadcfg.obj)
+             Searching C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib\OLDNAMES.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\kernel32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\user32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\gdi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\winspool.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\comdlg32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\advapi32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\shell32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\ole32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\oleaut32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\uuid.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbc32.lib:
+             Searching C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbccp32.lib:
+         
+         Finished searching libraries
+         
+         Invoking rc.exe:
+          /v
+          /x
+          /fo
+          "C:\Users\Mike\AppData\Local\Temp\lnk{069697F3-983F-4999-8FF7-8CB348891D17}.tmp"
+          "C:\Users\Mike\AppData\Local\Temp\lnk{D5163EE5-2162-4337-B90F-458073966DE7}.tmp"
+         Microsoft (R) Windows (R) Resource Compiler Version 6.3.9600.17298
+         
+         Copyright (C) Microsoft Corporation.  All rights reserved.
+         
+         
+         Creating C:\Users\Mike\AppData\Local\Temp\lnk{069697F3-983F-4999-8FF7-8CB348891D17}.tmp
+         
+         Using codepage 1252 as default
+         
+         C:\Users\Mike\AppData\Local\Temp\lnk{D5163EE5-2162-4337-B90F-458073966DE7}.tmp.
+         Writing 24:2,	lang:0x409,	size 381
+         
+         Invoking cvtres.exe:
+          /machine:x86
+          /verbose
+          /out:"C:\Users\Mike\AppData\Local\Temp\lnk{4BBC0B12-6C12-4884-91D6-371AE7AFA54D}.tmp"
+          /readonly
+          "Debug\EventLogging.res"
+          "C:\Users\Mike\AppData\Local\Temp\lnk{069697F3-983F-4999-8FF7-8CB348891D17}.tmp"
+         Microsoft (R) Windows Resource To Object Converter Version 12.00.21005.1
+         Copyright (C) Microsoft Corporation.  All rights reserved.
+         
+         adding resource. type:MANIFEST, name:2, language:0x0409, flags:0x30, size:381
+         
+         Unused libraries:
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\user32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\gdi32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\winspool.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\comdlg32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\advapi32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\shell32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\ole32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\oleaut32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\uuid.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbc32.lib
+           C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86\odbccp32.lib
+           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib\OLDNAMES.lib
+         
+         Starting pass 2
+              EventLogging.res
+              stdafx.obj
+              EventLogging.obj
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              kernel32.lib(KERNEL32.dll)
+              MSVCRTD.lib(tncleanup.obj)
+              MSVCRTD.lib(atonexit.obj)
+              MSVCRTD.lib(cinitexe.obj)
+              MSVCRTD.lib(crtdll.obj)
+              MSVCRTD.lib(dllmain.obj)
+              MSVCRTD.lib(gs_cookie.obj)
+              MSVCRTD.lib(gs_report.obj)
+              MSVCRTD.lib(gs_support.obj)
+              MSVCRTD.lib(natstart.obj)
+              MSVCRTD.lib(pesect.obj)
+              MSVCRTD.lib(chandler4gs.obj)
+              MSVCRTD.lib(loadcfg.obj)
+              MSVCRTD.lib(secchk.obj)
+              MSVCRTD.lib(userapi.obj)
+              MSVCRTD.lib(pdblkup.obj)
+              MSVCRTD.lib(initsect.obj)
+              MSVCRTD.lib(init.obj)
+              MSVCRTD.lib(error.obj)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+              MSVCRTD.lib(MSVCR120D.dll)
+         Finished pass 2
+         EventLogging.vcxproj -> C:\workfiles\MbcsCentral_C\Debug\EventLogging.dll
+     1>Done Building Project "C:\workfiles\MbcsCentral_C\EventLogging\EventLogging.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.20

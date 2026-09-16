@@ -1,0 +1,84 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmPreferredRent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xtc="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+        Name="formPreferredRent"
+        Loaded="formPreferredRent_Loaded"
+        Closing="formPreferredRent_Closing"
+        Title="Preferred Rent Editor" Height="300" Width="843">
+    <Grid Background="SkyBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="75"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <TextBlock Text="Starting Building:" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Name="txtStartingBuilding" Text="000" Width="40" MaxLength="3" Margin="5,0,0,0" VerticalAlignment="Center" GotFocus="txtStartingBuilding_GotFocus"/>
+            <TextBlock Text="Ending Building:" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Name="txtEndingBuilding" Text="ZZZ" Width="40" MaxLength="3" Margin="5,0,0,0" VerticalAlignment="Center" GotFocus="txtStartingBuilding_GotFocus"/>
+            <TextBlock Text="Lease Expires on:" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <DatePicker Name="dtLeaseDate" Margin="5,0,0,0" VerticalAlignment="Center"/>
+            <Button Name="cmdGet" Content="GET" Margin="10,0,0,0" VerticalAlignment="Center" Click="cmdGet_Click"/>
+        </StackPanel>
+        <DataGrid Name="grdTenants" Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="AliceBlue" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tenant#" Binding="{Binding BuildingTenant}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding TenantName}" IsReadOnly="True" Width="200"/>
+                <DataGridTextColumn Header="Apt" Binding="{Binding Apartment}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Pref Rent 1">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <viblend:NumberEditor Value="{Binding ProposedRent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" DecimalPlaces="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Pref Rent 2">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <viblend:NumberEditor Value="{Binding ProposedRent2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" DecimalPlaces="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                 <DataGridTemplateColumn Header="Pref Rent 2 yr1">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <viblend:NumberEditor Value="{Binding ProposedRent2_1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" DecimalPlaces="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+               <DataGridTemplateColumn Header="PromptPay 1">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <viblend:NumberEditor Value="{Binding PromptPay1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" DecimalPlaces="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="PromptPay 2">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <viblend:NumberEditor Value="{Binding PromptPay2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="10" DecimalPlaces="2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="RESET">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <xtc:BusyIndicator Name="_busy" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Button Name="cmdSave" Content="SAVE" Click="cmdSave_Click" Margin="5,5,5,0"/>
+            <Button Name="cmdExit" Content="EXIT" Click="cmdExit_Click" Margin="5,10,5,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

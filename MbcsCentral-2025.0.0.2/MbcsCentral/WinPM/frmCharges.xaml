@@ -1,0 +1,212 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmCharges"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Name="formCharges"
+        Title="Additional Tenant Charges"
+        Width="755"
+        Height="327"
+        Background="#FF00C0C0"
+        FontWeight="Bold"
+        TextBlock.FontSize="14"
+        TextBlock.FontWeight="Bold"
+        TextBlock.TextAlignment="Center"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <CollectionViewSource x:Key="ChargesViewSource" Source="{Binding}" />
+        <my:DateConverter x:Key="DateConverter" />
+        <my:CurrencyPaddingConverter x:Key="CurrencyPaddingConverter" />
+        <my:ChargeTypeConverter x:Key="ChargeTypeConverter" />
+    </Window.Resources>
+    <Border BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+        <Grid DataContext="{StaticResource ChargesViewSource}"
+              TextBlock.FontSize="12"
+              TextBlock.TextAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <StackPanel Name="pnlTenant"
+                        Grid.Row="0"
+                        Orientation="Horizontal">
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Tenant Number" />
+                <TextBox Width="35"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True"
+                         Text="{Binding BuildingNumber,
+                                        Mode=OneTime}" />
+                <TextBox Width="45"
+                         Margin="1,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True"
+                         Text="{Binding TenantNumber,
+                                        Mode=OneTime}" />
+                <TextBlock Margin="20,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Tenant Name" />
+                <TextBox Width="200"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True"
+                         Text="{Binding TenantName,
+                                        Mode=OneTime}" />
+                <TextBlock Margin="20,0,0,0"
+                           VerticalAlignment="Center"
+                           Text="Apartment" />
+                <TextBox Width="45"
+                         Margin="5,0,0,0"
+                         VerticalAlignment="Center"
+                         IsReadOnly="True"
+                         Text="{Binding Apartment,
+                                        Mode=OneTime}" />
+            </StackPanel>
+            <DataGrid Name="ChargesDataGrid"
+                      Grid.Row="1"
+                      Height="192"
+                      VerticalAlignment="Top"
+                      AutoGenerateColumns="False"
+                      EnableRowVirtualization="True"
+                      ItemsSource="{Binding}"
+                      MouseDoubleClick="ChargesDataGrid_MouseDoubleClick"
+                      RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="ctxEdit"
+                                  Click="cmdEdit_Click"
+                                  Header="EDIT" />
+                        <MenuItem Name="ctsDelete"
+                                  Click="cmdDelete_Click"
+                                  Header="DELETE" />
+                        <MenuItem Name="ctxAdd"
+                                  Click="cmdAdd_Click"
+                                  Header="ADD" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="C">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ChargeCode}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Comment}" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--  <DataGridTextColumn x:Name="ChargeCodeColumn" Binding="{Binding Path=ChargeCode}" Header="C" Width="SizeToCells"/>  -->
+                    <DataGridTemplateColumn Header="Description">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Width="Auto" Text="{Binding Description}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Comment}" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--  <DataGridTextColumn x:Name="Description" Binding="{Binding Path=Description}" Header="Description" Width="SizeToCells"/>  -->
+                    <DataGridTextColumn x:Name="TypeColumn"
+                                        Width="SizeToCells"
+                                        Binding="{Binding Path=Type,
+                                                          Converter={StaticResource ChargeTypeConverter}}"
+                                        Header="F" />
+                    <DataGridTextColumn x:Name="AmountColumn"
+                                        Width="70"
+                                        Binding="{Binding Path=Amount,
+                                                          StringFormat={}{0:#####0.00},
+                                                          Converter={StaticResource CurrencyPaddingConverter},
+                                                          ConverterParameter=10}"
+                                        Header="Amount" />
+                    <DataGridTextColumn x:Name="ArrearsColumn"
+                                        Width="70"
+                                        Binding="{Binding Path=Arrears,
+                                                          Converter={StaticResource CurrencyPaddingConverter},
+                                                          ConverterParameter=10}"
+                                        Header="Arrears"
+                                        TextBlock.TextAlignment="Right" />
+                    <DataGridTextColumn x:Name="PaidColumn"
+                                        Width="70"
+                                        Binding="{Binding Path=Paid,
+                                                          Converter={StaticResource CurrencyPaddingConverter},
+                                                          ConverterParameter=10}"
+                                        Header="Paid" />
+                    <DataGridTextColumn x:Name="BalanceColumn"
+                                        Width="70"
+                                        Binding="{Binding Balance,
+                                                          Converter={StaticResource CurrencyPaddingConverter},
+                                                          ConverterParameter=10}"
+                                        Header="Balance"
+                                        TextBlock.TextAlignment="Right" />
+                    <DataGridTextColumn x:Name="StartingDateColumn"
+                                        Width="85"
+                                        Binding="{Binding StartingDate,
+                                                          Converter={StaticResource DateConverter}}"
+                                        Header="Start Date"
+                                        TextBlock.TextAlignment="Right" />
+                    <DataGridTextColumn x:Name="EndingDateColumn"
+                                        Width="85"
+                                        Binding="{Binding EndingDate,
+                                                          Converter={StaticResource DateConverter}}"
+                                        Header="End Date"
+                                        TextBlock.TextAlignment="Right" />
+                    <DataGridTextColumn x:Name="FutureAmountColumn"
+                                        Width="80"
+                                        Binding="{Binding FutureAmount,
+                                                          StringFormat={}{0:#####0.00},
+                                                          Converter={StaticResource CurrencyPaddingConverter},
+                                                          ConverterParameter=10}"
+                                        Header="Future Amt"
+                                        TextBlock.TextAlignment="Right" />
+                    <DataGridTextColumn x:Name="FutureDateColumn"
+                                        Width="85"
+                                        Binding="{Binding FutureDate,
+                                                          Converter={StaticResource DateConverter}}"
+                                        Header="Future Date" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock Name="txtComment"
+                       Grid.Row="2"
+                       Margin="5"
+                       Background="Wheat"
+                       Text="Hover Mouse over a ChargeCode or Description to see its comment." />
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <Button Name="cmdEdit"
+                        Width="50"
+                        Margin="40,0,0,0"
+                        Click="cmdEdit_Click"
+                        Content="EDIT" />
+                <Button Name="cmdDelete"
+                        Width="50"
+                        Margin="50,0,0,0"
+                        Click="cmdDelete_Click"
+                        Content="DELETE" />
+                <Button Name="cmdAdd"
+                        Width="50"
+                        Margin="50,0,0,0"
+                        Click="cmdAdd_Click"
+                        Content="ADD" />
+                <Button Name="cmdPrint"
+                        Width="85"
+                        Margin="50,0,0,0"
+                        Click="cmdPrint_Click"
+                        Content="PRINT FORM" />
+                <Button Name="cmdExit"
+                        Width="50"
+                        Margin="50,0,0,0"
+                        Click="cmdExit_Click"
+                        Content="EXIT" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

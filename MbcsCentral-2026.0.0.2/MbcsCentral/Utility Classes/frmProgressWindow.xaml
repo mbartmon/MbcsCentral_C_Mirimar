@@ -1,0 +1,98 @@
+﻿
+
+<Window
+    x:Class="MbcsCentral.frmProgressWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="FormfrmProgressWindow"
+    MinWidth="600"
+    MaxWidth="800"
+    MaxHeight="200"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmProgressWindow_Loaded"
+    TextBlock.TextAlignment="Center"
+    WindowStartupLocation="Manual">
+    <Border
+        MinWidth="600"
+        Padding="10"
+        VerticalAlignment="Top"
+        Background="Orange"
+        BorderBrush="Black"
+        BorderThickness="3"
+        CornerRadius="10">
+        
+        <Grid TextBlock.FontSize="12" TextBlock.FontWeight="DemiBold">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Copying Database" HorizontalAlignment="Center" FontSize="16" FontWeight="Heavy"/>
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <TextBlock Text="SOURCE" FontSize="14" FontWeight="Bold" TextDecorations="Underline"/>
+                <StackPanel  Orientation="Horizontal">
+                        <TextBlock Text="SERVER: " />
+                        <TextBox Name="txtFrom" Margin="26,0,0,0" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="DATABASE: " />
+                        <TextBox Name="txtDatabase" Margin="10,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <TextBlock Text="DESTINATION" FontSize="14" FontWeight="Bold" TextDecorations="Underline"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="SERVER:"/>
+                    <TextBox Name="txtTo" Margin="26,0,0,0" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="DATABASE:" />
+                    <TextBox
+                        Name="txtToDB"
+                        Margin="10,0,0,0"
+                        TextChanged="TxtToDB_TextChanged" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Name="txtProgress"
+                        FontSize="18"
+                        Text="WORKING">
+                    </TextBlock>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+    
+    <!--
+                            <TextBlock.Triggers>
+                            <EventTrigger RoutedEvent="TextBlock.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                                AutoReverse="True"
+                                                RepeatBehavior="Forever"
+                                                Storyboard.TargetName="txtProgress"
+                                                Storyboard.TargetProperty="(Opacity)"
+                                                From="1.0"
+                                                To="0.0"
+                                                Duration="0:0:2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </TextBlock.Triggers>
+
+    -->
+</Window>

@@ -1,0 +1,153 @@
+﻿<Window
+    x:Class="MbcsCentral.frmPrintDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MbcsCentral"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="SELECT PRINTER"
+    Width="336"
+    Height="190"
+    Background="AntiqueWhite"
+    ContentRendered="Window_ContentRendered"
+    Loaded="frmPrintDialog_Loaded"
+    TextBlock.FontSize="14"
+    TextBlock.FontWeight="Bold"
+    TextBlock.TextAlignment="Center"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d">
+    <Grid
+        Margin="0,0,0,-30"
+        TextBlock.FontSize="14"
+        TextBlock.TextAlignment="Left">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="120" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel
+            Grid.ColumnSpan="2"
+            Margin="10,5,0,0"
+            Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Text="Printer" />
+            <ComboBox
+                x:Name="PrinterList"
+                Width="258"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                Background="White"
+                DisplayMemberPath="DisplayItem"
+                ItemsSource="{Binding}"
+                SelectionChanged="PrinterList_SelectionChanged" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Margin="10,4,0,0"
+            VerticalAlignment="Center">
+            <CheckBox Name="chkDuplex" Content="Two Sided Printing" />
+        </StackPanel>
+        <GroupBox
+            Name="grpPages"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Margin="0,0,0,21"
+            BorderBrush="Black"
+            BorderThickness="1"
+            FontSize="12"
+            FontWeight="Normal"
+            Header="Page Range">
+            <StackPanel Margin="1,1,1,0">
+                <StackPanel Margin="0,0,0,2" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Text="Total Pages:"
+                        TextAlignment="Left" />
+                    <TextBox
+                        Name="txtTotalPages"
+                        Width="50"
+                        Height="20"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        IsReadOnly="True"
+                        TextAlignment="Right" />
+                </StackPanel>
+                <RadioButton
+                    Name="optAllPages"
+                    Content="All"
+                    GroupName="PageRange"
+                    IsChecked="True" />
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton
+                        Name="optPageRange"
+                        VerticalAlignment="Center"
+                        Content="Pages:"
+                        GroupName="PageRange" />
+                    <TextBox
+                        Name="txtPageRange"
+                        Width="78"
+                        Height="25"
+                        Margin="3,0,0,0"
+                        VerticalAlignment="Center"
+                        PreviewKeyDown="txtPageRange_PreviewKeyDown"
+                        TextAlignment="Left" />
+                </StackPanel>
+                <TextBlock FontSize="10">
+                    Type page numbers and/or page ranges separated by<LineBreak />
+                    commas counting from the start of the document. For<LineBreak />
+                    example, type 1, 3 or 5- 12</TextBlock>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel Grid.Row="2">
+            <GroupBox
+                BorderBrush="Gray"
+                BorderThickness="1"
+                Header="Duplex Type">
+                <GroupBox.Style>
+                    <Style TargetType="GroupBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=chkDuplex, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=chkDuplex, Path=IsChecked}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </GroupBox.Style>
+                <StackPanel Orientation="Horizontal" TextBlock.FontSize="11">
+                    <RadioButton
+                        Name="optLong"
+                        Content="LongSide"
+                        GroupName="DuplexType"
+                        IsChecked="True" />
+                    <RadioButton
+                        Name="optShort"
+                        Margin="5,0,0,0"
+                        Content="ShortSide"
+                        GroupName="DuplexType" />
+                </StackPanel>
+            </GroupBox>
+            <StackPanel
+                Margin="10,5,0,0"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+                <Button
+                    Name="cmdPrint"
+                    VerticalAlignment="Center"
+                    Click="cmdPrint_Clicked"
+                    Content="PRINT" />
+                <Button
+                    Name="cmdCancel"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Click="cmdCancel_Click"
+                    Content="CANCEL" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

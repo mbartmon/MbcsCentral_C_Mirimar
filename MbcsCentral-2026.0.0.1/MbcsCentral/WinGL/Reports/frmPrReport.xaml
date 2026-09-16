@@ -1,0 +1,288 @@
+﻿
+<Window Name="FormfrmPrReport"
+    x:Class="MbcsCentral.WinGL.frmPrReport"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Payroll Report"
+    Width="496.442"
+    Height="391.632"
+    Background="AliceBlue"
+    Closed="frmPrReport_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmPrReport_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <CollectionViewSource x:Key="accounts" />
+    </Window.Resources>
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox Text="Payroll Report"
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <!--  Place your content here  -->
+                <StackPanel>
+                    <Border
+                        VerticalAlignment="Top"
+                        BorderBrush="Blue"
+                        BorderThickness="0,0,0,3">
+                        <StackPanel Margin="3" TextBlock.FontSize="11">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Starting Date"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center" />
+                                <DatePicker Name="dtStart"
+                                    Width="100"
+                                    Margin="5,0,0,0"
+                                    SelectedDateFormat="Short" />
+                                <TextBlock Text="Ending Date"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center" />
+                                <DatePicker Name="dtEnd"
+                                    Width="100"
+                                    Margin="5,0,0,0"
+                                    SelectedDateFormat="Short" />
+                            </StackPanel>
+                            <CheckBox Name="chkYTD"
+                                Margin="0,5,0,0"
+                                Content="Show Year-To-Date" />
+                        </StackPanel>
+                    </Border>
+                    <TextBlock FontSize="11" Text="G/L Accounts" />
+                    <Grid Name="grdAccounts" TextBlock.FontSize="11">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel
+                            Grid.Row="0"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Salary"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts00"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts01"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}"/>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Social Sec"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts02"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts03"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="2"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Medicare"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts04"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts05"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="3"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Fed Tax"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts06"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts07"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="4"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="State Tax"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts08"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts09"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="5"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="City/Yonk"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts10"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts11"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="6"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Dis/u/i"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts12"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts13"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="7"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Family"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts14"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts15"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="8"
+                            Margin="3,3,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                            <TextBlock Text="Medi/Empl"
+                                Width="65"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                TextAlignment="Left" />
+                            <ComboBox Name="lstAccounts16"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                            <ComboBox Name="lstAccounts17"
+                                Width="200"
+                                Margin="5,0,0,0"
+                                DisplayMemberPath="Description"
+                                ItemsSource="{Binding}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,5,0,5"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button Name="cmdSave"
+                    Margin="10,0,0,0"
+                    Click="cmdSave_Click"
+                    Content="DISPLAY" />
+                <Button Name="cmdClose"
+                    Margin="10,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

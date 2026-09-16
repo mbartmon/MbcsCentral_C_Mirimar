@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[SmtpConfig] (
+    [ID]                INT            IDENTITY (1, 1) NOT NULL,
+    [description]       NVARCHAR (32)  NULL,
+    [emailAddress]      NVARCHAR (64)  NULL,
+    [userName]          NVARCHAR (64)  NULL,
+    [password]          NVARCHAR (32)  NULL,
+    [server]            NVARCHAR (255) NULL,
+    [port]              INT            NULL,
+    [SSL]               BIT            NULL,
+    [TSL]               BIT            NULL,
+    [authentication]    INT            NULL,
+    [in_userName]       NVARCHAR (64)  NULL,
+    [in_password]       NVARCHAR (32)  NULL,
+    [in_server]         NVARCHAR (255) NULL,
+    [in_port]           INT            NULL,
+    [in_SSL]            BIT            NULL,
+    [in_TSL]            BIT            NULL,
+    [in_authentication] INT            NULL,
+    [defaultAccount]    BIT            NULL,
+    [MailTag]           VARCHAR (32)   NOT NULL,
+    [accountId]         INT            NOT NULL,
+    [displayName]       NCHAR (64)     NOT NULL,
+    CONSTRAINT [tr_SmtpConfig$PrimaryKey] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

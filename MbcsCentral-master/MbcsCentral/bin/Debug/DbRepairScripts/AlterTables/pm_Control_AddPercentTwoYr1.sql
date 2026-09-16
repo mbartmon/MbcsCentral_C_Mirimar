@@ -1,0 +1,1 @@
+ALTER TABLE pm_Control ADD  PercentTwoYr1 real NOT NULL DEFAULT 0;

@@ -1,0 +1,104 @@
+﻿<Page x:Class="HelpFilters"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="HelpFilters">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="23"/>
+            </Grid.RowDefinitions>
+        <Border BorderBrush="Blue" BorderThickness="2" Padding="0,0,0,5">
+            <ScrollViewer Height="Auto" Width="Auto">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource HeaderText}">
+                    Recipient List Filters
+                    </TextBlock>
+                    <Separator/>
+                    <TextBlock>
+                    <Italic>Filters</Italic> are used to do bulk selections of <Italic>Tenants</Italic> for mailing lists.<LineBreak/><LineBreak/>
+                    <Italic>Tenants</Italic> selected by means of a <Italic>Filter</Italic> are <Bold>in addition to
+                    </Bold> e-mail addresses added to the list.  In other words, if you are using a filter to
+                    include <Italic>Tenants</Italic> you should not also add Tenant e-mail addresses using the <Italic>Edit</Italic> function  But you
+                    can add any other e-mail addresses that suit a particular purpose.<LineBreak/><LineBreak/>
+                    You will not see bulk selected <Italic>Tenants</Italic> until the Message Delivery Job is created.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource TitleText}">
+                    Filter Types
+                    </TextBlock>
+                    <TextBlock>
+                    There are 4 Filter Types:<LineBreak/><LineBreak/>
+                    1) Owners<LineBreak/>
+                    2) Buildings<LineBreak/>
+                    3) Tenant Types<LineBreak/>
+                    4) Other
+                    </TextBlock>
+                    <TextBlock>
+                    The 4 filter types can be used individualy or in combination.  The result of combining filter types is dependent on the specific filter types used.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource TitleText}">
+                    Using one filter type at a time
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerTitleText}">
+                    <Bold>Owners</Bold>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerText}">
+                    All <Italic>Tenants</Italic> in all <Italic>Buildings</Italic> belonging to each selected <Italic>Owner</Italic> will be used.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerTitleText}">
+                    <Bold>Buildings</Bold>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerText}">
+                    All <Italic>Tenants</Italic> in each selected <Italic>Building</Italic> will be used.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerTitleText}">
+                    <Bold>Tenant Types</Bold>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerText}">
+                    All <Italic>Tenants</Italic> in all <Italic>Buildings</Italic> with each selected <Italic>Tenant Type</Italic> will be used.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerTitleText}">
+                    <Bold>Other</Bold>
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource InnerText}">
+                    <Bold>Arrears: </Bold> all <Italic>Tenants</Italic> with an amount due equal to or greater than the <Italic>Arrears Amount</Italic> entered will be used.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource TitleText}">
+                    Combining Filters
+                    </TextBlock>
+                    <TextBlock>
+                    The effect of combining filters is wholly dependent on which filters are used.<LineBreak/><LineBreak/>
+                    Some combinations will result in adding e-mail addresses to the list:<LineBreak/><LineBreak/>
+                    That is, if you specify an <Italic>Owner</Italic> and a <Italic>Building</Italic> then ALL Tenants for 
+                    ALL Buildings for the selected <Italic>Owner</Italic> will be used PLUS all <Italic>Tenants</Italic> in 
+                    the selected <Italic>Building</Italic> will also be used.  NOTE that the system will NOT add Tenants a second
+                    time if a <Italic>Building</Italic> selection would be included in an <Italic>Owner</Italic> selection.<LineBreak/><LineBreak/>
+                    However, the use of <Italic>Tenant Type</Italic> and/or <Italic>Other</Italic> filters changes that.  Now the
+                    effect is one of reducing the e-mail addresses selected.<LineBreak/><LineBreak/>
+                    As an example, let's say that you want to send a message to only STABILIZED <Italic>Tenants</Italic> in all <Italic>Buildings</Italic>
+                    belonging to a single <Italic>Owner</Italic>.  You would select that <Italic>Owner</Italic> and the STABILIZED <Italic>Tenant Type</Italic>.
+                    Notice that now ONLY the STABILIZED Tenants in the <Italic>Buildings</Italic> belonging to the selected <Italic>Owner</Italic>
+                    will be used instead of ALL Tenants for the selected <Italic>Owner</Italic>.<LineBreak/><LineBreak/>
+                    You can, of course, use the <Italic>Tenant Type</Italic> filter with no other selections and send messages to ALL of your STABILIZED Tenants.
+                    Likewise, you can use the Arrears filter to send a message to ALL Tenants in arrears or combine that with one or more <Italic>Owner</Italic> and/or 
+                    one or more <Italic>Building</Italic> selections to restrict which Tenants will get the message.<LineBreak/>
+                    </TextBlock>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Button Grid.Row="1" Name="cmdExit" Content="EXIT" Width="50"/>
+    </Grid>
+    
+</Page>

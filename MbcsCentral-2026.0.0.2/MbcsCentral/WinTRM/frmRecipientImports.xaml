@@ -1,0 +1,264 @@
+﻿<Window
+    x:Class="MbcsCentral.WinTrm.frmRecipientImports"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Recipient Imports"
+    Width="688"
+    Height="416"
+    Background="#FFE0C8C8"
+    BorderBrush="#FFD78E8E">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+        <TabControl
+            Name="TabControl1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch">
+            <TabItem Name="TabItem1" Header="Accounts">
+                <Grid
+                    Name="Grid1"
+                    Height="Auto"
+                    Background="#FFE0C8C8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ListBox
+                        Name="lstAccounts"
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#FFF4E6E6"
+                        BorderBrush="#FFFBE6E6" />
+                    <ListBox
+                        Name="lstAcctRecips"
+                        Grid.Column="2"
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#FFF4E6E6" />
+                    <Button
+                        Name="cmdAcctAddOne"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,6,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdAcctAddOne_Click"
+                        Content="&gt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdAcctAddAll"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,35,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdAcctAddAll_Click"
+                        Content="&gt;&gt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdAcctDelOne"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,64,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdAcctDelOne_Click"
+                        Content="&lt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdAcctDelAll"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,93,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdAcctDelAll_Click"
+                        Content="&lt;&lt;"
+                        FontWeight="Bold" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tenants">
+                <Grid
+                    Name="Grid2"
+                    Height="Auto"
+                    Background="#FFE0C8C8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TreeView
+                        Name="lstTenants"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#FFF4E6E6" />
+                    <ListBox
+                        Name="lstTenRecips"
+                        Grid.Column="2"
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#FFF4E6E6" />
+                    <Button
+                        Name="cmdTenAddOne"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,6,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdTenAddOne_Click"
+                        Content="&gt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdTenAddAll"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,35,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Content="&gt;&gt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdTenDelOne"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,64,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdTenDelOne_Click"
+                        Content="&lt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdTenDelAll"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,93,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdTenDelAll_Click"
+                        Content="&lt;&lt;"
+                        FontWeight="Bold" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Outlook">
+                <Grid
+                    Name="Grid3"
+                    Height="Auto"
+                    Background="#FFE0C8C8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ListBox
+                        Name="lstOutlook"
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#FFF4E6E6"
+                        BorderBrush="#FFFBE6E6" />
+                    <ListBox
+                        Name="lstOutRecips"
+                        Grid.Column="2"
+                        Width="Auto"
+                        Height="Auto"
+                        Margin="0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="#FFF4E6E6" />
+                    <Button
+                        Name="cmdOutAddOne"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,6,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdOutAddOne_Click"
+                        Content="&gt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdOutAddAll"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,35,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdOutAddAll_Click"
+                        Content="&gt;&gt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdOutDelOne"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,64,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdOutDelOne_Click"
+                        Content="&lt;"
+                        FontWeight="Bold" />
+                    <Button
+                        Name="cmdOutDelAll"
+                        Grid.Column="1"
+                        Width="Auto"
+                        Height="23"
+                        Margin="0,93,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Click="cmdOutDelAll_Click"
+                        Content="&lt;&lt;"
+                        FontWeight="Bold" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button
+            Name="cmdOK"
+            Grid.Row="1"
+            Width="75"
+            Height="23"
+            Margin="12,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="SAVE" 
+            Click="cmdOK_Click"/>
+        <Button
+            Name="cmdCancel"
+            Grid.Row="1"
+            Width="75"
+            Height="23"
+            Margin="93,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="CANCEL"
+            Click="cmdCancel_Click"/>
+    </Grid>
+</Window>

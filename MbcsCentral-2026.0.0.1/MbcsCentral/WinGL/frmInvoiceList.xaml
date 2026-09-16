@@ -1,0 +1,227 @@
+﻿<Window
+    x:Class="MbcsCentral.WinGL.frmInvoiceList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:ex="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+    xmlns:da="clr-namespace:MbcsCentral.WinGL"
+    Name="FormInvoiceList"
+    Title="Invoices"
+    Width="790"
+    Height="300"
+    Background="LightSteelBlue"
+    Closing="FrmInvoiceList_OnClosing"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="FrmInvoiceList_OnLoaded">
+    <Window.DataContext>
+        <da:InvoiceList/>
+    </Window.DataContext>
+    <Window.Resources>
+        <my:DateConverter x:Key="DateConverter" />
+    </Window.Resources>
+    <Grid 
+        Name="grdMain"
+        TextBlock.FontSize="12" TextBlock.FontWeight="Normal">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="65" />
+        </Grid.RowDefinitions>
+        <DataGrid
+            Name="LstInvoices"
+            AlternatingRowBackground="LightSeaGreen"
+            AutoGenerateColumns="False"
+            FontSize="14"
+            ItemsSource="{Binding}"
+            PreviewMouseDoubleClick="LstInvoices_OnPreviewMouseDoubleClick"
+            RowBackground="LightGreen">
+                <DataGrid.Resources>
+                    <Style x:Key="TextCell" TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PayFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="4">
+                                <Setter Property="Foreground" Value="{Binding RowForegroundBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources> <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding Path=VendorName}"
+                    CanUserSort="True"
+                    Header="Vendor"
+                    IsReadOnly="True"
+                    ElementStyle="{StaticResource TextCell}"/>
+                <DataGridTextColumn
+                    Binding="{Binding Path=DepartmentName}"
+                    CanUserSort="True"
+                    Header="Department"
+                    IsReadOnly="True" 
+                    ElementStyle="{StaticResource TextCell}"/>
+                <DataGridTextColumn
+                    x:Name="ColInvoice"
+                    Binding="{Binding Path=FullInvoiceNumber}"
+                    CanUserSort="True"
+                    Header="Invoice Number"
+                    IsReadOnly="True" 
+                    ElementStyle="{StaticResource TextCell}"/>
+                <DataGridTextColumn
+                    x:Name="ColDate"
+                    Binding="{Binding Path=Date, StringFormat=d, Converter={StaticResource DateConverter}}"
+                    CanUserSort="True"
+                    Header="Date"
+                    IsReadOnly="True" 
+                    ElementStyle="{StaticResource TextCell}"/>
+                <DataGridTextColumn
+                    x:Name="Due"
+                    Binding="{Binding Path=PayDueDate, StringFormat=d, Converter={StaticResource DateConverter}}"
+                    CanUserSort="True"
+                    Header="Due"
+                    IsReadOnly="True" 
+                    ElementStyle="{StaticResource TextCell}"/>
+                <DataGridTemplateColumn
+                    CanUserSort="True"
+                    Header="Amount-Disc"
+                    SortMemberPath="AmountWithDiscount">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Width="100"
+                                IsEnabled="False"
+                                Text="{Binding Path=AmountWithDiscount, StringFormat={}{0:c}}"
+                                TextAlignment="Right" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger  Binding="{Binding PayFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="4">
+                                    <Setter Property="Foreground" Value="{Binding RowForegroundBrush}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTemplateColumn.CellStyle>
+                </DataGridTemplateColumn>
+                <DataGridCheckBoxColumn
+                    Binding="{Binding Path=AllocationFlag}"
+                    Header="*"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding Batch, StringFormat={}{0:#####}}"
+                    Header="Batch"
+                    IsReadOnly="True" 
+                    ElementStyle="{StaticResource TextCell}"/>
+                <DataGridTextColumn
+                    Binding="{Binding Path=CheckNumber, StringFormat={}{0:######0}}"
+                    Header="Check#"
+                    IsReadOnly="True" 
+                    ElementStyle="{StaticResource TextCell}"/>
+                <DataGridCheckBoxColumn
+                    Binding="{Binding Path=EFT}"
+                    Header="EFT"
+                    IsReadOnly="True" />
+                <DataGridCheckBoxColumn
+                    Binding="{Binding Path=ACH}"
+                    Header="ACH"
+                    IsReadOnly="True"/>
+                <DataGridTextColumn
+                    Binding="{Binding Path=CheckDate, StringFormat=d, Converter={StaticResource DateConverter}}"
+                    Header="CheckDate"
+                    IsReadOnly="True"
+                    ElementStyle="{StaticResource TextCell}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button
+                Name="CmdEdit"
+                Width="50"
+                Margin="10,3,0,3"
+                Click="CmdEdit_OnClick"
+                Content="EDIT" />
+            <Button
+                Name="CmdNew"
+                Width="50"
+                Margin="1,3,0,3"
+                Click="CmdNew_OnClick"
+                Content="NEW" />
+            <Button
+                Name="CmdDelete"
+                Width="50"
+                Margin="1,3,0,3"
+                Click="CmdDelete_OnClick"
+                Content="DELETE" />
+            <Button
+                Name="cmdReprint"
+                Width="50"
+                Margin="1,3,0,3"
+                Click="CmdReprint_Click"
+                Content="REPRINT" />
+            <Button
+                Name="CmdExit"
+                Width="50"
+                Margin="1,3,0,3"
+                Click="CmdExit_OnClick"
+                Content="EXIT" />
+            <Border
+                Margin="20,0,0,0"
+                Background="LightYellow"
+                BorderBrush="Black"
+                BorderThickness="2">
+                <StackPanel>
+                    <TextBlock
+                        Margin="2,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="11"
+                        Text="Click a column header to sort that column. " />
+                    <TextBlock
+                        Margin="2,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="11"
+                        Text="Double click an invoice to edit. " />
+                    <TextBlock
+                        Margin="2,0,2,0"
+                        VerticalAlignment="Center"
+                        FontSize="11"
+                        Text="Invoices can be multiply-selected for deletion/reprint." />
+                    <TextBlock
+                        Name="txtPrintedInvoices"
+                        Margin="2,0,0,0"
+                        VerticalAlignment="Top"
+                        FontSize="11"
+                        Text="These invoices have been printed/processed."/>
+                </StackPanel>
+
+            </Border>
+            <StackPanel>
+                <CheckBox
+                    FlowDirection="RightToLeft"
+                    Height="15"
+                    Background="Brown"
+                    Name="chkHighligt"
+                    Click="chkHighlight_Click"/>
+                <ex:ColorPicker
+                    x:Name="clrPicker"
+                    Width="15"
+                    SelectedColorChanged="clrPicker_SelectedColorChanged"/>
+            </StackPanel>
+            <Button
+                Name="cmdPrint"
+                Width="50"
+                Margin="5,0,0,0"
+                Click="cmdPrint_Click"
+                Content="PRINT" />
+            <Button
+                Name="cmdPrintChecks"
+                FontSize="8"
+                Width="80"
+                Margin="10,0,0,0"
+                Click="cmdPrintChecks_Click"
+                Content="PRINTED CHECK LIST" />
+            <Button
+                Name="cmdRefresh"
+                FontSize="10"
+                Margin="5,0,0,0"
+                Click="cmdRefresh_Click"
+                Content="Refresh"
+                />
+        </StackPanel>
+    </Grid>
+</Window>

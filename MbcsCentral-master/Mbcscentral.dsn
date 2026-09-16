@@ -1,0 +1,7 @@
+[ODBC]
+DRIVER=SQL Server
+UID=mbartmon
+DATABASE=MbcsCentral_DEV
+WSID=MIKE-OLD
+APP=Microsoft Office 2010
+SERVER=mike-pc\mbcscentralsql,1433

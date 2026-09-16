@@ -1,0 +1,73 @@
+﻿<Window x:Class="MbcsCentral.frmVerify"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Title="Application Registration"
+        Width="404.124"
+        Height="177.32"
+        Background="AliceBlue"
+        TextBlock.FontSize="14"
+        TextBlock.FontWeight="Bold"
+        TextBlock.TextAlignment="Center"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <my:UpperCase x:Key="UpperCase"/>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="CharacterCasing" Value="Upper"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Margin="20"
+                    TextBlock.FontSize="12"
+                    TextBlock.TextAlignment="Left">
+            <TextBlock Text="Enter your key code" />
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBox Name="txtSet1"
+                         Width="50"
+                         Height="22"
+                         BorderBrush="Black"
+                         MaxLength="5"
+                         Text=""
+                         TextChanged="moveNextOnMaxLength" />
+                <TextBox Name="txtSet2"
+                         Width="50"
+                         Margin="10,0,0,0"
+                         BorderBrush="Black"
+                         MaxLength="5"
+                         Text=""
+                         TextChanged="moveNextOnMaxLength" />
+                <TextBox Name="txtSet3"
+                         Width="50"
+                         Margin="10,0,0,0"
+                         BorderBrush="Black"
+                         MaxLength="5"
+                         Text=""
+                         TextChanged="moveNextOnMaxLength" />
+                <TextBox Name="txtSet4"
+                         Width="50"
+                         Margin="10,0,0,0"
+                         BorderBrush="Black"
+                         MaxLength="5"
+                         Text=""
+                         TextChanged="moveNextOnMaxLength" />
+                <TextBox Name="txtSet5"
+                         Width="50"
+                         Margin="10,0,0,0"
+                         BorderBrush="Black"
+                         MaxLength="5"
+                         Text="" />
+            </StackPanel>
+            <StackPanel Margin="15" Orientation="Horizontal">
+                <Button Name="cmdValidate"
+                        Click="cmdValidate_Click"
+                        Content="VALIDATE KEY" 
+                        IsDefault="True"/>
+                <Button Name="cmdCancel"
+                        Margin="10,0,0,0"
+                        Click="cmdCancel_Click"
+                        Content="CANCEL"
+                        IsCancel="True"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

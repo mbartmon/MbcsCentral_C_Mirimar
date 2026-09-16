@@ -1,0 +1,357 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MbcsCentral</name>
+    </assembly>
+    <members>
+        <member name="T:MbcsCentral.frmReport">
+            <summary>
+            frmReport
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmReport.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:LogClass">
+            <summary>
+            Class for creating and writing an application log file
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:LogClass.Log(System.Int32,System.String,System.Boolean,System.Windows.Forms.MessageBoxButtons,System.String)">
+            <summary>
+            Method that writes log entry
+            </summary>
+            <param name="lType">Log Type</param>
+            <param name="message">Message string to write</param>
+            <param name="logOnly">Log only or also display message box</param>
+            <param name="buttons">For message box display, which buttons to use</param>
+            <param name="title">For message box display, title of window</param>
+            <returns>For message box display, which button was selected</returns>
+            <remarks></remarks>
+        </member>
+        <member name="P:LogClass.logFileName">
+            <summary>
+            Full path of logfile
+            </summary>
+            <value>Logfile path</value>
+            <returns>Logfile path</returns>
+            <remarks></remarks>
+        </member>
+        <member name="P:LogClass.logFileRef">
+            <summary>
+            Internal log file reference
+            </summary>
+            <value></value>
+            <returns>Log file reference</returns>
+            <remarks></remarks>
+        </member>
+        <member name="P:LogClass.debug">
+            <summary>
+            Sets or resets debug mode
+            </summary>
+            <value></value>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="P:LogClass.maxFrames">
+            <summary>
+            Sets maximum number of stack frames to include in debu log entries
+            </summary>
+            <value>Maxium number of stack frames</value>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:LogClass.logType">
+            <summary>
+            Enumeration that provides log type names
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:MbcsCentral.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.Window1">
+            <summary>
+            Interaction logic for Window1.xaml
+            </summary>
+            <summary>
+            Window1
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.Window1.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmBuilding">
+            <summary>
+            frmBuilding
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmBuilding.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmCharge">
+            <summary>
+            frmCharge
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmCharge.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmCharges">
+            <summary>
+            frmCharges
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmCharges.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmChooseTenant">
+            <summary>
+            frmChooseTenant
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmChooseTenant.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmHistoryDisplay">
+            <summary>
+            frmHistoryDisplay
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmHistoryDisplay.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmImprovementEdit">
+            <summary>
+            frmImprovementEdit
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmImprovementEdit.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmMaintenance">
+            <summary>
+            frmMaintenance
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmMaintenance.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmMaintenanceEdit">
+            <summary>
+            frmMaintenanceEdit
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmMaintenanceEdit.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmMoveBuilding">
+            <summary>
+            frmMoveBuilding
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmMoveBuilding.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmOwner">
+            <summary>
+            frmOwner
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmOwner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmOwnersBuildings">
+            <summary>
+            frmOwnersBuildings
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmOwnersBuildings.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmTenant">
+            <summary>
+            frmTenant
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmTenant.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmTenants">
+            <summary>
+            frmTenants
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmTenants.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.WinPM.frmVacate">
+            <summary>
+            Interaction logic for frmVacate.xaml
+            </summary>
+            <summary>
+            frmVacate
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.WinPM.frmVacate.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.WinpmGlobal.getTenants(System.Windows.Controls.ListBox@,System.Int32)">
+            <summary>
+            Retrieves all tenants and places in a System.Windows.Controls.ListBox
+            
+            Optionally sorts the list
+            </summary>
+            <param name="lst">ListBox to populate</param>
+            <param name="orderBy">Order list by (see remarks)</param>
+            <remarks>orderBy:
+            (0) Tenant name
+            (1) Building/Tenant numbers
+            (2) Building/Apartment</remarks>
+        </member>
+        <member name="T:MbcsCentral.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MbcsCentral.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MbcsCentral.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:MbcsCentral.Properties.Resources.String1">
+            <summary>
+              Looks up a localized string similar to &quot;Values&quot;.
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.ControlPanel">
+            <summary>
+            ControlPanel
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.ControlPanel.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmMenuEdit">
+            <summary>
+            frmMenuEdit
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmMenuEdit.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.frmMenuFont">
+            <summary>
+            frmMenuFont
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.frmMenuFont.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:MbcsCentral.Application">
+            <summary>
+            Application
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.Application.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:MbcsCentral.Application.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

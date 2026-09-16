@@ -1,0 +1,31 @@
+﻿<Window x:Class="frmBuildingLocations"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Building Locations" Height="354" Width="477" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my="clr-namespace:WinTRM">
+    <Window.Resources>
+        <CollectionViewSource x:Key="BuildingLocationViewSource" d:DesignSource="{d:DesignInstance my:BuildingLocation, CreateList=True}" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource BuildingLocationViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding}" Name="BuildingLocationDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Background="LightGray">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="IDColumn" Binding="{Binding Path=ID}" Header="ID" IsReadOnly="True" Width="SizeToHeader" />
+                <DataGridTextColumn x:Name="LocationColumn" Binding="{Binding Path=Location}" Header="Location" Width="350" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="cmdDelete" Content="DELETE" Click="cmdDelete_Click" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Name="cmdExit" Content="EXIT" Margin="10,0,10,0" />
+            <Button Name="cmdAdd" Content="ADD LOCATION" Click="cmdAdd_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,62 @@
+﻿<Window x:Class="frmIssueEmail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="SEND ISSUE EMAIL" Height="358" Width="657" MinHeight="358" MinWidth="657" FontWeight="SemiBold">
+    <Grid Background="#FFD4DEEC">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <DockPanel Height="Auto" HorizontalAlignment="Stretch" Margin="10,10,0,0" Name="DockPanel1" VerticalAlignment="Stretch" Width="Auto">
+            <StackPanel Height="Auto" Name="StackPanel1" Width="250" HorizontalAlignment="Left">
+                <Label Content="Tenants" HorizontalAlignment="Center" />
+                <ListView Name="lstTenants" HorizontalAlignment="Stretch" Width="auto" Height="100" Background="#FF00F5FF" TabIndex="2" SelectionMode="Multiple" ItemsSource="{Binding}" >
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn Header="Include" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Path=active}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Tenant" Width="200" DisplayMemberBinding="{Binding name}"/>
+                            <GridViewColumn Width="1" DisplayMemberBinding="{Binding id}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView> 
+                <Label Content="Associated Accounts" HorizontalAlignment="center" />
+                <ListView Name="lstAccounts" HorizontalAlignment="Stretch" Width="auto" Height="100" Background="#FF00F5FF" TabIndex="3" SelectionMode="Multiple" ItemsSource="{Binding}">
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn Header="Include" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Path=active}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding name}"/>
+                            <GridViewColumn Width="1" DisplayMemberBinding="{Binding id}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <CheckBox Name="chkResponsible" IsChecked="True" Margin="0,10,0,0" Background="#FF00F5FF" Opacity="1" TabIndex="4" />
+            </StackPanel>
+            <DockPanel Height="Auto" Name="DockPanel2" Width="Auto" >
+                <DockPanel LastChildFill="true" DockPanel.Dock="top">
+                    <Label Content="Subject:" Width="75"/>
+                    <TextBox Name="txtSubject" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" TabIndex="0" Width="auto" />
+                </DockPanel>
+                <DockPanel VerticalAlignment="Stretch" Height="auto" HorizontalAlignment="Stretch" Width="auto" LastChildFill="true">
+                    <Label Content="Message:" Width="75" VerticalAlignment="Center" Height="30" HorizontalAlignment="Right"/>
+                    <TextBox Name="txtMessage" Width="auto" HorizontalAlignment="Stretch" TextWrapping="Wrap" FontWeight="Normal" TabIndex="1" />
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
+        <DockPanel  HorizontalAlignment="Center" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" LastChildFill="False" Grid.Row="1">
+            <Button HorizontalAlignment="Left" Name="cmdSend" Content="SEND" TabIndex="5" IsDefault="False" />
+            <Button Name="cmdCancel" Content="CANCEL" Margin="10,0,0,0" TabIndex="6" IsCancel="False" />
+        </DockPanel>
+    </Grid>
+</Window>

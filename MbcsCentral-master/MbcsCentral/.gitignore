@@ -1,0 +1,6 @@
+/Logs/
+**/MbcsCentral/Builds/
+**/packages/
+*.csproj~
+/packages.config
+*.csproj.user

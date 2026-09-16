@@ -1,0 +1,185 @@
+﻿<Window x:Class="frmMainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Tenant Relationship Manager - " Height="468" Width="756" Background="{StaticResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my="clr-namespace:WinTRM" Name="frmMainWindow">
+    <Window.Resources>
+        <CollectionViewSource x:Key="SmtpConfigViewSource" d:DesignSource="{d:DesignInstance my:SmtpConfig, CreateList=True}" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="375"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Name="mnuExit" Header="Exit"/>
+            <MenuItem Name="mnuEdit" Header="Edit">
+                <MenuItem Name="mnuEditAccounts" Header="Accounts" />
+                <MenuItem Name="mnuEditCategories" Header="Categories"/>
+                <MenuItem Name="mnuEditIssues" Header="Issues"/>
+                <Separator/>
+                <MenuItem Name="mnuEditBuildingLocations" Header="Building Locations"/>
+                <MenuItem Name="mnuEditVendors" Header="Vendors/Mechanics" />
+            </MenuItem>
+            <MenuItem Name="mnuView" Header="View">
+                <MenuItem Name="chkAllAccounts" Header="View All Accounts" IsCheckable="True"/>
+            </MenuItem>
+            <MenuItem Name="mnuMessageDelivery" Header="Message Delivery">
+                <MenuItem Name="mnuEditContents" Header="Contents" />
+                <MenuItem Name="mnuEditRecipients" Header="Recipient Lists"/>
+                <MenuItem Name="mnuEditSchedules" Header="Schedules"/>
+                <MenuItem Name="mnuEditDelivery" Header="Message Delivery"/>
+                <Separator/>
+                <MenuItem Name="mnuToolsServices" Header="Service Manager"/>
+            </MenuItem>
+            <MenuItem Name="mnuTools" Header="Tools">
+                <MenuItem Name="mnuToolsDelivery" Header="Email Accounts Configuration"/>
+                <Separator/>
+                <MenuItem Name="mnuToolsListener" Header="Configure Message Listener Service"/>
+                <Separator/>
+                <MenuItem Name="mnuJobDashboard" Header="Job Control (Dashboard)"/>
+                <Separator/>
+                <MenuItem Name="mnuLog" Header="View Log"/>
+                <Separator/>
+                <MenuItem Name="mnuToolsOptions" Header="Options" />
+            </MenuItem>
+            <MenuItem Name="mnuHelp" Header="Help">
+                <MenuItem Name="mnuHelpHelp" Header="Help"/>
+                <MenuItem Name="mnuHelpAbout" Header="About"/>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Label Content="TENANTS"  HorizontalAlignment="Left" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="top" Width="70" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Foreground="White"/>
+                <Button Name="cmdTenantCollapse" Content="Collapse all tenants"  Margin="10,0,0,0"/>
+            </StackPanel>
+            <TreeView Grid.Row="1" Name="lstTenants" FontWeight="Medium" BorderBrush="Black" BorderThickness="2" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="ctxTenantsView" Header="View">
+                            <MenuItem Name="ctxTenantsViewIssues" Header="Issues"/>
+                            <MenuItem Name="ctxTenantsViewMessages" Header="Messages"/>
+                        </MenuItem>
+                        <MenuItem Name="ctxTenatnsAdd" Header="Add">
+                            <MenuItem Name="ctxTenantsAddIssue" Header="Issue"/>
+                            <MenuItem Name="ctxTenantsAddMessage" Header="Message"/>
+                        </MenuItem>
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+            </TreeView>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" DataContext="{StaticResource SmtpConfigViewSource}">
+                <Label Content="MESSAGES"  HorizontalAlignment="Left" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="top" Width="70" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Foreground="White"/>
+                <RadioButton GroupName="optMessages" Name="optMessagesInbox" VerticalAlignment="Center" Margin="10,0,0,0" Content="Inbox" IsChecked="true"/>
+                <ComboBox Name="lstEmailAccounts" Margin="5,0,0,0" DisplayMemberPath="description" ItemsSource="{Binding}" SelectedValuePath="ID" />
+                <RadioButton GroupName="optMessages" Name="optMessagesIssues" VerticalAlignment="Center" Margin="10,0,0,0" Content="Issue Messages"/>
+                <Button VerticalAlignment="Center" Margin="10,0,0,0" Name="cmdInboxRefresh" Content="Retrieve Messages"/>
+            </StackPanel>
+            <DataGrid Grid.Row="1" Name="grdInbox" AutoGenerateColumns="False" AlternationCount="1" AlternatingRowBackground="{StaticResource {x:Static SystemColors.ControlLightBrushKey}}" FontWeight="Medium" BorderBrush="Black" BorderThickness="2" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" ItemsSource="{Binding}" CanUserResizeRows="False" IsReadOnly="False" SelectionMode="Single">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="ctxInboxOpen" Header="Open"/>
+                        <MenuItem Name="ctxInboxAssign" Header="Assign to Existing Issue"/>
+                        <MenuItem Name="ctxInboxCreate" Header="Create New Issue"/>
+                        <MenuItem Name="ctcInboxDelete" Header="Delete"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Date">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=receiveDate}" Width="Auto">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Path=message}"/>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="From">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=fromAddr}" Width="Auto">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Path=message}"/>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Subject">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=subject}" Width="Auto">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="{Binding Path=message}"/>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TreeView Grid.Row="1" Name="lstMessages" Visibility="Hidden" FontWeight="Medium" BorderBrush="Black" BorderThickness="2" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="ctxMessagesIssue" Header="By Issue"/>
+                        <MenuItem Name="ctxMessagesAccount" Header="By Account"/>
+                        <MenuItem Name="ctxMessagesRefresh" Header="Refresh"/>
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+            </TreeView>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Content="ACCOUNTS" Grid.Row="0" HorizontalAlignment="Left" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="top" Width="70" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Foreground="White"/>
+            <ListBox Grid.Row="1" Name="lstRecipients" FontWeight="Medium" BorderBrush="Black" BorderThickness="2" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" >
+                <ListBox.ContextMenu>
+                    <ContextMenu Name="ctxRecipients">
+                        <MenuItem Name="ctxRecipientsAdd" Header="Add"/>
+                        <MenuItem Name="ctxRecipientsEdit" Header="Edit"/>
+                        <MenuItem Name="ctxRecipientsDelete" Header="Delete"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Content="ISSUES" Grid.Row="0" HorizontalAlignment="Left" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="top" Width="70" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Foreground="White"/>
+            <TreeView Grid.Row="1" Name="lstIssues" FontWeight="Medium" BorderBrush="Black" BorderThickness="2" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}">
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Name="ctxNotesEdit" Header="View/Edit Issue"/>
+                        <MenuItem Name="ctxNotesDelete" Header="Delete Issue"/>
+                        <Separator/>
+                        <MenuItem Name="ctxNotesShowEntered" Header="Show By Entered Date" IsCheckable="True" />
+                        <MenuItem Name="ctxNotesShowDue" Header="Show By Due Date"  IsCheckable="True"/>
+                        <MenuItem Name="ctxNotesShowCreator" Header="Show By Creator of Issue"  IsCheckable="True"/>
+                        <MenuItem Name="ctxNotesShowResponsible" Header="Show By Person Responsible"  IsCheckable="True"/>
+                        <MenuItem Name="ctxNotesShowCategory" Header="Show By Category"  IsCheckable="True"/>
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+            </TreeView>
+        </Grid>
+
+    </Grid>
+</Window>

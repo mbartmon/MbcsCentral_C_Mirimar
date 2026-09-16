@@ -1,0 +1,16 @@
+﻿<Window x:Class="MbcsCentral.WinTrm.frmRecipListSelect"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="clr-namespace:WinTRM"
+    Title="Recipient Lists" Height="236" Width="479" FontWeight="Bold" Name="formRecipListSelect">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Double-click a Recipient list to view." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ListBox Name="lstLists" Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="listName" Background="LightBlue" MouseDoubleClick="lstLists_MouseDoubleClick"/>
+        <Button Name="cmdExit" Grid.Row="2" Content="EXIT" Click="cmdExit_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="MbcsCentral.frmGroup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Group Maintenance" Height="247" Width="475"
+        Name="formGroup" 
+        Background="Bisque"
+        Loaded="formGroup_Loaded"
+        Closed="formGroup_Closed">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>  
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="ID" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding group_id, Mode=OneWay}" Grid.Column="1" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBlock Text="Name" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Name="txtName" Grid.Row="1" Grid.Column="1" Text="{Binding group_name}" VerticalAlignment="Center" HorizontalAlignment="Left" MaxLength="32" Width="275"/>
+        <TextBlock Text="Description" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding group_description}" VerticalAlignment="Center" HorizontalAlignment="Left" MaxLength="128" Width="350" Height="50" TextWrapping="Wrap" AcceptsReturn="True"/> 
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Name="cmdSave" Content="SAVE" Margin="10,0,0,0" Click="cmdSave_Click"/>
+            <Button Name="cmdExit" Content="EXIT" Margin="10,0,0,0" Click="cmdExit_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

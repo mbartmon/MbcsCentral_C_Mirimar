@@ -1,0 +1,94 @@
+﻿
+<Window Name="FormfrmVendorDupes"
+    x:Class="MbcsCentral.WinGL.frmVendorDupes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Vendor Duplicates"
+    Width="363.38"
+    Height="392.354"
+    Background="AliceBlue"
+    Closed="frmVendorDupes_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmVendorDupes_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox Text="Vendor Duplicates"
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <!--  Place your content here  -->
+                <Grid TextBlock.FontSize="14">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="155" />
+                        <RowDefinition Height="4" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Margin="3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Top"
+                        Background="AntiqueWhite"
+                        TextAlignment="Left">
+                        One or more possibily duplicate vendors have been found.
+                        <LineBreak />
+                        <LineBreak />
+                        Select a listed vendor and click the EDIT button to continue
+                        <LineBreak />
+                        with that vendor and make changes.
+                        <LineBreak />
+                        <LineBreak />
+                        Click the ADD button to continue adding the new vendor.
+                        <LineBreak />
+                        <LineBreak />
+                        Click CANCEL to exit without adding or editing.
+                    </TextBlock>
+                    <Border
+                        Grid.Row="1"
+                        Margin="0,3,0,3"
+                        VerticalAlignment="Top"
+                        BorderBrush="Black"
+                        BorderThickness="2" />
+                    <ListBox Name="lstVendors"
+                        Grid.Row="2"
+                        Margin="3"
+                        DisplayMemberPath="FullName"
+                        ItemsSource="{Binding}" />
+                </Grid>
+            </Grid>
+            <StackPanel
+                Grid.Row="2"
+                Margin="0,5,0,5"
+                Background="AliceBlue"
+                Orientation="Horizontal">
+                <Button Name="cmdAdd"
+                    Margin="10,0,0,0"
+                    Click="cmdAdd_Click"
+                    Content="ADD" />
+                <Button Name="cmdEdit"
+                    Margin="10,0,0,0"
+                    Click="cmdEdit_Click"
+                    Content="EDIT" />
+                <Button Name="cmdClose"
+                    Margin="10,0,0,0"
+                    Click="cmdClose_Click"
+                    Content="CANCEL" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

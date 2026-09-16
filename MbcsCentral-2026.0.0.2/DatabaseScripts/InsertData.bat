@@ -1,0 +1,1 @@
+SQLCMD -S Mike-Pc -U mbartmon -P Vietnam65 -i c:\workfiles\MbcsCentral_C\DatabaseScripts\InsertDataAllTables.sql

@@ -1,0 +1,36 @@
+﻿<Page x:Class="$safeitemname$"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="400"
+      Title="HelpPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MbcsCentral.WinTrm\Help\HelpStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="23"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Blue" BorderThickness="2" Padding="0,0,0,5">
+            <ScrollViewer Height="Auto" Width="Auto">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource HeaderText}">
+
+                    </TextBlock>
+                    <Separator/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Button Grid.Row="1" Name="cmdExit" Content="EXIT" Width="50" HorizontalAlignment="Center"/>
+    </Grid>
+    
+</Page>

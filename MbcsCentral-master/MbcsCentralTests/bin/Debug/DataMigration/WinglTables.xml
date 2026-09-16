@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Tables>
+  <Table Source="AccountRanges" Target="gl_AccountRanges"/>
+  <Table Source="Accounts" Target="gl_Accounts" Identity="True"/>
+  <Table Source="ApChecks" Target="gl_ApChecks"/>
+  <Table Source="ApTrans" Target="gl_ApTrans"/>
+  <Table Source="BatchControl" Target="gl_BatchControl" Identity="True"/>
+  <Table Source="BatchJrnHeader" Target="gl_BatchJrnHeader" Identity="True"/>
+  <Table Source="BatchJrnEntries" Target="gl_BatchJrnEntries"/>
+  <Table Source="Budgets" Target="gl_Budgets"/>
+  <Table Source="Category" Target="gl_Category"/>
+  <Table Source="CheckNumbers" Target="gl_CheckNumbers"/>
+  <Table Source="Company" Target="gl_Company"/>
+  <Table Source="Control" Target="gl_Control"/>
+  <Table Source="Department" Target="gl_Department"/>
+  <Table Source="InvBatchDistributions" Target="gl_InvBatchDistributions"/>
+  <Table Source="InvoiceDistributions" Target="gl_InvoiceDistributions"/>
+  <Table Source="InvoiceHistory" Target="gl_InvoiceHistory"/>
+  <Table Source="Invoices" Target="gl_Invoices" Identity="True"/>
+  <Table Source="InvoicesBatch" Target="gl_InvoicesBatch" Identity="True"/>
+  <Table Source="JournalNames" Target="gl_JournalNames"/>
+  <Table Source="Journals" Target="gl_Journals"/>
+  <Table Source="Memos" Target="gl_Memos" Identity="True" Converter="MemoVendorNegate"/>
+  <Table Source="OpStmt" Target="gl_OpStmt"/>
+  <Table Source="PRAccounts" Target="gl_PRAccounts"/>
+  <Table Source="Transactions" Target="gl_Transactions" Identity="True"/>
+  <Table Source="Transactiontemp" Target="gl_Transactiontemp"/>
+  <Table Source="Vendors" Target="gl_Vendors" Identity="True"/>
+  <Table Source="VendorCategories" Target="gl_VendorCategories"/>
+</Tables>
+

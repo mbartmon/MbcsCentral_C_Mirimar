@@ -1,0 +1,47 @@
+﻿<Window
+    x:Class="MbcsCentral.frmReport"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="formReport"
+    Title="Report Viewer"
+    d:DesignHeight="508"
+    d:DesignWidth="708"
+    Background="AliceBlue"
+    mc:Ignorable="d">
+
+    <Grid x:Name="rootGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid Name="DisplayGrid" Grid.Row="0">
+            <!--  Place holder for DocumentViewer  -->
+            <DocumentViewer
+                Name="docViewer"
+                Width="Auto"
+                Document="{Binding}" />
+        </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button
+                Name="cmdPrint"
+                Width="100"
+                Margin="5,0,0,0"
+                Click="cmdPrint_Click"
+                Content="PRINT" />
+            <Button
+                Name="cmdEmail"
+                Width="100"
+                Margin="20,0,0,0"
+                Click="cmdEmail_Click"
+                Content="EMAIL" />
+            <Button
+                Name="cmdClose"
+                Width="100"
+                Margin="20,0,0,0"
+                Click="cmdClose_Click"
+                Content="CLOSE" />
+        </StackPanel>
+    </Grid>
+</Window>

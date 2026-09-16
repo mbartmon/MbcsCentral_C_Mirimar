@@ -1,0 +1,172 @@
+﻿
+<Window x:Class="MbcsCentral.WinGL.frmJournalDesign"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Name="FormfrmJournalDesign"
+        Title="Journal Report Designer"
+        Width="518.106"
+        Height="300"
+        Background="AliceBlue"
+        Closed="frmJournalDesign_Closed"
+        FontSize="14"
+        FontWeight="Bold"
+        Loaded="frmJournalDesign_Loaded"
+        TextBlock.TextAlignment="Center">
+    <Window.Resources>
+        <CollectionViewSource x:Key="Fields" Source="{Binding}"/>
+        <CollectionViewSource x:Key="FieldTypes" Source="{Binding}"/>
+</Window.Resources>
+    
+    <Border BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox Background="LightSteelBlue"
+                     BorderBrush="Blue"
+                     BorderThickness="2"
+                     FontSize="14"
+                     FontWeight="Bold"
+                     Text="Journal Report Designer"
+                     TextAlignment="Center" />
+            <Grid Grid.Row="1" TextBlock.FontSize="11" TextBlock.FontWeight="DemiBold">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Report Layout" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    <ComboBox Name="lstReports" 
+                              ItemsSource="{Binding}"
+                              DisplayMemberPath="Layout"
+                              Width="200" 
+                              VerticalAlignment="Center" 
+                              Margin="10,0,0,0"
+                              SelectionChanged="lstReports_SelectionChanged"/>
+                    <TextBlock Name="txtCurrentLayout" Background="AntiqueWhite"  Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Left"/>
+                </StackPanel>
+
+                <DataGrid Name="lstLayout" 
+                          AutoGenerateColumns="False" 
+                          ItemsSource="{Binding}"
+                          Grid.Row="1"
+                          AlternationCount="{Binding List.Count}">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="MOVE UP" Name="ctxMoveUp" Click="ctxMoveUp_Click"/>
+                            <MenuItem Header="MOVE DOWN" Name="ctxMoveDown" Click="ctxMoveDown_Click"/>
+                            <Separator/>
+                            <MenuItem Header="ADD" Name="ctxAdd" Click="ctxAdd_Click"/>
+                            <MenuItem Header="DELETE" Name="ctxDelete" Click="ctxDelete_Click"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="COL" Binding="{Binding Path=Column, StringFormat={}{0:0}}" IsReadOnly="True"/>
+                        
+                        <DataGridTemplateColumn Header="ITEM" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Item}" TextAlignment="Left" Width="150" Margin="2,0,0,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox Name="lstFields"
+                                              ItemsSource="{Binding Source={StaticResource Fields}}" 
+                                              DisplayMemberPath="Item" 
+                                              SelectedValue="{Binding Path=Field, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                              SelectedValuePath="Field" Margin="2,0,0,0"
+                                              SelectionChanged="lstFields_SelectionChanged"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                        <!--
+                        <DataGridComboBoxColumn Header="ITEM" 
+                                                ItemsSource="{Binding StaticResource Fields}"
+                                                SelectedValuePath="Field"
+                                                SelectedValueBinding="{Binding Path=Field}"
+                                                DisplayMemberPath="Item"
+                                                Width="150">
+                        </DataGridComboBoxColumn>
+                        -->
+                        
+                        <DataGridTemplateColumn Header="RANGE">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="cmdRange" Click="cmdRange_Click">
+                                        <Button.Style>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=Range, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                                        <Setter Property="Content" Value="****"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Path=Range, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                                        <Setter Property="Content" Value=""/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridComboBoxColumn Header="TYPE(C:D)" 
+                                                ItemsSource="{Binding 
+                                                Source={StaticResource FieldTypes}}" 
+                                                DisplayMemberPath="Name" 
+                                                SelectedValuePath="Field" 
+                                                SelectedValueBinding="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="HEADING" Binding="{Binding Path=Heading}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridCheckBoxColumn Header="PRINT" Binding="{Binding Path=PrintFlag}"/>
+                        <DataGridTemplateColumn Header="SIZE">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Size}" TextAlignment="Right" Margin="0,0,1,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <my:NumberEntry Text="{Binding Path=Size, StringFormat={}{0:#0}}" Decimals="0" MaxLength="2"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <StackPanel Grid.Row="2"
+                        Margin="0,5,0,5"
+                        Background="AliceBlue"
+                        Orientation="Horizontal">
+                <Button Name="cmdAdd"
+                        Margin="10,0,0,0"
+                        Click="cmdAdd_Click"
+                        Content="NEW Layout" />
+                <Button Name="cmdDelete"
+                        Margin="10,0,0,0"
+                        Click="cmdDelete_Click"
+                        Content="DELETE Layout"/>
+                <Button Name="cmdSave"
+                        Margin="20,0,0,0"
+                        Click="cmdSave_Click"
+                        Content="SAVE" />
+                <Button Name="cmdClose"
+                        Margin="10,0,0,0"
+                        Click="cmdClose_Click"
+                        Content="CLOSE" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

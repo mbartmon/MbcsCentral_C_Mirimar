@@ -1,0 +1,7 @@
+[ODBC]
+DRIVER=SQL Server
+UID=mbartmon
+Address=NEWSERVER\MBCSENTRALSQL,1433
+DATABASE=MbcsCentral_fishman
+APP=2007 Microsoft Office system
+SERVER=NEWSERVER\MBCSENTRALSQL

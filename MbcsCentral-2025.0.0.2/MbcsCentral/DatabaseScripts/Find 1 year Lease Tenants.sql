@@ -1,0 +1,1 @@
+SELECT [Building Number], [Tenant Number], Amount FROM pm_HistChg WHERE [Sequence Number] IN (SELECT [Sequence Number] FROM pm_Tenants WHERE  [Lease Expiration Date] = '03/31/2023' AND DATEDIFF(year, [Lease Start Date], [Lease Expiration Date]) = 1)  AND [Date] BETWEEN '09/01/2022' AND '09/30/2022' AND Code = '=' 

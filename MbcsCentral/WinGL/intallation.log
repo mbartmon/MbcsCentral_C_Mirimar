@@ -1,0 +1,63 @@
+[0CFC:1608][2019-04-12T08:16:09]i001: Burn v3.11.0.1528, Windows v6.1 (Build 7601: Service Pack 1), path: C:\Users\fileroom\AppData\Local\Temp\{32CA1704-D739-415C-A802-79B49F19C192}\.cr\JungleDiskWorkgroup64-3306.exe
+[0CFC:1608][2019-04-12T08:16:09]i009: Command Line: '-burn.clean.room=C:\Users\fileroom\AppData\Local\Temp\JungleDiskWorkgroup64-3306.exe -burn.filehandle.attached=184 -burn.filehandle.self=192'
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting string variable 'WixBundleOriginalSource' to value 'C:\Users\fileroom\AppData\Local\Temp\JungleDiskWorkgroup64-3306.exe'
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting string variable 'WixBundleOriginalSourceFolder' to value 'C:\Users\fileroom\AppData\Local\Temp\'
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting string variable 'WixBundleLog' to value 'C:\Users\fileroom\AppData\Local\Temp\Jungle_Disk_Workgroup_20190412081609.log'
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting string variable 'WixBundleName' to value 'Jungle Disk Workgroup'
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting string variable 'WixBundleManufacturer' to value 'Jungle Disk'
+[0CFC:15EC][2019-04-12T08:16:09]i000: Setting numeric variable 'WixStdBALanguageId' to value 1033
+[0CFC:15EC][2019-04-12T08:16:09]i000: Setting version variable 'WixBundleFileVersion' to value '3.30.6.0'
+[0CFC:1608][2019-04-12T08:16:09]i100: Detect begin, 2 packages
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting numeric variable 'VCRedistX64Installed' to value 1
+[0CFC:1608][2019-04-12T08:16:09]i052: Condition 'VCRedistX64Installed' evaluates to true.
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting string variable 'VCRedistX64BuildId' to value '27024'
+[0CFC:1608][2019-04-12T08:16:09]i052: Condition 'VCRedistX64Installed' evaluates to true.
+[0CFC:1608][2019-04-12T08:16:09]i000: Setting string variable 'VCRedistX64Minor' to value '16'
+[0CFC:1608][2019-04-12T08:16:09]i102: Detected related bundle: {148986e4-946a-4a81-9e14-ec6714878453}, type: Upgrade, scope: PerMachine, version: 3.22.1.0, operation: MajorUpgrade
+[0CFC:1608][2019-04-12T08:16:09]i052: Condition 'VCRedistX64Installed AND (VCRedistX64Minor >= 11 AND VCRedistX64BuildId >= 25325)' evaluates to true.
+[0CFC:1608][2019-04-12T08:16:09]i103: Detected related package: {4837C529-BBBC-47E3-95FC-70C69C003221}, scope: PerMachine, version: 3.22.1.0, language: 0 operation: MajorUpgrade
+[0CFC:1608][2019-04-12T08:16:09]i101: Detected package: exe.46x.tsider_cvvc_redist.x64.exe, state: Present, cached: None
+[0CFC:1608][2019-04-12T08:16:09]i101: Detected package: Jungle_Disk_Workgroup, state: Absent, cached: None
+[0CFC:1608][2019-04-12T08:16:09]i052: Condition '((VersionNT = v6.0 AND ServicePackLevel = 2) OR (VersionNT = v6.1 AND ServicePackLevel >= 1) OR (VersionNT >= v6.2))            or            ((VersionNT64 = v6.0 AND ServicePackLevel = 2) OR (VersionNT64 = v6.1 AND ServicePackLevel >= 1) OR (VersionNT64 >= v6.2))' evaluates to true.
+[0CFC:1608][2019-04-12T08:16:09]i052: Condition 'VersionNT64' evaluates to true.
+[0CFC:1608][2019-04-12T08:16:09]i052: Condition 'not REINSTALL' evaluates to true.
+[0CFC:1608][2019-04-12T08:16:09]i052: Condition 'Privileged' evaluates to true.
+[0CFC:1608][2019-04-12T08:16:09]i199: Detect complete, result: 0x0
+[0CFC:15EC][2019-04-12T08:16:12]i000: Setting numeric variable 'EulaAcceptCheckbox' to value 0
+[0CFC:1608][2019-04-12T08:16:12]i200: Plan begin, 2 packages, action: Install
+[0CFC:1608][2019-04-12T08:16:12]w321: Skipping dependency registration on package with no dependency providers: exe.46x.tsider_cvvc_redist.x64.exe
+[0CFC:1608][2019-04-12T08:16:12]i000: Setting string variable 'WixBundleRollbackLog_Jungle_Disk_Workgroup' to value 'C:\Users\fileroom\AppData\Local\Temp\Jungle_Disk_Workgroup_20190412081609_000_Jungle_Disk_Workgroup_rollback.log'
+[0CFC:1608][2019-04-12T08:16:12]i000: Setting string variable 'WixBundleLog_Jungle_Disk_Workgroup' to value 'C:\Users\fileroom\AppData\Local\Temp\Jungle_Disk_Workgroup_20190412081609_000_Jungle_Disk_Workgroup.log'
+[0CFC:1608][2019-04-12T08:16:12]i201: Planned package: exe.46x.tsider_cvvc_redist.x64.exe, state: Present, default requested: Present, ba requested: Present, execute: None, rollback: None, cache: No, uncache: No, dependency: None
+[0CFC:1608][2019-04-12T08:16:12]i201: Planned package: Jungle_Disk_Workgroup, state: Absent, default requested: Present, ba requested: Present, execute: Install, rollback: Uninstall, cache: Yes, uncache: No, dependency: Register
+[0CFC:1608][2019-04-12T08:16:12]i207: Planned related bundle: {148986e4-946a-4a81-9e14-ec6714878453}, type: Upgrade, default requested: Absent, ba requested: Absent, execute: Uninstall, rollback: Install, dependency: None
+[0CFC:1608][2019-04-12T08:16:12]i299: Plan complete, result: 0x0
+[0CFC:1608][2019-04-12T08:16:12]i300: Apply begin
+[0CFC:1608][2019-04-12T08:16:12]i010: Launching elevated engine process.
+[0CFC:1608][2019-04-12T08:16:15]i011: Launched elevated engine process.
+[0CFC:1608][2019-04-12T08:16:15]i012: Connected to elevated engine.
+[169C:1DB8][2019-04-12T08:16:15]i358: Pausing automatic updates.
+[169C:1DB8][2019-04-12T08:16:15]i359: Paused automatic updates.
+[169C:1DB8][2019-04-12T08:16:15]i360: Creating a system restore point.
+[169C:1DB8][2019-04-12T08:16:22]i361: Created a system restore point.
+[169C:1DB8][2019-04-12T08:16:22]i370: Session begin, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{83d467e5-87a6-4ab9-9303-3a7faf1840ae}, options: 0x7, disable resume: No
+[169C:1DB8][2019-04-12T08:16:22]i000: Caching bundle from: 'C:\Users\fileroom\AppData\Local\Temp\{BD006311-2307-420E-897F-94B1E594FC43}\.be\JungleDiskWorkgroup64.exe' to: 'C:\ProgramData\Package Cache\{83d467e5-87a6-4ab9-9303-3a7faf1840ae}\JungleDiskWorkgroup64.exe'
+[169C:1DB8][2019-04-12T08:16:22]i320: Registering bundle dependency provider: {83d467e5-87a6-4ab9-9303-3a7faf1840ae}, version: 3.30.6.0
+[169C:1DB8][2019-04-12T08:16:22]i371: Updating session, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{83d467e5-87a6-4ab9-9303-3a7faf1840ae}, resume: Active, restart initiated: No, disable resume: No
+[169C:18EC][2019-04-12T08:16:23]i305: Verified acquired payload: Jungle_Disk_Workgroup at path: C:\ProgramData\Package Cache\.unverified\Jungle_Disk_Workgroup, moving to: C:\ProgramData\Package Cache\{4837C529-BBBC-47E3-95FC-70C69C003306}v3.30.6.0\Jungle Disk Workgroup.
+[169C:1DB8][2019-04-12T08:16:23]i323: Registering package dependency provider: {4837C529-BBBC-47E3-95FC-70C69C003306}, version: 3.30.6.0, package: Jungle_Disk_Workgroup
+[169C:1DB8][2019-04-12T08:16:23]i301: Applying execute package: Jungle_Disk_Workgroup, action: Install, path: C:\ProgramData\Package Cache\{4837C529-BBBC-47E3-95FC-70C69C003306}v3.30.6.0\Jungle Disk Workgroup, arguments: ' ARPSYSTEMCOMPONENT="1" MSIFASTINSTALL="7"'
+[169C:1DB8][2019-04-12T08:20:28]e000: Error 0x80070643: Failed to install MSI package.
+[169C:1DB8][2019-04-12T08:20:28]e000: Error 0x80070643: Failed to execute MSI package.
+[0CFC:1608][2019-04-12T08:20:28]e000: Error 0x80070643: Failed to configure per-machine MSI package.
+[0CFC:1608][2019-04-12T08:20:28]i319: Applied execute package: Jungle_Disk_Workgroup, result: 0x80070643, restart: None
+[0CFC:1608][2019-04-12T08:20:28]e000: Error 0x80070643: Failed to execute MSI package.
+[169C:1DB8][2019-04-12T08:20:28]i318: Skipped rollback of package: Jungle_Disk_Workgroup, action: Uninstall, already: Absent
+[0CFC:1608][2019-04-12T08:20:28]i319: Applied rollback package: Jungle_Disk_Workgroup, result: 0x0, restart: None
+[169C:1DB8][2019-04-12T08:20:28]i329: Removed package dependency provider: {4837C529-BBBC-47E3-95FC-70C69C003306}, package: Jungle_Disk_Workgroup
+[169C:1DB8][2019-04-12T08:20:28]i351: Removing cached package: Jungle_Disk_Workgroup, from path: C:\ProgramData\Package Cache\{4837C529-BBBC-47E3-95FC-70C69C003306}v3.30.6.0\
+[169C:1DB8][2019-04-12T08:20:28]i372: Session end, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{83d467e5-87a6-4ab9-9303-3a7faf1840ae}, resume: None, restart: None, disable resume: No
+[169C:1DB8][2019-04-12T08:20:28]i330: Removed bundle dependency provider: {83d467e5-87a6-4ab9-9303-3a7faf1840ae}
+[169C:1DB8][2019-04-12T08:20:28]i352: Removing cached bundle: {83d467e5-87a6-4ab9-9303-3a7faf1840ae}, from path: C:\ProgramData\Package Cache\{83d467e5-87a6-4ab9-9303-3a7faf1840ae}\
+[169C:1DB8][2019-04-12T08:20:28]i371: Updating session, registration key: SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{83d467e5-87a6-4ab9-9303-3a7faf1840ae}, resume: None, restart initiated: No, disable resume: No
+[0CFC:1608][2019-04-12T08:20:28]i399: Apply complete, result: 0x80070643, restart: None, ba requested restart:  No

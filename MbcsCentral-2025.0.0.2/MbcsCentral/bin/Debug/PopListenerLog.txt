@@ -1,0 +1,16 @@
+11/15/2022 10:19:44 AM: CONFIG: no user ***********************************
+11/15/2022 10:19:45 AM: CONFIG: no user Starting up. appPath=e:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\
+11/15/2022 10:19:45 AM: CONFIG: no user ***********************************
+11/15/2022 10:19:45 AM: CONFIG: no user Setting up connectionstrings and paths
+11/15/2022 10:24:34 AM: CONFIG: no user ***********************************
+11/15/2022 10:24:34 AM: CONFIG: no user Starting up. appPath=e:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\
+11/15/2022 10:24:34 AM: CONFIG: no user ***********************************
+11/15/2022 10:24:34 AM: CONFIG: no user Setting up connectionstrings and paths
+11/15/2022 12:27:00 PM: CONFIG: no user ***********************************
+11/15/2022 12:27:00 PM: CONFIG: no user Starting up. appPath=e:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\
+11/15/2022 12:27:00 PM: CONFIG: no user ***********************************
+11/15/2022 12:27:00 PM: CONFIG: no user Setting up connectionstrings and paths
+11/15/2022 12:35:24 PM: CONFIG: no user ***********************************
+11/15/2022 12:35:24 PM: CONFIG: no user Starting up. appPath=e:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\
+11/15/2022 12:35:24 PM: CONFIG: no user ***********************************
+11/15/2022 12:35:24 PM: CONFIG: no user Setting up connectionstrings and paths

@@ -1,0 +1,531 @@
+﻿
+<Window
+    x:Class="MbcsCentral.WinPM.frmTenantDocuments"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:help="clr-namespace:MbcsCentral"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:xtc="http://schemas.xceed.com/wpf/xaml/toolkit"
+    Name="FormTenantDocuments"
+    Title="Tenant Documents"
+    Width="867.428"
+    Height="534.586"
+    my:HelpProvider.HelpTopic="Documents/Documents_Overview"
+    Background="Aqua"
+    Closed="frmTenantDocuments_Closed"
+    FontSize="14"
+    FontWeight="Bold"
+    Loaded="frmTenantDocuments_Loaded"
+    TextBlock.TextAlignment="Center">
+    <Border
+        BorderBrush="Blue"
+        BorderThickness="3"
+        CornerRadius="5">
+        <Grid TextBlock.FontSize="12" TextBlock.FontWeight="Normal">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBox
+                Background="LightSteelBlue"
+                BorderBrush="Blue"
+                BorderThickness="2"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="Tenant Documents"
+                TextAlignment="Center" />
+            <!--  Place your content here  -->
+            <Grid
+                x:Name="MainGrid"
+                Grid.Row="1"
+                Margin="0,0,0,81"
+                Background="Aqua">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="colMain" Width="560" />
+                    <ColumnDefinition x:Name="colAction" Width="95" />
+                    <ColumnDefinition x:Name="colTenant" Width="185" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="2">
+                    <StackPanel
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                        <StackPanel Margin="3,0,0,0">
+                            <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                                <TextBlock
+                                    Width="70"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Text="Document" />
+                                <ComboBox
+                                    x:Name="lstDocuments"
+                                    Width="300"
+                                    my:HelpProvider.HelpTopic="Documents/Using Documents/Tenant Letters Documents"
+                                    Background="White"
+                                    DisplayMemberPath="DocumentName"
+                                    ItemsSource="{Binding}" 
+                                    SelectionChanged="lstDocuments_SelectionChanged"/>
+                                <CheckBox
+                                    Name="chkBackground"
+                                    VerticalAlignment="Center"
+                                    Content="Suppress Background Printing" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Grid
+                    x:Name="Expander"
+                    Grid.RowSpan="3"
+                    Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BorderBrush="Black"
+                        BorderThickness="2,0,3,0">
+                        <TextBlock
+                            Margin="5,0,5,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="INDIVIDUAL TENANTS" />
+                    </Border>
+                    <Border
+                        x:Name="bdrTenants"
+                        Grid.Row="1"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        BorderBrush="Black"
+                        BorderThickness="2,3,3,3">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="5,5,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Tenant Number" />
+                                <TextBox
+                                    x:Name="txtTenantNumber"
+                                    Width="80"
+                                    Margin="5,5,5,0"
+                                    VerticalAlignment="Center"
+                                    MaxLength="7"
+                                    PreviewKeyDown="txtTenantNumber_PreviewKeyDown"
+                                    TextAlignment="Left" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Button
+                                        x:Name="cmdAdd"
+                                        Width="80"
+                                        Margin="5,5,0,0"
+                                        Click="cmdAdd_Click"
+                                        Content="ADD"
+                                        IsDefault="True"
+                                        IsEnabled="False" />
+                                    <Button
+                                        x:Name="cmdRemove"
+                                        Width="80"
+                                        Margin="5,10,0,0"
+                                        Click="cmdRemove_Click"
+                                        Content="REMOVE" />
+                                    <Button
+                                        x:Name="cmdClear"
+                                        Width="80"
+                                        Margin="5,10,0,0"
+                                        Click="cmdClear_Click"
+                                        Content="CLEAR" />
+                                </StackPanel>
+                                <ListBox
+                                    x:Name="lstTenants"
+                                    Width="80"
+                                    Height="224"
+                                    Margin="8,5,0,0"
+                                    VerticalAlignment="Stretch" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BorderBrush="Black"
+                    BorderThickness="3,0,2,0">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Text="ACTIONS" />
+                </Border>
+                <StackPanel
+                    Grid.Row="1"
+                    Width="420"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="BUILDING NUMBER -start" />
+                    <TextBox
+                        x:Name="txtStartBuilding"
+                        Width="30"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        GotFocus="FocusObtained"
+                        MaxLength="3"
+                        Text="000" />
+                    <TextBlock
+                        x:Name="lblEnd"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="end" />
+                    <TextBox
+                        x:Name="txtEndBuilding"
+                        Width="30"
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        GotFocus="FocusObtained"
+                        MaxLength="3"
+                        Text="ZZZ" />
+                    <TextBlock
+                        Margin="105,0,0,0"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold"
+                        Text="Tenant Type" />
+
+                </StackPanel>
+                <Border
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Width="130"
+                    Height="300"
+                    Margin="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    BorderBrush="Black"
+                    BorderThickness="3">
+                    <ListBox
+                        x:Name="lstType"
+                        Width="130"
+                        Height="300"
+                        VerticalAlignment="Top"
+                        DisplayMemberPath="DisplayDescription"
+                        ItemsSource="{Binding}"
+                        SelectedValuePath="ChargeCode"
+                        SelectionMode="Extended" />
+
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    BorderBrush="Black"
+                    BorderThickness="3,3,2,3">
+                    <StackPanel>
+                        <TextBlock
+                            FontSize="14"
+                            FontWeight="Bold"
+                            Text="F1 for Help" />
+                        <Button
+                            x:Name="cmdPrint"
+                            Width="93"
+                            Height="30"
+                            Margin="5,10,5,0"
+                            HorizontalAlignment="Center"
+                            Click="cmdPrint_Click"
+                            Content="PRINT" />
+                        <Button
+                            x:Name="cmdTenants"
+                            Width="93"
+                            Height="30"
+                            Margin="5,10,5,0"
+                            HorizontalAlignment="Center"
+                            Click="cmdTenants_Click"
+                            Content="TENANTS&gt;&gt;" />
+                        <Button
+                            x:Name="cmdEmail"
+                            Width="93"
+                            Height="30"
+                            Margin="5,10,5,0"
+                            HorizontalAlignment="Center"
+                            Click="CmdEmail_Click"
+                            Content="EMAIL" />
+                        <Button
+                            x:Name="cmdSave"
+                            Width="93"
+                            Height="30"
+                            Margin="5,10,5,0"
+                            HorizontalAlignment="Center"
+                            Click="cmdSave_Click"
+                            Content="Save Settings" />
+                        <Button
+                            x:Name="cmdExit"
+                            Width="93"
+                            Height="30"
+                            Margin="5,10,5,0"
+                            HorizontalAlignment="Center"
+                            Click="cmdClose_Click"
+                            Content="EXIT" />
+                    </StackPanel>
+                </Border>
+                <StackPanel
+                    Grid.Row="2"
+                    Width="430"
+                    Margin="0,0,0,57"
+                    HorizontalAlignment="Left"
+                    Orientation="Vertical">
+                    <StackPanel
+                        Width="430"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            x:Name="lblExpFrom"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="EXPIRATION from" />
+                        <DatePicker
+                            x:Name="dtFrom"
+                            Margin="2,0,0,0"
+                            VerticalAlignment="Center"
+                            SelectedDate="{Binding FromDate}" />
+                        <TextBlock
+                            x:Name="lblto"
+                            Margin="2,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="to" />
+                        <DatePicker
+                            x:Name="dtTo"
+                            Margin="2,0,0,0"
+                            VerticalAlignment="Center"
+                            SelectedDate="{Binding ToDate}" />
+                        <CheckBox
+                            Name="chkDates"
+                            Margin="2,0,0,0"
+                            VerticalAlignment="Center"
+                            Content="USE?"
+                            IsChecked="False" />
+                    </StackPanel>
+                    <StackPanel
+                        x:Name="pnlPercents"
+                        Grid.ColumnSpan="2"
+                        Width="430"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            x:Name="lblPer"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="PERCENTAGES" />
+                        <my:NumberEntry
+                            x:Name="txtOneYear"
+                            Width="35"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            MaxLength="4"
+                            Text="{Binding PercentOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock
+                            x:Name="lbloneyr"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="1 yr" />
+                        <my:NumberEntry
+                            x:Name="txtTwoYear"
+                            Width="35"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Decimals="2"
+                            MaxLength="4"
+                            Text="{Binding PercentTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock
+                            x:Name="lbltwoyr"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="2 yrs" />
+                        <TextBlock
+                            x:Name="lblletter"
+                            Margin="5,10,5,10"
+                            VerticalAlignment="Center"
+                            Text="LETTER DATE" />
+                        <DatePicker
+                            Name="dtLetter"
+                            Width="110"
+                            VerticalAlignment="Center"
+                            SelectedDateFormat="Short" />
+                    </StackPanel>
+                    <StackPanel
+                        Width="400"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                        <CheckBox
+                            x:Name="chkGuidlines"
+                            Margin="10,5,0,0"
+                            VerticalAlignment="Center"
+                            Content="Check here if Guidelines are UNKOWN"
+                            FlowDirection="RightToLeft"
+                            FontWeight="Bold"
+                            IsChecked="{Binding GuideLinesUnknown}" />
+                    </StackPanel>
+                    <CheckBox
+                        x:Name="chkMinimum"
+                        Margin="10,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Use Minimum Increase"
+                        FlowDirection="RightToLeft"
+                        FontWeight="Bold"
+                        IsChecked="{Binding UseMinimumIncrease}" />
+                    <StackPanel
+                        x:Name="pnlMinimumRents"
+                        Width="400"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                        <TextBlock
+                            x:Name="lbl1year"
+                            Margin="30,5,0,0"
+                            VerticalAlignment="Center"
+                            Text="1 year" />
+                        <my:NumberEntry
+                            x:Name="txtMinimum1"
+                            Width="80"
+                            Margin="5,5,0,0"
+                            Decimals="2"
+                            IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                            MaxLength="10"
+                            Text="{Binding MinimumIncrease1, Mode=TwoWay}" />
+                        <TextBlock
+                            x:Name="lbl2year"
+                            Margin="20,5,0,0"
+                            VerticalAlignment="Center"
+                            Text="2 year" />
+                        <my:NumberEntry
+                            x:Name="txtMinimum2"
+                            Width="80"
+                            Margin="5,5,0,0"
+                            Decimals="2"
+                            IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                            MaxLength="10"
+                            Text="{Binding MinimumIncrease2, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel
+                        x:Name="pnlMinimumYears"
+                        Width="400  "
+                        Margin="30,5,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                        <TextBlock x:Name="lblmxmyear" VerticalAlignment="Center" Text="Maximum Years" />
+                        <my:NumberEntry
+                            x:Name="txtMaximumYears"
+                            Width="30"
+                            Margin="5,0,0,0"
+                            Decimals="0"
+                            IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                            MaxLength="2"
+                            Text="{Binding MinimumIncreaseYears, Mode=TwoWay}" />
+                        <TextBlock
+                            x:Name="mxmrent"
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            Text="Maximum Rent" />
+                        <my:NumberEntry
+                            x:Name="txtMaximumRent"
+                            Width="80"
+                            Margin="5,0,0,0"
+                            Decimals="2"
+                            IsEnabled="{Binding IsChecked, ElementName=chkMinimum}"
+                            MaxLength="10"
+                            Text="{Binding MinimumIncreaseRent, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Margin="10,5,0,0" Orientation="Horizontal">
+                        <TextBlock x:Name="lblCopies" VerticalAlignment="Center" Text="Copies" />
+                        <xtc:IntegerUpDown
+                            x:Name="txtCopies"
+                            Margin="10,0,0,0"
+                            VerticalAlignment="Center"
+                            DefaultValue="1"
+                            Maximum="10"
+                            Minimum="1"
+                            Text="1"
+                            Value="{Binding Copies, Mode=TwoWay}" />
+                        <CheckBox
+                            x:Name="chkStatementOption"
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            Content="Use Statement Address Option"
+                            IsChecked="{Binding StatementOption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel
+                        Width="420"
+                        Margin="10,5,0,0"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Text="Printer" />
+                        <ComboBox
+                            x:Name="PrinterList"
+                            Width="200"
+                            Margin="5,0,0,0"
+                            DisplayMemberPath="DisplayItem"
+                            ItemsSource="{Binding}"
+                            SelectionChanged="PrinterList_SelectionChanged" />
+                        <Button
+                            x:Name="cmdDuplex"
+                            Margin="10,0,0,0"
+                            Click="cmdDuplex_Click"
+                            Content="Duplex"
+                            FontSize="14"
+                            FontWeight="Bold" />
+                        <TextBlock
+                            x:Name="txtDuplexing"
+                            Margin="5,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Foreground="Red"
+                            Text="Red=Enabled" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0">
+                        <Border BorderBrush="Black" BorderThickness="2">
+                            <StackPanel Height="35" Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontFamily="Rockwell"
+                                    Text="Status:" />
+                                <Border
+                                    Margin="5,0,0,0"
+                                    BorderBrush="Gray"
+                                    BorderThickness="2">
+                                    <TextBlock
+                                        x:Name="txtStatus"
+                                        Width="470"
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontFamily="Rockwell"
+                                        FontSize="14"
+                                        Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        TextAlignment="Left" />
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                        <Image
+                            x:Name="imgDisplay"
+                            Width="400"
+                            Height="150" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>

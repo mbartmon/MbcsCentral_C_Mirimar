@@ -1,0 +1,9 @@
+﻿2016-02-09 05:27:09|       9.54.2.5884|      328128|-R-S|C:\Program Files\InstallMate 9\Stubs80\Tsu32u.dll
+2016-03-02 16:05:06|                  |       77218|-R-S|C:\workfiles\MbcsCentral_C\MbcsCentralServices\Package1\MbcsCentralServices-Setup.dat
+2016-03-02 16:05:06|                  |       86016|-R-S|C:\workfiles\MbcsCentral_C\MbcsCentralServices\Package1\MbcsCentralServices-Setup32.dll
+2013-11-23 18:15:11|                  |        4846|-R-S|C:\Program Files\InstallMate 9\Data\Resources\Generic.ico
+2016-03-02 16:05:06|                  |        2066|-R-S|C:\workfiles\MbcsCentral_C\MbcsCentralServices\Package1\Readme.txt
+2016-02-09 05:24:01|       9.54.2.5884|       24512|-R-S|C:\Program Files\InstallMate 9\Stubs80\Setup.Administrator\Setup32u.exe
+2016-02-24 18:22:07|           1.0.0.0|       82432|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsCentralLogCleaner.exe
+2016-02-27 10:35:20|                  |       63488|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsCentralService.exe
+2016-02-28 09:15:15|           1.0.0.0|       27136|----|C:\workfiles\MbcsCentral_C\MbcsCentral\bin\Debug\MbcsDbAutoBackup.exe

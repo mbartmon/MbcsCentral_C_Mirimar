@@ -1,0 +1,4 @@
+﻿ALTER TABLE gl_Invoices ADD AchType VARCHAR (3) NOT NULL DEFAULT ' ';
+GO
+ALTER TABLE gl_InvoicesBatch ADD AchType VARCHAR (3) NOT NULL DEFAULT ' ';
+GO

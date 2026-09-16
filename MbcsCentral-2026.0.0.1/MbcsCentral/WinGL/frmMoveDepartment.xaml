@@ -1,0 +1,25 @@
+﻿<Window x:Class="MbcsCentral.WinGL.frmMoveDepartment"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Move Building to Another Owner" Height="300" Width="471" Background="#FF00C0C0"
+    Name="formMoveDepartment" FontWeight="Bold"
+    Loaded="frmMoveDepartment_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="txtDepartment" Text="{Binding Address1, Mode=OneTime}" Background="LightGray" Margin="5" />
+        <ListView Name="lstCompanies" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="0,5,5,5" MouseDoubleClick="lstCompanies_MouseDoubleClick"/>
+        <TextBlock Text="Select new Company for this Department >>>>" Grid.Column="0" Grid.Row="1" Margin="5,0,0,0"/>
+        <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button Name="cmdSave" Content="SAVE" Margin="0,20,0,0" Click="cmdSave_Click"/>
+            <Button Name="cmdCancel" Content="CANCEL" Margin="0,20,0,0" Click="cmdCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

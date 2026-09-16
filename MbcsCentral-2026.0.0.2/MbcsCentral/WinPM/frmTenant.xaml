@@ -1,0 +1,2868 @@
+﻿<Window
+    x:Class="MbcsCentral.WinPM.frmTenant"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+    xmlns:ex="clr-namespace:MbcsWpfControls;assembly=MbcsWpfControls"
+    xmlns:local="clr-namespace:MbcsCentral.WinPM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:my2="clr-namespace:MbcsCentral.WinPM"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
+    xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+    Name="formTenant"
+    Width="1064.211"
+    Height="557"
+    MaxHeight="900"
+    Background="AliceBlue"
+    ContentRendered="formTenant_ContentRendered"
+    FontWeight="Bold"
+    mc:Ignorable="d">
+    <Window.Title>
+        <MultiBinding StringFormat="Tenant Record for: {0}-{1} {2} Apartment: {3}">
+            <Binding Path="BuildingNumber" />
+            <Binding Path="TenantNumber" />
+            <Binding Path="TenantName" />
+            <Binding Path="Apartment" />
+        </MultiBinding>
+    </Window.Title>
+    <Window.Resources>
+        <Style TargetType="Separator">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Separator}">
+                        <Rectangle Height="{TemplateBinding Height}" Fill="Black" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="FontWeight" Value="Normal" />
+        </Style>
+        <my:NegativeColorRed x:Key="NegativeColorRed" />
+        <my:CurrencyPaddingConverter x:Key="CurrencyPadder" />
+        <my:DateConverter x:Key="DateConverter" />
+        <my:StringPad x:Key="StringPad" />
+        <my:UpperCase x:Key="ToUpper" />
+        <my:DateNotNullBool x:Key="DateNotNull" />
+        <my:NotNumericReturnSpaces x:Key="NotNumeric" />
+        <CollectionViewSource x:Key="TenantCalcView" />
+        <CollectionViewSource x:Key="FutureRentsView" Source="{Binding}" />
+        <CollectionViewSource x:Key="LegalCodesSource" />
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White" />
+            <Style.Triggers>
+                <Trigger Property="IsReadOnly" Value="True">
+                    <Setter Property="Background" Value="AntiqueWhite" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Border
+        Background="Bisque"
+        BorderBrush="Blue"
+        BorderThickness="2"
+        CornerRadius="5">
+        <Grid Name="MainGrid" Width="1000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <TabControl
+                Name="tabTenant"
+                diagnostics:PresentationTraceSources.TraceLevel="High"
+                Background="AliceBlue"
+                SelectionChanged="tabTenant_SelectionChanged">
+
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border
+                                        Name="Border"
+                                        Margin="2,0"
+                                        BorderBrush="Gainsboro"
+                                        BorderThickness="1,1,1,0"
+                                        CornerRadius="4,4,0,0">
+                                        <ContentPresenter
+                                            x:Name="ContentSite"
+                                            Margin="10,2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            ContentSource="Header" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="Bisque" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+
+                <TabItem Name="tabAccount" Header="Tenant Account">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <Label
+                                    Margin="3"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="Tenant Number:" />
+                                <TextBox
+                                    Name="txtBuildingNumber"
+                                    Width="35"
+                                    Height="23"
+                                    Margin="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Path=BuildingNumber, Mode=TwoWay}" />
+                                <TextBox
+                                    Name="txtTenantNumber"
+                                    Width="40"
+                                    Height="23"
+                                    Margin="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    GotFocus="txtBuildingNumber_LostFocus"
+                                    LostFocus="txtTenantNumber_LostFocus"
+                                    Text="{Binding Path=TenantNumber, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkNew"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    Content="?New"
+                                    FlowDirection="RightToLeft"
+                                    IsChecked="{Binding Path=NewTenantFlag, Mode=TwoWay}" />
+                                <Label
+                                    Margin="3"
+                                    VerticalAlignment="Center"
+                                    Content="Name" />
+                                <TextBox
+                                    Name="txtTenantName"
+                                    Width="300"
+                                    Height="23"
+                                    Margin="0"
+                                    VerticalAlignment="Center"
+                                    MaxLength="30"
+                                    Text="{Binding Path=TenantName, Mode=TwoWay}" />
+                                <Label
+                                    Margin="3"
+                                    VerticalAlignment="Center"
+                                    Content="Apt" />
+                                <TextBox
+                                    Name="txtApartment"
+                                    Width="40"
+                                    Height="23"
+                                    Margin="0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Path=Apartment, Mode=TwoWay}" />
+                                <Label
+                                    Margin="3"
+                                    VerticalAlignment="Center"
+                                    Content="Key (Seq Num)" />
+                                <TextBlock
+                                    Width="40"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    Text="{Binding SequenceNumber}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,1,0,0" Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="190,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Additional Name" />
+                                <TextBox
+                                    Width="300"
+                                    Height="23"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    IsEnabled="False"
+                                    Text="{Binding Path=AddName}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Separator
+                            Grid.Row="1"
+                            Height="5"
+                            VerticalAlignment="Center"
+                            BorderBrush="Black"
+                            BorderThickness="0" />
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="330" />
+                                <ColumnDefinition Width="450" />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="260" />
+                                <RowDefinition Height="125" />
+                            </Grid.RowDefinitions>
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4"
+                                Orientation="Horizontal">
+                                <Label VerticalAlignment="Center" Content="Rooms" />
+                                <viblend:NumberEditor
+                                    Name="txtRooms"
+                                    Width="40"
+                                    Height="23"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="1"
+                                    MaxLength="4"
+                                    Text="{Binding Path=Rooms, Mode=TwoWay, StringFormat={}{0:0.0}}" />
+                                <Label
+                                    Margin="3"
+                                    VerticalAlignment="Center"
+                                    Content="Security" />
+                                <viblend:NumberEditor
+                                    Name="txtSecurity"
+                                    Width="70"
+                                    Height="23"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="2"
+                                    MaxLength="10"
+                                    Text="{Binding Path=Security, StringFormat={}{0:######0.00}, Mode=TwoWay}" />
+                                <!-- Depracated 1.8.3.5
+                                    <Label Margin="3"
+                                       VerticalAlignment="Center"
+                                       Content="Mult" />
+                                <ComboBox Name="cmbMulti"
+                                          Width="50"
+                                          Height="25"
+                                          IsEditable="True"
+                                          Text="{Binding Path=SecMultiple, Mode=TwoWay}">
+                                    <ComboBoxItem Content="1.0" />
+                                    <ComboBoxItem Content="1.25" />
+                                    <ComboBoxItem Content="1.5" />
+                                    <ComboBoxItem Content="1.75" />
+                                    <ComboBoxItem Content="2.0" />
+                                </ComboBox>
+                                -->
+                                <Label
+                                    Margin="2"
+                                    VerticalAlignment="Center"
+                                    Content="Sq Ft" />
+                                <viblend:NumberEditor
+                                    x:Name="txtSquareFeet"
+                                    Width="60"
+                                    Height="23"
+                                    DecimalPlaces="1"
+                                    MaxLength="7"
+                                    Text="{Binding Path=SquareFeet, StringFormat={}{0:###0.00}, Mode=TwoWay}" />
+                                <Label
+                                    Margin="3"
+                                    VerticalAlignment="Center"
+                                    Content="Legal Rent" />
+                                <my:NumberEntry
+                                    x:Name="txtLegalRent"
+                                    Width="70"
+                                    Height="23"
+                                    VerticalAlignment="Center"
+                                    Decimals="2"
+                                    MaxLength="10"
+                                    Text="{Binding Path=RentLegal, Mode=TwoWay, StringFormat={}{0:###0.00}}"
+                                    TextAlignment="Right" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="DC Legal" />
+                                <viblend:NumberEditor
+                                    Name="txtDCLegal"
+                                    Width="70"
+                                    Height="23"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="2"
+                                    IsEnabled="{Binding Path=UseDC}"
+                                    MaxLength="10"
+                                    Text="{Binding Path=DecontrolledLegal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:###0.00}, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}" />
+                                <StackPanel
+                                    Name="Replacing"
+                                    Margin="10,0,0,0"
+                                    Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,3,0,4"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Text="Old Tenant" />
+                                    <TextBox
+                                        Width="60"
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        IsEnabled="False"
+                                        Text="{Binding Path=ReplacingTenant, Mode=OneTime}" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0">
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35" />
+                                            <RowDefinition Height="45" />
+                                            <RowDefinition Height="25"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="55" />
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock VerticalAlignment="Center" Text="Type" />
+                                        <TextBox
+                                            Name="txtType"
+                                            Grid.Column="1"
+                                            Width="30"
+                                            Height="23"
+                                            HorizontalAlignment="Left"
+                                            LostFocus="txtType_LostFocus"
+                                            MaxLength="2"
+                                            Text="{Binding Path=Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ToUpper}}" />
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            VerticalAlignment="Center"
+                                            Text="Due Date" />
+                                        <TextBox
+                                            Name="txtDueDate"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Width="30"
+                                            Height="23"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            MaxLength="2"
+                                            Text="{Binding Path=DueDate, Mode=TwoWay}" />
+                                        <GroupBox
+                                            Grid.Row="0"
+                                            Grid.RowSpan="3"
+                                            Grid.Column="2"
+                                            Width="Auto"
+                                            Height="Auto"
+                                            BorderBrush="Blue"
+                                            BorderThickness="3"
+                                            Header="LEAD AREA">
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="30" />
+                                                    <RowDefinition Height="30" />   
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Rectangle Grid.RowSpan="2"
+                                                           Stroke="Blue"
+                                                           Fill="Transparent"/>
+                                                <CheckBox
+                                                    Name="chkXrfTested"
+                                                    HorizontalAlignment="Left"
+                                                    Content="XRF"
+                                                    FlowDirection="RightToLeft"
+                                                    Margin="3,1,0,0"
+                                                    IsChecked="{Binding Path=XrfTested, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Checked="chkXrfTested_Checked"/>
+                                                <Rectangle Grid.Column="1"
+                                                           Grid.RowSpan="2"
+                                                           Stroke="Blue"
+                                                           Fill="Transparent"/>
+                                                <CheckBox
+                                                    Name="chkXrfExempt"
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="3,1,0,0"
+                                                    Content="Exempt"
+                                                    FlowDirection="RightToLeft"
+                                                    IsChecked="{Binding Path=XrfExempt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                    Checked="chkXrfExempt_Checked"/>
+                                                <ex:DatePickerEx 
+                                                    Name="dtXrfTestedDate" 
+                                                    Grid.Row="1" 
+                                                    SelectedDate="{Binding XrfTestedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:MM/dd/yyyy}}" 
+                                                    IsEnabled="{Binding ElementName=chkXrfTested, Path=IsChecked}"/>
+                                                <ex:DatePickerEx
+                                                    Name="dtXrfExemptDate"
+                                                    Grid.Row="1"
+                                                    Grid.Column="1" 
+                                                    SelectedDate="{Binding XrfExemptDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:MM/dd/yyyy}}" 
+                                                    IsEnabled="{Binding ElementName=chkXrfExempt, Path=IsChecked}"/>
+                                                <Rectangle Grid.Row="2"
+                                                           Grid.ColumnSpan="2"
+                                                           Stroke="Blue"
+                                                           Fill="Transparent"/>
+                                                <CheckBox Name="chkXrfWorkComplete"
+                                                          Grid.Row="2"
+                                                          Margin="3,0,0,0"
+                                                          Content="Turnover Work"
+                                                          HorizontalAlignment="Left"
+                                                          VerticalAlignment="Center"
+                                                          FlowDirection="LeftToRight"
+                                                          IsChecked="{Binding Path=XrfWorkComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          Checked="chkXrfWorkComplete_Checked"/>
+                                                <ex:DatePickerEx
+                                                    Name="dtXrfWorkCompleteDate"
+                                                    Grid.Row="2"
+                                                    Grid.Column="1"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Left"
+                                                    SelectedDate="{Binding XrfWorkCompleteDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:MM/dd/yyyy}}"
+                                                    IsEnabled="{Binding ElementName=chkXrfWorkComplete, Path=IsChecked}"/>
+                                            </Grid>
+
+                                        </GroupBox>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label
+                                        Width="90"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Content="Legal Code" />
+                                    <ComboBox
+                                        Name="lstLegalCode"
+                                        Width="175"
+                                        DisplayMemberPath="ChargeDescription"
+                                        ItemsSource="{Binding Source={StaticResource LegalCodesSource}}"
+                                        SelectedValue="{Binding LegalCode, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        SelectedValuePath="ChargeCode" />
+
+                                    <!--
+                                    <TextBox
+                                        Name="txtLegalCode"
+                                        Width="30"
+                                        Height="23"
+                                        VerticalAlignment="Center"
+                                        MaxLength="2"
+                                        Text="{Binding Path=LegalCode, Mode=TwoWay}" />
+                                    <TextBox
+                                        Name="txtLegalCode2"
+                                        Width="30"
+                                        Height="23"
+                                        Margin="2"
+                                        VerticalAlignment="Center"
+                                        MaxLength="2"
+                                        Text="{Binding Path=LegalCode2, Mode=TwoWay}" />
+                                    -->
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox
+                                        Margin="5"
+                                        Content="              ?Letter"
+                                        FlowDirection="RightToLeft"
+                                        IsChecked="{Binding Path=LeaseLetterFlag, Mode=TwoWay}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Width="90"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Text="MoveIn Date" />
+                                    <!--
+                                        <CheckBox Name="chkMoveIn" VerticalAlignment="Center"/>
+                                        <DatePicker VerticalAlignment="Center" Name="dtMoveIn"  Text="{Binding Path=MoveinDate, Mode=TwoWay}" SelectedDateChanged="MoveInChanged" PreviewMouseDown="Date_PreviewMouseDown"/>
+                                    -->
+                                    <ex:DatePickerEx
+                                        Name="dtMoveIn"
+                                        Width="150"
+                                        SelectedDate="{Binding MoveinDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:MM/dd/yyyy}}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Width="90"
+                                        VerticalAlignment="Center"
+                                        Text="Lease Start" />
+                                    <!--  <CheckBox Name="chkLeaseStart" VerticalAlignment="Center" />  -->
+                                    <ex:DatePickerEx
+                                        Name="dtLeaseStart"
+                                        Width="150"
+                                        VerticalAlignment="Center"
+                                        SelectedDate="{Binding Path=LeaseStartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label
+                                        Width="90"
+                                        HorizontalAlignment="Left"
+                                        Margin="-4, 0,0,0"
+                                        VerticalAlignment="Center"
+                                        Content="Lease Expires" />
+                                    <!--  <CheckBox Name="chkLeaseExpires" VerticalAlignment="Center" />  -->
+                                    <Border
+                                        Name="LeaseFrame"
+                                        BorderBrush="Black"
+                                        BorderThickness="2">
+                                        <ex:DatePickerEx
+                                            Name="dtLeaseExpires"
+                                            Width="150"
+                                            Margin="3,0,0,0"
+                                            VerticalAlignment="Center"
+                                            SelectedDate="{Binding Path=LeaseExpirationDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            SelectedDateChanged="dtLeaseExpires_SelectedDateChanged" />
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Width="Auto"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Bottom"
+                                HorizontalContentAlignment="Center"
+                                Background="LightGray"
+                                Content="Future Rents" />
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Margin="10,0,0,0"
+                                Background="#FF21B721">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Current" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Arrears" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Total" />
+                                <Label
+                                    Name="MonthlyRent"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Monthly Rent" />
+                                <viblend:NumberEditor
+                                    Name="txtRentCurrent"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="2"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Path=Rent, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    LostFocus="amountLostFocus"
+                                    LostMouseCapture="amountLostFocus"
+                                    MaxLength="10"
+                                    Text="{Binding Path=Rent, Mode=TwoWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Right" />
+                                <my:NumberEntry
+                                    x:Name="txtRentArrears"
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Margin="5"
+                                    Decimals="2"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Path=Arrears, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    LostFocus="amountLostFocus"
+                                    LostKeyboardFocus="txtRentArrears_LostKeyboardFocus"
+                                    MaxLength="10"
+                                    Text="{Binding Path=Arrears, Mode=TwoWay, StringFormat={}{0:#######.00}, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Right" />
+                                <TextBox
+                                    Name="txtRentTotal"
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    Margin="5"
+                                    VerticalContentAlignment="Center"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding ElementName=txtRentTotal, Path=Text, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=TotalRent, Converter={StaticResource CurrencyPadder}, ConverterParameter=10, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Right" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="One Time Charges" />
+                                <TextBox
+                                    Name="txtOneChargesCurrent"
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Margin="5"
+                                    Background="White"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=CurrentOneCharges, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=CurrentOneCharges, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <TextBox
+                                    Name="txtOneChargesArrears"
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=ArrearsOneCharges, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=ArrearsOneCharges, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <TextBox
+                                    Name="txtOneChargesTotal"
+                                    Grid.Row="2"
+                                    Grid.Column="3"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=TotalOneCharges, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=TotalOneCharges, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <Button
+                                    Name="cmdChargesDetail"
+                                    Grid.Row="2"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="4"
+                                    Height="25"
+                                    VerticalAlignment="Center"
+                                    Click="cmdChargesDetail_Click"
+                                    Content="Details" />
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Recurring Charges" />
+                                <TextBox
+                                    Name="txtRecurChargesCurrent"
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=CurrentRecCharges, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=CurrentRecCharges, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right"
+                                    TextChanged="amountLostFocus" />
+                                <TextBox
+                                    Name="txtRecurChargesArrears"
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=ArrearsRecCharges, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=ArrearsRecCharges, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <TextBox
+                                    Name="txtRecurChargesTotal"
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=TotalRecCharges, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=TotalRecCharges, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <Separator
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="3"
+                                    Height="5"
+                                    VerticalAlignment="Top"
+                                    BorderBrush="Black"
+                                    BorderThickness="5" />
+                                <Label
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Total Due" />
+                                <TextBox
+                                    Name="txtTotalCurrent"
+                                    Grid.Row="5"
+                                    Grid.Column="1"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=CurrentTotal, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=CurrentTotal, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <TextBox
+                                    Name="txtTotalArrears"
+                                    Grid.Row="5"
+                                    Grid.Column="2"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=ArrearsTotal, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=ArrearsTotal, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <TextBox
+                                    Name="txtTotalTotal"
+                                    Grid.Row="5"
+                                    Grid.Column="3"
+                                    Margin="5"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=TotalTotal, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=TotalTotal, StringFormat={}{0:######0.00}, Mode=OneWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                                <Separator
+                                    Grid.Row="6"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="3"
+                                    Height="5"
+                                    BorderBrush="Black"
+                                    BorderThickness="5" />
+                                <Label
+                                    Grid.Row="7"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Paid" />
+                                <TextBox
+                                    Name="txtPaidDate"
+                                    Grid.Row="7"
+                                    Grid.Column="2"
+                                    Margin="5"
+                                    Background="White"
+                                    Text="{Binding Path=LastPaidDate, Mode=TwoWay, Converter={StaticResource DateConverter}}"
+                                    TextAlignment="Right" />
+                                <viblend:NumberEditor
+                                    Name="txtPaid"
+                                    Grid.Row="7"
+                                    Grid.Column="3"
+                                    Margin="5"
+                                    DecimalPlaces="2"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Path=Paid, StringFormat={}{0:######0.00}, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    LostFocus="amountLostFocus"
+                                    MaxLength="10"
+                                    Text="{Binding Path=Paid, Mode=TwoWay, Converter={StaticResource CurrencyPadder}, ConverterParameter=10, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Right" />
+                                <Button
+                                    Name="cmdPaidDetail"
+                                    Grid.Row="7"
+                                    Grid.Column="4"
+                                    Height="25"
+                                    Click="cmdPaidDetail_Click_1"
+                                    Content="Details" />
+                                <Separator
+                                    Grid.Row="8"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="3"
+                                    Height="5"
+                                    BorderBrush="Black"
+                                    BorderThickness="5" />
+                                <Label
+                                    Grid.Row="9"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Content="Balance" />
+                                <TextBox
+                                    Name="txtBalance"
+                                    Grid.Row="9"
+                                    Grid.Column="3"
+                                    Margin="5"
+                                    VerticalContentAlignment="Center"
+                                    FontFamily="Courier New"
+                                    FontWeight="Bold"
+                                    Foreground="{Binding Source={StaticResource TenantCalcView}, Path=Balance, Converter={StaticResource NegativeColorRed}, Mode=Default}"
+                                    IsReadOnly="True"
+                                    IsTabStop="False"
+                                    Text="{Binding Source={StaticResource TenantCalcView}, Path=Balance, Mode=OneWay, StringFormat={}{0:######0.00}, Converter={StaticResource CurrencyPadder}, ConverterParameter=10}"
+                                    TextAlignment="Right" />
+                            </Grid>
+                            <StackPanel
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                DataContext="{StaticResource FutureRentsView}">
+                                <DataGrid
+                                    Name="grdFutureRents"
+                                    Width="293"
+                                    Height="126"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    AutoGenerateColumns="False"
+                                    ItemsSource="{Binding}">
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem
+                                                Name="ctxDelete"
+                                                Click="ctxDelete_Click"
+                                                Header="Delete" />
+                                            <MenuItem
+                                                Name="ctxAdd"
+                                                Click="ctxAdd_Click"
+                                                Header="Add" />
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="115" Header="Date">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker Text="{Binding Path=FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker Text="{Binding Path=FutureDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="75" Header="Rent">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Text="{Binding FutureAmount, StringFormat={}{0:#####0.00}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        TextAlignment="Right" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <viblend:NumberEditor
+                                                        VerticalAlignment="Center"
+                                                        DecimalPlaces="2"
+                                                        MaxLength="10"
+                                                        Text="{Binding FutureAmount, StringFormat={}{0:#####0.00}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Value="{Binding FutureAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="75" Header="Legal Rent">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Text="{Binding FutureLegal, StringFormat={}{0:#####0.00}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        TextAlignment="Right" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <viblend:NumberEditor
+                                                        DecimalPlaces="2"
+                                                        MaxLength="10"
+                                                        Text="{Binding FutureLegal, StringFormat={}{0:#####0.00}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Value="{Binding FutureLegal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                            <Grid
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="23" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="23" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Grid.RowSpan="2">
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        Background="LightGray"
+                                        Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkAltAddress"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Background="LightGray"
+                                            Content="?Use Alternate Billing Address"
+                                            FlowDirection="RightToLeft"
+                                            IsChecked="{Binding Path=AlternateBillingAddressFlag, Mode=TwoWay}" />
+                                        <CheckBox
+                                            Name="chkAdditionalName"
+                                            Margin="50,0,5,0"
+                                            VerticalAlignment="Center"
+                                            Background="LightGray"
+                                            Content="?Additional Name"
+                                            FlowDirection="RightToLeft"
+                                            IsChecked="{Binding Path=AdditionalNameFlag, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="LightGray"
+                                        Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkSucceeded"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Background="LightGray"
+                                            Content="?Succeeded to Apartment"
+                                            FlowDirection="RightToLeft"
+                                            IsChecked="{Binding Path=Succeeded, Mode=TwoWay}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <Border
+                                    Grid.Row="1"
+                                    Margin="20,10,5,10"
+                                    BorderBrush="Black"
+                                    BorderThickness="3">
+                                    <StackPanel
+                                        Margin="10"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            Name="cmdHistory"
+                                            HorizontalAlignment="Center"
+                                            Click="CmdHistory_OnClick"
+                                            Content="HISTORY" />
+                                        <Button
+                                            Name="cmdImpMaint"
+                                            HorizontalAlignment="Center"
+                                            Click="cmdImpMaint_Click"
+                                            Content="IMPROVEMENTS/MAINTENANCE" />
+                                        <Button
+                                            Name="cmdSecurity"
+                                            HorizontalAlignment="Center"
+                                            Click="cmdSecurity_Click"
+                                            Content="SECURITY TRANSACTIONS" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="tabPagetwo" Header="Page Two">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="160*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="46" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition Height="23" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0,0,5,0"
+                            Background="LightBlue"
+                            Content="Tenant 1" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Background="LightBlue"
+                            Content="Tenant 2" />
+                        <Label
+                            Grid.Row="2"
+                            Background="LightBlue"
+                            Content="SS Number" />
+                        <!--
+                        <TextBox Name="txtSSNumber1"
+                                 Grid.Row="2"
+                                 Grid.Column="1"
+                                 Width="100"
+                                 HorizontalAlignment="Left"
+                                 MaxLength="11"
+                                 Text="{Binding Path=SSNumber1,
+                                                Mode=TwoWay}" />
+                        -->
+                        <xceed:MaskedTextBox
+                            Name="txtSSNumber1"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            Mask="000-00-0000"
+                            ValueDataType="{x:Type sys:String}"
+                            Value="{Binding Path=SSNumber1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <xceed:MaskedTextBox
+                            Name="txtSSNumber2"
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            Mask="000-00-0000"
+                            ValueDataType="{x:Type sys:String}"
+                            Value="{Binding Path=SSNumber2, Mode=TwoWay}" />
+                        <Label
+                            Grid.Row="3"
+                            Background="LightBlue"
+                            Content="Home Phones" />
+                        <TextBox
+                            Name="txtHomePhone1"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Width="150"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            MaxLength="12"
+                            Text="{Binding Path=HomePhone1, Mode=TwoWay}" />
+                        <TextBox
+                            Name="txtHomePhone2"
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            Width="150"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            MaxLength="12"
+                            Text="{Binding Path=HomePhone2, Mode=TwoWay}" />
+                        <Label
+                            Grid.Row="4"
+                            Background="LightBlue"
+                            Content="Cell Phones" />
+                        <TextBox
+                            Name="txtPager"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Width="150"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            MaxLength="12"
+                            Text="{Binding Path=Pager, Mode=TwoWay}" />
+                        <TextBox
+                            Name="txtCell2"
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            Width="150"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            MaxLength="12"
+                            Text="{Binding Path=Cell2, Mode=TwoWay}" />
+                        <Label
+                            Grid.Row="5"
+                            Background="LightBlue"
+                            Content="Business Phones" />
+                        <TextBox
+                            Name="txtBusPhone1"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Width="180"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            MaxLength="21"
+                            Text="{Binding Path=BusPhone1, Mode=TwoWay, Converter={StaticResource NotNumeric}}" />
+                        <TextBox
+                            Name="txtBusPhone2"
+                            Grid.Row="5"
+                            Grid.Column="2"
+                            Width="180"
+                            HorizontalAlignment="Left"
+                            FontSize="14"
+                            MaxLength="21"
+                            Text="{Binding Path=BusPhone2, Mode=TwoWay}" />
+                        <Label
+                            Grid.Row="6"
+                            Background="LightBlue"
+                            Content="Email Addresses" />
+                        <TextBox
+                            Name="txtEmail1"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Width="Auto"
+                            HorizontalAlignment="Stretch"
+                            MaxLength="64"
+                            Text="{Binding Path=Email1, Mode=TwoWay}" />
+                        <TextBox
+                            Name="txtEmail2"
+                            Grid.Row="6"
+                            Grid.Column="2"
+                            Width="Auto"
+                            HorizontalAlignment="Stretch"
+                            MaxLength="64"
+                            Text="{Binding Path=Email2, Mode=TwoWay}" />
+                        <StackPanel Grid.Row="7" Grid.Column="1">
+                            <RadioButton
+                                Name="optTenantOne1"
+                                Margin="10,3,0,0"
+                                Content="Tenant 1"
+                                GroupName="optTenantOneGroup"
+                                IsChecked="True" />
+                            <RadioButton
+                                Name="optTenantOne2"
+                                Margin="10,3,0,0"
+                                Content="Tenant 2"
+                                GroupName="optTenantOneGroup" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="7" Grid.Column="2">
+                            <RadioButton
+                                Name="optTenantTwo1"
+                                Margin="10,3,0,0"
+                                Content="Tenant 1"
+                                GroupName="optTenantTwoGroup" />
+                            <RadioButton
+                                Name="optTenantTwo2"
+                                Margin="10,3,0,0"
+                                Content="Tenant 2"
+                                GroupName="optTenantTwoGroup"
+                                IsChecked="True" />
+                        </StackPanel>
+                        <Label
+                            Grid.Row="8"
+                            Background="LightBlue"
+                            Content="Alt Billing Name" />
+                        <TextBox
+                            Name="txtAltBillName"
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            MaxLength="30"
+                            Text="{Binding Path=AltBillName, Mode=TwoWay}" />
+                        <Label
+                            Grid.Row="9"
+                            Background="LightBlue"
+                            Content="Alt Billing Address" />
+                        <TextBox
+                            Name="txtAltBillAdd1"
+                            Grid.Row="9"
+                            Grid.Column="1"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            MaxLength="30"
+                            Text="{Binding Path=AltBillAdd1, Mode=TwoWay}" />
+                        <TextBox
+                            Name="txtAltBillAdd2"
+                            Grid.Row="10"
+                            Grid.Column="1"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            MaxLength="30"
+                            Text="{Binding Path=AltBillAdd2, Mode=TwoWay}" />
+                        <TextBox
+                            Name="txtAltBillAdd3"
+                            Grid.Row="11"
+                            Grid.Column="1"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            MaxLength="30"
+                            Text="{Binding Path=AltBillAdd3, Mode=TwoWay}" />
+                        <Label
+                            Grid.Row="12"
+                            Background="LightBlue"
+                            Content="Additional Name" />
+                        <TextBox
+                            Name="txtAdditionalName"
+                            Grid.Row="12"
+                            Grid.Column="1"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            MaxLength="30"
+                            Text="{Binding Path=AddName, Mode=TwoWay}" />
+                        <Label
+                            Grid.Row="14"
+                            Background="LightBlue"
+                            Content="Shares" />
+                        <StackPanel
+                            Grid.Row="14"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Background="LightGray"
+                            Orientation="Horizontal">
+                            <TextBox
+                                Name="txtShares"
+                                Width="75"
+                                Text="{Binding Path=Shares, Mode=TwoWay}" />
+                            <Label
+                                Margin="10,0,0,0"
+                                Background="LightBlue"
+                                Content="Senior Citizen" />
+                            <TextBox
+                                Name="txtSeniorCit"
+                                Width="200"
+                                MaxLength="18"
+                                Text="{Binding Path=Seniorcit, Mode=TwoWay}" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="tabDHCR" Header="DHCR Data">
+                    <Grid>
+                        <Grid.ColumnDefinitions />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <GroupBox
+                                Height="Auto"
+                                Padding="5,5,5,0"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                FontWeight="Bold"
+                                Header="Rent Changes Since Last Year Due To:">
+                                <Grid Height="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <CheckBox
+                                        Name="optSecondSuccession"
+                                        Content="Second Succession"
+                                        IsChecked="{Binding SecondSuccession}" />
+                                    <CheckBox
+                                        Name="opt421a"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        Content="421-A"
+                                        IsChecked="{Binding x421a}" />
+                                    <CheckBox
+                                        Name="optRentOvercharge"
+                                        Grid.Row="1"
+                                        Content="Rent Overcharge"
+                                        IsChecked="{Binding RentOvercharge}" />
+                                    <CheckBox
+                                        Name="optFairMarket"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        Content="Fair Market Rent Appeal Order"
+                                        IsChecked="{Binding FairMarketAppeal}" />
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox
+                                Height="Auto"
+                                Padding="5,5,5,5"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                FontWeight="Bold"
+                                Header="Temporary Exemptions">
+                                <Grid Height="Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <CheckBox
+                                        Name="optTransient"
+                                        Content="Transient Occupancy in Hotel/SRO"
+                                        IsChecked="{Binding TransientOccupant}" />
+                                    <CheckBox
+                                        Name="optOwnerOccupied"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        Content="Owner/Employee Occupied"
+                                        IsChecked="{Binding OwnerOccupied}" />
+                                    <CheckBox
+                                        Name="optCommercialProfessional"
+                                        Grid.Row="1"
+                                        Content="Commercial/Professional (no c/o)"
+                                        IsChecked="{Binding CommercialProfessional}" />
+                                    <CheckBox
+                                        Name="optEmployeeOccupied"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        Content="Employee Occupied"
+                                        IsChecked="{Binding EmployeeOccupied}" />
+                                    <CheckBox
+                                        Name="optNotPrime"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        Content="Not Prime Residence/Not For Profit"
+                                        IsChecked="{Binding NotPrimeResidence}" />
+                                    <CheckBox
+                                        Name="optOther"
+                                        Grid.Row="2"
+                                        Content="Other"
+                                        IsChecked="{Binding TempExemptOther}" />
+                                </Grid>
+
+                            </GroupBox>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            VerticalAlignment="Center"
+                            Background="LightGray">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Width="55"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="Line 1" />
+                                <TextBlock VerticalAlignment="Center" Text="Effective Date" />
+                                <!--
+                                <CheckBox Name="chkDhcrDateOne"
+                                          VerticalAlignment="Center"
+                                          Click="chkDhcrDate_Click"
+                                          IsChecked="{Binding ElementName=dtDhcrDateOne,
+                                                              Path=SelectedDate,
+                                                              Converter={StaticResource DateNotNull}}" />
+                                -->
+                                <ex:DatePickerEx
+                                    Name="dtDhcrDateOne"
+                                    VerticalAlignment="Center"
+                                    PreviewMouseDown="Date_PreviewMouseDown"
+                                    SelectedDate="{Binding Path=dhcrDateOne, Mode=TwoWay}" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Monthly Rent Increase" />
+                                <viblend:NumberEditor
+                                    Name="txtDhcrRentOne"
+                                    Width="75"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="2"
+                                    MaxLength="10"
+                                    Text="{Binding Path=dhcrRentOne, Mode=TwoWay, StringFormat={}{0:C}}" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Total Cost" />
+                                <viblend:NumberEditor
+                                    Name="txtDhcrTotalCostOne"
+                                    Width="75"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="2"
+                                    MaxLength="10"
+                                    Text="{Binding Path=dhcrTotalCostOne, Mode=TwoWay, StringFormat={}{0:C}}" />
+                                <CheckBox
+                                    x:Name="chkSubmittedOne"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Checked="chkNotification_Checked"
+                                    Content="DHCR Notified"
+                                    IsChecked="{Binding Path=dhcrSubmittedOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextBlock.FontWeight="Bold"
+                                    Unchecked="chkNotification_Checked" />
+                                <CheckBox
+                                    x:Name="chkInformedOne"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Checked="chkNotification_Checked"
+                                    Content="Informed Consent"
+                                    IsChecked="{Binding Path=dhcrInformedConsentOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextBlock.FontWeight="Bold"
+                                    Unchecked="chkNotification_Checked" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox
+                                    Name="chkDhcrStoveOne"
+                                    Margin="55,0,0,0"
+                                    Content="Stove"
+                                    IsChecked="{Binding Path=dhcrStoveOne, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrRefrigeratorOne"
+                                    Margin="10,0,0,0"
+                                    Content="Refrigerator"
+                                    IsChecked="{Binding Path=dhcrRefrigeratorOne, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrDishwasherOne"
+                                    Margin="10,0,0,0"
+                                    Content="Dishwasher"
+                                    IsChecked="{Binding Path=dhcrDishwasherOne, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrACOne"
+                                    Margin="10,0,0,0"
+                                    Content="A/C"
+                                    IsChecked="{Binding Path=dhcrACOne, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrWindowsOne"
+                                    Margin="10,0,0,0"
+                                    Content="Windows"
+                                    IsChecked="{Binding Path=dhcrWindowsOne, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrOtherOne"
+                                    Margin="10,0,0,0"
+                                    Content="Other"
+                                    IsChecked="{Binding Path=dhcrOtherOne, Mode=TwoWay}" />
+                                <TextBox
+                                    Name="txtDhcrOtherOne"
+                                    Width="150"
+                                    Margin="10,0,0,0"
+                                    MaxLength="16"
+                                    Text="{Binding Path=dhcrOtherTextOne, Mode=TwoWay}" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Notified On" />
+                                <DatePicker
+                                    Name="dtDhcrNotificationDateOne"
+                                    Width="120"
+                                    Margin="5,0,0,0"
+                                    Loaded="dtDhcrNotificationDate_Loaded"
+                                    SelectedDate="{Binding Path=dhcrSubmittedDateOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Separator
+                            Grid.Row="2"
+                            VerticalAlignment="Center"
+                            BorderBrush="Black"
+                            BorderThickness="5" />
+                        <StackPanel
+                            Grid.Row="3"
+                            VerticalAlignment="Center"
+                            Background="LightGray">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Width="55"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="Line 2" />
+                                <TextBlock VerticalAlignment="Center" Text="Effective Date" />
+                                <!--
+                                <CheckBox Name="chkDhcrDateTwo"
+                                          VerticalAlignment="Center"
+                                          Click="chkDhcrDate_Click"
+                                          IsChecked="{Binding ElementName=dtDhcrDateTwo,
+                                                              Path=SelectedDate,
+                                                              Converter={StaticResource DateNotNull}}" />
+                                -->
+                                <ex:DatePickerEx
+                                    Name="dtDhcrDateTwo"
+                                    VerticalAlignment="Center"
+                                    PreviewMouseDown="Date_PreviewMouseDown"
+                                    SelectedDate="{Binding Path=dhcrDateTwo, Mode=TwoWay}" />
+                                <Label
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Content="Monthly Rent Increase" />
+                                <viblend:NumberEditor
+                                    Name="txtDhcrRentTwo"
+                                    Width="75"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="2"
+                                    MaxLength="10"
+                                    Text="{Binding Path=dhcrRentTwo, Mode=TwoWay, StringFormat={}{0:C}}" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Total Cost" />
+                                <viblend:NumberEditor
+                                    Name="txtDhcrTotalCostTwo"
+                                    Width="75"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    DecimalPlaces="2"
+                                    MaxLength="10"
+                                    Text="{Binding Path=dhcrTotalCostTwo, Mode=TwoWay, StringFormat={}{0:C}}" />
+                                <CheckBox
+                                    x:Name="chkSubmittedTwo"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Checked="chkNotification_Checked"
+                                    Content="DHCR Notified"
+                                    IsChecked="{Binding Path=dhcrSubmittedTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextBlock.FontWeight="Bold"
+                                    Unchecked="chkNotification_Checked" />
+                                <CheckBox
+                                    x:Name="chkInformedTwo"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Checked="chkNotification_Checked"
+                                    Content="Informed Consent"
+                                    IsChecked="{Binding Path=dhcrInformedConsentTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    TextBlock.FontWeight="Bold"
+                                    Unchecked="chkNotification_Checked" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox
+                                    Name="chkDhcrStoveTwo"
+                                    Margin="55,0,0,0"
+                                    Content="Stove"
+                                    IsChecked="{Binding Path=dhcrStoveTwo, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrRefrigeratorTwo"
+                                    Margin="10,0,0,0"
+                                    Content="Refrigerator"
+                                    IsChecked="{Binding Path=dhcrRefrigeratorTwo, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrDishwasherTwo"
+                                    Margin="10,0,0,0"
+                                    Content="Dishwasher"
+                                    IsChecked="{Binding Path=dhcrDishwasherTwo, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrACTwo"
+                                    Margin="10,0,0,0"
+                                    Content="A/C"
+                                    IsChecked="{Binding Path=dhcrACTwo, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrWindowsTwo"
+                                    Margin="10,0,0,0"
+                                    Content="Windows"
+                                    IsChecked="{Binding Path=dhcrWindowsTwo, Mode=TwoWay}" />
+                                <CheckBox
+                                    Name="chkDhcrOtherTwo"
+                                    Margin="10,0,0,0"
+                                    Content="Other"
+                                    IsChecked="{Binding Path=dhcrOtherTwo, Mode=TwoWay}" />
+                                <TextBox
+                                    Name="txtDhcrOtherTwo"
+                                    Width="150"
+                                    Margin="10,0,0,0"
+                                    MaxLength="16"
+                                    Text="{Binding Path=dhcrOtherTextTwo, Mode=TwoWay}" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Text="Notified On" />
+                                <DatePicker
+                                    Name="dtDhcrNotificationDateTwo"
+                                    Width="120"
+                                    Margin="5,0,0,0"
+                                    Loaded="dtDhcrNotificationDate_Loaded"
+                                    SelectedDate="{Binding Path=dhcrSubmittedDateTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="4">
+                            <GroupBox
+                                Padding="5,5,5,5"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                FontWeight="Bold"
+                                Header="Permanent Exemptions">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            VerticalAlignment="Center"
+                                            FontWeight="Normal"
+                                            Text="Effective Date of Exemption:" />
+                                        <CheckBox
+                                            Name="chkExemptionEffectiveDate"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Click="chkDhcrDate_Click"
+                                            IsChecked="{Binding ElementName=dtExemptionEffectiveDate, Path=SelectedDate, Converter={StaticResource DateNotNull}}" />
+                                        <DatePicker
+                                            Name="dtExemptionEffectiveDate"
+                                            DisplayDate="{Binding ExemptDate}"
+                                            DisplayDateStart="1900-01-01"
+                                            IsEnabled="{Binding ElementName=chkExemptionEffectiveDate, Path=IsChecked}"
+                                            PreviewMouseDown="Date_PreviewMouseDown"
+                                            Text="{Binding ExemptDateText, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkHighRentVacancy"
+                                            VerticalAlignment="Center"
+                                            Checked="chkHighRentVacancy_Checked"
+                                            Content="High Rent Vacancy"
+                                            IsChecked="{Binding ExemptHighRentVacancy}" />
+                                        <TextBlock
+                                            Margin="20,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontWeight="Normal"
+                                            Text="Last Legal Regulated Rent Paid" />
+                                        <viblend:NumberEditor
+                                            Name="LastLegalRegulatedRent"
+                                            Width="100"
+                                            DecimalPlaces="2"
+                                            MaxLength="10"
+                                            Text="{Binding ExemptLastLegalPaid, Mode=TwoWay, StringFormat={}{0:C}}" />
+                                        <RadioButton
+                                            Name="optHRMonthly"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="Monthly"
+                                            FontWeight="Normal"
+                                            GroupName="HighRentGroup"
+                                            IsChecked="{Binding isHighRentVacancyPeriodMonthly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <RadioButton
+                                            Name="optHRWeekly"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="Weekly"
+                                            FontWeight="Normal"
+                                            GroupName="HighRentGroup"
+                                            IsChecked="{Binding isHighRentVacancyPeriodWeekly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+                                    <Separator
+                                        Margin="0,10,0,10"
+                                        BorderBrush="Black"
+                                        BorderThickness="2" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkHighRentIncome"
+                                            Content="High Rent/High Income"
+                                            IsChecked="{Binding ExemptHighRentIncome}" />
+                                        <CheckBox
+                                            Name="chkCommercialProfessionalCO"
+                                            Margin="10,0,0,0"
+                                            Content="Commercial/Professional (with c/o)"
+                                            IsChecked="{Binding ExemptCommercialProfessionalCo}" />
+                                        <CheckBox
+                                            Name="chkSubstantialRehab"
+                                            Margin="10,0,0,0"
+                                            Content="Substantial Building Rehabilitation"
+                                            IsChecked="{Binding ExemptSubstantialRehab}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkCoopCondo"
+                                            Margin="0,0,0,0"
+                                            Content="Coop/Condo Occupied by Owner or No Protected Tenant"
+                                            IsChecked="{Binding ExemptCoopCondoOwner}" />
+                                        <CheckBox
+                                            Name="chkSec11243"
+                                            Margin="10,0,0,0"
+                                            Content="Sec 11-243 or 11-244 (J-51) Expiration Exemption"
+                                            IsChecked="{Binding ExemptSec11243}" />
+                                    </StackPanel>
+                                    <Separator />
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkOtherExemption"
+                                            VerticalAlignment="Center"
+                                            Content="Other"
+                                            IsChecked="{Binding ExemptOther}" />
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontWeight="Normal"
+                                            Text="Other Exemption Description" />
+                                        <TextBox
+                                            Name="txtOtherExemptDescription"
+                                            Width="200"
+                                            Margin="10,0,0,0"
+                                            MaxLength="15"
+                                            Text="{Binding ExemptOtherDesc}" />
+                                    </StackPanel>
+                                    <Separator />
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chkSec608Expiration"
+                                            VerticalAlignment="Center"
+                                            Content="Sec 608 Expiration"
+                                            IsChecked="{Binding ExemptExpSec608}" />
+                                        <CheckBox
+                                            Name="chk41aExpiration"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="421-a Expiration"
+                                            IsChecked="{Binding ExemptExp421a}" />
+                                        <CheckBox
+                                            Name="chk421aMarketRate"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="421-a Market Rate Unit"
+                                            IsChecked="{Binding Exempt421aMarketRate}" />
+                                    </StackPanel>
+                                    <Separator />
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox
+                                            Name="chk421aIncomeRestricted"
+                                            VerticalAlignment="Center"
+                                            Content="421-a Income Restricted Unit"
+                                            IsChecked="{Binding Exempt421aIncome}" />
+                                        <TextBlock
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            FontWeight="Normal"
+                                            Text="421-a Area Median Income %" />
+                                        <viblend:NumberEditor
+                                            Width="100"
+                                            Margin="5,0,0,0"
+                                            VerticalAlignment="Center"
+                                            DecimalPlaces="0"
+                                            MaxLength="3"
+                                            Text="{Binding Exempt421aMedianIncome}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem
+                    Name="tabLegal"
+                    Height="25"
+                    VerticalAlignment="Top"
+                    Header="Legal Information">
+                    <Grid Width="Auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="8" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <CheckBox
+                                Name="chkLegalFee"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Content="?Legal Fees"
+                                FlowDirection="RightToLeft"
+                                IsChecked="{Binding Path=LegalFee, Mode=TwoWay}" />
+                            <CheckBox
+                                Name="chkLateFee"
+                                Margin="25,0,0,0"
+                                VerticalAlignment="Center"
+                                Click="chkLateFee_Click"
+                                Content="?Late Fee"
+                                FlowDirection="RightToLeft"
+                                IsChecked="{Binding Path=LateFeeYes, Mode=TwoWay}" />
+
+                            <my:NumberEntry
+                                x:Name="txtLateFee"
+                                Width="60"
+                                Margin="3,0,0,0"
+                                VerticalAlignment="Center"
+                                Decimals="2"
+                                FontFamily="Courier New"
+                                MaxLength="10"
+                                Text="{Binding Path=LateFee, Mode=TwoWay, StringFormat={}{0:####0.00}}" />
+                            <CheckBox
+                                Name="chkLatePercent"
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                Content="Percent"
+                                FlowDirection="RightToLeft"
+                                IsChecked="{Binding Path=LatePercent, Mode=TwoWay}" />
+                            <TextBlock
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="Late Fee + Base Rent" />
+                            <Border
+                                VerticalAlignment="Center"
+                                BorderBrush="Black"
+                                BorderThickness="1">
+                                <TextBlock
+                                    Name="txtLatePlusRent"
+                                    Width="80"
+                                    Margin="3,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Courier New"
+                                    Text="{Binding LateFeePlusRent, StringFormat={}{0:C}, UpdateSourceTrigger=PropertyChanged}"
+                                    TextAlignment="Right" />
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1">
+                            <Label HorizontalAlignment="Center" Content="Persons Occupying Apartment" />
+                            <DataGrid
+                                Name="grdOccupants"
+                                Height="Auto"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                AutoGenerateColumns="False"
+                                BorderBrush="Black"
+                                BorderThickness="2"
+                                CanUserAddRows="True"
+                                CanUserDeleteRows="True"
+                                ItemsSource="{Binding}"
+                                SelectionChanged="grdOccupantsSelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="200"
+                                        Binding="{Binding Path=Name, Mode=TwoWay}"
+                                        Header="Name" />
+                                    <!--
+                                    <DataGridComboBoxColumn Width="150"
+                                                            IsReadOnly="False"
+                                                            Header="Relationship"
+                                                            SelectedValueBinding="{Binding Path=Relationship,
+                                                                                           Mode=TwoWay}">
+                                        <DataGridComboBoxColumn.ItemsSource>
+                                    -->
+                                    <DataGridTemplateColumn Header="Relationship">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox
+                                                    Background="White"
+                                                    IsEditable="True"
+                                                    Text="{Binding Path=Relationship, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <ComboBox.ItemsSource>
+                                                        <col:ArrayList>
+                                                            <sys:String>Aunt</sys:String>
+                                                            <sys:String>Boy Friend</sys:String>
+                                                            <sys:String>Brother</sys:String>
+                                                            <sys:String>Cousin</sys:String>
+                                                            <sys:String>Daughter</sys:String>
+                                                            <sys:String>DOMESTIC PARTNER</sys:String>
+                                                            <sys:String>Father</sys:String>
+                                                            <sys:String>Fiance</sys:String>
+                                                            <sys:String>Friend</sys:String>
+                                                            <sys:String>Girl Friend</sys:String>
+                                                            <sys:String>GrandDaughter</sys:String>
+                                                            <sys:String>GrandFather</sys:String>
+                                                            <sys:String>GrandMother</sys:String>
+                                                            <sys:String>GrandSon</sys:String>
+                                                            <sys:String>InLaw</sys:String>
+                                                            <sys:String>Mother</sys:String>
+                                                            <sys:String>Nephew</sys:String>
+                                                            <sys:String>Neice</sys:String>
+                                                            <sys:String>Other</sys:String>
+                                                            <sys:String>Significant Other</sys:String>
+                                                            <sys:String>Self</sys:String>
+                                                            <sys:String>Sister</sys:String>
+                                                            <sys:String>Spouse</sys:String>
+                                                            <sys:String>Son</sys:String>
+                                                            <sys:String>StepDaughter</sys:String>
+                                                            <sys:String>StepSon</sys:String>
+                                                            <sys:String>Uncle</sys:String>
+                                                        </col:ArrayList>
+                                                    </ComboBox.ItemsSource>
+                                                </ComboBox>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Width="100" Header="Date of Birth">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=DOB, StringFormat='{}{0:MM/dd/yyyy}'}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <DatePicker
+                                                    BorderThickness="0"
+                                                    PreviewMouseDown="Date_PreviewMouseDown"
+                                                    SelectedDateFormat="Short"
+                                                    Text="{Binding Path=DOB, Mode=TwoWay}" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Width="50" Header="Delete">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    Name="cmdDeleteOccupant"
+                                                    Click="deleteOccupantClick"
+                                                    Content="DELETE" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <Button
+                                                    Name="cmdDeleteOccupant"
+                                                    Click="deleteOccupantClick"
+                                                    Content="DELETE" />
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button
+                                Name="cmdAddOccupant"
+                                Width="Auto"
+                                Margin="10,0,10,0"
+                                HorizontalAlignment="Center"
+                                Click="AddOccupantsClick"
+                                Content="Add Occupant" />
+                        </StackPanel>
+                        <Separator Grid.Row="2" Height="5" />
+                        <StackPanel Grid.Row="3">
+                            <DataGrid
+                                Name="grdLegal"
+                                MaxHeight="400"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                AlternatingRowBackground="AntiqueWhite"
+                                AutoGenerateColumns="False"
+                                BorderBrush="Black"
+                                BorderThickness="2"
+                                ItemsSource="{Binding}">
+
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.Header>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                </Grid.ColumnDefinitions>
+                                                <Border
+                                                    Grid.RowSpan="3"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="YEAR"
+                                                        TextAlignment="Center" />
+                                                </Border>
+                                                <Border
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="1"
+                                                    Grid.ColumnSpan="7"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Width="350"
+                                                        VerticalAlignment="Center"
+                                                        Text="ANNUAL WINDOW GUARDS"
+                                                        TextAlignment="Center" />
+                                                </Border>
+                                                <Border
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="8"
+                                                    Grid.ColumnSpan="2"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Width="100"
+                                                        Text="ANNUAL LEAD PAINT"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="10"
+                                                    Grid.ColumnSpan="3"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Text="LEASE GUARDS"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="13"
+                                                    Grid.ColumnSpan="2"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="13"
+                                                        Grid.ColumnSpan="2"
+                                                        VerticalAlignment="Center"
+                                                        Text="LEASE LEAD PAINT"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="0"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="15"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        Text="Delete"
+                                                        TextAlignment="Center" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1" />
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="1"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="4"
+                                                        Grid.Column="1"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="children"
+                                                        TextAlignment="Center" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="2"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="2"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="no children"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="3"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="3"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="want   Y/N"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="4"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="4"
+                                                        Grid.Column="4"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="installed"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="5"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="5"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="not installed"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="6"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="6"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="need maint"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="7"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="7"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="no maint"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="8"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="8"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="6 and under YES"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="9"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="9"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="6 and under NO"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="10"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="10"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="children"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="11"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="11"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="no children"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="12"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="12"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="want   Y/N"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="13"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="13"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="6 and under YES"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="14"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1">
+                                                    <TextBlock
+                                                        Grid.Row="3"
+                                                        Grid.RowSpan="3"
+                                                        Grid.Column="14"
+                                                        Width="50"
+                                                        VerticalAlignment="Center"
+                                                        Text="6 and under NO"
+                                                        TextAlignment="Center"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                                <Border
+                                                    Grid.Row="3"
+                                                    Grid.RowSpan="3"
+                                                    Grid.Column="15"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="1" />
+                                            </Grid>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border BorderBrush="Black" BorderThickness="1">
+                                                        <TextBlock Text="{Binding Path=Year, Mode=TwoWay, StringFormat={}{0:0000}}" TextAlignment="Center" />
+                                                    </Border>
+                                                    <RadioButton
+                                                        Grid.Column="1"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnWGChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="2"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnWGNoChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <StackPanel
+                                                        Grid.Column="3"
+                                                        HorizontalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <RadioButton
+                                                            HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            GroupName="{Binding Path=AnWGWantGrp}"
+                                                            IsChecked="{Binding Path=AnWGWant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <RadioButton
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Center"
+                                                            GroupName="{Binding Path=AnWGWantGrp}" />
+                                                    </StackPanel>
+
+
+                                                    <RadioButton
+                                                        Grid.Column="4"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGInstalledGrp}"
+                                                        IsChecked="{Binding Path=AnWGInstalled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="5"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGInstalledGrp}"
+                                                        IsChecked="{Binding Path=AnWGNotInstalled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="6"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGMaintenanceGrp}"
+                                                        IsChecked="{Binding Path=AnWGMaintenance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="7"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGMaintenanceGrp}"
+                                                        IsChecked="{Binding Path=AnWGNoMaintenance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="8"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnLPChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="9"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnLPChildrenNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="10"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnWGChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="11"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnWGNoChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <StackPanel
+                                                        Grid.Column="12"
+                                                        HorizontalAlignment="Center"
+                                                        Orientation="Horizontal">
+                                                        <RadioButton
+                                                            Margin="4,0,0,0"
+                                                            HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            Click="RadioButton_Click_1"
+                                                            GroupName="{Binding Path=RnWGWantGrp}"
+                                                            IsChecked="{Binding Path=RnWGWant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                        <RadioButton
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Center"
+                                                            GroupName="{Binding Path=RnWGWantGrp}" />
+                                                    </StackPanel>
+                                                    <!--
+                                                        GroupName="{Binding Path=RnWGWantGrp}"
+                                                    -->
+                                                    <RadioButton
+                                                        Grid.Column="13"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnLPChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="14"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnLPChildrenNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Button
+                                                        Grid.Column="15"
+                                                        Click="grdLegalDeleteClick"
+                                                        Content="DELETE" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="50" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <my:NumberEntry Decimals="0" Text="{Binding Path=Year, Mode=TwoWay, StringFormat={}{0:0000}}" />
+                                                    <RadioButton
+                                                        Grid.Column="1"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Checked="RadioButton_Checked"
+                                                        GroupName="{Binding Path=AnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnWGChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="2"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnWGNoChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="3"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        IsChecked="{Binding Path=AnWGWant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="4"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGInstalledGrp}"
+                                                        IsChecked="{Binding Path=AnWGInstalled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="5"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGInstalledGrp}"
+                                                        IsChecked="{Binding Path=AnWGNotInstalled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="6"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGMaintenanceGrp}"
+                                                        IsChecked="{Binding Path=AnWGMaintenance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="7"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnWGMaintenanceGrp}"
+                                                        IsChecked="{Binding Path=AnWGNoMaintenance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="8"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnLPChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="9"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=AnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=AnLPChildrenNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="10"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnWGChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="11"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnWGChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnWGNoChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="12"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        IsChecked="{Binding Path=RnWGWant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="13"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnLPChildren, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <RadioButton
+                                                        Grid.Column="14"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        GroupName="{Binding Path=RnLPChildrenGrp}"
+                                                        IsChecked="{Binding Path=RnLPChildrenNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    <Button
+                                                        Grid.Column="15"
+                                                        Click="grdLegalDeleteClick"
+                                                        Content="DELETE" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button
+                                Name="cmdAddYear"
+                                HorizontalAlignment="Center"
+                                Click="AddLegalClick"
+                                Content="Add Year" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="tabAlerts" Header="Emails">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50*" />
+                            <RowDefinition Height="50*" />
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Border
+                                Background="AntiqueWhite"
+                                BorderBrush="Blue"
+                                BorderThickness="2"
+                                CornerRadius="3,3,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Text="Outgoing Emails" />
+                                    <Button
+                                        Name="cmdPrintOutgoingEmails"
+                                        Margin="50,0,0,0"
+                                        Click="cmdPrintOutgoingEmails_Click"
+                                        Content="Print" />
+                                </StackPanel>
+                            </Border>
+                            <Border
+                                Grid.Row="1"
+                                Width="870"
+                                BorderBrush="Blue"
+                                BorderThickness="2"
+                                CornerRadius="0,0,3,3">
+                                <ListView
+                                    Name="lstOutgoingEmails"
+                                    Width="868"
+                                    ItemsSource="{Binding}"
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    SelectionMode="Extended">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="BorderBrush" Value="LightGray" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem
+                                                Name="ctxEmailDelete"
+                                                Click="ctxEmailDelete_Click"
+                                                Header="DELETE" />
+                                        </ContextMenu>
+                                    </ListView.ContextMenu>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn
+                                                Width="85"
+                                                DisplayMemberBinding="{Binding Date}"
+                                                Header="Date" />
+                                            <GridViewColumn
+                                                Width="125"
+                                                DisplayMemberBinding="{Binding FromAddress}"
+                                                Header="From" />
+                                            <GridViewColumn
+                                                Width="150"
+                                                DisplayMemberBinding="{Binding Subject}"
+                                                Header="Subject" />
+                                            <GridViewColumn
+                                                Width="100"
+                                                DisplayMemberBinding="{Binding EmailType}"
+                                                Header="Type" />
+                                            <GridViewColumn Width="390" Header="Message">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Message}" TextWrapping="Wrap" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Border>
+                        </Grid>
+                        <StackPanel Grid.Row="1" Margin="10">
+                            <Border
+                                Background="AntiqueWhite"
+                                BorderBrush="Blue"
+                                BorderThickness="2"
+                                CornerRadius="3,3,0,0">
+                                <TextBlock Margin="5,0,0,0" Text="Incoming Emails" />
+                            </Border>
+                            <Border
+                                Height="Auto"
+                                BorderBrush="Blue"
+                                BorderThickness="2"
+                                CornerRadius="0,0,3,3">
+                                <ListView
+                                    Name="lstIncomingEmails"
+                                    Height="Auto"
+                                    ItemsSource="{Binding}"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="BorderBrush" Value="LightGray" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn
+                                                Width="85"
+                                                DisplayMemberBinding="{Binding Date}"
+                                                Header="Date" />
+                                            <GridViewColumn
+                                                Width="125"
+                                                DisplayMemberBinding="{Binding FromAddress}"
+                                                Header="From" />
+                                            <GridViewColumn
+                                                Width="150"
+                                                DisplayMemberBinding="{Binding Subject}"
+                                                Header="Subject" />
+                                            <GridViewColumn
+                                                Width="500"
+                                                DisplayMemberBinding="{Binding Message}"
+                                                Header="Message" />
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="tabBank" Header="Bank/Comments">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <GroupBox
+                            Grid.RowSpan="3"
+                            BorderBrush="Black"
+                            Header="ACH Informaton">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                        <TextBlock
+                                        Width="100"
+                                        VerticalAlignment="Center"
+                                        Text="Bank Routing #:" />
+                                        <TextBox
+                                        Name="txtABA"
+                                        Width="200"
+                                        VerticalAlignment="Center"
+                                        LostFocus="txtABA_LostFocus"
+                                        Text="{Binding Bank, Mode=TwoWay}" />
+                                        <CheckBox
+                                        Margin="20,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Content="Use ACH Billing"
+                                        FontWeight="Bold"
+                                        IsChecked="{Binding UseACH, Mode=TwoWay}" />
+                                        <TextBlock
+                                        Margin="10,0,0,2"
+                                        VerticalAlignment="Center"
+                                        Text="Day of Month for Payments:" />
+                                        <my:NumberEntry
+                                        Width="25"
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Decimals="0"
+                                        Text="{Binding PaymentDay, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="5,3,0,0" Orientation="Horizontal">
+                                        <TextBlock
+                                        Width="100"
+                                        VerticalAlignment="Center"
+                                        Text="Bank Acct #:" />
+                                        <TextBox
+                                        Width="200"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding InterestInfo, Mode=TwoWay}" />
+                                        <CheckBox
+                                            Margin="20,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Content="This is a SAVINGS Account"
+                                            FontWeight="Bold"
+                                            IsChecked="{Binding SavingsAccount, Mode=TwoWay}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="20,5,5,5" Orientation="Horizontal">
+                                    <GroupBox>
+                                        <CheckBox Content="Direct Payment From Bank" 
+                                                  FontWeight="Bold"
+                                                  FlowDirection="RightToLeft"
+                                                  IsChecked="{Binding DirectPay, Mode=TwoWay}"/>
+                                    </GroupBox>
+                                </StackPanel>
+ </StackPanel>
+                        </GroupBox>
+                        <StackPanel
+                            Grid.Row="3"
+                            Margin="5,0,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Text="Security Acct #" />
+                            <TextBox
+                                Width="400"
+                                VerticalAlignment="Center"
+                                Text="{Binding SecurityAccount}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="4"
+                            Margin="5,0,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Width="100"
+                                VerticalAlignment="Center"
+                                Text="Bank Building #" />
+                            <TextBox
+                                Width="400"
+                                VerticalAlignment="Center"
+                                Text="{Binding SecurityBuilding}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="6"
+                            Margin="5,0,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock Margin="0,0,5,0" Text="Comments" />
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <TextBox
+                                    Width="600"
+                                    Height="200"
+                                    VerticalAlignment="Top"
+                                    AcceptsReturn="True"
+                                    Text="{Binding Comment}"
+                                    TextWrapping="Wrap" />
+                            </ScrollViewer>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="tabDocuments" Header="Documents">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <TreeView
+                            Name="lstDocuments"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="BlanchedAlmond"
+                            ItemsSource="{Binding}"
+                            MouseDoubleClick="lstDocuments_MouseDoubleClick">
+                            <TreeView.Resources>
+                                <HierarchicalDataTemplate DataType="{x:Type local:TopCategory}" ItemsSource="{Binding SubDoc}">
+                                    <TextBlock Text="{Binding DisplayName}" />
+                                </HierarchicalDataTemplate>
+                                <HierarchicalDataTemplate DataType="{x:Type local:SubDocument}" ItemsSource="{Binding SubSubDocs}">
+                                    <TextBlock Text="{Binding DisplayName}" />
+                                </HierarchicalDataTemplate>
+                                <DataTemplate DataType="{x:Type local:SubSubDocument}">
+                                    <TextBlock Text="{Binding DisplayName}" />
+                                </DataTemplate>
+                            </TreeView.Resources>
+                        </TreeView>
+                        <StackPanel Grid.Column="1" Margin="10,20,0,0">
+                            <CheckBox
+                                Name="chkAllInv"
+                                Click="chkAllInv_Click"
+                                Content="All Invoices"
+                                FontWeight="Bold" />
+                            <TextBlock Margin="0,5,0,0" Text="Default is 6 months" />
+                            <TextBlock Text="prior to move-in date." />
+                            <CheckBox
+                                Name="chkAll"
+                                Margin="0,30,0,0"
+                                Click="chkAll_Click"
+                                Content="All Documents"
+                                FontWeight="Bold" />
+                        </StackPanel>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <StackPanel
+                Grid.Column="2"
+                Margin="0,30,0,0"
+                VerticalAlignment="top">
+                <Button
+                    Name="cmdSave"
+                    Margin="8"
+                    Click="saveTenant"
+                    Content="SAVE" />
+                <Button
+                    Name="cmdPrint"
+                    Margin="8"
+                    Click="cmdPrint_Click"
+                    Content="PRINT FORM" />
+                <Button
+                    Name="cmdExit"
+                    Margin="8"
+                    Click="exitApp"
+                    Content="EXIT" />
+                <Button
+                    Name="cmdMail"
+                    Margin="8"
+                    Click="cmdMail_Click"
+                    Content="E-MAIL" />
+                <Button
+                    x:Name="cmdMailConfig"
+                    Margin="8,15,8,0"
+                    Click="cmdMailConfig_Click">
+                    <TextBlock
+                        Text="Edit Your E-MAIL Accounts"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

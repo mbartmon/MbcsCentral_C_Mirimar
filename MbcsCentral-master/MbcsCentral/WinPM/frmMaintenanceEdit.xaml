@@ -1,0 +1,80 @@
+﻿<Window x:Class="MbcsCentral.WinPM.frmMaintenanceEdit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Maintenance Record" Height="328" Width="535"
+    Name="formMaintenanceEdit"
+    xmlns:my="clr-namespace:MbcsCentral"
+    xmlns:viblend="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Window.Resources>
+        <my:CurrencyPaddingConverter x:Key="CurrencyPadder"/>
+        <CollectionViewSource x:Key="MaintenanceViewSource" d:DesignSource="{d:DesignInstance my:Maintenance, CreateList=True}" />
+    </Window.Resources>
+    <Grid Background="#FF00C0C0" Height="320" Name="GridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" BorderThickness="2" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Name="TextBlock1" Text="Tenant #" TextAlignment="Center"/>
+                <TextBox Name="txtBuildingNumber" Width="35" Margin="5,0,0,0" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBox Name="txtTenantNumber" Width="45" Margin="2,0,0,0" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="Apt" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <TextBox Name="txtApartment" Width="40" Margin="5,0,0,0" VerticalAlignment="Center" IsReadOnly="True"/>
+                <TextBlock Text="Current Tenant" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <TextBox Name="txtTenantName" Margin="5,0,0,0" Width="200" VerticalAlignment="Center" IsReadOnly="True"/>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="1" VerticalAlignment="Center"  Name="Grid1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="45" />
+                <ColumnDefinition Width="191" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="Date:" Grid.Column="1" HorizontalAlignment="Left" Margin="3,3,0,3" VerticalAlignment="Center" Width="42" />
+            <DatePicker Grid.Column="2" Height="25" HorizontalAlignment="Left" Margin="3" Name="MaintenanceDateDatePicker" SelectedDate="{Binding Path=MaintenanceDate, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Center" Width="115" />
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="16,2,0,0" Name="Grid2" VerticalAlignment="Center" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Content="Inspection" Height="16" HorizontalAlignment="Left" IsChecked="{Binding Path=Inspected, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" Margin="3" Name="InspectedCheckBox" VerticalAlignment="Center"  FlowDirection="RightToLeft"/>
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2" Margin="5,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="Xrf" Content="Xrf Inspected" Height="16" HorizontalAlignment="Left" IsChecked="{Binding Path=XrfTested, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FlowDirection="RightToLeft"  Click="Xrf_Click" />
+                        <CheckBox Name="chkXrfPassed" Content="Passed" Height="16" Margin="3,0,0,0" IsChecked="{Binding Path=XrfPassed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FlowDirection="RightToLeft" Click="Xrf_Click"/>
+                        <CheckBox Name="chkXrfFailed" Content="Failed" Height="16" Margin="3,0,0,0" IsChecked="{Binding Path=XrfFailed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FlowDirection="RightToLeft" Click="Xrf_Click"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>-->
+        </Grid>
+        <Label Content="Description:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="0,0,5,0" Name="DescriptionTextBox" Text="{Binding Path=Description, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" TextWrapping="Wrap" />
+        <Label Content="Vendor" Grid.Row="5" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="5" MaxLength="15"  Name="Vendor" Text="{Binding Vendor}" Width="150" Height="26" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Content="Cost" Grid.Column="0" Grid.Row="6" VerticalAlignment="Center"/>
+        <viblend:NumberEditor DecimalPlaces="2" MaxLength="10" Grid.Column="1" Grid.Row="6" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Cost, 
+                                                                                                                                                   Converter={StaticResource CurrencyPadder},
+                                                                                                                                                   ConverterParameter=10}" Width="120"/>
+        <Button Content="SAVE" Grid.Column="2" Grid.Row="5" Height="23"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="cmdSave" Width="75" Click="cmdSave_Click"/>
+        <Button Content="CANCEL" Grid.Column="2" Grid.Row="6" Height="23"  HorizontalAlignment="Center" VerticalAlignment="Center" Name="cmdCancel" Width="75" Click="cmdCancel_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,144 @@
+﻿<Window x:Class="MbcsCentral.WinGL.frmCompaniesDepartments"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Name="formCompaniesDepartments"
+        Title="Companies and Departments"
+        Width="676"
+        Height="330"
+        Background="#FF00C0C0"
+        Closing="frmCompaniesDepartments_Closing"
+        FontSize="14"
+        Loaded="frmCompaniesDepartments_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               HorizontalAlignment="Left"
+               Content="Companies"
+               FontSize="14"
+               FontWeight="Bold" />
+        <Label Grid.Row="0"
+               Grid.Column="2"
+               HorizontalAlignment="Left"
+               Content="Departments"
+               FontSize="14"
+               FontWeight="Bold" />
+
+        <ListView Name="lstCompanies"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  Margin="3,0,0,0"
+                  MouseDoubleClick="lstCompanies_MouseDoubleClick"
+                  SelectionChanged="lstCompanies_SelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=InActive}" Value="false">
+                            <Setter Property="ListBoxItem.Foreground" Value="Black" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=InActive}" Value="True">
+                            <Setter Property="ListBoxItem.Foreground" Value="Gray" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+        </ListView>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button Name="cmdAddCompany"
+                    Width="115"
+                    HorizontalAlignment="Center"
+                    Click="cmdAddCompany_Click"
+                    Content="Add New Company"
+                    FontSize="14" />
+            <Button Name="cmdRemoveCompany"
+                    Width="115"
+                    HorizontalAlignment="Center"
+                    Click="cmdRemoveCompany_Click"
+                    Content="Remove Company"
+                    FontSize="14" />
+            <Button Name="cmdAddDepartment"
+                    Width="115"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    Click="cmdAddDepartment_Click"
+                    Content="Add Department"
+                    FontSize="14" />
+            <Button Name="cmdMoveDepartment"
+                    Width="115"
+                    HorizontalAlignment="Center"
+                    Click="cmdMoveDepartment_Click"
+                    Content="Move Department"
+                    FontSize="14" />
+            <Button Name="cmdRemoveDepartment"
+                    Width="115"
+                    HorizontalAlignment="Center"
+                    Click="cmdRemoveDepartment_Click"
+                    Content="Remove Department"
+                    FontSize="14" />
+            <TextBlock HorizontalAlignment="Center" Text="Greyed Items are" Margin="0,20,0,0"/>
+            <TextBlock HorizontalAlignment="Center" FontWeight="Black" Text="INACTIVE"/>
+        </StackPanel>
+        <ListView Name="lstDepartments"
+                  Grid.Row="1"
+                  Grid.Column="2"
+                  Margin="0,0,3,0"
+                  ItemsSource="{Binding}"
+                  MouseDoubleClick="lstDepartments_MouseDoubleClick">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=InActive}" Value="False">
+                            <Setter Property="ListBoxItem.Foreground" Value="Black" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=InActive}" Value="True">
+                            <Setter Property="ListBoxItem.Foreground" Value="Gray" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+        </ListView>
+
+        <Button Name="cmdEditCompany"
+                Grid.Row="2"
+                Grid.Column="0"
+                Width="115"
+                Margin="0,3,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="top"
+                Click="cmdEditCompany_Click"
+                Content="Edit Company"
+                FontSize="14" />
+        <Button Name="cmdExit"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="115"
+                Margin="0,3,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Click="cmdExit_Click"
+                Content="EXIT"
+                FontSize="14" />
+        <Button Name="cmdEditDepartment"
+                Grid.Row="2"
+                Grid.Column="2"
+                Width="115"
+                Margin="0,3,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Click="cmdEditDepartment_Click"
+                Content="Edit Department"
+                FontSize="14" />
+
+    </Grid>
+</Window>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>"Provider=Microsoft.ACE.OLEDB.12.0%3bData Source=c:\pmsys\winpm.mdb" "Data Source=MIKE-PC\SQLEXPRESSMBCS%3bInitial Catalog=MbcsCentral%3bIntegrated Security=SSPI%3b" 1 True</StartArguments>
+  </PropertyGroup>
+</Project>

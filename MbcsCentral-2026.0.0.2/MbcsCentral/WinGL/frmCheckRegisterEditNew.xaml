@@ -1,0 +1,357 @@
+﻿
+<Window x:Class="MbcsCentral.WinGL.frmCheckRegisterEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ex="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my="clr-namespace:MbcsCentral"
+        Name="FormfrmCheckRegisterEdit"
+        Title="Check Edit"
+        Width="841.145"
+        Height="300"
+        Background="AliceBlue"
+        Closed="frmCheckRegisterEdit_Closed"
+        FontSize="14"
+        FontWeight="Bold"
+        Loaded="frmCheckRegisterEdit_Loaded">
+    <Window.Resources>
+        <!--  SINGLE CLICK EDITING  -->
+        <Style TargetType="{x:Type DataGridCell}">
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="DataGridCell_PreviewMouseLeftButtonDown" />
+        </Style>
+        <CollectionViewSource x:Key="companies" />
+        <CollectionViewSource x:Key="departments" />
+        <CollectionViewSource x:Key="accounts" />
+    </Window.Resources>
+    <Border BorderBrush="Blue"
+            BorderThickness="3"
+            CornerRadius="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TextBox Background="LightSteelBlue"
+                     BorderBrush="Blue"
+                     BorderThickness="2"
+                     FontSize="14"
+                     FontWeight="Bold"
+                     Text="Check Edit"
+                     TextAlignment="Center" />
+            <Grid Grid.Row="1">
+                <Grid TextBlock.FontSize="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Margin="5,1,5,0"
+                                Orientation="Horizontal">
+                        <TextBlock Width="60"
+                                   VerticalAlignment="Center"
+                                   Text="Company" />
+                        <ComboBox Name="lstCheckCompany"
+                                  Width="200"
+                                  DisplayMemberPath="Name"
+                                  IsEnabled="False"
+                                  ItemsSource="{Binding}"
+                                  SelectedValue="{Binding Path=Company, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValuePath="CompanyNumber" />
+                        <TextBlock Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Text="Department" />
+                        <ComboBox Name="lstCheckDepartment"
+                                  Width="200"
+                                  Margin="5,0,0,0"
+                                  DisplayMemberPath="Name"
+                                  IsEnabled="False"
+                                  ItemsSource="{Binding}"
+                                  SelectedValue="{Binding Path=Department, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValuePath="DepartmentNumber" />
+                        <TextBlock Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Text="Check #" />
+                        <my:NumberEntry x:Name="txtCheckNumber"
+                                        Width="80"
+                                        Margin="5,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Decimals="0"
+                                        MaxLength="6"
+                                        Text="{Binding Path=CheckNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Name="cmdScan"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Click="cmdScan_Click"
+                                Content="SCAN Invoice" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Margin="5,0,5,0"
+                                Orientation="Horizontal">
+                        <TextBlock Width="60"
+                                   VerticalAlignment="Center"
+                                   Text="Vendor" />
+                        <ComboBox Name="lstVendor"
+                                  Width="200"
+                                  VerticalAlignment="Center"
+                                  DisplayMemberPath="VendorName"
+                                  ItemsSource="{Binding}"
+                                  SelectedValue="{Binding Path=VendorAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValuePath="VendorNumber" />
+                        <TextBlock Margin="10"
+                                   VerticalAlignment="Center"
+                                   Text="Check Date" />
+                        <DatePicker Name="dtCheck"
+                                    Margin="1,0,0,0"
+                                    VerticalAlignment="Center"
+                                    SelectedDate="{Binding Path=Date}" />
+                        <CheckBox Name="chkRecon"
+                                  Margin="10,0,0,0"
+                                  VerticalAlignment="Center"
+                                  Content="Reconciled"
+                                  FlowDirection="RightToLeft"
+                                  IsChecked="{Binding Path=ReconFlag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Margin="13,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Text="Net" />
+                        <my:NumberEntry x:Name="txtNet"
+                                        Width="80"
+                                        Margin="28,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Decimals="2"
+                                        MaxLength="11"
+                                        Text="{Binding Path=Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:C}}" />
+                        <StackPanel Margin="9,0,0,0">
+                            <Button Name="cmdDisplay"
+                                    VerticalAlignment="Center"
+                                    Click="cmdDisplay_Click"
+                                    Content="Display Invoice" />
+                            <Button Name="cmdEditDoc"
+                                    Margin="0,1,0,0"
+                                    VerticalAlignment="Center"
+                                    Click="CmdEditDoc_Click"
+                                    Content="Edit Invoice" />
+
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal">
+                        <TextBlock Margin="5,0,0,0" Text="Invoices: " />
+                        <ex:MaskedTextBox x:Name="txtInvoice_1"
+                                          FontSize="9"
+                                          Mask="aaaaaa-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-aaaaaaaaaaaa" />
+                    </StackPanel>
+                    <DataGrid Name="lstAllocations"
+                              Grid.Row="2"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              FontSize="10"
+                              ItemsSource="{Binding}">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Delete}" Value="True">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Delete}" Value="False">
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Binding="{Binding Path=Delete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Delete">
+                                <DataGridCheckBoxColumn.CellStyle>
+                                    <Style>
+                                        <EventSetter Event="CheckBox.Checked" Handler="ctxDelete_Click" />
+                                        <EventSetter Event="CheckBox.Unchecked" Handler="ctxDelete_Click" />
+                                    </Style>
+                                </DataGridCheckBoxColumn.CellStyle>
+                            </DataGridCheckBoxColumn>
+
+                            <!--
+                            <DataGridComboBoxColumn
+                                Width="220"
+                                DisplayMemberPath="Name"
+                                Header="Company"
+                                SelectedValueBinding="{Binding DistCompany, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValuePath="CompanyNumber">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                        <Style TargetType="{x:Type ComboBox}">
+                                            <Setter Property="ItemsSource" Value="{Binding CompanyList}" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                            <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
+                                        </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                        <Style TargetType="{x:Type ComboBox}">
+                                            <Setter Property="Tag" Value="ListCompanyDist" />
+                                            <Setter Property="ItemsSource" Value="{Binding CompanyList}" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                            <Setter Property="IsTextSearchEnabled" Value="True" />
+                                            <Setter Property="IsEditable" Value="True" />
+                                            <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
+                                            <EventSetter Event="SelectionChanged" Handler="CompanySelection_Changed" />
+                                        </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            -->
+
+                            <DataGridComboBoxColumn Width="250"
+                                                    DisplayMemberPath="Name"
+                                                    Header="Department"
+                                                    SelectedItemBinding="{Binding SelectedDepartment}"
+                                                    SelectedValueBinding="{Binding DepartmentName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    SelectedValuePath="Name">
+                                <DataGridComboBoxColumn.ElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="ItemsSource" Value="{Binding DepartmentList}" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                        <Setter Property="SelectedIndex" Value="0" />
+                                        <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
+                                    </Style>
+                                </DataGridComboBoxColumn.ElementStyle>
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="Tag" Value="ListDepartmentsDist" />
+                                        <Setter Property="ItemsSource" Value="{Binding DepartmentList}" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                        <Setter Property="IsTextSearchEnabled" Value="True" />
+                                        <Setter Property="IsEditable" Value="True" />
+                                        <Setter Property="SelectedIndex" Value="0" />
+                                        <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
+                                        <EventSetter Event="SelectionChanged" Handler="CompanySelection_Changed" />
+                                    </Style>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                            <DataGridComboBoxColumn Width="250"
+                                                    DisplayMemberPath="Description"
+                                                    Header="Account"
+                                                    ItemsSource="{Binding Source={StaticResource accounts}}"
+                                                    SelectedValueBinding="{Binding VendorAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    SelectedValuePath="Key" />
+                            <DataGridTemplateColumn Width="105" Header="Amount">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <!--
+                                    <DataTemplate>
+                                        <TextBlock Width="100"
+                                                   Text="{Binding Path=Amount, StringFormat={}{0:#######0.00}}"
+                                                   TextAlignment="Right" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    -->
+                                    <DataTemplate>
+                                        <my:NumberEntry MaxLength="10"
+                                                        Decimals="2"
+                                                        Text="{Binding Path=Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:#######.00}}"
+                                                        TextChanged="NumberEntry_TextChanged" />
+                                    </DataTemplate>
+                                    <!-- </DataGridTemplateColumn.CellEditingTemplate> -->
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <DockPanel Grid.Row="2"
+                               Grid.Column="1"
+                               LastChildFill="True">
+                        <Border BorderBrush="Blue"
+                                BorderThickness="2,2,2,0"
+                                CornerRadius="3,3,0,0"
+                                DockPanel.Dock="Top">
+                            <TextBlock HorizontalAlignment="Center"
+                                       FontSize="10"
+                                       Text="INVOICES" />
+                        </Border>
+                        <Border VerticalAlignment="Stretch"
+                                BorderBrush="Blue"
+                                BorderThickness="3"
+                                CornerRadius="0,0,3,3"
+                                Padding="2,0,0,0">
+                            <DataGrid x:Name="grdInvoices"  ItemsSource="{Binding}" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Prefix">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBox Text="{Binding Prefix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="6" Width="50" TextAlignment="Left" GotFocus="TextBox_GotFocus"/> 
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Invoice #" Width="300">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                
+                                                <TextBox Text="{Binding InvoiceNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="32" Width="300" TextAlignment="Left" GotFocus="TextBox_GotFocus"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Header="Suffix" Width="105">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBox Text="{Binding Suffix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="12" Width="105" TextAlignment="Left" GotFocus="TextBox_GotFocus"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                        </Border>
+                    </DockPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2"
+                  Margin="0,5,0,5"
+                  Background="AliceBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Orientation="Horizontal">
+                    <Button Name="cmdSave"
+                            Margin="5,0,0,0"
+                            Click="cmdSave_Click"
+                            Content="SAVE" />
+                    <Button Name="cmdDelete"
+                            Margin="5,0,0,0"
+                            Click="cmdDelete_Click"
+                            Content="DELETE" />
+                    <Button Name="cmdClose"
+                            Margin="5,0,0,0"
+                            Click="cmdClose_Click"
+                            Content="CLOSE" />
+                    <Button Name="cmdAddLine"
+                            Margin="20,0,0,0"
+                            Click="cmdAddLine_Click"
+                            Content="Add an allocation"
+                            Visibility="Visible" />
+                </StackPanel>
+                <StackPanel Grid.Column="3" Orientation="Horizontal">
+                    <TextBlock Grid.Column="3"
+                               VerticalAlignment="Center"
+                               Text="CHECK TOTAL" />
+                    <TextBox Name="txtTotal"
+                             Width="100"
+                             Margin="5,0,0,0"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Center"
+                             FontSize="12"
+                             IsReadOnly="True"
+                             TextAlignment="Right" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

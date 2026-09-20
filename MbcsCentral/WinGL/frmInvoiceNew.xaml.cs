@@ -242,33 +242,34 @@ namespace MbcsCentral.WinGL
                 // PayFlag = _invoice.PayFlag;
                 LoadDistributions();
 
+
                 if (_distributions != null && _distributions.Count == 1)
                 {
 
-                    CheckSplit.IsChecked = false;
-                    ListAccounts.IsEnabled = true;
-                    ListJournals.IsEnabled = true;
-                    foreach (object t in ListAccounts.Items)
-                    {
-                        if (((Accounts)t).Key == ((InvoiceDistributions)_distributions[0]).Account)
-                        {
-                            ListAccounts.SelectedItem = t;
-                            break;
-                        }
-                    }
+                    //CheckSplit.IsChecked = false;
+                    //ListAccounts.IsEnabled = true;
+                    //ListJournals.IsEnabled = true;
+                    //foreach (object t in ListAccounts.Items)
+                    //{
+                    //    if (((Accounts)t).Key == ((InvoiceDistributions)_distributions[0]).Account)
+                    //    {
+                    //        ListAccounts.SelectedItem = t;
+                    //        break;
+                    //    }
+                    //}
 
-                    _journalNames = JournalNames.load(((InvoiceDistributions)_distributions[0]).Journal);
-                    if (_journalNames != null)
-                    {
-                        foreach (object t in ListJournals.Items)
-                        {
-                            if (((JournalNames)t).JournalName.Trim().Equals(_journalNames.JournalName.Trim()))
-                            {
-                                ListJournals.SelectedItem = t;
-                                break;
-                            }
-                        }
-                    }
+                    //_journalNames = JournalNames.load(((InvoiceDistributions)_distributions[0]).Journal);
+                    //if (_journalNames != null)
+                    //{
+                    //    foreach (object t in ListJournals.Items)
+                    //    {
+                    //        if (((JournalNames)t).JournalName.Trim().Equals(_journalNames.JournalName.Trim()))
+                    //        {
+                    //            ListJournals.SelectedItem = t;
+                    //            break;
+                    //        }
+                    //    }
+                    //}
                     /*
                     if (scan)
                     {
@@ -288,7 +289,7 @@ namespace MbcsCentral.WinGL
                     }
                     */
                 }
-                else if (_distributions != null && _distributions.Count > 1)
+                //else if (_distributions != null && _distributions.Count > 1)
                 {
                     ListJournals.SelectedIndex = -1;
                     ListAccounts.SelectedIndex = -1;
@@ -559,6 +560,9 @@ namespace MbcsCentral.WinGL
                 GridDistributions.ItemsSource = (InvoiceDistributions[])_distributions.ToArray(typeof(InvoiceDistributions));
                 TotalDistributions();
             }
+
+
+            /*
             if (_distributions != null && _distributions.Count == 1)
             {
                 CheckSplit.IsChecked = false;
@@ -586,6 +590,7 @@ namespace MbcsCentral.WinGL
                 }
 
             }
+            */
             /*
             DataGridRow gr;
             var itemSource = GridDistributions.ItemsSource as IEnumerable;

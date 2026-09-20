@@ -128,6 +128,7 @@ namespace MbcsCentral.WinGL
 
         private void GetInvoices()
         {
+            InvoiceDistributions[] invDist = null;
             LstInvoices.ItemsSource = null;
             if (BatchInvoices)
             {
@@ -144,6 +145,9 @@ namespace MbcsCentral.WinGL
             {
                 foreach (Invoices inv in _invoices)
                 {
+                    invDist = InvoiceDistributions.loadByInvoice(inv.InvoiceKey);
+                    inv.Company = invDist[0].Company;
+                    inv.DepartmentName = invDist[0].DepartmentName;
                     if (!Highlight)
                     {
                         inv.PayFlag = 0;

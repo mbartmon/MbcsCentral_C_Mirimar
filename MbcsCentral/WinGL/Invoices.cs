@@ -1343,6 +1343,10 @@ namespace MbcsCentral.WinGL
         public string DepartmentName
         {
             get { return m_DepartmentName; }
+            set {
+                m_DepartmentName = value;
+                OnPropertyChanged("DepartmentName");
+            }
         }
 
         public Vendors Vendor

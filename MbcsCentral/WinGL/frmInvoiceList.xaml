@@ -204,17 +204,24 @@
             </StackPanel>
             <Button
                 Name="cmdPrint"
-                Width="50"
+                Width="45"
                 Margin="5,0,0,0"
                 Click="cmdPrint_Click"
                 Content="PRINT" />
             <Button
+                x:Name="cmdFirstOfMonthEdit"
+                Width="55"
+                Margin="0,0,0,0"
+                FontSize="6"
+                Click="cmdFirstOfMonthEdit_Click"
+                Content="FIRST OF MONTH" />
+            <Button
                 Name="cmdPrintChecks"
                 FontSize="8"
-                Width="80"
+                Width="45"
                 Margin="10,0,0,0"
                 Click="cmdPrintChecks_Click"
-                Content="PRINTED CHECK LIST" />
+                Content="CHECK LIST" />
             <Button
                 Name="cmdRefresh"
                 FontSize="10"

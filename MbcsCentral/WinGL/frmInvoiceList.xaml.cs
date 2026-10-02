@@ -305,6 +305,12 @@ namespace MbcsCentral.WinGL
             rpt.process(_invoices);
         }
 
+
+        private void cmdFirstOfMonthEdit_Click(object sender, RoutedEventArgs e)
+        {
+            FirstOfMonthEdit rpt = new FirstOfMonthEdit(m_ThisApp);
+            rpt.process();
+        }
         private void cmdPrintChecks_Click(object sender, RoutedEventArgs e)
         {
             string xsql = Invoices.SQL_LOAD_ALL + " AND [" + Invoices.SQL_COL_CHECK_NUMBER + "] > 0 ";

@@ -198,7 +198,7 @@ namespace MbcsCentral.WinGL
             parms.CollectionAccountTwo = ((Accounts)lstCollectionsTwo.SelectedItem).Key;
             rpt.BalanceAccount = parms.BalanceAccount;
             rpt.CollectionAccount1 = parms.CollectionAccountOne;
-            rpt.CollectionAccount2 = parms.CollectionAccountTwo;
+            rpt.CollectionAccount2 = parms.CollectionAccountTwo; 
             rpt.Company = parms.Company;
             rpt.CompanyName = parms.CompanyName;
             rpt.Department = parms.Department;

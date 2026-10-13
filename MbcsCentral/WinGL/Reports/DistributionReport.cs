@@ -15,10 +15,10 @@ using System.Xml.Serialization;
 // ERROR: Not supported in C#: OptionDeclaration
 namespace MbcsCentral.WinGL
 {
-    public class DisbursementReport
+	public class DisbursementReport
 	{
-        // private local variables
-        private Report rpt = null;
+		// private local variables
+		private Report rpt = null;
 		private short pg;
 		private short ln;
 		private decimal ytotal;
@@ -30,11 +30,11 @@ namespace MbcsCentral.WinGL
 		private int xacct;
 		private string cdesc;
 		private bool posted;
-        private string fontname = "Courier New";
-        private float fontsize = 8;
+		private string fontname = "Courier New";
+		private float fontsize = 8;
 
-        //local variable(s) to hold property value(s)
-        private int mvarCompany;
+		//local variable(s) to hold property value(s)
+		private int mvarCompany;
 		private string mvarCompanyName;
 		private int mvarDepartment;
 		private string mvarDepartmentName;
@@ -81,22 +81,22 @@ namespace MbcsCentral.WinGL
 			set { mvarCompany = value; }
 		}
 
-        public string[] Journals { get; set; }
-        public bool BatchReport { get; set; } = false;
-        public int Target { get; set; }
+		public string[] Journals { get; set; }
+		public bool BatchReport { get; set; } = false;
+		public int Target { get; set; }
 
-        public FixedDocument print_report(int target)
-        {
-            Target = target;
-            return print_report(null);
-        }
+		public FixedDocument print_report(int target)
+		{
+			Target = target;
+			return print_report(null);
+		}
 
 		public FixedDocument print_report(PrintQueue printer = null)
 		{
 			object screenwidth = null;
 			string payto = "";
 			string xsql = "";
-            int i;
+			int i;
 			int yr = 0;
 			string stdate = null;
 			string endate = null;
@@ -106,7 +106,7 @@ namespace MbcsCentral.WinGL
 			Balances tblbal = null;
 			string amt = null;
 
-            yr = rptYear;
+			yr = rptYear;
 			stdate = "01/01/" + yr.ToString("####");
 			endate = rptMonth.ToString("00") + "/" + DateTime.DaysInMonth(yr, rptMonth).ToString("##") + "/" + yr.ToString("####");
 
@@ -118,19 +118,19 @@ namespace MbcsCentral.WinGL
 				} else {
 					ob = tblbal.P_Month12;
 				}
-                tblbal = null;
+				tblbal = null;
 			}
 			cb = 0;
-            tblbal = Balances.load(Company, Department, CollectionAccount1);
+			tblbal = Balances.load(Company, Department, CollectionAccount1);
 			if (tblbal != null)
-            {
+			{
 				cb = -(decimal)tblbal["C_Month" + rptMonth.ToString("00")];
-                tblbal = null;
+				tblbal = null;
 			}
 			tblbal = Balances.load(Company, Department, CollectionAccount2);
 			if (tblbal != null)
-            {
-                cb += cb - (decimal)tblbal["C_Month" + rptMonth.ToString("00")];
+			{
+				cb += cb - (decimal)tblbal["C_Month" + rptMonth.ToString("00")];
 				tblbal = null;
 			}
 
@@ -139,9 +139,9 @@ namespace MbcsCentral.WinGL
 
 			first = true;
 			for (int j = 0; j <= 9; j++) {
-			    if (Strings.Trim(Journals[j]) != "") {
+				if (Strings.Trim(Journals[j]) != "") {
 					if (!first) {
-				    	xsql = xsql + " OR ";
+						xsql = xsql + " OR ";
 					}
 					xsql = xsql + "Journal LIKE '%" + Strings.Trim(Journals[j]) + "'";
 					first = false;
@@ -155,38 +155,54 @@ namespace MbcsCentral.WinGL
 			gtotal = 0;
 			tbltrans = Transactions.load(xsql, true);
 			if (tbltrans != null && tbltrans.Length > 0)
-            {
-                rpt = new Report("Balance Sheet", fontname, fontsize) { BottomMargin = 80, LeftMargin = 10, TopMargin = 10, BottomOffset = 100 };
-                pg = 0;
+			{
+				int cnt = 0;
+				rpt = new Report("Disbursement Report", fontname, fontsize) { BottomMargin = 80, LeftMargin = 10, TopMargin = 10, BottomOffset = 100 };
+				pg = 0;
 				heading();
 				foreach (Transactions tbltran in tbltrans)
-                {
+				{
+					if (tbltran.Date.Month != rptMonth || tbltran.Amount == 0)
+						continue;
 					tblacct = Accounts.load(tbltran.AccountNumber);
 					if (tblacct != null && tblacct.MajorCategory == "005_")
-                    {
-						if (!first & xacct != tbltran.AccountNumber)
-                        {
-							if (ctotal != 0 | ytotal != 0) {
-								CategoryTotal();
-							}
-							xacct = tbltran.AccountNumber;
+					{
+						if (!first && xacct != tbltran.AccountNumber)
+						{
+							if (ctotal != 0 || ytotal != 0) {
+								if (cnt > 0)
+								{
+									CategoryTotal();
+                                    //if (cnt == 1)
+                                        //rpt.PrintPageLine();
+
+                                }
+                            }
+							ctotal = 0;
+							ytotal = 0;
+                            cnt = 0;
+
+                            xacct = tbltran.AccountNumber;
 						}
 						if (first) {
 							xacct = tbltran.AccountNumber;
 							first = false;
+							cnt = 0;
 						}
-						cdesc = tbltran.Description;
-                        ytotal += tbltran.Amount;
+						else
+							rpt.PrintPageLine();
+                        cdesc = tbltran.Description;
+						ytotal += tbltran.Amount;
 
 						if (tbltran.Date.Month == rptMonth && tbltran.Amount != 0)
-                        {
+						{
 							payto = tbltran.Description.Trim();
-						    i = payto.IndexOf(", Invoice");
+							i = payto.IndexOf(", Invoice");
 							if (i > 0)
-                            {
-							    payto = Strings.Left(payto, i - 1);
+							{
+								payto = Strings.Left(payto, i - 1);
 							}
-							payto = payto.Left(15, 15);
+							payto = payto.Left(20, 20);
 							xsql = Strings.Space(5) + tbltran.Date.ToString("MM/dd/yyyy").PadRight(11) + payto;
 							xsql = xsql + tbltran.CheckNumber.ToString("######").PadLeft(6) + "  ";
 							xsql = xsql + tbltran.AccountName.PadRight(30) + "  ";
@@ -194,60 +210,71 @@ namespace MbcsCentral.WinGL
 							ctotal += tbltran.Amount;
 							gtotal += tbltran.Amount;
 
-							rpt.PrintPageLine(xsql);
+							rpt.PrintPageLine(xsql, false);
+							cnt++;
 						}
 					}
 				}
 				if (ctotal != 0)
 					CategoryTotal();
+				cb = 0;
+				DateTime sdt = new DateTime(rptYear, rptMonth, 1);
+				DateTime edt = new DateTime(rptYear, rptMonth, DateTime.DaysInMonth(rptYear, rptMonth));
+				cb = -Transactions.AccountBalance(Company, CollectionAccount1, sdt, edt, Department);
+				//MessageBoxCustom.Show("Collection 1: " + cb.ToString());
+				cb -= Transactions.AccountBalance(Company, CollectionAccount2, sdt, edt, Department);
+				//MessageBoxCustom.Show("Collection 2: " + cb.ToString());
 
 				nb = ob - gtotal + cb;
 				rpt.PrintPageLine();
 				rpt.PrintPageLine(Strings.Space(20) + "  old balance       collections     disbursements     new balance");
 				rpt.PrintPageLine(Strings.Space(20) + ob.ToString("########0.00").PadLeft(13) + "  +  " + cb.ToString("#########0.00").PadLeft(13) + "  -  " + gtotal.ToString("#########0.00").PadLeft(13) + " = " + nb.ToString("#########0.00").PadLeft(13));
-                if (Target == 1 && printer != null)
-                    rpt.PrintDocument(printer);
-                else if (Target == 3)
-                {
-                    rpt.NewPage(true);
-                    return rpt.Document;
-                }
-                else
-                    rpt.DisplayDocument();
+				if (Target == 1 && printer != null)
+					rpt.PrintDocument(printer);
+				else if (Target == 3)
+				{
+					rpt.NewPage(true);
+					return rpt.Document;
+				}
+				else
+					rpt.DisplayDocument();
 
-                if (!BatchReport && !posted) {
-					amt = Strings.Trim(Interaction.InputBox("The amount to post the Balance Account for the current month: ", "Disbursement Report", Microsoft.VisualBasic.Compatibility.VB6.Support.Format(nb, "#########0.00")));
+				if (!BatchReport && !posted) {
+					amt = Strings.Trim(Interaction.InputBox("The amount to post to the Balance Account for the current month: ", "Disbursement Report", Microsoft.VisualBasic.Compatibility.VB6.Support.Format(nb, "#########0.00")));
 					if (amt != null && amt.Length > 0)
-                    {
+					{
 						tblbal = Balances.load(Company, Department, BalanceAccount);
 						if (tblbal != null) {
 							tblbal["C_Month" + rptMonth.ToString("00")] = decimal.Parse(amt);
 							tblbal.save();
-                            tblbal = null;
+							tblbal = null;
 						} else {
-                            tblbal = new Balances();
+							tblbal = new Balances();
 							tblbal.CompanyNumber = (short)Company;
 							tblbal.DepartmentNumber = (short)Department;
 							tblbal.AccountNumber = (short)BalanceAccount;
 							tblbal["C_Month" + rptMonth.ToString("00")] = decimal.Parse(amt);
 							tblbal.save();
-                            tblbal = null; ;
+							tblbal = null; ;
 						}
 						posted = true;
 					}
 				}
 			}
-            return null;
+			return null;
 		}
 		private void heading()
 		{
-
+			//rpt.FontSize = 8;
+			pg += 1;
 			rpt.PrintPageLine(Strings.Space(5) + "DISBURSEMENT REPORT" + Strings.Space(10) + "page " + pg);
 			rpt.PrintPageLine();
 			rpt.PrintPageLine(Strings.Space(5) + "month of    premises                                            prepared for");
-			rpt.PrintPageLine(Strings.Space(5) + Conversion.Str(rptMonth) + "/" + Microsoft.VisualBasic.Compatibility.VB6.Support.Format(DateAndTime.Year(DateAndTime.Now) - rptYear, "####") + "     " + DepartmentName.PadRight(50) + "  " + CompanyName);
+			//rpt.PrintPageLine(Strings.Space(5) + Conversion.Str(rptMonth) + "/" + Microsoft.VisualBasic.Compatibility.VB6.Support.Format(DateAndTime.Year(DateAndTime.Now) - rptYear, "####") + "     " + DepartmentName.PadRight(50) + "  " + CompanyName);
+			rpt.PrintPageLine(Strings.Space(5) + Conversion.Str(rptMonth) + "/" + rptYear.ToString("####") + "     " + DepartmentName.PadRight(50) + "  " + CompanyName);
 			rpt.PrintPageLine();
-			rpt.PrintPageLine(Strings.Space(5) + "  date     payable to     check#     explanation                    item-amount category-total annual-to-date");
+			//rpt.FontSize = fontsize;
+			rpt.PrintPageLine(Strings.Space(5) + "  date     payable to          check#     explanation                    item-amount category-total annual-to-date");
 			rpt.PrintPageLine(Strings.Space(5) + "---------------------------------------------------------------------------------------------------------------------");
 			ln = 7 + WinglGlobal.tmargin;
 
@@ -255,9 +282,8 @@ namespace MbcsCentral.WinGL
 		private void CategoryTotal()
 		{
 
-			if (ctotal != 0) {
-				rpt.PrintPageLine(Strings.Space(42) + cdesc.Left( 40, 40) + "  " +ctotal.ToString("#########0.00").PadLeft(13) + "  " + ytotal.ToString("#########0.00").PadLeft(13));
-			}
+			if (ctotal != 0) 
+				rpt.PrintPageLine(new string[]  {"tab(89)" ,  "  " , ctotal.ToString("#########0.00").PadLeft(13) + "  ", ytotal.ToString("#########0.00").PadLeft(13)});
 			ctotal = 0;
 			ytotal = 0;
 

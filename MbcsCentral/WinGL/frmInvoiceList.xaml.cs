@@ -270,6 +270,7 @@ namespace MbcsCentral.WinGL
                 for (int i = 0; i < LstInvoices.SelectedItems.Count; i++)
                 {
                     inv = (Invoices)LstInvoices.SelectedItems[i];
+                    inv = Invoices.load(inv.InvoiceKey);
                     inv.AmountPaid = 0;
                     if (!inv.ACH)
                     {

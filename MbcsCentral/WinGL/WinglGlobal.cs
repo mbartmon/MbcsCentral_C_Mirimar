@@ -1148,7 +1148,7 @@ namespace MbcsCentral.WinGL
                 ApChecks[] tbCheckRegDup = ApChecks.LoadQuery(xsql);
                 if (tbCheckRegDup != null && tbCheckRegDup.Length > 0)
                 {
-                    tbCheckRegDup[0].Amount += Invoice.AmountPaid;
+                    tbCheckRegDup[0].Net += Invoice.AmountPaid;
                     tbCheckRegDup[0].Date = Invoice.CheckDate;
                     tbCheckRegDup[0].save();
                     tbCheckRegDup = null;
@@ -1630,7 +1630,7 @@ public static decimal CheckTotal( int cmp,  int dpt,  int chk)
                  // Add check number to description
                  s = tbl.Fields["Company"].Value + ";" + tbl.Fields["Department"].Value + ";" + (paid ? "paid;" : "unpaid;") + tbl.Fields["VendorNumber"].Value;
                  s = s + ";" + Strings.Trim(tbl.Fields["InvoiceNumber"].Value) + ";" + tbl.Fields["Date"].Value;
-                 s = s + ";" + tbl.Fields["PayDueDate"].Value + ";.bmp;" + tbl.Fields["CheckNumber"].Value + ";" + Strings.Trim(vName) + ":" + Microsoft.VisualBasic.Compatibility.VB6.Support.Format(tbl.Fields["Amount"].Value - tbl.Fields["DiscountAmount"].Value, "###,###,##0.00");
+                 s = s + ";" + tbl.Fields["PayDueDate"].Value + ";.bmp;" + tbl.Fields["CheckNumber"].Value + ";" + Strings.Trim(vName) + ":" + Microsoft.VisualBasic.Compatibility.VB6.Support.Format(tbl.Fields["Net"].Value - tbl.Fields["DiscountAmount"].Value, "###,###,##0.00");
              }
              else
              {

@@ -1039,7 +1039,7 @@ namespace MbcsCentral.WinPM
                             rpt.PrintLineWithMargins(63, TopY + 2, 67, TopY + 4, null, true);
                             rpt.PrintPageLine("APT", 64, TopY, null);
                             
-                            // Amount Due
+                            // Net Due
                             rpt.PrintLineWithMargins(67, TopY, 77, TopY + 2 , null, true);
                             rpt.PrintLineWithMargins(67, TopY + 2, 77, TopY + 4, null, true);
                             rpt.PrintPageLine("AMOUNT DUE", 68, TopY  , null);
@@ -1110,7 +1110,7 @@ namespace MbcsCentral.WinPM
                             rpt.PrintLineWithMargins(61, TopY + 2, 65, TopY + 4, null, true);
                             rpt.PrintPageLine("APT", 62, TopY + 1, null);
                             rpt.PrintLineWithMargins(65, TopY, 77, TopY + 2, null, true);
-                            // Amount Due
+                            // Net Due
                             rpt.PrintLineWithMargins(65, TopY + 2, 77, TopY + 4, null, true);
                             rpt.PrintPageLine("AMOUNT DUE", 67, TopY + 1, null);
 
@@ -1169,7 +1169,7 @@ namespace MbcsCentral.WinPM
                             rpt.PrintLineWithMargins(61, TopY + 2, 65, TopY + 4, null, true);
                             rpt.PrintPageLine("APT", 62, TopY + 1, null);
                             rpt.PrintLineWithMargins(65, TopY, 77, TopY + 2, null, true);
-                            // Amount Due
+                            // Net Due
                             rpt.PrintLineWithMargins(65, TopY + 2, 77, TopY + 4, null, true);
                             rpt.PrintPageLine("AMOUNT DUE", 67, TopY + 1, null);
 
@@ -1229,7 +1229,7 @@ namespace MbcsCentral.WinPM
                             rpt.PrintLineWithMargins(61.5, TopY + 2, 65.5, TopY + 4, null, true);
                             rpt.PrintPageLine("APT", 62, TopY + 1, null);
                             rpt.PrintLineWithMargins(65.5, TopY, 77.5, TopY + 2, null, true);
-                            // Amount Due
+                            // Net Due
                             rpt.PrintLineWithMargins(65.5, TopY + 2, 77.5, TopY + 4, null, true);
                             rpt.PrintPageLine("AMOUNT DUE", 67, TopY + 1, null);
 
@@ -1256,7 +1256,7 @@ namespace MbcsCentral.WinPM
                             rpt.PrintLineWithMargins(61.5, TopY + 2, 65.5, TopY + 4, null, true);
                             rpt.PrintPageLine("APT", 62, TopY + 1, null);
                             rpt.PrintLineWithMargins(65.5, TopY, 77.5, TopY + 2, null, true);
-                            // Amount Due
+                            // Net Due
                             rpt.PrintLineWithMargins(65.5, TopY + 2, 77.5, TopY + 4, null, true);
                             rpt.PrintPageLine("AMOUNT DUE", 67, TopY + 1, null);
                             */

@@ -280,6 +280,7 @@ namespace MbcsCentral.WinGL
         private int balanceAccount;
         private int collectionAccountOne;
         private int collectionAccountTwo;
+        private int collectionAccountThree; 
         private string[] journals = new string[10];
 
         private void OnPropertyChanged(string info)
@@ -297,6 +298,7 @@ namespace MbcsCentral.WinGL
         }
         public int CollectionAccountOne { get { return collectionAccountOne; } set { collectionAccountOne = value; OnPropertyChanged("CollectionAccountOne"); } }
         public int CollectionAccountTwo { get { return collectionAccountTwo; } set { collectionAccountTwo = value; OnPropertyChanged("CollectionAccountTwo"); } }
+        public int CollectionAccountThree { get { return collectionAccountThree; } set { collectionAccountThree = value; OnPropertyChanged("CollectionAccountThree"); } }
         public string[] Journals { get { return journals; } set{ journals = value; OnPropertyChanged("Journals"); }}
         public int Year { get; set; }
         public int Month { get; set; }

@@ -20,7 +20,7 @@ namespace MbcsCentral.WinPM
         // B = Building number (6, 3)
         // T = Tenant number   (9, 4)
         // D = Payment date    (13, 6)
-        // A = Amount Due      (19, 7)
+        // A = Net Due      (19, 7)
         /*
         int SCANSTART = 11
         int BLD = 6;

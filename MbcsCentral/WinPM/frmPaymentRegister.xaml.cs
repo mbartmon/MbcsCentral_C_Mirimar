@@ -118,14 +118,14 @@ Public Sub GLproc()
                 End If
                 For i = 1 To UBound(ca, 2)
                     If ca(0, i) = tblPayTemp("Code") Then
-                        ca(1, i) = ca(1, i) + tblPayTemp("Amount")
+                        ca(1, i) = ca(1, i) + tblPayTemp("Net")
                         Exit For
                     End If
                 Next
                 If i > UBound(ca, 2) Then
                     ReDim Preserve ca(2, i)
                     ca(0, i) = tblPayTemp("Code")
-                    ca(1, i) = tblPayTemp("Amount")
+                    ca(1, i) = tblPayTemp("Net")
                 End If
                 tblPayTemp.MoveNext
             Wend

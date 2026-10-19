@@ -636,7 +636,7 @@ namespace MbcsCentral.WinPM
                             Paid = Paid - payments[i].Paid;
                             if (tenant.LegalCode == chg.ChargeCode)
                             {
-                                if (chg.Amount + chg.Arrears - chg.Paid == 0)
+                                if (chg.Net + chg.Arrears - chg.Paid == 0)
                                 {
                                     tenant.LegalCode = " ";
                                     tenant.saveForPaymentEntry();

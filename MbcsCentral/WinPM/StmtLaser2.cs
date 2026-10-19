@@ -1767,11 +1767,11 @@ namespace MbcsCentral.WinPM
 ;            fillBrush = System.Windows.Media.Brushes.Cyan;
             // 1st Charge description
             if ( PrintStmts) rpt.PrintLine(0, 3, 22, 5, lineBrush, true, fillBrush);
-;            // 1st Amount
+;            // 1st Net
             if ( PrintStmts) rpt.PrintLine(22, 3, 34, 5, lineBrush, true, fillBrush);
 ;            // 2nd Charge description
             if ( PrintStmts) rpt.PrintLine(34, 3, 56, 5, lineBrush, true, fillBrush);
-;            // 2nd Amount
+;            // 2nd Net
             if ( PrintStmts) rpt.PrintLine(56, 3, 67, 5, lineBrush, true, fillBrush);
 ;            // Vertical lines for Details box
             if ( PrintStmts) rpt.PrintLine(21.5, 4, 21.5, 16.1);
@@ -1790,11 +1790,11 @@ namespace MbcsCentral.WinPM
 ;            fillBrush = System.Windows.Media.Brushes.Cyan;
             // 1st Charge description
             if ( PrintStmts) rpt.PrintLine(DetailBoxX, DetailBoxY, DetailBoxX + 22, DetailBoxY + 2, lineBrush, true, fillBrush);
-;            // 1st Amount
+;            // 1st Net
             if ( PrintStmts) rpt.PrintLine(DetailBoxX + 22, DetailBoxY, DetailBoxX + 37, DetailBoxY + 2, lineBrush, true, fillBrush);
 ;            // 2nd Charge description
             if ( PrintStmts) rpt.PrintLine(DetailBoxX + 37, DetailBoxY, DetailBoxX + 65, DetailBoxY + 2, lineBrush, true, fillBrush);
-;            // 2nd Amount
+;            // 2nd Net
             if ( PrintStmts) rpt.PrintLine(DetailBoxX + 65, DetailBoxY, DetailBoxX + 80, DetailBoxY + 2, lineBrush, true, fillBrush);
 ;            // Vertical lines for Details box
             if ( PrintStmts) rpt.PrintLine(DetailBoxX + 22, DetailBoxY + 2, DetailBoxX + 22, DetailBoxY + 14);

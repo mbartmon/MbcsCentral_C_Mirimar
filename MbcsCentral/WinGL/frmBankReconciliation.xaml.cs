@@ -1000,7 +1000,7 @@ namespace MbcsCentral.WinGL
                             {
                                 orgamt = check.BookAmount;
                                 xsql = "SELECT * FROM gl_Transactions WHERE IndexNumber = " + idx;
-                                //xsql = xsql + " AND CompanyNumber = " + company.CompanyNumber + " AND Amount = " + orgamt;
+                                //xsql = xsql + " AND CompanyNumber = " + company.CompanyNumber + " AND Net = " + orgamt;
                                 // COULD BE FAILING ON 'AMOUNT' MATCH !!!!!!!!!!!!!!!!!!
                                 tblTrans = Transactions.load(xsql);
                                 if (tblTrans != null && tblTrans.Length > 0)

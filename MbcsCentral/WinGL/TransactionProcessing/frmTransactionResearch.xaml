@@ -165,13 +165,19 @@
                                                 Margin="10,0,0,0"
                                                 VerticalAlignment="Center"
                                                 Checked="chkDebits_Checked"
-                                                Content="Debits Only" />
+                                                Content="Debits" />
                                             <CheckBox
                                                 Name="chkCredits"
                                                 Margin="10,0,0,0"
                                                 VerticalAlignment="Center"
                                                 Checked="chkCredits_Checked"
-                                                Content="Credits Only" />
+                                                Content="Credits" />
+                                            <CheckBox
+                                                Name="chkNet"
+                                                Margin="10,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Checked="chkNet_Checked"
+                                                Content="NET"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </Grid>
@@ -399,6 +405,16 @@
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn
+                                        Width="100"
+                                        Header="NET"
+                                        SortMemberPath="Amount">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Amount, StringFormat='{}{0:###,###,###.#0}'}" TextBlock.TextAlignment="Right"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
                                     <DataGridComboBoxColumn
                                         Width="300"
                                         Header="New Account"
@@ -419,7 +435,13 @@
                     Margin="10,0,0,0"
                     Click="cmdClose_Click"
                     Content="CLOSE" />
-            </StackPanel>
+                <Button
+                    Name="cmdPrint"
+                    Margin="50,0,0,0"
+                    VerticalAlignment="Center"
+                    Click="cmdPrint_Click"
+                    Content="PRINT" />
+ </StackPanel>
         </Grid>
     </Border>
 </Window>

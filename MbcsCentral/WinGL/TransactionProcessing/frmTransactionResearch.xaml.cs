@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -355,6 +356,9 @@ namespace MbcsCentral.WinGL
 
         private void GetResults()
         {
+            decimal totalDebit = 0;
+            decimal totalCredit = 0;
+            Results result = null;
             Accounts account;
             Transactions[] trans = Transactions.load(query);
             if (trans == null)
@@ -365,7 +369,7 @@ namespace MbcsCentral.WinGL
             ArrayList list = new ArrayList();
             foreach (Transactions tran in trans)
             {
-                Results result = new Results();
+                result = new Results();
                 result.IndexNumber = tran.IndexNumber;
                 result.Date = tran.Date;
                 account = Accounts.load(tran.AccountNumber);
@@ -379,11 +383,34 @@ namespace MbcsCentral.WinGL
                 result.Source = tran.Source;
                 result.Description = tran.Description;
                 if (tran.Amount > 0)
+                {
+                    totalDebit += tran.Amount;
                     result.Debit = tran.Amount;
+                }
                 else
+                {
+                    totalCredit += -tran.Amount;
                     result.Credit = -tran.Amount;
+                }   
                 list.Add(result);
             }
+
+            if (chkNet.IsChecked.Value)
+            {
+                result = new Results();
+                result.Date = DateTime.Now;
+                result.Account = " ";
+                result.AccountNumber = 0;
+                result.CheckNumber = 0;
+                result.Journal = "    ";
+                result.Source = "    ";
+                result.Description = "Totals";
+                result.Debit = totalDebit;
+                result.Credit = totalCredit;
+                result.Net = totalCredit - totalDebit;
+                list.Add(result);
+            }
+
             txtResultsType.Text = "General Transactions";
             grdResults.Columns[grdResults.Columns.Count - 1].Visibility = Visibility.Collapsed;
             grdResults.ItemsSource = null;
@@ -587,6 +614,102 @@ namespace MbcsCentral.WinGL
             lstActiveAccounts.Items.RemoveAt(lstActiveAccounts.SelectedIndex);
         }
 
+        private void cmdPrint_Click(object sender, RoutedEventArgs e)
+        {
+            if (grdResults.ItemsSource == null || grdResults.Columns.Count == 0)
+                return;
+            object[] items;
+            string s;
+            int i = 0;
+            int pageWidth = 0;
+            DataGridLength l;
+            ArrayList headers = new ArrayList();
+            ArrayList rows = new ArrayList();
+            object[,] headerLines = new object[4, 2];
+            float[] rowWidths = new float[grdResults.Columns.Count];
+
+            System.Drawing.Font header1Font = new System.Drawing.Font("Courier New", 14);
+
+            foreach (DataGridColumn column in grdResults.Columns)
+            {
+                if (column.Header == null)
+                    column.Header = " ";
+                headers.Add(column.Header.ToString());
+                rowWidths[i++] = column.Header.ToString().Length;
+            }
+            /*
+            foreach (DataRow row in dt.Rows)
+            {
+                items = row.ItemArray;
+                rows.Add(items);
+                for (i = 0; i < items.Length; i++)
+                {
+                    if (items[i].ToString().Length > rowWidths[i])
+                        rowWidths[i] = items[i].ToString().Length;
+                }
+            }
+            */
+            foreach(Results result in grdResults.ItemsSource)
+            {
+                items = new object[grdResults.Columns.Count];
+                items[0] = result.Date.ToShortDateString();
+                items[1] = result.AccountNumber;
+                items[2] = result.Account;
+                items[3] = result.CheckNumber;
+                items[4] = result.Journal;
+                items[5] = result.Source;
+                items[6] = result.Description;
+                items[7] = result.Debit.ToString("C").PadLeft(13);
+                items[8] = result.Credit.ToString("C").PadLeft(13); 
+                items[9] = (result.Credit - result.Debit).ToString("C").PadLeft(13);
+                rows.Add(items);
+                for (i = 0; i < items.Length; i++)
+                {
+                    if (items[i]!=null && items[i].ToString().Length > rowWidths[i])
+                        rowWidths[i] = items[i].ToString().Length;
+                }
+            }
+            headerLines[0, 0] = "Transaction Research" + "   " + Report.DATE_TAG + "   page " + Report.PAGE_TAG;
+            headerLines[0, 1] = header1Font;
+            i = 0;
+            for (i = 0; i < headers.Count; i++)
+            {
+                headerLines[2, 0] += ((string)headers[i]).PadRight((int)rowWidths[i] + 1);
+                pageWidth += (int)rowWidths[i];
+            }
+            Report rpt = new Report((string)headerLines[0, 0], "Courier New", 14) { BottomMargin = 120, LeftMargin = 10, TopMargin = 10, BottomOffset = 130 };
+
+            if (pageWidth > 85)
+                rpt.FontSize = 8;
+            else
+                rpt.FontSize = 12;
+            if (pageWidth > 128)
+                rpt.PageOrientation = 1;
+            System.Drawing.Font header2Font = new System.Drawing.Font("Courier New", rpt.FontSize, System.Drawing.FontStyle.Underline);
+            headerLines[2, 1] = header2Font;
+            rpt.LeftMargin = 10;
+            rpt.TopMargin = 10;
+            rpt.HeaderLines = headerLines;
+            rpt.FontBold = true;
+            rpt.PrintHeader();
+            string line = "";
+            int j;
+            for (i = 0; i < rows.Count; i++)
+            {
+                items = (object[])rows[i];
+                for (j = 0; j < headers.Count; j++)
+                    if (items[j] != null)
+                        line += ((string)items[j].ToString()).PadRight((int)rowWidths[j] + 1);
+                if (rpt.PrintPageLine(line) && i < rows.Count - 2)
+                {
+                    rpt.NewPage();
+                    rpt.PrintHeader();
+                }
+                line = "";
+            }
+            rpt.DisplayDocument();
+        }
+
         private void ctxDate_Click(object sender, RoutedEventArgs e)
         {
             Results result = (Results)grdResults.SelectedItem;
@@ -682,6 +805,16 @@ namespace MbcsCentral.WinGL
             }
         }
 
+        private void chkNet_Checked(object sender, RoutedEventArgs e)
+        {
+            //if (chkNet.IsChecked.Value)
+            //{ 
+            //    chkNet.IsChecked = false;
+            //    txtAmounts.Text = "";
+            //}
+
+        }
+
         private void txtAmounts_TextChanged(object sender, TextChangedEventArgs e)
         {
             chkDebits.IsChecked = false;
@@ -715,6 +848,7 @@ namespace MbcsCentral.WinGL
         public decimal Debit { get; set; }
         public decimal Credit { get; set; }
         public int IndexNumber { get; set; }
+        public decimal Net { get; set; }
 
     }
 }

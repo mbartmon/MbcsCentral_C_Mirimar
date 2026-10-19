@@ -24,7 +24,7 @@ namespace MbcsCentral.WinPM
 
         DateTime bildate;
 
-        //string ChargeQuery = "SELECT pm_tenants.[Building Number], pm_tenants.[Tenant Number], [Tenant Name], [Apartment], [Charge Code], [Amount], [Starting Date], [Ending Date], [Future Date], [Future Amount], [Charge Number] FROM pm_tenants INNER JOIN pm_charges ON pm_tenants[Sequence Number] = pm_charges.[Sequence Number]";
+        //string ChargeQuery = "SELECT pm_tenants.[Building Number], pm_tenants.[Tenant Number], [Tenant Name], [Apartment], [Charge Code], [Net], [Starting Date], [Ending Date], [Future Date], [Future Net], [Charge Number] FROM pm_tenants INNER JOIN pm_charges ON pm_tenants[Sequence Number] = pm_charges.[Sequence Number]";
         string ChargeQuery;
         string PaymentQuery;
         string[] ops = {"", "<", "<=", "=", ">=", ">" };
@@ -551,7 +551,7 @@ namespace MbcsCentral.WinPM
 				                    if (payments[j].Due < 0) 
                                     {
 					                    payments[0].Paid += payments[i].Due;
-                                        //payments[0].Amount += payments[i].Due;
+                                        //payments[0].Net += payments[i].Due;
                             }
                         }
 			                    j = 0;
@@ -560,12 +560,12 @@ namespace MbcsCentral.WinPM
 				                    if (payments[j].Due <= paidx) 
                                     {
 					                    payments[j].Paid += payments[j].Due;
-                                        //payments[j].Amount += payments[j].Due;
+                                        //payments[j].Net += payments[j].Due;
 				                    } 
                                     else 
                                     {
 					                    payments[j].Paid += paidx;
-                                        //payments[j].Amount += paidx;
+                                        //payments[j].Net += paidx;
 				                    }
 				                    paidx -= payments[j].Paid;
 				                    j = j + 1;
@@ -579,19 +579,19 @@ namespace MbcsCentral.WinPM
 					                    x = payments[j].Due - payments[j].Paid;
 					                    if (x >= paidx) {
 						                    payments[j].Paid += paidx;
-                                            //payments[j].Amount += paidx;
+                                            //payments[j].Net += paidx;
 						                    paidx = 0;
 						                    break; 
 					                    } else {
 						                    payments[j].Paid += x;
-                                            //payments[j].Amount += x;
+                                            //payments[j].Net += x;
 						                    paidx = paidx - x;
 					                    }
 				                    }
 				                    if (paidx != 0) 
                                     {
 					                    payments[0].Paid += paidx;
-                                       // payments[0].Amount += paidx;
+                                       // payments[0].Net += paidx;
 				                    }
 			                    }
 

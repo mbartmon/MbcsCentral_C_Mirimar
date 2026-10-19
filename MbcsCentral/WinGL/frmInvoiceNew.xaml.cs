@@ -523,7 +523,7 @@ namespace MbcsCentral.WinGL
                 //TextVendorName.Text = (string)((Vendors)ListVendors.SelectedItem).VendorName;
                 //TextInvoiceNumber.Text = _invoice.InvoiceNumber;
                 //DateInvoiceDate.SelectedDate = _invoice.Date;
-                //AmountInvoice.Text = string.Format("{0:C}", _invoice.Amount);
+                //AmountInvoice.Text = string.Format("{0:C}", _invoice.Net);
                 _distributions = InvoiceDistributions.loadByInvoiceAsList(_invoice.InvoiceKey, distributionTable);
             }
             Company[] cmps = Company.load();

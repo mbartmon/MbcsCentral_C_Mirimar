@@ -30,7 +30,7 @@ namespace MbcsCentral.WinGL
             }
             if (SourceSearch)
             {
-                xsql = xsql + " ORDER BY gl_transactions.Source, gl_transactions.DepartmentNumber, gl_transactions.Date"; //, gl_transactions.Amount DESC";
+                xsql = xsql + " ORDER BY gl_transactions.Source, gl_transactions.DepartmentNumber, gl_transactions.Date"; //, gl_transactions.Net DESC";
             }
             else
             {

@@ -1128,7 +1128,7 @@ namespace MbcsCentral.WinGL
                             checkInvoice = Invoices.load(tbl.InvoiceKey);
                             if (checkInvoice != null)
                             {
-                                if (checkInvoice.Amount == 0)
+                                if (checkInvoice.Net == 0)
                                 {
                                     if (MessageBoxCustom.Show("This invoice has a ZERO amount and will not be processed. Continue with processing?\r\n\r\nBatch: " + batch.BatchName +
                                                             "\r\nVendor: " + tbl.VendorName +

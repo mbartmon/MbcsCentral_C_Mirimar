@@ -127,18 +127,28 @@
                             VerticalAlignment="Center"
                             TextAlignment="Left" />
                         <ComboBox Name="lstCollectionsOne"
-                            Width="200"
+                            Width="150"
                             DisplayMemberPath="Description"
                             ItemsSource="{Binding}"
                             SelectedValue="{Binding CollectionAccountOne}"
-                            SelectedValuePath="Key" />
+                            SelectedValuePath="Key" 
+                                  TextBlock.FontSize="10"/>
                         <ComboBox Name="lstCollectionsTwo"
-                            Width="200"
+                            Width="150"
                             Margin="5,0,0,0"
                             DisplayMemberPath="Description"
                             ItemsSource="{Binding}"
                             SelectedValue="{Binding CollectionAccountTwo}"
-                            SelectedValuePath="Key" />
+                            SelectedValuePath="Key" 
+                                  TextBlock.FontSize="10"/>
+                        <ComboBox Name="lstCollectionsThree"
+                            Width="150"
+                            Margin="5,0,0,0"
+                            DisplayMemberPath="Description"
+                            ItemsSource="{Binding}"
+                            SelectedValue="{Binding CollectionAccountThree}"
+                            SelectedValuePath="Key" 
+                                  TextBlock.FontSize="10"/>
                     </StackPanel>
                     <StackPanel Grid.Row="5">
                         <TextBlock Background="LightBlue" Text="Journals" />

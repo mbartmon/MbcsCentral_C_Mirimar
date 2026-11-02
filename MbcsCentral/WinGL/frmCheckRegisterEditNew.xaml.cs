@@ -458,7 +458,7 @@ namespace MbcsCentral.WinGL
                             if (postflag == 0)
                                 PostCredit(Trans, chk, CashAcct, Journal, Source);
                             //else
-                            //    CheckTotal += chk.Amount;
+                            //    CheckTotal += chk.Net;
                         }
                     }
 
@@ -478,7 +478,7 @@ namespace MbcsCentral.WinGL
                         Trans.Source = Source;
                         Trans.Description = WinglGlobal.cr.details[0].Description;
                         Trans.VendorNumber = check.VendorAccount.ToString();
-                        Trans.Amount = check.Amount;
+                        Trans.Net = check.Net;
                         Trans.save();
                         Trans = null;
                         */

@@ -376,9 +376,9 @@ namespace MbcsCentral.WinPM
                         {
                             if (chg.StartingDate <= System.DateTime.Now)
                             {
-                                if (System.DateTime.Now < chg.EndingDate && chg.Amount + chg.Arrears - chg.Paid != 0)
+                                if (System.DateTime.Now < chg.EndingDate && chg.Net + chg.Arrears - chg.Paid != 0)
                                 {
-                                    charge = chg.Amount + chg.Arrears - chg.Paid;
+                                    charge = chg.Net + chg.Arrears - chg.Paid;
                                     if (charge != 0)
                                     {
                                         pay = new PaymentEntries();
@@ -401,7 +401,7 @@ namespace MbcsCentral.WinPM
                     {
                         if (payments[j].Due < 0)
                         {
-                            payments[0].Amount += payments[i].Due;
+                            payments[0].Net += payments[i].Due;
                         }
                     }
                     j = 0;
@@ -409,39 +409,39 @@ namespace MbcsCentral.WinPM
                     {
                         if (payments[j].Due <= paidx)
                         {
-                            payments[j].Amount += payments[j].Due;
+                            payments[j].Net += payments[j].Due;
                         }
                         else
                         {
-                            payments[j].Amount = payments[j].Amount + paidx;
+                            payments[j].Net = payments[j].Net + paidx;
                         }
-                        paidx = paidx - payments[j].Amount;
+                        paidx = paidx - payments[j].Net;
                         j = j + 1;
                     }
                     if (paidx != 0)
                     {
                         for (j = i; j >= 0; j += -1)
                         {
-                            if (payments[j].Due - payments[j].Amount <= 0)
+                            if (payments[j].Due - payments[j].Net <= 0)
                             {
                                 break;
                             }
-                            x = payments[j].Due - payments[j].Amount;
+                            x = payments[j].Due - payments[j].Net;
                             if (x >= paidx)
                             {
-                                payments[j].Amount = payments[j].Amount + paidx;
+                                payments[j].Net = payments[j].Net + paidx;
                                 paidx = 0;
                                 break;
                             }
                             else
                             {
-                                payments[j].Amount += x;
+                                payments[j].Net += x;
                                 paidx = paidx - x;
                             }
                         }
                         if (paidx != 0)
                         {
-                            payments[0].Amount += paidx;
+                            payments[0].Net += paidx;
                         }
                     }
 

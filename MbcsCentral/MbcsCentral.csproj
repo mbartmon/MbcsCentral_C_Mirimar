@@ -744,6 +744,7 @@
     <Compile Include="WinGL\frmVendorsEmail.xaml.cs">
       <DependentUpon>frmVendorsEmail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinGL\Reports\FirstOMonthEdit.cs" />
     <Compile Include="WinGL\TransactionProcessing\frmTransactionResearch.xaml.cs">
       <DependentUpon>frmTransactionResearch.xaml</DependentUpon>
     </Compile>

@@ -9,7 +9,7 @@
     xmlns:viblendEditors="clr-namespace:VIBlend.WPF.Controls;assembly=VIBlend.WPF.Editors"
     Name="FormInvoiceNew"
     Title="Invoice Edit"
-    Width="1604.03"
+    Width="1712"
     Height="764.245"
     Closing="FrmInvoice_OnClosing"
     FontSize="14"
@@ -749,11 +749,11 @@
         </Border>
         <Border
             Grid.Row="0"
-            Grid.Column="2"
+            Grid.Column="1"
             Padding="5"
             BorderBrush="Blue"
             BorderThickness="2"
-            CornerRadius="5">
+            CornerRadius="5" Margin="0,0,-122,0">
             <Grid
                 Name="GridDistribution"
                 Background="LightCyan"
@@ -894,34 +894,32 @@
                     </DataGrid.ContextMenu>
 
                     <DataGrid.Columns>
-                        <!--
-                                <DataGridComboBoxColumn
-                                    Width="250"
-                                    DisplayMemberPath="Name"
-                                    Header="Company"
-                                    SelectedValueBinding="{Binding Company, UpdateSourceTrigger=PropertyChanged}"
-                                    SelectedValuePath="CompanyNumber">
-                                    <DataGridComboBoxColumn.ElementStyle>
-                                        <Style TargetType="{x:Type ComboBox}">
-                                            <Setter Property="ItemsSource" Value="{Binding CompanyList}" />
-                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                            <Setter Property="TextBlock.TextAlignment" Value="Left" />
-                                            <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
-                                        </Style>
-                                    </DataGridComboBoxColumn.ElementStyle>
-                                    <DataGridComboBoxColumn.EditingElementStyle>
-                                        <Style TargetType="{x:Type ComboBox}">
-                                            <Setter Property="Tag" Value="ListCompaniesDist" />
-                                            <Setter Property="ItemsSource" Value="{Binding CompanyList}" />
-                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                            <Setter Property="IsTextSearchEnabled" Value="True" />
-                                            <Setter Property="IsEditable" Value="True" />
-                                            <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
-                                            <EventSetter Event="SelectionChanged" Handler="Selector_OnSelectionChanged" />
-                                        </Style>
-                                    </DataGridComboBoxColumn.EditingElementStyle>
-                                </DataGridComboBoxColumn>
-                        -->
+                        <DataGridComboBoxColumn
+                            Width="200"
+                            DisplayMemberPath="Name"
+                            Header="Company"
+                            SelectedValueBinding="{Binding Company, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedValuePath="CompanyNumber">
+                            <DataGridComboBoxColumn.ElementStyle>
+                                <Style TargetType="{x:Type ComboBox}">
+                                    <Setter Property="ItemsSource" Value="{Binding CompanyList}" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Left" />
+                                    <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
+                                </Style>
+                            </DataGridComboBoxColumn.ElementStyle>
+                            <DataGridComboBoxColumn.EditingElementStyle>
+                                <Style TargetType="{x:Type ComboBox}">
+                                    <Setter Property="Tag" Value="ListCompaniesDist" />
+                                    <Setter Property="ItemsSource" Value="{Binding CompanyList}" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="IsTextSearchEnabled" Value="True" />
+                                    <Setter Property="IsEditable" Value="True" />
+                                    <Setter Property="Selector.IsSynchronizedWithCurrentItem" Value="False" />
+                                    <EventSetter Event="SelectionChanged" Handler="Selector_OnSelectionChanged" />
+                                </Style>
+                            </DataGridComboBoxColumn.EditingElementStyle>
+                        </DataGridComboBoxColumn>
                         <DataGridComboBoxColumn
                             Width="200"
                             DisplayMemberPath="Name"

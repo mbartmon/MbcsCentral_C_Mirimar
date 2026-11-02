@@ -1039,11 +1039,11 @@ namespace MbcsCentral.WinPM
             fillBrush = System.Windows.Media.Brushes.LightGray;
             // 1st Charge description
             rpt.PrintLine(0, 6, 22, 8, lineBrush, true, fillBrush);
-            // 1st Amount
+            // 1st Net
             rpt.PrintLine(22, 6, 34, 8, lineBrush, true, fillBrush);
             // 2nd Charge description
             rpt.PrintLine(34, 6, 56, 8, lineBrush, true, fillBrush);
-            // 2nd Amount
+            // 2nd Net
             rpt.PrintLine(56, 6, 67, 8, lineBrush, true, fillBrush);
             // Vertical lines for Details box
             rpt.PrintLine(21.5, 7, 21.5, 19.1);

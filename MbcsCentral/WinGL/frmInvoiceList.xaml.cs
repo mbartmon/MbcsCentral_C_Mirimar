@@ -128,6 +128,7 @@ namespace MbcsCentral.WinGL
 
         private void GetInvoices()
         {
+            InvoiceDistributions[] invDist = null;
             LstInvoices.ItemsSource = null;
             if (BatchInvoices)
             {
@@ -144,6 +145,9 @@ namespace MbcsCentral.WinGL
             {
                 foreach (Invoices inv in _invoices)
                 {
+                    invDist = InvoiceDistributions.loadByInvoice(inv.InvoiceKey);
+                    inv.Company = invDist[0].Company;
+                    inv.DepartmentName = invDist[0].DepartmentName;
                     if (!Highlight)
                     {
                         inv.PayFlag = 0;
@@ -266,6 +270,7 @@ namespace MbcsCentral.WinGL
                 for (int i = 0; i < LstInvoices.SelectedItems.Count; i++)
                 {
                     inv = (Invoices)LstInvoices.SelectedItems[i];
+                    inv = Invoices.load(inv.InvoiceKey);
                     inv.AmountPaid = 0;
                     if (!inv.ACH)
                     {
@@ -301,6 +306,12 @@ namespace MbcsCentral.WinGL
             rpt.process(_invoices);
         }
 
+
+        private void cmdFirstOfMonthEdit_Click(object sender, RoutedEventArgs e)
+        {
+            FirstOfMonthEdit rpt = new FirstOfMonthEdit(m_ThisApp);
+            rpt.process();
+        }
         private void cmdPrintChecks_Click(object sender, RoutedEventArgs e)
         {
             string xsql = Invoices.SQL_LOAD_ALL + " AND [" + Invoices.SQL_COL_CHECK_NUMBER + "] > 0 ";

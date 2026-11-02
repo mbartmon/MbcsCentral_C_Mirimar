@@ -29,6 +29,7 @@ namespace MbcsCentral.WinGL
         public int BalanceAccount { get; set; }
         public int CollectionAccountOne { get ;  set; }
         public int CollectionAccountTwo { get ; set; } 
+        public int CollectionAccountThree { get; set; }
         public string[] Journals { get;  set; }
         public int Year { get; set; }
         public int Month { get; set; }
@@ -66,11 +67,12 @@ namespace MbcsCentral.WinGL
             lstMonths.SelectedIndex = DateTime.Now.Month - 1;
             Company[] cmp = Company.load();
             lstCompanies.ItemsSource = cmp;
-            Accounts[] accounts = Accounts.load();
+            Accounts[] accounts = Accounts.load(true);
             lstBalanceAccount.ItemsSource = accounts;
             lstCollectionsOne.ItemsSource = accounts;
             lstCollectionsTwo.ItemsSource = accounts;
-            JournalNames[] journalNames = JournalNames.load();
+            lstCollectionsThree.ItemsSource = accounts;
+            JournalNames[] journalNames = JournalNames.load(true);
             for (int i = 0; i < 10; i++)
                 ((ComboBox)this.FindName("lstJournal" + i.ToString())).ItemsSource = journalNames;
             // Batch Report?
@@ -198,7 +200,7 @@ namespace MbcsCentral.WinGL
             parms.CollectionAccountTwo = ((Accounts)lstCollectionsTwo.SelectedItem).Key;
             rpt.BalanceAccount = parms.BalanceAccount;
             rpt.CollectionAccount1 = parms.CollectionAccountOne;
-            rpt.CollectionAccount2 = parms.CollectionAccountTwo;
+            rpt.CollectionAccount2 = parms.CollectionAccountTwo; 
             rpt.Company = parms.Company;
             rpt.CompanyName = parms.CompanyName;
             rpt.Department = parms.Department;
